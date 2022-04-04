@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="446.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.AddPatient">
+   <center>
+      <AnchorPane prefHeight="529.0" prefWidth="446.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="73.0" layoutY="89.0" prefHeight="26.0" prefWidth="86.0" text="Name *">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="73.0" layoutY="135.0" prefHeight="26.0" prefWidth="86.0" text="Surname *">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="72.0" layoutY="183.0" prefHeight="26.0" prefWidth="86.0" text="Birthday * ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="68.0" layoutY="446.0" prefHeight="26.0" prefWidth="110.0" text="Birth number *">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="72.0" layoutY="394.0" prefHeight="26.0" prefWidth="44.0" text="Phone">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="72.0" layoutY="350.0" prefHeight="26.0" prefWidth="33.0" text="Sex *">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="73.0" layoutY="307.0" prefHeight="26.0" prefWidth="86.0" text="Blood group *">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="name" layoutX="228.0" layoutY="90.0" prefHeight="14.0" prefWidth="150.0" />
+            <TextField fx:id="surname" layoutX="226.0" layoutY="136.0" />
+            <TextField fx:id="birthnumber" layoutX="226.0" layoutY="447.0" prefHeight="0.0" prefWidth="150.0" />
+            <TextField fx:id="phone" layoutX="226.0" layoutY="395.0" />
+            <ComboBox fx:id="bloodGroup" layoutX="229.0" layoutY="308.0" prefHeight="7.0" prefWidth="62.0" />
+            <Button fx:id="confirmData" layoutX="89.0" layoutY="536.0" mnemonicParsing="false" onAction="#fetchData" prefHeight="35.0" prefWidth="92.0" style="-fx-background-color: #1E90FF;" text="Confirm data">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancel" layoutX="245.0" layoutY="536.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="92.0" style="-fx-background-color: grey;" text="Cancel">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="sex" layoutX="229.0" layoutY="350.0" prefHeight="7.0" prefWidth="62.0" />
+            <TextField fx:id="email" layoutX="226.0" layoutY="484.0" prefHeight="0.0" prefWidth="150.0" />
+            <Label layoutX="68.0" layoutY="483.0" prefHeight="26.0" prefWidth="110.0" text="Email">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="missingValuesMsg" layoutX="78.0" layoutY="45.0" prefHeight="20.0" prefWidth="289.0" style="-fx-background-color: white;" textFill="#ff0202">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="109.0" layoutY="216.0" prefHeight="18.0" prefWidth="57.0" text="Year">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="109.0" layoutY="247.0" prefHeight="18.0" prefWidth="57.0" text="Month">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="109.0" layoutY="278.0" prefHeight="18.0" prefWidth="57.0" text="Day">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="birthYear" layoutX="227.0" layoutY="213.0" promptText="YYYY" />
+            <TextField fx:id="birthMonth" layoutX="226.0" layoutY="243.0" promptText="MM" />
+            <TextField fx:id="birthDay" layoutX="226.0" layoutY="274.0" promptText="DD" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
