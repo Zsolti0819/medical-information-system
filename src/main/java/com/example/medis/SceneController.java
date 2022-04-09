@@ -3,7 +3,6 @@ package com.example.medis;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,9 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Popup;
 
-public class SceneController extends AddPatient {
+public class SceneController extends NewPatient {
 
     private Stage stage;
     private Scene scene;

@@ -35,7 +35,7 @@ public class Login {
 
     private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        if(loginEmail.getText().toString().equals("") && loginPassword.getText().toString().equals("")) {
+        if (loginEmail.getText().toString().equals("") && loginPassword.getText().toString().equals("")) {
             wrongLoginMsg.setText("Success!");
 
             s.switchToDoctor("doctor.fxml",event);

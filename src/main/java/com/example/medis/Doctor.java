@@ -27,7 +27,7 @@ public class Doctor {
     @FXML
     private void addPatient(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.popUpNewPatient("NewPatient.fxml", event);
+        s.popUpNewPatient("newPatient.fxml", event);
 
     }
 

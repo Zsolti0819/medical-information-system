@@ -9,24 +9,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Login">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Login">
    <center>
       <AnchorPane prefHeight="429.0" prefWidth="649.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="EmailLabel" layoutX="260.0" layoutY="294.0" prefHeight="18.0" prefWidth="82.0" text="E-mail">
+            <Label fx:id="EmailLabel" layoutX="243.0" layoutY="294.0" prefHeight="18.0" prefWidth="82.0" text="E-mail">
                <font>
                   <Font name="Consolas" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="passwordLabel" layoutX="260.0" layoutY="342.0" prefHeight="18.0" prefWidth="82.0" text="Password">
+            <Label fx:id="passwordLabel" layoutX="243.0" layoutY="342.0" prefHeight="18.0" prefWidth="82.0" text="Password">
                <font>
                   <Font name="Consolas" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="loginEmail" layoutX="361.0" layoutY="292.0" prefHeight="26.0" prefWidth="180.0" promptText="E-mail" style="-fx-background-color: grey;" />
-            <PasswordField fx:id="loginPassword" layoutX="362.0" layoutY="340.0" prefHeight="26.0" prefWidth="178.0" promptText="password" style="-fx-background-color: grey;" />
-            <Button fx:id="loginButton" layoutX="413.0" layoutY="392.0" mnemonicParsing="false" onAction="#userLogIn" prefHeight="24.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Log in">
+            <TextField fx:id="loginEmail" layoutX="339.0" layoutY="292.0" prefHeight="26.0" prefWidth="245.0" promptText="E-mail" style="-fx-background-color: grey;" />
+            <PasswordField fx:id="loginPassword" layoutX="339.0" layoutY="340.0" prefHeight="26.0" prefWidth="245.0" promptText="password" style="-fx-background-color: grey;" />
+            <Button fx:id="loginButton" layoutX="339.0" layoutY="393.0" mnemonicParsing="false" onAction="#userLogIn" prefHeight="31.0" prefWidth="245.0" style="-fx-background-color: #1E90FF;" text="Log in">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="loginAdminButton" layoutX="339.0" layoutY="436.0" mnemonicParsing="false" onAction="#userLogIn" prefHeight="31.0" prefWidth="245.0" style="-fx-background-color: #1E90FF;" text="Log in (admin)">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -36,11 +42,16 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView blendMode="DARKEN" fitHeight="60.0" fitWidth="60.0" layoutX="421.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="DARKEN" fitHeight="60.0" fitWidth="60.0" layoutX="383.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logo.png" />
                </image>
             </ImageView>
+            <Text layoutX="461.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIS">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </center>
