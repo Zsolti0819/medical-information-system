@@ -37,7 +37,7 @@
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-            <Line endX="153.5" layoutX="50.0" layoutY="248.0" startX="-100.0" />
+            <Line endX="155.0" layoutX="50.0" layoutY="248.0" startX="-50.0" />
             <Hyperlink layoutX="25.0" layoutY="263.0" onAction="#userLogOut" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />

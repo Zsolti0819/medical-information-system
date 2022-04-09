@@ -27,7 +27,7 @@ public class Doctor implements Initializable {
 
     private void handleButtonAction (ActionEvent event)  {
         if (event.getSource() == button[0]) {
-            System.out.println("Implement this");
+            System.out.println("This button should open a new window (user_mode_patient_info.fxml)");
         }
     }
 
@@ -42,7 +42,7 @@ public class Doctor implements Initializable {
     @FXML
     private void showPatients(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchTo("doctor.fxml",event);
+        s.switchTo("user_mode.fxml",event);
     }
 
     @FXML

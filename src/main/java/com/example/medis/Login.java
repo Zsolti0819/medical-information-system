@@ -30,7 +30,7 @@ public class Login {
         if (loginEmail.getText().equals("") && loginPassword.getText().equals("")) {
             wrongLoginMsg.setText("Success!");
 
-            s.switchTo("doctor.fxml",event);
+            s.switchTo("user_mode.fxml",event);
 
         }
 
