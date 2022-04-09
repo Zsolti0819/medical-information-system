@@ -13,20 +13,12 @@ import java.io.IOException;
 
 public class Login {
 
-  /*  public Login() {
-
-    }*/
-
-    @FXML
-    private Button loginButton;
     @FXML
     private Label wrongLoginMsg;
     @FXML
     private TextField loginEmail;
     @FXML
     private PasswordField loginPassword;
-
-
 
     public void userLogIn(ActionEvent event) throws IOException {
         checkLogin(event);
@@ -35,10 +27,10 @@ public class Login {
 
     private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        if (loginEmail.getText().toString().equals("") && loginPassword.getText().toString().equals("")) {
+        if (loginEmail.getText().equals("") && loginPassword.getText().equals("")) {
             wrongLoginMsg.setText("Success!");
 
-            s.switchToDoctor("doctor.fxml",event);
+            s.switchTo("doctor.fxml",event);
 
         }
 

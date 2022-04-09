@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,42 +23,56 @@ public class Doctor implements Initializable {
     @FXML private TableColumn<Patient, LocalDateTime> lastVisit;
     @FXML private TableColumn<Patient, LocalDateTime> nextVisit;
     @FXML private TableColumn<Patient, Button> patientInfo;
+    Button [] button = new Button[3];
+
+    private void handleButtonAction (ActionEvent event)  {
+        if (event.getSource() == button[0]) {
+            System.out.println("Implement this");
+        }
+    }
 
 
     @FXML
     private void userLogOut(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToLogin("login.fxml",event);
+        s.switchTo("login.fxml",event);
 
     }
 
     @FXML
     private void showPatients(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToDoctor("doctor.fxml",event);
+        s.switchTo("doctor.fxml",event);
     }
 
     @FXML
-    private void addPatient(MouseEvent event) throws IOException {
+    private void addPatient() throws IOException {
         SceneController s = new SceneController();
-        s.popUpNewPatient("newPatient.fxml", event);
+        s.popUpNewPatient("newPatient.fxml");
 
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameAndSurname.setCellValueFactory(new PropertyValueFactory<Patient, String>("nameAndSurname"));
-        birthNumber.setCellValueFactory(new PropertyValueFactory<Patient, String>("birthNumber"));
-        lastVisit.setCellValueFactory(new PropertyValueFactory<Patient, LocalDateTime>("lastVisit"));
-        nextVisit.setCellValueFactory(new PropertyValueFactory<Patient, LocalDateTime>("nextVisit"));
-        patientInfo.setCellValueFactory(new PropertyValueFactory<Patient, Button>("patientInfo"));
+    public void initialize(URL url, ResourceBundle resourceBundle)  {
+        nameAndSurname.setCellValueFactory(new PropertyValueFactory<>("nameAndSurname"));
+        birthNumber.setCellValueFactory(new PropertyValueFactory<>("birthNumber"));
+        lastVisit.setCellValueFactory(new PropertyValueFactory<>("lastVisit"));
+        nextVisit.setCellValueFactory(new PropertyValueFactory<>("nextVisit"));
+        patientInfo.setCellValueFactory(new PropertyValueFactory<>("patientInfo"));
+
+
+        for (int i = 0; i < button.length; i++) {
+            button[i] = new Button();
+            button[i].setOnAction(this::handleButtonAction);
+        }
         patientsTable.setItems(getPatients());
     }
 
     private ObservableList<Patient> getPatients() {
         ObservableList<Patient> patients = FXCollections.observableArrayList();
-        patients.add(new Patient("Title", "Description", LocalDateTime.now(), LocalDateTime.now()));
+        patients.add(new Patient("Title", "Description", LocalDateTime.now(), LocalDateTime.now(), button[0]));
 
         return patients;
     }
+
 }

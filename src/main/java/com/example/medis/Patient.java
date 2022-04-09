@@ -9,12 +9,13 @@ public class Patient {
     private LocalDateTime lastVisit, nextVisit;
     private Button patientInfo;
 
-    public Patient(String nameAndSurname, String birthNumber, LocalDateTime lastVisit, LocalDateTime nextVisit) {
+    public Patient(String nameAndSurname, String birthNumber, LocalDateTime lastVisit, LocalDateTime nextVisit, Button patientInfo) {
         this.nameAndSurname = nameAndSurname;
         this.birthNumber = birthNumber;
         this.lastVisit = lastVisit;
         this.nextVisit = nextVisit;
-        this.patientInfo = new Button("Open");
+        this.patientInfo = patientInfo;
+        this.patientInfo.setText("Open");
     }
 
     public String getNameAndSurname() {

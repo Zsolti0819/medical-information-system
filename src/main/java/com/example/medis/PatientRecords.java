@@ -25,9 +25,9 @@ public class PatientRecords implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        titleCol.setCellValueFactory(new PropertyValueFactory<Record, String>("Title"));
-        descriptionCol.setCellValueFactory(new PropertyValueFactory<Record, String>("Description"));
-        createdAtCol.setCellValueFactory(new PropertyValueFactory<Record, LocalDateTime>("createdAt"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        createdAtCol.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
 
         recordsTable.setItems(getRecords());
     }
@@ -38,6 +38,5 @@ public class PatientRecords implements Initializable {
 
         return records;
     }
-
 
 }
