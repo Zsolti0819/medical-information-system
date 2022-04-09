@@ -80,13 +80,13 @@
             </font>
          </Label>
          <TextField fx:id="email" layoutX="448.0" layoutY="506.0" prefHeight="25.0" prefWidth="177.0"/>
-         <Button fx:id="create" layoutX="234.0" layoutY="546.0" mnemonicParsing="false" onAction="#fetchData"
+         <Button layoutX="234.0" layoutY="546.0" mnemonicParsing="false" onAction="#fetchData"
                  prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create">
             <font>
                <Font name="System Bold" size="12.0"/>
             </font>
          </Button>
-         <Button fx:id="cancel" layoutX="439.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#closeNewPatientWindow" prefHeight="35.0"
+         <Button layoutX="439.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#closeNewPatientWindow" prefHeight="35.0"
                  prefWidth="190.0" style="-fx-background-color: grey;" text="Cancel">
             <font>
                <Font name="System Bold" size="12.0"/>

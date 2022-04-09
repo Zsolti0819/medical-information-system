@@ -1,6 +1,7 @@
 package com.example.medis;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,7 @@ public class SceneController extends NewPatient {
     private Parent root;
 
     public void switchToLogin(String fxml,ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(fxml));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         scene = new Scene(root);
@@ -27,7 +28,7 @@ public class SceneController extends NewPatient {
     }
 
     public void switchToDoctor(String fxml, ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(fxml));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         scene = new Scene(root);
@@ -49,17 +50,4 @@ public class SceneController extends NewPatient {
 
     }
 
-    /*public void popUpNewPatient(String fxml, String msg) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-        Parent root = (Parent) loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setAlwaysOnTop(true);
-        stage.toFront();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        missingValuesMsg.setText(msg);
-        stage.show();
-
-
-    }*/
 }
