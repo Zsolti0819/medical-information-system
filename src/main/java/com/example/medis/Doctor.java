@@ -28,6 +28,7 @@ public class Doctor implements Initializable {
     private void handleButtonAction (ActionEvent event)  {
         if (event.getSource() == button[0]) {
             System.out.println("This button should open a new window (user_mode_patient_info.fxml)");
+            showPatient();
         }
     }
 
@@ -46,10 +47,23 @@ public class Doctor implements Initializable {
     }
 
     @FXML
-    private void addPatient() throws IOException {
+    private void addPatient()  {
         SceneController s = new SceneController();
-        s.popUpNewPatient("newPatient.fxml");
+        try {
+            s.popUpNewPatient("newPatient.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @FXML
+    private void showPatient()  {
+        SceneController s = new SceneController();
+        try {
+            s.popUpNewPatient("user_mode_patient_info.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -71,7 +85,8 @@ public class Doctor implements Initializable {
     private ObservableList<Patient> getPatients() {
         ObservableList<Patient> patients = FXCollections.observableArrayList();
         patients.add(new Patient("Title", "Description", LocalDateTime.now(), LocalDateTime.now(), button[0]));
-
+        patients.add(new Patient("Title", "Description", LocalDateTime.now(), LocalDateTime.now(), button[1]));
+        patients.add(new Patient("Title", "Description", LocalDateTime.now(), LocalDateTime.now(), button[2]));
         return patients;
     }
 

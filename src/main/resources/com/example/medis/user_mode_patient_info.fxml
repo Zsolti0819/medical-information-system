@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Doctor">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Temp">
     <left>
         <AnchorPane prefHeight="610.0" prefWidth="145.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
             <ImageView fitHeight="52.0" fitWidth="59.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -22,7 +22,7 @@
                     <Font size="24.0" />
                 </font>
             </Text>
-            <Hyperlink layoutX="25.0" layoutY="104.0" onAction="#showPatients" prefHeight="25.0" prefWidth="103.0" text="Patient info" textFill="#0ebfda">
+            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="25.0" prefWidth="103.0" text="Patient info" textFill="#0ebfda">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
@@ -38,7 +38,7 @@
             </font>
          </Hyperlink>
             <Line endX="155.0" layoutX="50.0" layoutY="248.0" startX="-50.0" />
-            <Hyperlink layoutX="25.0" layoutY="263.0" onAction="#userLogOut" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
+            <Hyperlink layoutX="25.0" layoutY="263.0" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
