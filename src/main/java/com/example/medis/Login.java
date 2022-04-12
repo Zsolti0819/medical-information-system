@@ -20,7 +20,7 @@ public class Login {
         checkLogin(event);
 
     }
-
+//////////////////////
     private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         if (loginEmail.getText().equals("") && loginPassword.getText().equals("")) {
