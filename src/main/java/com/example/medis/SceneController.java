@@ -3,12 +3,12 @@ package com.example.medis;
 import java.io.IOException;
 import java.util.Objects;
 
+import com.example.medis.UserMode.NewPatient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -36,6 +36,4 @@ public class SceneController extends NewPatient {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
-
-
 }
