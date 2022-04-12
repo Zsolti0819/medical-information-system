@@ -52,7 +52,7 @@ public class AfterLogin implements Initializable {
     private void addPatient()  {
         SceneController s = new SceneController();
         try {
-            s.popUpNewPatient("new_patient.fxml");
+            s.popUpNewPatient("user_mode/new_patient.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

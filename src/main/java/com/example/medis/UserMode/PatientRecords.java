@@ -31,7 +31,6 @@ public class PatientRecords implements Initializable {
 
     private void handleButtonAction (ActionEvent event)  {
         if (event.getSource() == button[0]) {
-            System.out.println("This button should open a new window (patient_info.fxml)");
             showRecord();
         }
     }
