@@ -94,7 +94,7 @@ public class NewPatient implements Initializable {
         }
     }
 
-    @FXML public void closeNewPatientWindow(InputEvent e) {
+    @FXML public void closeCurrentWindow(InputEvent e) {
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();

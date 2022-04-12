@@ -38,7 +38,7 @@
             </font>
          </Hyperlink>
             <Line endX="155.0" layoutX="50.0" layoutY="248.0" startX="-50.0" />
-            <Hyperlink fx:id="closeWindowButton" layoutX="25.0" layoutY="263.0" onAction="#closeNewPatientWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
+            <Hyperlink fx:id="closeWindowButton" layoutX="25.0" layoutY="263.0" onAction="#closeCurrentWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
@@ -135,7 +135,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Button layoutX="67.0" layoutY="557.0" mnemonicParsing="false" onAction="#switchToEditPatientData" prefHeight="35.0" prefWidth="190.0" text="Edit patient data">
+            <Button layoutX="67.0" layoutY="557.0" mnemonicParsing="false" onAction="#OpenEditPatientData" prefHeight="35.0" prefWidth="190.0" text="Edit patient data">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

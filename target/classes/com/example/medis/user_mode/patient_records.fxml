@@ -40,7 +40,7 @@
             </font>
          </Hyperlink>
             <Line endX="153.5" layoutX="50.0" layoutY="248.0" startX="-100.0" />
-            <Hyperlink fx:id="closeWindowButton" layoutX="25.0" layoutY="263.0" onAction="#closeNewPatientWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
+            <Hyperlink fx:id="closeWindowButton" layoutX="25.0" layoutY="263.0" onAction="#closeCurrentWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
@@ -58,7 +58,7 @@
             <columns>
                <TableColumn fx:id="titleCol" prefWidth="202.0" text="Title" />
                <TableColumn fx:id="descriptionCol" prefWidth="200.0" text="Description" />
-               <TableColumn fx:id="createdAtCol" prefWidth="200.0" text="Created at" />
+               <TableColumn fx:id="createdAtCol" prefWidth="198.0" text="Created at" />
                <TableColumn fx:id="recordInfo" prefWidth="52.0" text="Details" />
             </columns>
          </TableView>

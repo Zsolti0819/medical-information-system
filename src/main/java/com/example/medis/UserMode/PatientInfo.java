@@ -25,7 +25,7 @@ public class PatientInfo {
    }
 
     @FXML
-    private void switchToEditPatientData() {
+    private void OpenEditPatientData() {
         SceneController s = new SceneController();
         try {
             s.popUpNewPatient("user_mode/patient_info_edit.fxml");
@@ -35,7 +35,7 @@ public class PatientInfo {
     }
 
     @FXML
-    public void closeNewPatientWindow(ActionEvent e) {
+    public void closeCurrentWindow(ActionEvent e) {
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();

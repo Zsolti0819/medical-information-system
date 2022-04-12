@@ -70,7 +70,7 @@ public class PatientRecords implements Initializable {
     }
 
     @FXML
-        public void closeNewPatientWindow(ActionEvent e) {
+    public void closeCurrentWindow(ActionEvent e) {
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
@@ -85,4 +85,6 @@ public class PatientRecords implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 }
