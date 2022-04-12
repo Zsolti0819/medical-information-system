@@ -6,11 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -39,4 +43,22 @@ public class PatientRecords implements Initializable {
         return records;
     }
 
+    @FXML
+    private void switchToPatientInfo(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchTo("user_mode_patient_info.fxml",event);
+    }
+
+    @FXML
+    private void switchToAppointments(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchTo("user_mode_patient_appointments.fxml",event);
+    }
+
+    @FXML
+        public void closeNewPatientWindow(ActionEvent e) {
+        final Node source = (Node) e.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 }
