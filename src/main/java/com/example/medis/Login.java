@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Login {
 
     @FXML
-    private Label wrongLoginMsg;
+    private Label loginMsg;
     @FXML
     private TextField loginEmail;
     @FXML
@@ -24,19 +24,19 @@ public class Login {
     private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         if (loginEmail.getText().equals("") && loginPassword.getText().equals("")) {
-            wrongLoginMsg.setText("Success!");
+            loginMsg.setText("Success!");
 
             s.switchTo("user_mode/after_login.fxml",event);
 
         }
 
         else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()) {
-            wrongLoginMsg.setText("Please enter your email and password.");
+            loginMsg.setText("Please enter your email and password.");
         }
 
 
         else {
-            wrongLoginMsg.setText("Username or password are not valid!");
+            loginMsg.setText("Username or password are not valid!");
         }
     }
 
