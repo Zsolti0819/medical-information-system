@@ -19,27 +19,24 @@ public class JavaPostgreSql {
         String user = "medis";
         String pswd = "Uu39FC4W#Z";
 
-
-//        String query = "SELECT * from public.users;";
         //(id,fullname, username, password, email, phone, position, birthdate, created_at, updated_at, deleted(boolean))
-        String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?, ?, false);";
-
-
+        String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
 
         {
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                SimpleDateFormat ft =  new SimpleDateFormat("yyyy-MM-dd");
-                Date t = ft.parse(birthdate);
-
+                // date modification for insert
+                Date t = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
+                java.sql.Date sqlDate = new java.sql.Date(t.getTime());
+                //adding values
                 preparedStatement.setString(1, fullname);
                 preparedStatement.setString(2, username);
                 preparedStatement.setString(3, password);
                 preparedStatement.setString(4, email);
                 preparedStatement.setString(5, phone);
-                preparedStatement.setObject(6, Position.valueOf(position));
-                preparedStatement.setString(7,  t.toString());
+                preparedStatement.setString(6, position);
+                preparedStatement.setDate(7,  sqlDate);
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
                 System.out.println("Succesfull!");
@@ -50,6 +47,55 @@ public class JavaPostgreSql {
             }
         }
 
+    }
+
+    // login checker
+    public static boolean checkUser(String email, String password){
+        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
+        String user = "medis";
+        String pswd = "Uu39FC4W#Z";
+
+        String query = "SELECT id, fullname, username, position FROM users WHERE email=? and password=?";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,email);
+            preparedStatement.setString(2,password);
+
+            System.out.println(preparedStatement);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()){
+                System.out.println("Empty");
+                return false;
+            }
+            else {
+                List<User> result = new ArrayList<>();
+                while (resultSet.next()) {
+
+                    long id = resultSet.getLong("id");
+                    String fullname = resultSet.getString("fullname");
+                    String username = resultSet.getString("username");
+                    String position = resultSet.getString("position");
+
+                    User obj = new User();
+                    obj.setId(id);
+                    obj.setFullname(fullname);
+                    obj.setPosition(position);
+                    obj.setUsername(username);
+                    result.add(obj);
+                    System.out.println(obj.getFullname());
+                    System.out.println(obj.getUsername());
+                }
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
 //    public static void main(String[] args){

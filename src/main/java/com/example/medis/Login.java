@@ -23,12 +23,15 @@ public class Login {
 
     private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        JavaPostgreSql.createUser("Tamás Szakal", "xszakal", "qwe123", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
-        if (loginEmail.getText().equals("") && loginPassword.getText().equals("")) {
+        // create user function to creating users in db.
+        //JavaPostgreSql.createUser("Tamás Szakal", "xszakal12", "qwe123", "xszasadkal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
+
+        if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             loginMsg.setText("Success!");
-
-            s.switchTo("user_mode/after_login.fxml",event);
-
+            if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
+                s.switchTo("user_mode/after_login.fxml",event);
+            else
+                loginMsg.setText("Username or password are not valid!");
         }
 
         else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()) {
