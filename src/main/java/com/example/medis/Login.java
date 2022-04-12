@@ -20,9 +20,10 @@ public class Login {
         checkLogin(event);
 
     }
-//////////////////////
+
     private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
+        JavaPostgreSql.createUser("Tamás Szakal", "xszakal", "qwe123", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
         if (loginEmail.getText().equals("") && loginPassword.getText().equals("")) {
             loginMsg.setText("Success!");
 
