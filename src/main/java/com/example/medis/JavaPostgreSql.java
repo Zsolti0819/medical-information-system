@@ -26,9 +26,7 @@ public class JavaPostgreSql {
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                // date modification for insert
-                Date t = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
-                java.sql.Date sqlDate = new java.sql.Date(t.getTime());
+
                 //adding values
                 preparedStatement.setString(1, fullname);
                 preparedStatement.setString(2, username);
@@ -36,7 +34,7 @@ public class JavaPostgreSql {
                 preparedStatement.setString(4, email);
                 preparedStatement.setString(5, phone);
                 preparedStatement.setString(6, position);
-                preparedStatement.setDate(7,  sqlDate);
+                preparedStatement.setDate(7,  getDate(birthdate));
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
                 System.out.println("Succesfull!");
@@ -47,6 +45,12 @@ public class JavaPostgreSql {
             }
         }
 
+    }
+    // date modification for insert into query
+    private static java.sql.Date getDate(String birthdate) throws ParseException {
+        Date t = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
+        java.sql.Date sqlDate = new java.sql.Date(t.getTime());
+        return sqlDate;
     }
 
     // login checker
@@ -64,10 +68,10 @@ public class JavaPostgreSql {
             preparedStatement.setString(1,email);
             preparedStatement.setString(2,password);
 
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()){
-                System.out.println("Empty");
+                System.out.println("User not found in DB!");
                 return false;
             }
             else {
@@ -85,8 +89,8 @@ public class JavaPostgreSql {
                     obj.setPosition(position);
                     obj.setUsername(username);
                     result.add(obj);
-                    System.out.println(obj.getFullname());
-                    System.out.println(obj.getUsername());
+//                    System.out.println(obj.getFullname());
+//                    System.out.println(obj.getUsername());
                 }
                 return true;
             }
@@ -96,6 +100,39 @@ public class JavaPostgreSql {
         }
 
         return false;
+    }
+
+    public static void updateUser(String username, String fullname, String password, String email, String phone, String position, String birthdate){
+        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
+        String user = "medis";
+        String pswd = "Uu39FC4W#Z";
+
+        String query = "update users set fullname=?, password=?, email=?, phone=?, birthdate=?, position=cast(? as position_enum), updated_at=now()  where username=?";
+
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,fullname);
+            preparedStatement.setString(2,password);
+            preparedStatement.setString(3,email);
+            preparedStatement.setString(4,phone);
+            preparedStatement.setDate(5,getDate(birthdate));
+            preparedStatement.setString(6,position);
+            preparedStatement.setString(7,username);
+            System.out.println(preparedStatement);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            System.out.println(resultSet);
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
 //    public static void main(String[] args){

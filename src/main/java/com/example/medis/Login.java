@@ -25,6 +25,7 @@ public class Login {
         SceneController s = new SceneController();
         // create user function to creating users in db.
         //JavaPostgreSql.createUser("Tamás Szakal", "xszakal12", "qwe123", "xszasadkal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
+        JavaPostgreSql.updateUser( "xszakal", "Tamás Szakal","qwe123", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             loginMsg.setText("Success!");
