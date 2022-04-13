@@ -102,17 +102,40 @@ public class JavaPostgreSql {
         return false;
     }
 
-    public static void updateUser(String username, String fullname, String password, String email, String phone, String position, String birthdate){
+    // update application users
+    public static String updateUser(String username, String fullname, String password, String email, String phone, String position, String birthdate){
         String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
         String user = "medis";
         String pswd = "Uu39FC4W#Z";
 
-        String query = "update users set fullname=?, password=?, email=?, phone=?, birthdate=?, position=cast(? as position_enum), updated_at=now()  where username=?";
+        // checking if user with this username exist
+
+        String query = "SELECT id, fullname, username, position FROM users WHERE username=?;";
 
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1,username);
+            System.out.println(preparedStatement);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(!resultSet.next()){
+                return "User with this username not exists!";
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // update the user
+
+        String query1 = "update users set fullname=?, password=?, email=?, phone=?, birthdate=?, position=cast(? as position_enum), updated_at=now()  where username=?;";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query1);
 
             preparedStatement.setString(1,fullname);
             preparedStatement.setString(2,password);
@@ -122,18 +145,18 @@ public class JavaPostgreSql {
             preparedStatement.setString(6,position);
             preparedStatement.setString(7,username);
             System.out.println(preparedStatement);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            System.out.println(resultSet);
-
-
+            return "Succesfully updated!";
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return "SQLException: " + e;
         } catch (ParseException e) {
             e.printStackTrace();
+            return "ParseException: " + e;
         }
-
     }
+
+
 
 //    public static void main(String[] args){
 //

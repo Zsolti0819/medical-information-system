@@ -16,16 +16,16 @@ public class Login {
     @FXML
     private PasswordField loginPassword;
 
-    public void userLogIn(ActionEvent event) throws IOException {
+    public void userLogIn(ActionEvent event) throws IOException, InterruptedException {
         checkLogin(event);
 
     }
 
-    private void checkLogin(ActionEvent event) throws IOException {
+    private void checkLogin(ActionEvent event) throws IOException, InterruptedException {
         SceneController s = new SceneController();
         // create user function to creating users in db.
         //JavaPostgreSql.createUser("Tamás Szakal", "xszakal12", "qwe123", "xszasadkal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
-        JavaPostgreSql.updateUser( "xszakal", "Tamás Szakal","qwe123", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
+
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             loginMsg.setText("Success!");
@@ -37,12 +37,13 @@ public class Login {
 
         else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()) {
             loginMsg.setText("Please enter your email and password.");
+//            wait(5000);
+//            loginMsg.setText("");
         }
-
-
         else {
             loginMsg.setText("Username or password are not valid!");
         }
+//        loginMsg.setText(JavaPostgreSql.updateUser( "xszakal", "Tamás Szakal","12345", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01"));
     }
 
 
