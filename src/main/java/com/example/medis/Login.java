@@ -37,14 +37,12 @@ public class Login {
 
         else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()) {
             loginMsg.setText("Please enter your email and password.");
-//            wait(5000);
-//            loginMsg.setText("");
         }
         else {
             loginMsg.setText("Username or password are not valid!");
         }
 //        loginMsg.setText(JavaPostgreSql.updateUser( 2,"xszakal", "Tamás Szakal","12345", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01"));
-        loginMsg.setText(JavaPostgreSql.deleteUser(8));
+//        loginMsg.setText(JavaPostgreSql.deleteUser(8));
     }
 
 

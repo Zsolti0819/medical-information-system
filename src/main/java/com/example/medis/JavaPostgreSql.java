@@ -12,13 +12,13 @@ import java.util.logging.*;
 
 
 public class JavaPostgreSql {
+    private static String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
+    private static String user = "medis";
+    private static String pswd = "Uu39FC4W#Z";
 
     public static void createUser(String fullname, String username, String password, String email,
                                   String phone, String position, String birthdate){
 
-        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-        String user = "medis";
-        String pswd = "Uu39FC4W#Z";
 
         //(id,fullname, username, password, email, phone, position, birthdate, created_at, updated_at, deleted(boolean))
         String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
@@ -38,7 +38,7 @@ public class JavaPostgreSql {
                 preparedStatement.setDate(7,  getDate(birthdate));
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
-                System.out.println("Succesfull!");
+                System.out.println("Succesfully created user!");
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ParseException e){
@@ -57,9 +57,6 @@ public class JavaPostgreSql {
 
     // login checker
     public static boolean checkUser(String email, String password){
-        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-        String user = "medis";
-        String pswd = "Uu39FC4W#Z";
 
         String query = "SELECT id, fullname, username, deleted, position FROM users WHERE email=? and password=?";
 
@@ -70,7 +67,7 @@ public class JavaPostgreSql {
             preparedStatement.setString(1,email);
             preparedStatement.setString(2,password);
 
-//            System.out.println(preparedStatement);
+            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()){
                 System.out.println("User not found in DB!");
@@ -96,8 +93,6 @@ public class JavaPostgreSql {
                     obj.setPosition(position);
                     obj.setUsername(username);
                     result.add(obj);
-//                    System.out.println(obj.getFullname());
-//                    System.out.println(obj.getUsername());
                 }
                 return true;
             }
@@ -111,9 +106,6 @@ public class JavaPostgreSql {
 
     // update application users
     public static String updateUser(int id, String username, String fullname, String password, String email, String phone, String position, String birthdate){
-        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-        String user = "medis";
-        String pswd = "Uu39FC4W#Z";
 
         // checking if user with this username exist
 
@@ -129,7 +121,7 @@ public class JavaPostgreSql {
             System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(!resultSet.next()){
-                return "User with this username not exists!";
+                return "User with this id not exists!";
             }
 
 
@@ -169,10 +161,6 @@ public class JavaPostgreSql {
 
 
     public static String deleteUser(int id){
-        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-        String user = "medis";
-        String pswd = "Uu39FC4W#Z";
-
         // check if the user exist
 
         String query = "SELECT * FROM users WHERE id=?;";
@@ -209,6 +197,132 @@ public class JavaPostgreSql {
 
 
         return "User deleted!";
+    }
+
+    public static String createPatient(String first_name, String sure_name, String insurance_co, String birthdate, String sex,
+                                     String blood_group, String address, String phone, String email){
+
+        String query = "INSERT INTO patients VALUES(default, ?, ?, cast(? as insurance_enum), ?, " +
+                "cast(? as sex_enum), cast(? as blood_enum), ?, ?, now(), now(), false);";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, first_name);
+            preparedStatement.setString(2, sure_name);
+            preparedStatement.setString(3, insurance_co);
+            preparedStatement.setDate(4,  getDate(birthdate));
+            preparedStatement.setString(5, sex);
+            preparedStatement.setString(6, blood_group);
+            preparedStatement.setString(7, address);
+            preparedStatement.setString(8, phone);
+
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+            return "Succesfully created patient!";
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "SQLException: " + e;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "ParseException: " + e;
+        }
+
+    }
+
+    public static String updatePatient(int id, String first_name, String sure_name, String insurance_co, String birthdate, String sex,
+                                       String blood_group, String address, String phone, String email){
+
+        String query = "SELECT * FROM patients WHERE id=?;";
+
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,id);
+            System.out.println(preparedStatement);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(!resultSet.next()){
+                return "Patient with this id not exists!";
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String query1 = "UPDATE patients SET first_name=?, sure_name=?, insurance_co=cast(? as insurance_enum), birthdate=?, sex=cast(? as sex_enum), blood_group=cast(? as blood_enum), phone=?, updated_at=now()  WHERE id=?;";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query1);
+
+            preparedStatement.setString(1, first_name);
+            preparedStatement.setString(2, sure_name);
+            preparedStatement.setString(3, insurance_co);
+            preparedStatement.setDate(4,  getDate(birthdate));
+            preparedStatement.setString(5, sex);
+            preparedStatement.setString(6, blood_group);
+            preparedStatement.setString(7, address);
+            preparedStatement.setString(8, phone);
+
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+            return "Succesfully updated patient with id=" + id + " !";
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "SQLException: " + e;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "ParseException: " + e;
+        }
+
+    }
+
+    public static String deletePatient(int id){
+
+        String query = "SELECT * FROM patients WHERE id=?;";
+
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,id);
+            System.out.println(preparedStatement);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(!resultSet.next()){
+                return "Patient with this id not exists!";
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "SQLException: " + e;
+        }
+
+        String query1 = "UPDATE patients SET deleted=true, updated_at=now() WHERE id=?";
+
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query1);
+
+            preparedStatement.setString(1,String.valueOf(id));
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "SQLException: " + e;
+        }
+        return "Patient deleted!";
+
     }
 
 
