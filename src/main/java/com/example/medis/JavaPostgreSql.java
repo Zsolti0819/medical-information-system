@@ -1,5 +1,6 @@
 package com.example.medis;
 
+import javax.xml.transform.Result;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.text.ParseException;
@@ -46,6 +47,7 @@ public class JavaPostgreSql {
         }
 
     }
+
     // date modification for insert into query
     private static java.sql.Date getDate(String birthdate) throws ParseException {
         Date t = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
@@ -59,7 +61,7 @@ public class JavaPostgreSql {
         String user = "medis";
         String pswd = "Uu39FC4W#Z";
 
-        String query = "SELECT id, fullname, username, position FROM users WHERE email=? and password=?";
+        String query = "SELECT id, fullname, username, deleted, position FROM users WHERE email=? and password=?";
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -77,11 +79,16 @@ public class JavaPostgreSql {
             else {
                 List<User> result = new ArrayList<>();
                 while (resultSet.next()) {
-
+                    boolean deleted = resultSet.getBoolean("deleted");
+                    if (deleted){
+                        System.out.println("User was deleted before");
+                        return false;
+                    }
                     long id = resultSet.getLong("id");
                     String fullname = resultSet.getString("fullname");
                     String username = resultSet.getString("username");
                     String position = resultSet.getString("position");
+
 
                     User obj = new User();
                     obj.setId(id);
@@ -103,21 +110,22 @@ public class JavaPostgreSql {
     }
 
     // update application users
-    public static String updateUser(String username, String fullname, String password, String email, String phone, String position, String birthdate){
+    public static String updateUser(int id, String username, String fullname, String password, String email, String phone, String position, String birthdate){
         String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
         String user = "medis";
         String pswd = "Uu39FC4W#Z";
 
         // checking if user with this username exist
 
-        String query = "SELECT id, fullname, username, position FROM users WHERE username=?;";
+        String query = "SELECT * FROM users WHERE id=? and username=?;";
 
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1,username);
+            preparedStatement.setInt(1,id);
+            preparedStatement.setString(2,username);
             System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             if(!resultSet.next()){
@@ -131,7 +139,7 @@ public class JavaPostgreSql {
 
         // update the user
 
-        String query1 = "update users set fullname=?, password=?, email=?, phone=?, birthdate=?, position=cast(? as position_enum), updated_at=now()  where username=?;";
+        String query1 = "UPDATE users SET fullname=?, password=?, email=?, phone=?, birthdate=?, position=cast(? AS position_enum), updated_at=now()  WHERE id=? and username=?;";
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -143,8 +151,10 @@ public class JavaPostgreSql {
             preparedStatement.setString(4,phone);
             preparedStatement.setDate(5,getDate(birthdate));
             preparedStatement.setString(6,position);
-            preparedStatement.setString(7,username);
+            preparedStatement.setInt(7,id);
+            preparedStatement.setString(8,username);
             System.out.println(preparedStatement);
+            preparedStatement.execute();
             return "Succesfully updated!";
 
         } catch (SQLException e) {
@@ -154,6 +164,51 @@ public class JavaPostgreSql {
             e.printStackTrace();
             return "ParseException: " + e;
         }
+    }
+
+
+
+    public static String deleteUser(int id){
+        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
+        String user = "medis";
+        String pswd = "Uu39FC4W#Z";
+
+        // check if the user exist
+
+        String query = "SELECT * FROM users WHERE id=?;";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, id);
+
+            System.out.println(preparedStatement);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(!resultSet.next()){
+                return "User with this username not exists!";
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String query1 = "UPDATE USERS SET deleted=true, updated_at=now() WHERE id=?";
+
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query1);
+
+            preparedStatement.setString(1,String.valueOf(id));
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return "User deleted!";
     }
 
 

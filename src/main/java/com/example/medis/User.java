@@ -9,6 +9,7 @@ public class User {
     private LocalDateTime created_at;
     private String position;
     private String username;
+    private boolean deleted;
 
     public Long getId() {
         return id;
