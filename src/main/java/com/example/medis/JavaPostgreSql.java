@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class JavaPostgreSql {
@@ -168,7 +170,7 @@ public class JavaPostgreSql {
                                      String blood_group, String address, String phone, String email){
 
         String query = "INSERT INTO patients VALUES(default, ?, ?, cast(? as insurance_enum), ?, " +
-                "cast(? as sex_enum), cast(? as blood_enum), ?, ?, now(), now(), false);";
+                "cast(? as sex_enum), cast(? as blood_enum), ?, ?, now(), now(), false, ?);";
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -182,6 +184,7 @@ public class JavaPostgreSql {
             preparedStatement.setString(6, blood_group);
             preparedStatement.setString(7, address);
             preparedStatement.setString(8, phone);
+            preparedStatement.setString(9, email);
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
@@ -260,9 +263,10 @@ public class JavaPostgreSql {
     }
 
     public static String creteAppointment(String title, String description, String start_time, String end_time, long patient_id,
-                                          long doctor_id){
+                                          long doctor_id, long created_by){
 
-        String query = "INSERT INTO appointments VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
+        String query = "INSERT INTO appointments VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false, ?);";
+
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -617,9 +621,10 @@ public class JavaPostgreSql {
         obj.setFirst_name(resultSet.getString("first_name"));
         obj.setSurname(resultSet.getString("surname"));
         obj.setPhone(resultSet.getString("phone"));
-        obj.setBirthdate(LocalDateTime.from(resultSet.getDate("birthdate").toLocalDate()));
-        obj.setCreated_at(LocalDateTime.from(resultSet.getDate("created_at").toLocalDate()));
-        obj.setUpdated_at(LocalDateTime.from(resultSet.getDate("updated_at").toLocalDate()));
+        //obj.setBirthdate(LocalDateTime.from(resultSet.getDate("birthdate").toLocalDate()));
+        obj.setBirthdate(LocalDateTime.from(resultSet.getTimestamp("birthdate").toLocalDateTime()));
+        obj.setCreated_at(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
+        obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
         obj.setDeleted(resultSet.getBoolean("deleted"));
         return obj;
     }
@@ -632,11 +637,106 @@ public class JavaPostgreSql {
         obj.setEmail(resultSet.getString("email"));
         obj.setPhone(resultSet.getString("phone"));
         obj.setPosition(resultSet.getString("position"));
-        obj.setBirthdate(LocalDateTime.from(resultSet.getDate("birthdate").toLocalDate()));
-        obj.setCreated_at(LocalDateTime.from(resultSet.getDate("created_at").toLocalDate()));
-        obj.setUpdated_at(LocalDateTime.from(resultSet.getDate("updated_at").toLocalDate()));
+        obj.setBirthdate(LocalDateTime.from(resultSet.getTimestamp("birthdate").toLocalDateTime()));
+        obj.setCreated_at(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
+        obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
         obj.setDeleted(resultSet.getBoolean("deleted"));
         return obj;
+    }
+
+    public static List<Patient> filterPatients(String filterWord) {
+
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        String query = "";
+        List<Patient> result = new ArrayList<>();
+
+        if (pattern.matcher(filterWord).matches()){
+            query = "SELECT * FROM patients WHERE identification_number=?";
+
+        } else {
+            query = "SELECT * FROM patients WHERE email=?";
+        }
+        try {
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, filterWord);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createPatientFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
+    public static String filterRecords(Long patientId) {
+        try {
+            String query = "SELECT * FROM patients WHERE patient_id=?";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, patientId);
+
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+
+            return "Succesfully created appointment!";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "SQLException: " + e;
+        }
+
+    }
+
+    public static String filterAppointments(Long patientId) {
+        try {
+            String query = "SELECT * FROM patients WHERE patient_id=?";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, patientId);
+
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+
+            return "Succesfully created appointment!";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "SQLException: " + e;
+        }
+
+    }
+
+    public static List<User> getUser(Long patientId) {
+
+        List<User> result = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM users WHERE id=?";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, patientId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createUserFromResultSet(resultSet));
+            }
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 //    public static void main(String[] args){
