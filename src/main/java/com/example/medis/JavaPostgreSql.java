@@ -572,6 +572,40 @@ public class JavaPostgreSql {
 
     }
 
+    public static List<User> getAllUsers(){
+
+        String query = "SELECT * from users;";
+        List<User> result = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createUserFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
+        User obj = new User();
+        obj.setId(resultSet.getLong("id"));
+        obj.setFullname(resultSet.getString("fullname"));
+        obj.setUsername(resultSet.getString("username"));
+        obj.setEmail(resultSet.getString("email"));
+        obj.setPhone(resultSet.getString("phone"));
+        obj.setPosition(resultSet.getString("position"));
+        obj.setBirthdate(LocalDateTime.from(resultSet.getDate("birthdate").toLocalDate()));
+        obj.setCreated_at(LocalDateTime.from(resultSet.getDate("created_at").toLocalDate()));
+        obj.setUpdated_at(LocalDateTime.from(resultSet.getDate("updated_at").toLocalDate()));
+        obj.setDeleted(resultSet.getBoolean("deleted"));
+        return obj;
+    }
+
 //    public static void main(String[] args){
 //
 //        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
