@@ -48,15 +48,16 @@
                     </font></Label>
                 <TableView fx:id="patientsTable" layoutX="18.0" layoutY="137.0" prefHeight="402.0" prefWidth="654.0" style="-fx-background-color: white;">
                     <columns>
-                        <TableColumn fx:id="nameAndSurname" prefWidth="143.0" text="Name and surname" />
-                        <TableColumn fx:id="birthNumber" prefWidth="143.0" text="Birth number" />
-                        <TableColumn fx:id="lastVisit" prefWidth="145.0" text="Last visit" />
-                        <TableColumn fx:id="nextVisit" prefWidth="170.0" text="Next visit" />
-                        <TableColumn fx:id="patientInfo" prefWidth="52.0" text="Details" />
+                        <TableColumn fx:id="name" prefWidth="133.0" text="Name" />
+                        <TableColumn fx:id="surname" prefWidth="121.0" text="Surname" />
+                        <TableColumn fx:id="birth_number" prefWidth="127.0" text="Birth number" />
+                        <TableColumn fx:id="last_visit" prefWidth="109.0" text="Last visit" />
+                        <TableColumn fx:id="next_visit" prefWidth="111.0" text="Next visit" />
+                        <TableColumn fx:id="patient_info" prefWidth="52.0" text="Details" />
                     </columns>
                 </TableView>
                 <Pagination fx:id="pagination" layoutX="18.0" layoutY="539.0" maxPageIndicatorCount="4" prefHeight="46.0" prefWidth="144.0" />
-                <ImageView fx:id="addPatientButton" fitHeight="41.0" fitWidth="78.0" layoutX="594.0" layoutY="539.0" onMousePressed="#addPatient">
+                <ImageView fx:id="addPatientButton" fitHeight="65.0" fitWidth="65.0" layoutX="607.0" layoutY="539.0" onMousePressed="#addPatient">
                     <Image url="@../../img/plusIcon.png" />
                 </ImageView>
             </children>
