@@ -5,13 +5,15 @@ import javafx.scene.control.Button;
 import java.time.LocalDateTime;
 
 public class Patient {
-    private String nameAndSurname, birthNumber;
+    private long id;
+    private String first_name, surname;
+    private String nameAndSurname, identificationNumber;
     private LocalDateTime lastVisit, nextVisit;
     private Button patientInfo;
 
-    public Patient(String nameAndSurname, String birthNumber, LocalDateTime lastVisit, LocalDateTime nextVisit, Button patientInfo) {
+    public Patient(String nameAndSurname, String identificationNumber, LocalDateTime lastVisit, LocalDateTime nextVisit, Button patientInfo) {
         this.nameAndSurname = nameAndSurname;
-        this.birthNumber = birthNumber;
+        this.identificationNumber = identificationNumber;
         this.lastVisit = lastVisit;
         this.nextVisit = nextVisit;
         this.patientInfo = patientInfo;
@@ -26,12 +28,12 @@ public class Patient {
         this.nameAndSurname = nameAndSurname;
     }
 
-    public String getBirthNumber() {
-        return birthNumber;
+    public String getIdentificationNumber() {
+        return identificationNumber;
     }
 
-    public void setBirthNumber(String birthNumber) {
-        this.birthNumber = birthNumber;
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
     }
 
     public LocalDateTime getLastVisit() {

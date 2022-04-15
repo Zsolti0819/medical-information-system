@@ -6,9 +6,14 @@ public class User {
 
     private Long id;
     private String fullname;
-    private LocalDateTime created_at;
-    private String position;
     private String username;
+//    private String password;
+    private String email;
+    private String phone;
+    private String position;
+    private LocalDateTime birthdate;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
     private boolean deleted;
 
     public Long getId() {
@@ -49,5 +54,45 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public LocalDateTime getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(LocalDateTime birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

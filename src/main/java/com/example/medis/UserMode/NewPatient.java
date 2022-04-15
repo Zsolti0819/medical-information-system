@@ -24,7 +24,7 @@ public class NewPatient implements Initializable {
     private TextField insuranceCompany;
 
     @FXML
-    private TextField birthNumber;
+    private TextField identificationNumber;
 
     @FXML
     private DatePicker birthDate;
@@ -124,7 +124,7 @@ public class NewPatient implements Initializable {
     private void fetchData() {
         String[] nameAndSurnameText = nameAndSurname.getText().split(" ");
         String insuranceCompanyText = insuranceCompany.getText();
-        String birthNumberValue = birthNumber.getText();
+        String birthNumberValue = identificationNumber.getText();
         String birthDateValue = String.valueOf(birthDate.getValue());
         String birthDateFromId = String.valueOf(getYear(birthNumberValue)) + "-" + String.valueOf(getMonth(birthNumberValue)) + "-" + String.valueOf(getDay(birthNumberValue));
         String sexValue = sex.getValue();
