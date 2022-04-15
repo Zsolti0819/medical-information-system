@@ -16,28 +16,33 @@ public class Login {
     @FXML
     private PasswordField loginPassword;
 
-    public void userLogIn(ActionEvent event) throws IOException {
+    public void userLogIn(ActionEvent event) throws IOException, InterruptedException {
         checkLogin(event);
 
     }
 
-    private void checkLogin(ActionEvent event) throws IOException {
+    private void checkLogin(ActionEvent event) throws IOException, InterruptedException {
         SceneController s = new SceneController();
-        if (loginEmail.getText().equals("") && loginPassword.getText().equals("")) {
+        // create user function to creating users in db.
+        //JavaPostgreSql.createUser("Tamás Szakal", "xszakal12", "qwe123", "xszasadkal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
+
+
+        if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             loginMsg.setText("Success!");
-
-            s.switchTo("user_mode/after_login.fxml",event);
-
+            if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
+                s.switchTo("user_mode/after_login.fxml",event);
+            else
+                loginMsg.setText("Username or password are not valid!");
         }
 
         else if(loginEmail.getText().isEmpty() && loginPassword.getText().isEmpty()) {
             loginMsg.setText("Please enter your email and password.");
         }
-
-
         else {
             loginMsg.setText("Username or password are not valid!");
         }
+//        loginMsg.setText(JavaPostgreSql.updateUser( 2,"xszakal", "Tamás Szakal","12345", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01"));
+//        loginMsg.setText(JavaPostgreSql.deleteUser(8));
     }
 
 

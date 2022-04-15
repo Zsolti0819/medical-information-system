@@ -2,59 +2,114 @@ package com.example.medis.Entities;
 
 import javafx.scene.control.Button;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Patient {
-    private String nameAndSurname, birthNumber;
-    private LocalDateTime lastVisit, nextVisit;
-    private Button patientInfo;
+    private long id;
+    private String first_name, surname;
+    private String phone;
+    private Date birth_date;
+    private LocalDateTime created_at;
+    private LocalDateTime updated_at;
+    private boolean deleted;
+    private long birth_number;
+    private LocalDateTime last_visit, next_visit;
+    private Button patient_info;
 
-    public Patient(String nameAndSurname, String birthNumber, LocalDateTime lastVisit, LocalDateTime nextVisit, Button patientInfo) {
-        this.nameAndSurname = nameAndSurname;
-        this.birthNumber = birthNumber;
-        this.lastVisit = lastVisit;
-        this.nextVisit = nextVisit;
-        this.patientInfo = patientInfo;
-        this.patientInfo.setText("Open");
+    public long getId() {
+        return id;
     }
 
-    public String getNameAndSurname() {
-        return nameAndSurname;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setNameAndSurname(String nameAndSurname) {
-        this.nameAndSurname = nameAndSurname;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public String getBirthNumber() {
-        return birthNumber;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public void setBirthNumber(String birthNumber) {
-        this.birthNumber = birthNumber;
+    public String getSurname() {
+        return surname;
     }
 
-    public LocalDateTime getLastVisit() {
-        return lastVisit;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public void setLastVisit(LocalDateTime lastVisit) {
-        this.lastVisit = lastVisit;
+    public String getPhone() {
+        return phone;
     }
 
-    public LocalDateTime getNextVisit() {
-        return nextVisit;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void setNextVisit(LocalDateTime nextVisit) {
-        this.nextVisit = nextVisit;
+    public Date getBirth_date() {
+        return birth_date;
     }
 
-    public Button getPatientInfo() {
-        return patientInfo;
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
     }
 
-    public void setPatientInfo(Button patientInfo) {
-        this.patientInfo = patientInfo;
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public long getBirth_number() {
+        return birth_number;
+    }
+
+    public void setBirth_number(long birth_number) {
+        this.birth_number = birth_number;
+    }
+
+    public LocalDateTime getLast_visit() {
+        return last_visit;
+    }
+
+    public void setLast_visit(LocalDateTime last_visit) {
+        this.last_visit = last_visit;
+    }
+
+    public LocalDateTime getNext_visit() {
+        return next_visit;
+    }
+
+    public void setNext_visit(LocalDateTime next_visit) {
+        this.next_visit = next_visit;
+    }
+
+    public Button getPatient_info() {
+        return patient_info;
+    }
+
+    public void setPatient_info(Button patient_info) {
+        this.patient_info = patient_info;
     }
 }
