@@ -2,72 +2,20 @@ package com.example.medis.Entities;
 
 import javafx.scene.control.Button;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Patient {
     private long id;
     private String first_name, surname;
     private String phone;
-    private LocalDateTime birthdate;
+    private Date birth_date;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
     private boolean deleted;
-    private String nameAndSurname, identificationNumber;
-    private LocalDateTime lastVisit, nextVisit;
-    private Button patientInfo;
-
-    public Patient(String nameAndSurname, String identificationNumber, LocalDateTime lastVisit, LocalDateTime nextVisit, Button patientInfo) {
-        this.nameAndSurname = nameAndSurname;
-        this.identificationNumber = identificationNumber;
-        this.lastVisit = lastVisit;
-        this.nextVisit = nextVisit;
-        this.patientInfo = patientInfo;
-        this.patientInfo.setText("Open");
-    }
-
-    public Patient() {
-
-    }
-
-    public String getNameAndSurname() {
-        return nameAndSurname;
-    }
-
-    public void setNameAndSurname(String nameAndSurname) {
-        this.nameAndSurname = nameAndSurname;
-    }
-
-    public String getIdentificationNumber() {
-        return identificationNumber;
-    }
-
-    public void setIdentificationNumber(String identificationNumber) {
-        this.identificationNumber = identificationNumber;
-    }
-
-    public LocalDateTime getLastVisit() {
-        return lastVisit;
-    }
-
-    public void setLastVisit(LocalDateTime lastVisit) {
-        this.lastVisit = lastVisit;
-    }
-
-    public LocalDateTime getNextVisit() {
-        return nextVisit;
-    }
-
-    public void setNextVisit(LocalDateTime nextVisit) {
-        this.nextVisit = nextVisit;
-    }
-
-    public Button getPatientInfo() {
-        return patientInfo;
-    }
-
-    public void setPatientInfo(Button patientInfo) {
-        this.patientInfo = patientInfo;
-    }
+    private long birth_number;
+    private LocalDateTime last_visit, next_visit;
+    private Button patient_info;
 
     public long getId() {
         return id;
@@ -101,12 +49,12 @@ public class Patient {
         this.phone = phone;
     }
 
-    public LocalDateTime getBirthdate() {
-        return birthdate;
+    public Date getBirth_date() {
+        return birth_date;
     }
 
-    public void setBirthdate(LocalDateTime birthdate) {
-        this.birthdate = birthdate;
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
     }
 
     public LocalDateTime getCreated_at() {
@@ -131,5 +79,37 @@ public class Patient {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public long getBirth_number() {
+        return birth_number;
+    }
+
+    public void setBirth_number(long birth_number) {
+        this.birth_number = birth_number;
+    }
+
+    public LocalDateTime getLast_visit() {
+        return last_visit;
+    }
+
+    public void setLast_visit(LocalDateTime last_visit) {
+        this.last_visit = last_visit;
+    }
+
+    public LocalDateTime getNext_visit() {
+        return next_visit;
+    }
+
+    public void setNext_visit(LocalDateTime next_visit) {
+        this.next_visit = next_visit;
+    }
+
+    public Button getPatient_info() {
+        return patient_info;
+    }
+
+    public void setPatient_info(Button patient_info) {
+        this.patient_info = patient_info;
     }
 }

@@ -1,9 +1,11 @@
 package com.example.medis;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.UserMode.AfterLogin;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 
-import javax.xml.transform.Result;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,13 +13,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.*;
 
 
 public class JavaPostgreSql {
-    private static String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-    private static String user = "medis";
-    private static String pswd = "Uu39FC4W#Z";
+    private static final String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
+    private static final String user = "medis";
+    private static final String pswd = "Uu39FC4W#Z";
 
     public static void createUser(String fullname, String username, String password, String email,
                                   String phone, String position, String birthdate){
@@ -593,9 +594,9 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public static List<Patient> getAllPatients(){
+    public static ObservableList<Patient> getAllPatients(){
         String query = "SELECT * from patients;";
-        List<Patient> result = new ArrayList<>();
+        ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -611,17 +612,27 @@ public class JavaPostgreSql {
         return result;
     }
 
+
     private static Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
         Patient obj = new Patient();
         obj.setId(resultSet.getLong("id"));
         obj.setFirst_name(resultSet.getString("first_name"));
         obj.setSurname(resultSet.getString("surname"));
         obj.setPhone(resultSet.getString("phone"));
-        obj.setBirthdate(LocalDateTime.from(resultSet.getDate("birthdate").toLocalDate()));
-        obj.setCreated_at(LocalDateTime.from(resultSet.getDate("created_at").toLocalDate()));
-        obj.setUpdated_at(LocalDateTime.from(resultSet.getDate("updated_at").toLocalDate()));
+        obj.setBirth_date(resultSet.getDate("birthdate"));
+        obj.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
+        obj.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
         obj.setDeleted(resultSet.getBoolean("deleted"));
+        obj.setBirth_number(resultSet.getLong("id"));
+
+        Button button = new Button();
+        button.setText("Open");
+        obj.setPatient_info(button);
+        obj.getPatient_info().setOnAction(event -> AfterLogin.showPatient());
+
+
         return obj;
+
     }
 
     private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
