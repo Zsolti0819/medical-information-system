@@ -612,7 +612,6 @@ public class JavaPostgreSql {
         return result;
     }
 
-
     private static Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
         Patient obj = new Patient();
         obj.setId(resultSet.getLong("id"));
