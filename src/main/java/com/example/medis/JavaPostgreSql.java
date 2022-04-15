@@ -1,6 +1,10 @@
 package com.example.medis;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.UserMode.AfterLogin;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 
 import javax.xml.transform.Result;
 import java.math.BigDecimal;
@@ -597,9 +601,9 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public static List<Patient> getAllPatients(){
+    public static ObservableList<Patient> getAllPatients(){
         String query = "SELECT * from patients;";
-        List<Patient> result = new ArrayList<>();
+        ObservableList<Patient> result = FXCollections.observableArrayList();;
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -621,12 +625,20 @@ public class JavaPostgreSql {
         obj.setFirst_name(resultSet.getString("first_name"));
         obj.setSurname(resultSet.getString("surname"));
         obj.setPhone(resultSet.getString("phone"));
-        //obj.setBirthdate(LocalDateTime.from(resultSet.getDate("birthdate").toLocalDate()));
-        obj.setBirthdate(LocalDateTime.from(resultSet.getTimestamp("birthdate").toLocalDateTime()));
-        obj.setCreated_at(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
-        obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
+        obj.setBirth_date(resultSet.getDate("birthdate"));
+        obj.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
+        obj.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
         obj.setDeleted(resultSet.getBoolean("deleted"));
+        obj.setBirth_number(resultSet.getLong("id"));
+
+        Button button = new Button();
+        button.setText("Open");
+        obj.setPatient_info(button);
+        obj.getPatient_info().setOnAction(event -> AfterLogin.showPatient());
+
+
         return obj;
+
     }
 
     private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
