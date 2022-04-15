@@ -1,5 +1,7 @@
 package com.example.medis;
 
+import com.example.medis.Entities.Patient;
+
 import javax.xml.transform.Result;
 import java.math.BigDecimal;
 import java.sql.*;
@@ -589,6 +591,37 @@ public class JavaPostgreSql {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static List<Patient> getAllPatients(){
+        String query = "SELECT * from patients;";
+        List<Patient> result = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createPatientFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private static Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
+        Patient obj = new Patient();
+        obj.setId(resultSet.getLong("id"));
+        obj.setFirst_name(resultSet.getString("first_name"));
+        obj.setSurname(resultSet.getString("surname"));
+        obj.setPhone(resultSet.getString("phone"));
+        obj.setBirthdate(LocalDateTime.from(resultSet.getDate("birthdate").toLocalDate()));
+        obj.setCreated_at(LocalDateTime.from(resultSet.getDate("created_at").toLocalDate()));
+        obj.setUpdated_at(LocalDateTime.from(resultSet.getDate("updated_at").toLocalDate()));
+        obj.setDeleted(resultSet.getBoolean("deleted"));
+        return obj;
     }
 
     private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
