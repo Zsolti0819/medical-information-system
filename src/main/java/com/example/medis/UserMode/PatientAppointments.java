@@ -2,7 +2,6 @@ package com.example.medis.UserMode;
 
 
 import com.example.medis.Entities.Appointment;
-import com.example.medis.Entities.Record;
 import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,7 +81,7 @@ public class PatientAppointments implements Initializable {
     private void showAppointments()  {
         SceneController s = new SceneController();
         try {
-            s.popUpNewPatient("user_mode/patient_appointment_edit.fxml");
+            s.newWindow("user_mode/patient_appointment_edit.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

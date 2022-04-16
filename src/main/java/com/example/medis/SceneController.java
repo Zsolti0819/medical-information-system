@@ -25,7 +25,7 @@ public class SceneController extends NewPatient {
         stage.show();
     }
 
-    public void popUpNewPatient(String fxml) throws IOException {
+    public void newWindow(String fxml) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

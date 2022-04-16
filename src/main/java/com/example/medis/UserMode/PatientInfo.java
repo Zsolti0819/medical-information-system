@@ -3,12 +3,15 @@ package com.example.medis.UserMode;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PatientInfo {
+public class PatientInfo implements Initializable {
 
 
 
@@ -28,7 +31,7 @@ public class PatientInfo {
     private void OpenEditPatientData() {
         SceneController s = new SceneController();
         try {
-            s.popUpNewPatient("user_mode/patient_info_edit.fxml");
+            s.newWindow("user_mode/patient_info_edit.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,5 +42,10 @@ public class PatientInfo {
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

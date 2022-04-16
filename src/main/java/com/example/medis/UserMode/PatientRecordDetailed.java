@@ -14,7 +14,7 @@ public class PatientRecordDetailed {
     private void OpenEditPatientRecord() {
         SceneController s = new SceneController();
         try {
-            s.popUpNewPatient("user_mode/patient_record_edit.fxml");
+            s.newWindow("user_mode/patient_record_edit.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

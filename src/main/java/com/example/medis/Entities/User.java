@@ -1,4 +1,4 @@
-package com.example.medis;
+package com.example.medis.Entities;
 
 import java.time.LocalDateTime;
 

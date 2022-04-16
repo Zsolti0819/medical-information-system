@@ -7,9 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,13 +20,17 @@ import java.util.ResourceBundle;
 
 public class AfterLogin implements Initializable {
 
+    public TableView<Patient> getPatientsTable() {
+        return patientsTable;
+    }
+
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
     @FXML private TableColumn<Patient, String> surname;
-    @FXML private TableColumn<Patient, String> birth_number;
+    @FXML private TableColumn<Patient, Long> birth_number;
     @FXML private TableColumn<Patient, LocalDateTime> last_visit;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
-    @FXML private TableColumn<Patient, Button> patient_info;
+//    @FXML private TableColumn<Patient, Void> patient_info;
 
 
     @FXML
@@ -44,7 +50,7 @@ public class AfterLogin implements Initializable {
     private void addPatient()  {
         SceneController s = new SceneController();
         try {
-            s.popUpNewPatient("user_mode/new_patient.fxml");
+            s.newWindow("user_mode/new_patient.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,10 +61,50 @@ public class AfterLogin implements Initializable {
     public static void showPatient()  {
         SceneController s = new SceneController();
         try {
-            s.popUpNewPatient("user_mode/patient_info.fxml");
+            s.newWindow("user_mode/patient_info.fxml");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void addButtonToTable() {
+        TableColumn<Patient, Void> buttonColumn  = new TableColumn();
+        buttonColumn.setText("Details");
+
+        Callback<TableColumn<Patient, Void>, TableCell<Patient, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Patient, Void> call(final TableColumn<Patient, Void> param) {
+                return new TableCell<>() {
+
+                    private final Button openButton = new Button("Open");
+
+                    {
+                        openButton.setOnAction((ActionEvent event) -> {
+                            Patient selectedPatient = getPatientsTable().getItems().get(getIndex());
+                            System.out.println("selectedPatient ID: " + selectedPatient.getId());
+                            System.out.println(JavaPostgreSql.getUser(selectedPatient.getId()).get(0).getId());
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(openButton);
+                        }
+                    }
+                };
+            }
+        };
+
+        buttonColumn.setCellFactory(cellFactory);
+
+        patientsTable.getColumns().add(buttonColumn);
+
     }
 
     @Override
@@ -68,8 +114,11 @@ public class AfterLogin implements Initializable {
         birth_number.setCellValueFactory(new PropertyValueFactory<>("birth_number"));
         last_visit.setCellValueFactory(new PropertyValueFactory<>("last_visit"));
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
-        patient_info.setCellValueFactory(new PropertyValueFactory<>("patient_info"));
+
+        addButtonToTable();
+//        patient_info.setCellValueFactory(new PropertyValueFactory<>("patient_info"));
         patientsTable.setItems(JavaPostgreSql.getAllPatients());
+
     }
 
 }

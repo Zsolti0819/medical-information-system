@@ -1,7 +1,5 @@
 package com.example.medis.Entities;
 
-import javafx.scene.control.Button;
-
 import java.sql.Date;
 import java.time.LocalDateTime;
 
@@ -15,7 +13,6 @@ public class Patient {
     private boolean deleted;
     private long birth_number;
     private LocalDateTime last_visit, next_visit;
-    private Button patient_info;
 
     public long getId() {
         return id;
@@ -103,13 +100,5 @@ public class Patient {
 
     public void setNext_visit(LocalDateTime next_visit) {
         this.next_visit = next_visit;
-    }
-
-    public Button getPatient_info() {
-        return patient_info;
-    }
-
-    public void setPatient_info(Button patient_info) {
-        this.patient_info = patient_info;
     }
 }

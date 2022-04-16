@@ -1,13 +1,10 @@
 package com.example.medis;
 
 import com.example.medis.Entities.Patient;
-import com.example.medis.UserMode.AfterLogin;
+import com.example.medis.Entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
 
-import javax.xml.transform.Result;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,15 +12,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.*;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class JavaPostgreSql {
-    private static String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-    private static String user = "medis";
-    private static String pswd = "Uu39FC4W#Z";
+    private static final String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
+    private static final String user = "medis";
+    private static final String pswd = "Uu39FC4W#Z";
 
     public static void createUser(String fullname, String username, String password, String email,
                                   String phone, String position, String birthdate){
@@ -146,8 +141,6 @@ public class JavaPostgreSql {
             }
         }
     }
-
-
 
     public static String deleteUser(long id){
         if (!isUserExist(id)){
@@ -363,6 +356,7 @@ public class JavaPostgreSql {
         String query = "SELECT * FROM appointments WHERE id=?;";
         return getaBoolean(id, query);
     }
+
     private static Boolean isPatientExist(long id) {
         String query = "SELECT * FROM patients WHERE id=?;";
         return getaBoolean(id, query);
@@ -603,7 +597,7 @@ public class JavaPostgreSql {
 
     public static ObservableList<Patient> getAllPatients(){
         String query = "SELECT * from patients;";
-        ObservableList<Patient> result = FXCollections.observableArrayList();;
+        ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -620,24 +614,22 @@ public class JavaPostgreSql {
     }
 
     private static Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
-        Patient obj = new Patient();
-        obj.setId(resultSet.getLong("id"));
-        obj.setFirst_name(resultSet.getString("first_name"));
-        obj.setSurname(resultSet.getString("surname"));
-        obj.setPhone(resultSet.getString("phone"));
-        obj.setBirth_date(resultSet.getDate("birthdate"));
-        obj.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
-        obj.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
-        obj.setDeleted(resultSet.getBoolean("deleted"));
-        obj.setBirth_number(resultSet.getLong("id"));
+        Patient patient = new Patient();
+        patient.setId(resultSet.getLong("id"));
+        patient.setFirst_name(resultSet.getString("first_name"));
+        patient.setSurname(resultSet.getString("surname"));
+        patient.setPhone(resultSet.getString("phone"));
+        //obj.setBirth_date(resultSet.getDate("birth_date"));
+        patient.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
+        patient.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
+        patient.setDeleted(resultSet.getBoolean("deleted"));
+        patient.setBirth_number(resultSet.getLong("identification_number"));
 
-        Button button = new Button();
-        button.setText("Open");
-        obj.setPatient_info(button);
-        obj.getPatient_info().setOnAction(event -> AfterLogin.showPatient());
+//        Button button = new Button();
+//        button.setText("Open");
+//        patient.setPatient_info(button);
 
-
-        return obj;
+        return patient;
 
     }
 
@@ -727,9 +719,9 @@ public class JavaPostgreSql {
 
     }
 
-    public static List<User> getUser(Long patientId) {
+    public static ObservableList<User> getUser(Long patientId) {
 
-        List<User> result = new ArrayList<>();
+        ObservableList<User> result = FXCollections.observableArrayList();;
         try {
             String query = "SELECT * FROM users WHERE id=?";
 
@@ -750,6 +742,8 @@ public class JavaPostgreSql {
         }
         return result;
     }
+
+
 
 //    public static void main(String[] args){
 //

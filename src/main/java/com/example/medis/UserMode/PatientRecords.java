@@ -80,7 +80,7 @@ public class PatientRecords implements Initializable {
     private void showRecord()  {
         SceneController s = new SceneController();
         try {
-            s.popUpNewPatient("user_mode/patient_record_detailed.fxml");
+            s.newWindow("user_mode/patient_record_detailed.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
