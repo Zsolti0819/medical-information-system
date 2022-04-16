@@ -39,7 +39,7 @@
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="insurance_company" layoutX="448.0" layoutY="184.0" prefHeight="25.0" prefWidth="177.0" />
+         <ComboBox fx:id="insurance_company" layoutX="448.0" layoutY="184.0" prefHeight="25.0" prefWidth="177.0" />
          <Label layoutX="237.0" layoutY="230.0" prefHeight="25.0" text="Birth number">
             <font>
                <Font name="System Bold" size="13.0" />

@@ -17,9 +17,9 @@
          <ImageView blendMode="DARKEN" fitHeight="60.0" fitWidth="60.0" layoutX="388.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../img/logo.png" />
          </ImageView>
-         <Text layoutX="466.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIS">
+         <Text layoutX="467.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIS">
             <font>
-               <Font size="18.0" />
+               <Font name="System Bold" size="24.0" />
             </font>
          </Text>
          <Label fx:id="EmailLabel" layoutX="248.0" layoutY="268.0" prefHeight="18.0" prefWidth="120.0" text="E-mail">

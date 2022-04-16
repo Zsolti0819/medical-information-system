@@ -24,7 +24,7 @@ public class NewPatient implements Initializable {
     private TextField surname;
 
     @FXML
-    private TextField insurance_company;
+    private ComboBox<String> insurance_company;
 
     @FXML
     private TextField birth_number;
@@ -55,8 +55,8 @@ public class NewPatient implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        insurance_company.setItems(FXCollections.observableArrayList("Union", "Dôvera", "VŠZP"));
         sex.setItems(FXCollections.observableArrayList("Male","Female"));
-
         blood_group.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "0","0+","0-"));
 
     }
@@ -125,7 +125,7 @@ public class NewPatient implements Initializable {
     private void fetchData() {
         String firstNameText = first_name.getText();
         String surnameText = surname.getText();
-        String insuranceCompanyText = insurance_company.getText();
+        String insuranceCompanyText = insurance_company.getValue();
         String birthNumberValue = birth_number.getText();
 //        String birthDateValue = String.valueOf(birthDate.getValue());
         String birthDateFromId = getYear(birthNumberValue) + "-" + getMonth(birthNumberValue) + "-" + getDay(birthNumberValue);

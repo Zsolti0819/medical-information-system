@@ -21,7 +21,7 @@
             </ImageView>
             <Text layoutX="99.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIS">
                 <font>
-                    <Font size="24.0" />
+                    <Font name="System Bold" size="24.0" />
                 </font>
             </Text>
             <Hyperlink fx:id="patientInfoLink" layoutX="25.0" layoutY="104.0" onAction="#switchToPatientsInfo" prefHeight="25.0" prefWidth="103.0" text="Patient info" textFill="#151515">
