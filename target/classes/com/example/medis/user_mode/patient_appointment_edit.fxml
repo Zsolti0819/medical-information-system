@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.UserMode.PatientAppointmentEdit">
     <center>
-        <AnchorPane prefHeight="610.0" prefWidth="586.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
             <Label layoutX="276.0" layoutY="35.0" prefHeight="43.0" prefWidth="425.0" text="Patient 001 - Appointment 12345">
                 <font>
                     <Font size="25.0" />

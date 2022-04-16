@@ -21,7 +21,7 @@
             </ImageView>
             <Text layoutX="99.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIS">
                 <font>
-                    <Font size="24.0" />
+                    <Font name="System Bold" size="24.0" />
                 </font>
             </Text>
             <Hyperlink fx:id="patientInfoLink" layoutX="25.0" layoutY="104.0" onAction="#switchToPatientInfo" prefHeight="25.0" prefWidth="103.0" text="Patient info" textFill="#151515">
@@ -48,7 +48,7 @@
         </AnchorPane>
     </left>
     <center>
-        <AnchorPane prefHeight="610.0" prefWidth="586.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
             <Label layoutX="18.0" layoutY="53.0" prefHeight="43.0" prefWidth="237.0" text="Patient 001's records">
                 <font>
                     <Font size="25.0" />

@@ -18,22 +18,23 @@ import java.util.ResourceBundle;
 public class NewPatient implements Initializable {
 
     @FXML
-    private TextField nameAndSurname;
+    private TextField first_name;
 
     @FXML
-    private TextField insuranceCompany;
+    private TextField surname;
 
     @FXML
-    private TextField identificationNumber;
+    private TextField insurance_company;
 
     @FXML
-    private DatePicker birthDate;
+    private TextField birth_number;
+
 
     @FXML
     private ComboBox<String> sex;
 
     @FXML
-    private ComboBox<String> bloodGroup;
+    private ComboBox<String> blood_group;
 
     @FXML
     private TextField address1;
@@ -56,7 +57,7 @@ public class NewPatient implements Initializable {
 
         sex.setItems(FXCollections.observableArrayList("Male","Female"));
 
-        bloodGroup.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "0","0+","0-"));
+        blood_group.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "0","0+","0-"));
 
     }
 
@@ -122,13 +123,14 @@ public class NewPatient implements Initializable {
     }
     @FXML
     private void fetchData() {
-        String[] nameAndSurnameText = nameAndSurname.getText().split(" ");
-        String insuranceCompanyText = insuranceCompany.getText();
-        String birthNumberValue = identificationNumber.getText();
-        String birthDateValue = String.valueOf(birthDate.getValue());
-        String birthDateFromId = String.valueOf(getYear(birthNumberValue)) + "-" + String.valueOf(getMonth(birthNumberValue)) + "-" + String.valueOf(getDay(birthNumberValue));
+        String firstNameText = first_name.getText();
+        String surnameText = surname.getText();
+        String insuranceCompanyText = insurance_company.getText();
+        String birthNumberValue = birth_number.getText();
+//        String birthDateValue = String.valueOf(birthDate.getValue());
+        String birthDateFromId = getYear(birthNumberValue) + "-" + getMonth(birthNumberValue) + "-" + getDay(birthNumberValue);
         String sexValue = sex.getValue();
-        String bloodGroupValue = bloodGroup.getValue();
+        String bloodGroupValue = blood_group.getValue();
         String address1Text = address1.getText();
         String address2Text = address2.getText();
         String addressFull = address1Text + " " + address2Text;
@@ -150,13 +152,12 @@ public class NewPatient implements Initializable {
 
         // TO DO
 
-        if (nameAndSurnameText.equals("") || bloodGroupValue.equals("") || sexValue.equals("") || birthNumberValue.equals("")) {
+        if (firstNameText.equals("") || surnameText.equals("") || bloodGroupValue.equals("") || sexValue.equals("") || birthNumberValue.equals("")) {
             missingValuesMsg.setText("Please fill in missing compulsory data!");
         }
 
         else {
-            missingValuesMsg.setText(JavaPostgreSql.createPatient(nameAndSurnameText[0], nameAndSurnameText[1], insuranceCompanyText, birthDateFromId,
-                    getGender(birthNumberValue), bloodGroupValue, addressFull, phoneText, emailText));
+            missingValuesMsg.setText(JavaPostgreSql.createPatient(firstNameText, surnameText, insuranceCompanyText, birthDateFromId, getGender(birthNumberValue), bloodGroupValue, addressFull, phoneText, emailText));
         }
     }
 
