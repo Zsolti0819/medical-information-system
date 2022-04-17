@@ -59,7 +59,12 @@ public class PatientAppointmentEdit implements Initializable {
 
     }
 
-    public void updateAppointment(ActionEvent event) {
-
+//    public static String updateAppointment(long id, String title, String description, String start_time,
+//                                           String end_time, long patient_id, long doctor_id){
+    public void updateAppointment(ActionEvent actionEvent) {
+        JavaPostgreSql.updateAppointment(selectedAppointment.getId(), title_data.getText(), description_data.getText(),
+                start_ymd_data.getValue().toString()+" " +start_h_data.getValue()+":"+start_min_data.getValue(),
+                end_ymd_data.getValue().toString()+" " +end_h_data.getValue()+":"+end_min_data.getValue(),
+                selectedAppointment.getPatient_id(),JavaPostgreSql.getUserByFullname(doctor_data.getValue()).getId());
     }
 }

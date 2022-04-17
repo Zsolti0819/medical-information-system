@@ -299,7 +299,7 @@ public class JavaPostgreSql {
             return "Appointment with this id not exists!";
         }
         else {
-            String query = "UPDATE appointments SET title=?, description=?, start_time=?, end_time=?, patient_id=?, doctor_id=?, updated_at=now()";
+            String query = "UPDATE appointments SET title=?, description=?, start_time=?, end_time=?, patient_id=?, doctor_id=?, updated_at=now() WHERE id=?";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -311,6 +311,7 @@ public class JavaPostgreSql {
                 preparedStatement.setDate(4,  getDate(end_time));
                 preparedStatement.setLong(5, patient_id);
                 preparedStatement.setLong(6, doctor_id);
+                preparedStatement.setLong(7,id);
 
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
