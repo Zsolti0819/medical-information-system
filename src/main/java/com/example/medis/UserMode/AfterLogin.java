@@ -6,6 +6,7 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -19,6 +20,8 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class AfterLogin implements Initializable {
+
+    private Parent root;
 
     public TableView<Patient> getPatientsTable() {
         return patientsTable;
@@ -65,10 +68,10 @@ public class AfterLogin implements Initializable {
     }
 
     @FXML
-    public void showPatient()  {
+    public void showPatientInfo()  {
         SceneController s = new SceneController();
         try {
-            s.newWindowCustom(getSelectedPatient());
+            s.newWindowCustom(getSelectedPatient(), "user_mode/patient_info.fxml");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,7 +95,7 @@ public class AfterLogin implements Initializable {
                             System.out.println("selectedPatient ID: " + selectedPatient.getId());
 //                            System.out.println(JavaPostgreSql.getPatient(selectedPatient.getId()).getId());
                             setSelectedPatient(JavaPostgreSql.getPatient(selectedPatient.getId()));
-                            showPatient();
+                            showPatientInfo();
                         });
                     }
 

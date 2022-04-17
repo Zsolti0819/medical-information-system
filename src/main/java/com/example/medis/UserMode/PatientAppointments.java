@@ -2,14 +2,13 @@ package com.example.medis.UserMode;
 
 
 import com.example.medis.Entities.Appointment;
+import com.example.medis.Entities.Patient;
+import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,52 +21,32 @@ import java.util.ResourceBundle;
 
 public class PatientAppointments implements Initializable {
 
+    private Patient selectedPatient;
+
     @FXML private TableView<Appointment> appointmentsTable;
-    @FXML private TableColumn<Appointment, String> titleCol;
-    @FXML private TableColumn<Appointment, LocalDateTime> dateCol;
-    @FXML private TableColumn<Appointment, LocalDateTime> updatedAtCol;
-    @FXML private TableColumn<Appointment, Button> appointmentInfo;
-    Button [] button = new Button[3];
+    @FXML private TableColumn<Appointment, String> title;
+    @FXML private TableColumn<Appointment, LocalDateTime> start_time;
+    @FXML private TableColumn<Appointment, LocalDateTime> end_time;
 
-
-    private void handleButtonAction (ActionEvent event)  {
-        if (event.getSource() == button[0]) {
-            showAppointments();
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
-        updatedAtCol.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
-        appointmentInfo.setCellValueFactory(new PropertyValueFactory<>("appointmentInfo"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        start_time.setCellValueFactory(new PropertyValueFactory<>("start_time"));
+        end_time.setCellValueFactory(new PropertyValueFactory<>("end_time"));
 
-        for (int i = 0; i < button.length; i++) {
-            button[i] = new Button();
-            button[i].setOnAction(this::handleButtonAction);
-        }
-
-        appointmentsTable.setItems(getAppointments());
-    }
-
-    private ObservableList<Appointment> getAppointments() {
-        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
-        appointments.add(new Appointment("Title", LocalDateTime.now(), LocalDateTime.now(), button[0]));
-
-        return appointments;
     }
 
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchTo("user_mode/patient_records.fxml",event);
+        s.switchToRecords(selectedPatient, event);
     }
 
     @FXML
-    private void switchToPatientsInfo(ActionEvent event) throws  IOException {
+    private void switchToPatientsInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchTo("user_mode/patient_info.fxml",event);
+        s.switchToPatientInfo(selectedPatient, event);
     }
 
     @FXML
@@ -77,14 +56,9 @@ public class PatientAppointments implements Initializable {
         stage.close();
     }
 
-    @FXML
-    private void showAppointments()  {
-        SceneController s = new SceneController();
-        try {
-            s.newWindow("user_mode/patient_appointment_edit.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public void initData(Patient patient) {
+        selectedPatient = patient;
+        appointmentsTable.setItems(JavaPostgreSql.getAllAppointmentsByPatientId(selectedPatient.getId()));
 
+    }
 }

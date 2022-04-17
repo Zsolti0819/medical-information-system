@@ -1,5 +1,6 @@
 package com.example.medis.UserMode;
 
+import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.Record;
 import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
@@ -20,6 +21,8 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class PatientRecords implements Initializable {
+
+    private Patient selectedPatient;
 
     @FXML private TableView<Record> recordsTable;
     @FXML private TableColumn<Record, String> titleCol;
@@ -57,17 +60,29 @@ public class PatientRecords implements Initializable {
         return records;
     }
 
+
     @FXML
-    private void switchToPatientInfo(ActionEvent event) throws IOException {
+    public void switchToPatientInfo(ActionEvent event) throws IOException  {
         SceneController s = new SceneController();
-        s.switchTo("user_mode/patient_info.fxml",event);
+        try {
+            s.switchToPatientInfo(selectedPatient, event);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchTo("user_mode/patient_appointments.fxml",event);
+        try {
+            s.switchToAppointments(selectedPatient, event);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     public void closeCurrentWindow(ActionEvent e) {
@@ -87,4 +102,7 @@ public class PatientRecords implements Initializable {
     }
 
 
+    public void initData(Patient patient) {
+        selectedPatient = patient;
+    }
 }

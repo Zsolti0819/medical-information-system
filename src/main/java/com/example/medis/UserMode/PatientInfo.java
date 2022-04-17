@@ -31,14 +31,23 @@ public class PatientInfo implements Initializable {
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchTo("user_mode/patient_records.fxml",event);
-   }
+        s.switchToRecords(selectedPatient, event);
+    }
+
 
    @FXML
    private void switchToAppointments(ActionEvent event) throws  IOException {
-        SceneController s = new SceneController();
-        s.switchTo("user_mode/patient_appointments.fxml",event);
+       SceneController s = new SceneController();
+       s.switchToAppointments(selectedPatient, event);
+
    }
+
+    @FXML
+    public void closeCurrentWindow(ActionEvent e) {
+        final Node source = (Node) e.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     private void OpenEditPatientData() {
@@ -48,13 +57,6 @@ public class PatientInfo implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    public void closeCurrentWindow(ActionEvent e) {
-        final Node source = (Node) e.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
     }
 
     @Override
