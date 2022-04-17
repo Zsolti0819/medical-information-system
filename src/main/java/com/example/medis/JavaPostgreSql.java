@@ -668,6 +668,26 @@ public class JavaPostgreSql {
         return result;
     }
 
+    public static ObservableList<User> getUsersByPosition(String position){
+        String query = "SELECT * from users WHERE position=cast(? as position_enum);";
+        ObservableList<User> result = FXCollections.observableArrayList();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,position);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createUserFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
     public static ObservableList<Patient> getAllPatients(){
         String query = "SELECT * from patients;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
@@ -840,6 +860,8 @@ public class JavaPostgreSql {
         }
         return result;
     }
+
+
 
     public static User getUser(Long user_id) {
 
