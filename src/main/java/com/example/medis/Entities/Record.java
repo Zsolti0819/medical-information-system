@@ -1,17 +1,17 @@
 package com.example.medis.Entities;
 
-import javafx.scene.control.Button;
-
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Record {
     private long id, patient_id, doctor_id;
     private String title, description,notes;
-    private LocalDateTime created_at,date_executed, updated_at;
+    private LocalDateTime created_at, updated_at;
+    private Date date_executed;
     private boolean deleted;
 
 
-    public Record(String title, String description, LocalDateTime createdAt, Button recordInfo) {
+    public Record(String title, String description, LocalDateTime createdAt) {
         this.title = title;
         this.description = description;
         this.created_at = createdAt;
@@ -77,11 +77,11 @@ public class Record {
         this.notes = notes;
     }
 
-    public LocalDateTime getDate_executed() {
+    public Date getDate_executed() {
         return date_executed;
     }
 
-    public void setDate_executed(LocalDateTime date_executed) {
+    public void setDate_executed(Date date_executed) {
         this.date_executed = date_executed;
     }
 

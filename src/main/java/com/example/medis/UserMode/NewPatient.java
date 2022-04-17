@@ -120,13 +120,13 @@ public class NewPatient implements Initializable {
 
         return (int) (date % 100);
     }
+
     @FXML
     private void fetchData() {
         String firstNameText = first_name.getText();
         String surnameText = surname.getText();
         String insuranceCompanyText = insurance_company.getValue();
         String birthIdText = birth_id.getText();
-//        String birthDateValue = String.valueOf(birthDate.getValue());
         String birthDateFromId = getYear(birthIdText) + "-" + getMonth(birthIdText) + "-" + getDay(birthIdText);
         String sexValue = sex.getValue();
         String bloodGroupValue = blood_group.getValue();
@@ -136,20 +136,6 @@ public class NewPatient implements Initializable {
         String phoneText = phone.getText();
         String emailText = email.getText();
 
-
-//        JavaPostgreSql.createPatient(nameAndSurnameText[0], nameAndSurnameText[1], insuranceCompanyText, birthDateFromId, getGender(birthNumberValue), bloodGroupValue, addressFull, phoneText, emailText);
-//        System.out.println(nameAndSurnameText);
-//        System.out.println(insuranceCompanyText);
-//        System.out.println(birthNumberValue);
-//        System.out.println(birthDateValue);
-//        System.out.println(sexValue);
-//        System.out.println(bloodGroupValue);
-//        System.out.println(address1Text);
-//        System.out.println(address2Text);
-//        System.out.println(phoneText);
-//        System.out.println(emailText);
-
-        // TO DO
 
         if (firstNameText.equals("") || surnameText.equals("") || bloodGroupValue.equals("") || sexValue.equals("") || birthIdText.equals("")) {
             missingValuesMsg.setText("Please fill in missing compulsory data!");

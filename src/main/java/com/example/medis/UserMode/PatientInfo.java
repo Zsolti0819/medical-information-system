@@ -50,13 +50,9 @@ public class PatientInfo implements Initializable {
     }
 
     @FXML
-    private void OpenEditPatientData() {
+    private void OpenEditPatientData() throws IOException {
         SceneController s = new SceneController();
-        try {
-            s.newWindow("user_mode/patient_info_edit.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        s.newWindow("user_mode/patient_info_edit.fxml");
     }
 
     @Override
@@ -75,8 +71,6 @@ public class PatientInfo implements Initializable {
         address1_data.setText(selectedPatient.getAddress());
         phone_data.setText(selectedPatient.getPhone());
         email_data.setText(selectedPatient.getEmail());
-        System.out.println();
-
 
     }
 }

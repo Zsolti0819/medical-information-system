@@ -3,11 +3,9 @@ package com.example.medis;
 import java.io.IOException;
 import java.util.Objects;
 
+import com.example.medis.Entities.Appointment;
 import com.example.medis.Entities.Patient;
-import com.example.medis.UserMode.NewPatient;
-import com.example.medis.UserMode.PatientAppointments;
-import com.example.medis.UserMode.PatientInfo;
-import com.example.medis.UserMode.PatientRecords;
+import com.example.medis.UserMode.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -39,7 +37,7 @@ public class SceneController extends NewPatient {
         stage.show();
     }
 
-    public void newWindowCustom(Patient patient, String fxml) throws IOException {
+    public void newWindowWithPatient(Patient patient, String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load()));
@@ -47,7 +45,19 @@ public class SceneController extends NewPatient {
         PatientInfo controller = loader.getController();
         controller.initData(patient);
 
-//        stage.setAlwaysOnTop(true);
+        stage.toFront();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void newWindowWithAppointment(Appointment appointment, String fxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(loader.load()));
+
+        PatientAppointmentEdit controller = loader.getController();
+        controller.initData(appointment);
+
         stage.toFront();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();

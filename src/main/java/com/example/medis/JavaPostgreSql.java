@@ -622,7 +622,7 @@ public class JavaPostgreSql {
         record.setId(resultSet.getLong("id"));
         record.setTitle(resultSet.getString("title"));
         record.setDescription(resultSet.getString("description"));
-        record.setDate_executed(resultSet.getObject("date_executed", LocalDateTime.class));
+        record.setDate_executed(resultSet.getDate("date_executed"));
         record.setNotes(resultSet.getString("notes"));
         record.setPatient_id(resultSet.getLong("patient_id"));
         record.setDoctor_id(resultSet.getLong("doctor_id"));
