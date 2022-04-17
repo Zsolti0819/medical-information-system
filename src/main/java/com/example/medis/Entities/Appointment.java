@@ -3,6 +3,7 @@ package com.example.medis.Entities;
 import javafx.scene.control.Button;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Appointment {
     private long id;
@@ -11,6 +12,7 @@ public class Appointment {
     private LocalDateTime start_time;
     private LocalDateTime end_time;
     private LocalDateTime created_at, updated_at;
+    private int start_hour, start_min, start_year, start_month, start_day,  end_hour, end_min, end_year, end_month, end_day;
     private long patient_id;
     private long doctor_id;
     private boolean deleted;
@@ -72,6 +74,11 @@ public class Appointment {
 
     public void setStart_time(LocalDateTime start_time) {
         this.start_time = start_time;
+        this.start_year = start_time.getYear();
+        this.start_month = start_time.getMonthValue();
+        this.start_day = start_time.getDayOfMonth();
+        this.start_hour = start_time.getHour();
+        this.start_min = start_time.getMinute();
     }
 
     public LocalDateTime getEnd_time() {
@@ -80,6 +87,11 @@ public class Appointment {
 
     public void setEnd_time(LocalDateTime end_time) {
         this.end_time = end_time;
+        this.end_year = end_time.getYear();
+        this.end_month = end_time.getMonthValue();
+        this.end_day = end_time.getDayOfMonth();
+        this.end_hour = end_time.getHour();
+        this.end_min = end_time.getMinute();
     }
 
     public long getPatient_id() {
@@ -112,5 +124,45 @@ public class Appointment {
 
     public void setCreated_by(long created_by) {
         this.created_by = created_by;
+    }
+
+    public int getStart_hour() {
+        return start_hour;
+    }
+
+    public int getStart_min() {
+        return start_min;
+    }
+
+    public int getStart_year() {
+        return start_year;
+    }
+
+    public int getStart_month() {
+        return start_month;
+    }
+
+    public int getStart_day() {
+        return start_day;
+    }
+
+    public int getEnd_hour() {
+        return end_hour;
+    }
+
+    public int getEnd_min() {
+        return end_min;
+    }
+
+    public int getEnd_year() {
+        return end_year;
+    }
+
+    public int getEnd_month() {
+        return end_month;
+    }
+
+    public int getEnd_day() {
+        return end_day;
     }
 }
