@@ -1,5 +1,6 @@
 package com.example.medis;
 
+import com.example.medis.Entities.Appointment;
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.User;
 import javafx.collections.FXCollections;
@@ -577,10 +578,46 @@ public class JavaPostgreSql {
 
     }
 
-    public static List<User> getAllUsers(){
+    public static ObservableList<Appointment> getAllAppointmentsByPatientId(long patient_id){
+        String query = "SELECT * from appointments WHERE patient_id=?;";
+        ObservableList<Appointment> result = FXCollections.observableArrayList();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1,patient_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createAppointmentFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private static Appointment createAppointmentFromResultSet(ResultSet resultSet) throws SQLException {
+        Appointment appointment = new Appointment();
+        appointment.setId(resultSet.getLong("id"));
+        appointment.setTitle(resultSet.getString("title"));
+        appointment.setDescription(resultSet.getString("description"));
+        appointment.setStart_time(resultSet.getObject("start_time", LocalDateTime.class));
+        appointment.setEnd_time(resultSet.getObject("end_time", LocalDateTime.class));
+        appointment.setPatient_id(resultSet.getLong("patient_id"));
+        appointment.setDoctor_id(resultSet.getLong("doctor_id"));
+        appointment.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
+        appointment.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
+        appointment.setDeleted(resultSet.getBoolean("deleted"));
+        appointment.setCreated_by(resultSet.getLong("created_by"));
+
+        return appointment;
+    }
+
+    public static ObservableList<User> getAllUsers(){
 
         String query = "SELECT * from users;";
-        List<User> result = new ArrayList<>();
+        ObservableList<User> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);

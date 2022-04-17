@@ -10,18 +10,20 @@ public class Appointment {
     private String description;
     private LocalDateTime start_time;
     private LocalDateTime end_time;
-    private LocalDateTime date, updatedAt;
+    private LocalDateTime created_at, updated_at;
     private long patient_id;
     private long doctor_id;
     private boolean deleted;
-    private Button appointmentInfo;
+    private long created_by;
 
     public Appointment(String title, LocalDateTime date, LocalDateTime updatedAt, Button appointmentInfo) {
         this.title = title;
-        this.date = date;
-        this.updatedAt = updatedAt;
-        this.appointmentInfo = appointmentInfo;
-        this.appointmentInfo.setText("Open");
+        this.created_at = date;
+        this.updated_at = updatedAt;
+    }
+
+    public Appointment() {
+
     }
 
     public String getTitle() {
@@ -32,28 +34,20 @@ public class Appointment {
         this.title = title;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Button getAppointmentInfo() {
-        return appointmentInfo;
-    }
-
-    public void setAppointmentInfo(Button appointmentInfo) {
-        this.appointmentInfo = appointmentInfo;
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
     }
 
     public long getId() {
@@ -110,5 +104,13 @@ public class Appointment {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public long getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(long created_by) {
+        this.created_by = created_by;
     }
 }
