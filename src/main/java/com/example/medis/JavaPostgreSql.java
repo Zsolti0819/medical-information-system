@@ -2,6 +2,7 @@ package com.example.medis;
 
 import com.example.medis.Entities.Appointment;
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.Record;
 import com.example.medis.Entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -595,6 +596,40 @@ public class JavaPostgreSql {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static ObservableList<Record> getAllRecordsByPatientId(long patient_id){
+        String query = "SELECT * from records WHERE patient_id=?;";
+        ObservableList<Record> result = FXCollections.observableArrayList();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1,patient_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createRecordFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private static Record createRecordFromResultSet(ResultSet resultSet) throws SQLException {
+        Record record = new Record();
+        record.setId(resultSet.getLong("id"));
+        record.setTitle(resultSet.getString("title"));
+        record.setDescription(resultSet.getString("description"));
+        record.setDate_executed(resultSet.getObject("date_executed", LocalDateTime.class));
+        record.setNotes(resultSet.getString("notes"));
+        record.setPatient_id(resultSet.getLong("patient_id"));
+        record.setDoctor_id(resultSet.getLong("doctor_id"));
+        record.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
+        record.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
+        record.setDeleted(resultSet.getBoolean("deleted"));
+        return record;
     }
 
     private static Appointment createAppointmentFromResultSet(ResultSet resultSet) throws SQLException {

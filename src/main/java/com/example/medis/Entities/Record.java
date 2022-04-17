@@ -1,21 +1,24 @@
 package com.example.medis.Entities;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Button;
 
 import java.time.LocalDateTime;
 
 public class Record {
-    private String title, description;
-    private LocalDateTime createdAt;
-    private Button recordInfo;
+    private long id, patient_id, doctor_id;
+    private String title, description,notes;
+    private LocalDateTime created_at,date_executed, updated_at;
+    private boolean deleted;
+
 
     public Record(String title, String description, LocalDateTime createdAt, Button recordInfo) {
         this.title = title;
         this.description = description;
-        this.createdAt = createdAt;
-        this.recordInfo = recordInfo;
-        this.recordInfo.setText("Open");
+        this.created_at = createdAt;
+    }
+
+    public Record() {
+
     }
 
     public String getTitle() {
@@ -34,19 +37,67 @@ public class Record {
         this.description = description;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
-    public Button getRecordInfo() {
-        return recordInfo;
+    public long getId() {
+        return id;
     }
 
-    public void setRecordInfo(Button recordInfo) {
-        this.recordInfo = recordInfo;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getPatient_id() {
+        return patient_id;
+    }
+
+    public void setPatient_id(long patient_id) {
+        this.patient_id = patient_id;
+    }
+
+    public long getDoctor_id() {
+        return doctor_id;
+    }
+
+    public void setDoctor_id(long doctor_id) {
+        this.doctor_id = doctor_id;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public LocalDateTime getDate_executed() {
+        return date_executed;
+    }
+
+    public void setDate_executed(LocalDateTime date_executed) {
+        this.date_executed = date_executed;
+    }
+
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
