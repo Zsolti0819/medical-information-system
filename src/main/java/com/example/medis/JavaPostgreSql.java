@@ -164,10 +164,10 @@ public class JavaPostgreSql {
     }
 
     public static String createPatient(String first_name, String sure_name, String insurance_co, String birthdate, String sex,
-                                     String blood_group, String address, String phone, String email){
+                                     String blood_group, String address, String phone, String email, String birth_id){
 
         String query = "INSERT INTO patients VALUES(default, ?, ?, cast(? as insurance_enum), ?, " +
-                "cast(? as sex_enum), cast(? as blood_enum), ?, ?, now(), now(), false, ?);";
+                "cast(? as sex_enum), cast(? as blood_enum), ?, ?, now(), now(), false, ?, ?);";
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -182,6 +182,7 @@ public class JavaPostgreSql {
             preparedStatement.setString(7, address);
             preparedStatement.setString(8, phone);
             preparedStatement.setString(9, email);
+            preparedStatement.setString(10, birth_id);
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
@@ -619,7 +620,7 @@ public class JavaPostgreSql {
         patient.setFirst_name(resultSet.getString("first_name"));
         patient.setSurname(resultSet.getString("surname"));
         patient.setPhone(resultSet.getString("phone"));
-        //obj.setBirth_date(resultSet.getDate("birth_date"));
+        patient.setBirth_date(resultSet.getDate("birthdate"));
         patient.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
         patient.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
         patient.setDeleted(resultSet.getBoolean("deleted"));
@@ -719,9 +720,9 @@ public class JavaPostgreSql {
 
     }
 
-    public static ObservableList<User> getUser(Long patientId) {
+    public static User getUser(Long patientId) {
 
-        ObservableList<User> result = FXCollections.observableArrayList();;
+        User result = new User();
         try {
             String query = "SELECT * FROM users WHERE id=?;";
 
@@ -731,10 +732,8 @@ public class JavaPostgreSql {
             preparedStatement.setLong(1, patientId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                result.add(createUserFromResultSet(resultSet));
-            }
+            resultSet.next();
+            result = createUserFromResultSet(resultSet);
             System.out.println(preparedStatement);
 
         } catch (SQLException e) {
@@ -743,11 +742,11 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public static ObservableList<Patient> getPatient(Long patientId) {
+    public static Patient getPatient(Long patientId) {
 
-        ObservableList<Patient> result = FXCollections.observableArrayList();;
+        Patient result = new Patient();
         try {
-            String query = "SELECT * FROM patients WHERE id=?;";
+            String query = "SELECT * FROM patients WHERE id=?";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -755,10 +754,9 @@ public class JavaPostgreSql {
             preparedStatement.setLong(1, patientId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                result.add(createPatientFromResultSet(resultSet));
-            }
+            System.out.println(preparedStatement);
+            resultSet.next();
+            result = createPatientFromResultSet(resultSet);
             System.out.println(preparedStatement);
 
         } catch (SQLException e) {

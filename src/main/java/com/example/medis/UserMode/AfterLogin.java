@@ -90,8 +90,8 @@ public class AfterLogin implements Initializable {
                         openButton.setOnAction((ActionEvent event) -> {
                             Patient selectedPatient = getPatientsTable().getItems().get(getIndex());
                             System.out.println("selectedPatient ID: " + selectedPatient.getId());
-                            System.out.println(JavaPostgreSql.getPatient(selectedPatient.getId()).get(0).getId());
-                            setSelectedPatient(selectedPatient);
+//                            System.out.println(JavaPostgreSql.getPatient(selectedPatient.getId()).getId());
+                            setSelectedPatient(JavaPostgreSql.getPatient(selectedPatient.getId()));
                             showPatient();
                         });
                     }

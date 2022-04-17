@@ -73,6 +73,7 @@ public class PatientInfo implements Initializable {
         address1_data.setText(selectedPatient.getAddress());
         phone_data.setText(selectedPatient.getPhone());
         email_data.setText(selectedPatient.getEmail());
+        System.out.println();
 
 
     }

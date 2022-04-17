@@ -45,7 +45,7 @@
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="birth_number" layoutX="448.0" layoutY="230.0" prefHeight="25.0" prefWidth="177.0" />
+         <TextField fx:id="birth_id" layoutX="448.0" layoutY="230.0" prefHeight="25.0" prefWidth="177.0" />
          <Label layoutX="237.0" layoutY="276.0" prefHeight="25.0" text="Sex">
             <font>
                <Font name="System Bold" size="13.0" />
