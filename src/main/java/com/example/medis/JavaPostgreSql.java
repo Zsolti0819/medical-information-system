@@ -364,6 +364,7 @@ public class JavaPostgreSql {
         String query = "SELECT * FROM patients WHERE id=?;";
         return getaBoolean(id, query);
     }
+
     private static Boolean isUserExist(long id) {
         String query = "SELECT * FROM users WHERE id=?;";
         return getaBoolean(id, query);
@@ -373,6 +374,7 @@ public class JavaPostgreSql {
         String query = "SELECT * FROM records WHERE id=?;";
         return getaBoolean(id, query);
     }
+
     private static Boolean isPrescriptionExist(long id) {
         String query = "SELECT * FROM prescriptions WHERE id=?;";
         return getaBoolean(id, query);
@@ -726,7 +728,7 @@ public class JavaPostgreSql {
         }
         return result;
     }
-// blood, sex, insurence, adress, email,
+
     private static Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
         Patient patient = new Patient();
         patient.setId(resultSet.getLong("id"));
@@ -881,8 +883,6 @@ public class JavaPostgreSql {
         }
         return result;
     }
-
-
 
     public static User getUser(Long user_id) {
 
