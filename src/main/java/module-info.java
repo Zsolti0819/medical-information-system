@@ -2,6 +2,7 @@ module com.example.medis {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires javafx.graphics;
 
 
     opens com.example.medis to javafx.fxml;
