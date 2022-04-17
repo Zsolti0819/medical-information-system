@@ -613,12 +613,17 @@ public class JavaPostgreSql {
         }
         return result;
     }
-
+// blood, sex, insurence, adress, email,
     private static Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
         Patient patient = new Patient();
         patient.setId(resultSet.getLong("id"));
         patient.setFirst_name(resultSet.getString("first_name"));
         patient.setSurname(resultSet.getString("surname"));
+        patient.setBlood_group(resultSet.getString("blood_group"));
+        patient.setSex(resultSet.getString("sex"));
+        patient.setAddress(resultSet.getString("address"));
+        patient.setEmail(resultSet.getString("email"));
+        patient.setInsurance_company(resultSet.getString("insurance_company"));
         patient.setPhone(resultSet.getString("phone"));
         patient.setBirth_date(resultSet.getDate("birthdate"));
         patient.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
