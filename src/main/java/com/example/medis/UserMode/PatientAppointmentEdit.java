@@ -59,4 +59,7 @@ public class PatientAppointmentEdit implements Initializable {
 
     }
 
+    public void updateAppointment(ActionEvent event) {
+
+    }
 }
