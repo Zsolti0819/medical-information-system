@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Appointment {
     private long id;
@@ -164,5 +165,13 @@ public class Appointment {
 
     public int getEnd_day() {
         return end_day;
+    }
+
+    public Date getStartDate(){
+        return new GregorianCalendar(start_year,start_month,start_day).getTime();
+    }
+
+    public Date getEndDate(){
+        return new GregorianCalendar(end_year,end_month,end_day).getTime();
     }
 }
