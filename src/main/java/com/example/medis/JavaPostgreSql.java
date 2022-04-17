@@ -797,7 +797,51 @@ public class JavaPostgreSql {
 
     }
 
-    public static User getUser(Long patientId) {
+    public static Appointment getAppointment(Long appointment_id) {
+
+        Appointment result = new Appointment();
+        try {
+            String query = "SELECT * FROM appointments WHERE id=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, appointment_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = createAppointmentFromResultSet(resultSet);
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static Record getRecord(Long record_id) {
+
+        Record result = new Record();
+        try {
+            String query = "SELECT * FROM records WHERE id=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, record_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = createRecordFromResultSet(resultSet);
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static User getUser(Long user_id) {
 
         User result = new User();
         try {
@@ -806,7 +850,7 @@ public class JavaPostgreSql {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setLong(1, patientId);
+            preparedStatement.setLong(1, user_id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
