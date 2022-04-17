@@ -28,7 +28,7 @@ public class Login {
 
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
-            loginMsg.setText("Success!");
+//            loginMsg.setText("Success!");
             if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
                 s.switchTo("user_mode/after_login.fxml",event);
             else

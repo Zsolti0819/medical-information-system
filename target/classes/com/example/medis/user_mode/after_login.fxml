@@ -50,7 +50,7 @@
                 <columns>
                     <TableColumn fx:id="name" prefWidth="133.0" text="Name" />
                     <TableColumn fx:id="surname" prefWidth="121.0" text="Surname" />
-                    <TableColumn fx:id="birth_number" prefWidth="127.0" text="Birth number" />
+                    <TableColumn fx:id="birth_id" prefWidth="127.0" text="Birth ID" />
                     <TableColumn fx:id="last_visit" prefWidth="109.0" text="Last visit" />
                     <TableColumn fx:id="next_visit" prefWidth="111.0" text="Next visit" />
                 </columns>

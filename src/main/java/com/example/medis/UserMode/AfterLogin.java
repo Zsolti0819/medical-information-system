@@ -27,7 +27,7 @@ public class AfterLogin implements Initializable {
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
     @FXML private TableColumn<Patient, String> surname;
-    @FXML private TableColumn<Patient, Long> birth_number;
+    @FXML private TableColumn<Patient, Long> birth_id;
     @FXML private TableColumn<Patient, LocalDateTime> last_visit;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
 //    @FXML private TableColumn<Patient, Void> patient_info;
@@ -84,7 +84,7 @@ public class AfterLogin implements Initializable {
                         openButton.setOnAction((ActionEvent event) -> {
                             Patient selectedPatient = getPatientsTable().getItems().get(getIndex());
                             System.out.println("selectedPatient ID: " + selectedPatient.getId());
-                            System.out.println(JavaPostgreSql.getUser(selectedPatient.getId()).get(0).getId());
+                            System.out.println(JavaPostgreSql.getPatient(selectedPatient.getId()).get(0).getId());
                         });
                     }
 
@@ -111,7 +111,7 @@ public class AfterLogin implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)  {
         name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
         surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        birth_number.setCellValueFactory(new PropertyValueFactory<>("birth_number"));
+        birth_id.setCellValueFactory(new PropertyValueFactory<>("birth_id"));
         last_visit.setCellValueFactory(new PropertyValueFactory<>("last_visit"));
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
 

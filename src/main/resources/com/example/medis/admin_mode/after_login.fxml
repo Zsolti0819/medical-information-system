@@ -64,7 +64,7 @@
                 <TableView fx:id="patientsTable" layoutX="18.0" layoutY="137.0" prefHeight="402.0" prefWidth="654.0" style="-fx-background-color: white;">
                     <columns>
                         <TableColumn fx:id="nameAndSurname" prefWidth="143.0" text="Name and surname" />
-                        <TableColumn fx:id="birth_number" prefWidth="143.0" text="Birth number" />
+                        <TableColumn fx:id="birth_id" prefWidth="143.0" text="Birth number" />
                         <TableColumn fx:id="last_visit" prefWidth="145.0" text="Last visit" />
                         <TableColumn fx:id="next_visit" prefWidth="145.0" text="Next visit" />
                         <TableColumn fx:id="patient_info" prefWidth="77.0" text="Patient info" />

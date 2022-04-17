@@ -623,7 +623,7 @@ public class JavaPostgreSql {
         patient.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
         patient.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
         patient.setDeleted(resultSet.getBoolean("deleted"));
-        patient.setBirth_number(resultSet.getLong("identification_number"));
+        patient.setBirth_ID(resultSet.getLong("identification_number"));
 
 //        Button button = new Button();
 //        button.setText("Open");
@@ -655,7 +655,7 @@ public class JavaPostgreSql {
         List<Patient> result = new ArrayList<>();
 
         if (pattern.matcher(filterWord).matches()){
-            query = "SELECT * FROM patients WHERE identification_number=?";
+            query = "SELECT * FROM patients WHERE identification_number=?;";
 
         } else {
             query = "SELECT * FROM patients WHERE email=?";
@@ -681,7 +681,7 @@ public class JavaPostgreSql {
 
     public static String filterRecords(Long patientId) {
         try {
-            String query = "SELECT * FROM patients WHERE patient_id=?";
+            String query = "SELECT * FROM patients WHERE patient_id=?;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -701,7 +701,7 @@ public class JavaPostgreSql {
 
     public static String filterAppointments(Long patientId) {
         try {
-            String query = "SELECT * FROM patients WHERE patient_id=?";
+            String query = "SELECT * FROM patients WHERE patient_id=?;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -723,7 +723,7 @@ public class JavaPostgreSql {
 
         ObservableList<User> result = FXCollections.observableArrayList();;
         try {
-            String query = "SELECT * FROM users WHERE id=?";
+            String query = "SELECT * FROM users WHERE id=?;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -742,6 +742,31 @@ public class JavaPostgreSql {
         }
         return result;
     }
+
+    public static ObservableList<Patient> getPatient(Long patientId) {
+
+        ObservableList<Patient> result = FXCollections.observableArrayList();;
+        try {
+            String query = "SELECT * FROM patients WHERE id=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, patientId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(createPatientFromResultSet(resultSet));
+            }
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
 
 

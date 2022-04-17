@@ -11,7 +11,7 @@ public class Patient {
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
     private boolean deleted;
-    private long birth_number;
+    private long birth_id;
     private LocalDateTime last_visit, next_visit;
 
     public long getId() {
@@ -78,12 +78,12 @@ public class Patient {
         this.deleted = deleted;
     }
 
-    public long getBirth_number() {
-        return birth_number;
+    public long getBirth_id() {
+        return birth_id;
     }
 
-    public void setBirth_number(long birth_number) {
-        this.birth_number = birth_number;
+    public void setBirth_ID(long birth_id) {
+        this.birth_id = birth_id;
     }
 
     public LocalDateTime getLast_visit() {
