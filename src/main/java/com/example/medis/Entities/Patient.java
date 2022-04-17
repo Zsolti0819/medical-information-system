@@ -12,7 +12,47 @@ public class Patient {
     private LocalDateTime updated_at;
     private boolean deleted;
     private long birth_id;
+    private String sex;
+    private String blood_group;
+    private String address;
+    private String email;
     private LocalDateTime last_visit, next_visit;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBlood_group() {
+        return blood_group;
+    }
+
+    public void setBlood_group(String blood_group) {
+        this.blood_group = blood_group;
+    }
+
+    public void setBirth_id(long birth_id) {
+        this.birth_id = birth_id;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public long getId() {
         return id;

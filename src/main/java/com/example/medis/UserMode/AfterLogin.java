@@ -30,8 +30,16 @@ public class AfterLogin implements Initializable {
     @FXML private TableColumn<Patient, Long> birth_id;
     @FXML private TableColumn<Patient, LocalDateTime> last_visit;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
-//    @FXML private TableColumn<Patient, Void> patient_info;
 
+    private Patient selectedPatient;
+
+    public Patient getSelectedPatient() {
+        return selectedPatient;
+    }
+
+    public void setSelectedPatient(Patient selectedPatient) {
+        this.selectedPatient = selectedPatient;
+    }
 
     @FXML
     private void userLogOut(ActionEvent event) throws IOException {
@@ -56,22 +64,20 @@ public class AfterLogin implements Initializable {
         }
     }
 
-
     @FXML
-    public static void showPatient()  {
+    public void showPatient()  {
         SceneController s = new SceneController();
         try {
-            s.newWindow("user_mode/patient_info.fxml");
+            s.newWindowCustom(getSelectedPatient());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
     private void addButtonToTable() {
-        TableColumn<Patient, Void> buttonColumn  = new TableColumn();
-        buttonColumn.setText("Details");
+        TableColumn<Patient, Void> details  = new TableColumn<>();
+        details.setText("Details");
 
         Callback<TableColumn<Patient, Void>, TableCell<Patient, Void>> cellFactory = new Callback<>() {
             @Override
@@ -85,6 +91,8 @@ public class AfterLogin implements Initializable {
                             Patient selectedPatient = getPatientsTable().getItems().get(getIndex());
                             System.out.println("selectedPatient ID: " + selectedPatient.getId());
                             System.out.println(JavaPostgreSql.getPatient(selectedPatient.getId()).get(0).getId());
+                            setSelectedPatient(selectedPatient);
+                            showPatient();
                         });
                     }
 
@@ -101,9 +109,9 @@ public class AfterLogin implements Initializable {
             }
         };
 
-        buttonColumn.setCellFactory(cellFactory);
+        details.setCellFactory(cellFactory);
 
-        patientsTable.getColumns().add(buttonColumn);
+        patientsTable.getColumns().add(details);
 
     }
 
@@ -116,7 +124,6 @@ public class AfterLogin implements Initializable {
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
 
         addButtonToTable();
-//        patient_info.setCellValueFactory(new PropertyValueFactory<>("patient_info"));
         patientsTable.setItems(JavaPostgreSql.getAllPatients());
 
     }

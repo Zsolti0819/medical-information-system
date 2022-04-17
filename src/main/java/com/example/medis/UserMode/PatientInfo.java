@@ -1,10 +1,12 @@
 package com.example.medis.UserMode;
 
+import com.example.medis.Entities.Patient;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,7 +15,18 @@ import java.util.ResourceBundle;
 
 public class PatientInfo implements Initializable {
 
+    @FXML private Label name_and_surname_data;
+    @FXML private Label birth_ID_data;
+    @FXML private Label birth_date_data;
+    @FXML private Label sex_data;
+    @FXML private Label blood_group_data;
+    @FXML private Label address1_data;
+    @FXML private Label address2_data;
+    @FXML private Label phone_data;
+    @FXML private Label email_data;
 
+
+    private Patient selectedPatient;
 
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
@@ -46,6 +59,20 @@ public class PatientInfo implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    public void initData(Patient patient) {
+        selectedPatient = patient;
+        name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname());
+        birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
+        birth_date_data.setText(String.valueOf(selectedPatient.getBirth_date()));
+        sex_data.setText(selectedPatient.getSex());
+        blood_group_data.setText(selectedPatient.getBlood_group());
+        address1_data.setText(selectedPatient.getAddress());
+        phone_data.setText(selectedPatient.getPhone());
+        email_data.setText(selectedPatient.getEmail());
+
 
     }
 }
