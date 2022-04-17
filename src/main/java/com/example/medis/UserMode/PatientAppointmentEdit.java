@@ -45,6 +45,8 @@ public class PatientAppointmentEdit implements Initializable {
     public void initData(Appointment appointment) {
         selectedAppointment = appointment;
         title_data.setText(selectedAppointment.getTitle());
+        description_data.setText(selectedAppointment.getDescription());
+        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFullname());
 
     }
 
