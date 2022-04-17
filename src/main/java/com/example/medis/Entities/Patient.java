@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Patient {
     private long id;
     private String first_name, surname;
+    private String insurance_company;
     private String phone;
     private Date birth_date;
     private LocalDateTime created_at;
@@ -17,6 +18,14 @@ public class Patient {
     private String address;
     private String email;
     private LocalDateTime last_visit, next_visit;
+
+    public String getInsurance_company() {
+        return insurance_company;
+    }
+
+    public void setInsurance_company(String insurance_company) {
+        this.insurance_company = insurance_company;
+    }
 
     public String getEmail() {
         return email;

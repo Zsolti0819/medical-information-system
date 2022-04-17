@@ -16,12 +16,12 @@ import java.util.ResourceBundle;
 public class PatientInfo implements Initializable {
 
     @FXML private Label name_and_surname_data;
+    @FXML private Label insurance_co_data;
     @FXML private Label birth_ID_data;
     @FXML private Label birth_date_data;
     @FXML private Label sex_data;
     @FXML private Label blood_group_data;
     @FXML private Label address1_data;
-    @FXML private Label address2_data;
     @FXML private Label phone_data;
     @FXML private Label email_data;
 
@@ -65,6 +65,7 @@ public class PatientInfo implements Initializable {
     public void initData(Patient patient) {
         selectedPatient = patient;
         name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname());
+        insurance_co_data.setText(selectedPatient.getInsurance_company());
         birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
         birth_date_data.setText(String.valueOf(selectedPatient.getBirth_date()));
         sex_data.setText(selectedPatient.getSex());
