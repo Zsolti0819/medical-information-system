@@ -52,6 +52,10 @@ public class PatientAppointmentEdit implements Initializable {
         doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFullname());
         start_ymd_data.setValue(selectedAppointment.getStart_time().toLocalDate());
         end_ymd_data.setValue(selectedAppointment.getEnd_time().toLocalDate());
+        start_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_hour()));
+        end_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getEnd_hour()));
+        start_min_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_min()));
+        end_min_data.getSelectionModel().select(String.valueOf(selectedAppointment.getEnd_min()));
 
     }
 
