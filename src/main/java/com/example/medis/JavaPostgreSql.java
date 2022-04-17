@@ -688,6 +688,27 @@ public class JavaPostgreSql {
 
     }
 
+    public static User getUserByFullname(String fullname){
+        User result = new User();
+        try {
+            String query = "SELECT * FROM users WHERE fullname=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, fullname);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = createUserFromResultSet(resultSet);
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static ObservableList<Patient> getAllPatients(){
         String query = "SELECT * from patients;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
