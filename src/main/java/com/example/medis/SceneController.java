@@ -5,12 +5,14 @@ import java.util.Objects;
 
 import com.example.medis.Entities.Appointment;
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.UserMode.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,6 +27,20 @@ public class SceneController extends NewPatient {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void switchToDashboard(User loggedInUser, String fxml, ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxml));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+
+        Dashboard controller = loader.getController();
+        controller.initData(loggedInUser);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     public void newWindow(String fxml) throws IOException {
@@ -50,17 +66,19 @@ public class SceneController extends NewPatient {
         stage.show();
     }
 
-    public void newWindowWithAppointment(Appointment appointment, String fxml) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load()));
+    public void switchToOneAppointment(Patient patient, Appointment appointment, ActionEvent event, String fxml) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxml));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
 
         PatientAppointmentEdit controller = loader.getController();
-        controller.initData(appointment);
+        controller.initData(patient, appointment);
 
-        stage.toFront();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     public void switchToAppointments(Patient patient, ActionEvent event) throws IOException {
@@ -72,6 +90,19 @@ public class SceneController extends NewPatient {
 
         PatientAppointments patientAppointments = loader.getController();
         patientAppointments.initData(patient);
+
+        stage.show();
+    }
+
+    public void switchToAppointmentCreation(Patient patient, MouseEvent event) throws IOException {
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/new_appointment.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        NewAppointment newAppointment = loader.getController();
+        newAppointment.initData(patient);
 
         stage.show();
     }
@@ -101,6 +132,5 @@ public class SceneController extends NewPatient {
 
         stage.show();
     }
-
 
 }

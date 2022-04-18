@@ -1,22 +1,24 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Appointment;
+import com.example.medis.Entities.Patient;
 import com.example.medis.JavaPostgreSql;
+import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PatientAppointmentEdit implements Initializable {
 
+    Patient selectedPatient;
     Appointment selectedAppointment;
 
     @FXML private TextField title_data;
@@ -39,13 +41,13 @@ public class PatientAppointmentEdit implements Initializable {
     }
 
     @FXML
-    public void closeCurrentWindow(ActionEvent e) {
-        final Node source = (Node) e.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+    public void goBackToAppointments(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToAppointments(selectedPatient, event);
     }
 
-    public void initData(Appointment appointment) {
+    public void initData(Patient patient, Appointment appointment) {
+        selectedPatient = patient;
         selectedAppointment = appointment;
         title_data.setText(selectedAppointment.getTitle());
         description_data.setText(selectedAppointment.getDescription());
@@ -61,10 +63,17 @@ public class PatientAppointmentEdit implements Initializable {
 
 //    public static String updateAppointment(long id, String title, String description, String start_time,
 //                                           String end_time, long patient_id, long doctor_id){
-    public void updateAppointment(ActionEvent actionEvent) {
-        JavaPostgreSql.updateAppointment(selectedAppointment.getId(), title_data.getText(), description_data.getText(),
-                start_ymd_data.getValue().toString()+" " +start_h_data.getValue()+":"+start_min_data.getValue(),
-                end_ymd_data.getValue().toString()+" " +end_h_data.getValue()+":"+end_min_data.getValue(),
-                selectedAppointment.getPatient_id(),JavaPostgreSql.getUserByFullname(doctor_data.getValue()).getId());
+    public void updateAppointment(ActionEvent event) throws IOException {
+        JavaPostgreSql.updateAppointment(
+                selectedAppointment.getId(),
+                title_data.getText(),
+                description_data.getText(),
+                start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(),
+                end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(),
+                selectedAppointment.getPatient_id(),
+                JavaPostgreSql.getUserByFullname(doctor_data.getValue()).getId());
+
+        SceneController s = new SceneController();
+        s.switchToAppointments(selectedPatient, event);
     }
 }

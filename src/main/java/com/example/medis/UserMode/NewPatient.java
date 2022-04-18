@@ -16,40 +16,17 @@ import java.util.ResourceBundle;
 
 public class NewPatient implements Initializable {
 
-    @FXML
-    private TextField first_name;
-
-    @FXML
-    private TextField surname;
-
-    @FXML
-    private ComboBox<String> insurance_company;
-
-    @FXML
-    private TextField birth_id;
-
-
-    @FXML
-    private ComboBox<String> sex;
-
-    @FXML
-    private ComboBox<String> blood_group;
-
-    @FXML
-    private TextField address1;
-
-    @FXML
-    private TextField address2;
-
-    @FXML
-    private TextField phone;
-
-    @FXML
-    private TextField email;
-
-    @FXML
-    Label missingValuesMsg;
-
+    @FXML private TextField first_name;
+    @FXML private TextField surname;
+    @FXML private ComboBox<String> insurance_company;
+    @FXML private TextField birth_id;
+    @FXML private ComboBox<String> sex;
+    @FXML private ComboBox<String> blood_group;
+    @FXML private TextField address1;
+    @FXML private TextField address2;
+    @FXML private TextField phone;
+    @FXML private TextField email;
+    @FXML private Label missingValuesMsg;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,7 +52,7 @@ public class NewPatient implements Initializable {
                 month <= 62 && day > 0 && day <= mdays[month];
     }
 
-    String getGender(String identificationNumber) {
+    public String getGender(String identificationNumber) {
 
         if (!(identificationNumber.equals(""))) {
             long identificationNumberLong = Long.parseLong(identificationNumber);
@@ -89,7 +66,7 @@ public class NewPatient implements Initializable {
         return null;
     }
 
-    int getYear(String identificationNumber) {
+    public int getYear(String identificationNumber) {
         long identificationNumberLong = Long.parseLong(identificationNumber);
         long date = identificationNumberLong / 10000;
         int year = (int) (date / 10000 % 100);
@@ -103,7 +80,7 @@ public class NewPatient implements Initializable {
         return year;
     }
 
-    int getMonth(String identificationNumber) {
+    public int getMonth(String identificationNumber) {
         long identificationNumberLong = Long.parseLong(identificationNumber);
         long date = identificationNumberLong / 10000;
         int month = (int) (date / 100 % 100);
@@ -114,15 +91,14 @@ public class NewPatient implements Initializable {
         return month;
     }
 
-    int getDay(String identificationNumber) {
+    public int getDay(String identificationNumber) {
         long identificationNumberLong = Long.parseLong(identificationNumber);
         long date = identificationNumberLong / 10000;
 
         return (int) (date % 100);
     }
 
-    @FXML
-    private void fetchData() {
+    @FXML private void fetchData() {
         String firstNameText = first_name.getText();
         String surnameText = surname.getText();
         String insuranceCompanyText = insurance_company.getValue();

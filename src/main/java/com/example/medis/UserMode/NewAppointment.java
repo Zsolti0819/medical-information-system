@@ -1,7 +1,10 @@
 package com.example.medis.UserMode;
 
+import com.example.medis.Entities.Patient;
 import com.example.medis.JavaPostgreSql;
+import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,10 +14,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.InputEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NewAppointment implements Initializable {
+
+    private Patient selectedPatient;
 
     @FXML private TextField title_data;
     @FXML private DatePicker start_ymd_data;
@@ -36,9 +42,21 @@ public class NewAppointment implements Initializable {
 
     }
 
+    // created_by is constant, needs to be implemented later
+
     @FXML
-    private void fetchData() {
-        // TO DO
+    private void fetchData(ActionEvent event) throws IOException {
+        JavaPostgreSql.creteAppointment(
+                title_data.getText(),
+                description_data.getText(),
+                start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(),
+                end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(),
+                selectedPatient.getId(),
+                JavaPostgreSql.getUserByFullname(doctor_data.getValue()).getId(), 1
+                );
+
+        SceneController s = new SceneController();
+        s.switchToAppointments(selectedPatient, event);
     }
 
     @FXML
@@ -46,5 +64,9 @@ public class NewAppointment implements Initializable {
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    public void initData(Patient patient) {
+        selectedPatient = patient;
     }
 }

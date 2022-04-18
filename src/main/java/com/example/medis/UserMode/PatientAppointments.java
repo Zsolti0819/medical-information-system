@@ -9,11 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -28,6 +26,7 @@ public class PatientAppointments implements Initializable {
     private Appointment selectedAppointment;
 
     @FXML private TableView<Appointment> appointmentsTable;
+    @FXML private Label patient_name_appointments;
     @FXML private TableColumn<Appointment, String> title;
     @FXML private TableColumn<Appointment, LocalDateTime> start_time;
     @FXML private TableColumn<Appointment, LocalDateTime> end_time;
@@ -48,7 +47,7 @@ public class PatientAppointments implements Initializable {
 
                             selectedAppointment = JavaPostgreSql.getAppointment(appointmentsTable.getItems().get(getIndex()).getId());
                             try {
-                                showAppointmentInfo();
+                                showAppointmentInfo(event);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -76,9 +75,9 @@ public class PatientAppointments implements Initializable {
     }
 
     @FXML
-    public void showAppointmentInfo() throws IOException {
+    public void showAppointmentInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.newWindowWithAppointment(selectedAppointment, "user_mode/patient_appointment_edit.fxml");
+        s.switchToOneAppointment(selectedPatient, selectedAppointment, event, "user_mode/patient_appointment_edit.fxml");
 
     }
 
@@ -104,17 +103,17 @@ public class PatientAppointments implements Initializable {
     }
 
     @FXML
-    public void closeCurrentWindow(ActionEvent e) {
-        final Node source = (Node) e.getSource();
+    public void closeCurrentWindow(ActionEvent event) {
+        final Node source = (Node) event.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void addAppointment()  {
+    private void addAppointment(MouseEvent event)  {
         SceneController s = new SceneController();
         try {
-            s.newWindow("user_mode/new_appointment.fxml");
+            s.switchToAppointmentCreation(selectedPatient, event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,6 +121,7 @@ public class PatientAppointments implements Initializable {
 
     public void initData(Patient patient) {
         selectedPatient = patient;
+        patient_name_appointments.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + "'s appointments");
         appointmentsTable.setItems(JavaPostgreSql.getAllAppointmentsByPatientId(selectedPatient.getId()));
 
     }

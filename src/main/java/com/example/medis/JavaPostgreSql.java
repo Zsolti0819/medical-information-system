@@ -262,8 +262,7 @@ public class JavaPostgreSql {
         }
     }
 
-    public static String creteAppointment(String title, String description, String start_time, String end_time, long patient_id,
-                                          long doctor_id, long created_by){
+    public static String creteAppointment(String title, String description, String start_time, String end_time, long patient_id, long doctor_id, long created_by){
 
         String query = "INSERT INTO appointments VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false, ?);";
 
@@ -278,6 +277,7 @@ public class JavaPostgreSql {
             preparedStatement.setDate(4,  getDate(end_time));
             preparedStatement.setLong(5, patient_id);
             preparedStatement.setLong(6, doctor_id);
+            preparedStatement.setLong(7, created_by);
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
@@ -293,8 +293,7 @@ public class JavaPostgreSql {
         }
     }
 
-    public static String updateAppointment(long id, String title, String description, String start_time,
-                                           String end_time, long patient_id, long doctor_id){
+    public static String updateAppointment(long id, String title, String description, String start_time, String end_time, long patient_id, long doctor_id){
         if(!isAppointmentExist(id)){
             return "Appointment with this id not exists!";
         }

@@ -49,7 +49,7 @@
     </left>
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label layoutX="18.0" layoutY="53.0" prefHeight="43.0" prefWidth="336.0" text="Patient 001's appointments">
+            <Label fx:id="patient_name_appointments" layoutX="18.0" layoutY="53.0" prefHeight="43.0" prefWidth="336.0" text="Patient 001's appointments">
                 <font>
                     <Font size="25.0" />
                 </font>

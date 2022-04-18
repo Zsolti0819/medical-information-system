@@ -1,4 +1,5 @@
 package com.example.medis;
+import com.example.medis.Entities.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -9,16 +10,14 @@ import java.io.IOException;
 
 public class Login {
 
-    @FXML
-    private Label loginMsg;
-    @FXML
-    private TextField loginEmail;
-    @FXML
-    private PasswordField loginPassword;
+
+    private User loggedInUser;
+    @FXML private Label loginMsg;
+    @FXML private TextField loginEmail;
+    @FXML private PasswordField loginPassword;
 
     public void userLogIn(ActionEvent event) throws IOException, InterruptedException {
         checkLogin(event);
-
     }
 
     private void checkLogin(ActionEvent event) throws IOException, InterruptedException {
@@ -30,7 +29,8 @@ public class Login {
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
 //            loginMsg.setText("Success!");
             if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
-                s.switchTo("user_mode/dashboard.fxml",event);
+                s.switchToDashboard(loggedInUser,"user_mode/dashboard.fxml",event);
+
             else
                 loginMsg.setText("Username or password are not valid!");
         }

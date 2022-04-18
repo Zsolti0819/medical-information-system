@@ -1,6 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -31,6 +32,7 @@ public class Dashboard implements Initializable {
     @FXML private TableColumn<Patient, LocalDateTime> last_visit;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
 
+    private User loggedInUser;
     private Patient selectedPatient;
 
     @Override
@@ -117,8 +119,8 @@ public class Dashboard implements Initializable {
 
     }
 
+    public void initData(User user) {
+        loggedInUser = user;
 
-
-
-
+    }
 }
