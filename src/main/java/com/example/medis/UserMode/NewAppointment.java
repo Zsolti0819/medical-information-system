@@ -57,7 +57,7 @@ public class NewAppointment implements Initializable {
     }
 
     @FXML
-    public void closeCurrentWindow(ActionEvent event) throws IOException {
+    public void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToAppointments(selectedPatient, event);
     }

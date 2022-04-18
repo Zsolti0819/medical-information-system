@@ -29,7 +29,7 @@ public class Login {
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
 //            loginMsg.setText("Success!");
             if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
-                s.switchToDashboard(loggedInUser,"user_mode/dashboard.fxml",event);
+                s.switchToDashboard(loggedInUser, event);
 
             else
                 loginMsg.setText("Username or password are not valid!");

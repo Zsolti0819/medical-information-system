@@ -49,9 +49,9 @@ public class PatientInfo implements Initializable {
     }
 
     @FXML
-    private void switchToPatientInfoEdit() throws IOException {
+    private void switchToPatientInfoEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.newWindow("user_mode/patient_info_edit.fxml");
+        s.switchToPatientInfoEdit(selectedPatient, event);
     }
 
     @Override

@@ -12,6 +12,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -103,13 +104,9 @@ public class Dashboard implements Initializable {
     }
 
     @FXML
-    private void addPatient()  {
+    private void addPatient(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
-        try {
-            s.newWindow("user_mode/new_patient.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        s.switchToPatientCreation(event);
     }
 
     @FXML

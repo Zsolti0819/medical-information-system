@@ -30,9 +30,9 @@ public class SceneController extends NewPatient {
         stage.show();
     }
 
-    public void switchToDashboard(User loggedInUser, String fxml, ActionEvent event) throws IOException {
+    public void switchToDashboard(User loggedInUser, ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxml));
+        loader.setLocation(getClass().getResource("user_mode/dashboard.fxml"));
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
 
@@ -80,6 +80,30 @@ public class SceneController extends NewPatient {
         stage.show();
     }
 
+    public void switchToPatientInfoEdit(Patient patient, ActionEvent event) throws IOException {
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/patient_info_edit.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        PatientInfoEdit controller = loader.getController();
+        controller.initData(patient);
+
+        stage.show();
+    }
+
+    public void switchToPatientCreation(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user_mode/new_patient.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    // Records
+
     public void switchToRecords(Patient patient, ActionEvent event) throws IOException {
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/records.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -122,6 +146,21 @@ public class SceneController extends NewPatient {
         window.setScene(scene);
         window.show();
     }
+
+    public void switchToRecordCreation(Patient patient, MouseEvent event) throws IOException {
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/new_appointment.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        NewAppointment newAppointment = loader.getController();
+        newAppointment.initData(patient);
+
+        stage.show();
+    }
+
+    // Appointments
 
     public void switchToAppointments(Patient patient, ActionEvent event) throws IOException {
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/appointments.fxml"));

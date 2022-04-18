@@ -10,7 +10,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.UserMode.RecordEdit">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label fx:id="patient_name_record_title" layoutX="266.0" layoutY="34.0" prefHeight="43.0" prefWidth="390.0" text="Patient name - Record title">
+            <Label fx:id="patient_name_record_title" layoutX="266.0" layoutY="34.0" prefHeight="43.0" prefWidth="390.0" text="Patient name - New record">
                 <font>
                     <Font size="25.0" />
                 </font>
@@ -45,7 +45,7 @@
                 </font>
             </Label>
          <TextField layoutX="449.0" layoutY="476.0" prefHeight="62.0" prefWidth="229.0" />
-            <Button layoutX="273.0" layoutY="557.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save record">
+            <Button layoutX="273.0" layoutY="557.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create record">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
