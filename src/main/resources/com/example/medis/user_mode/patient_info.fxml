@@ -115,37 +115,32 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="address2_data" layoutX="243.0" layoutY="386.0" prefHeight="25.0" text="Address 2 data">
+            <Label layoutX="67.0" layoutY="386.0" prefHeight="25.0" text="Phone">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="430.0" prefHeight="25.0" text="Phone">
-                <font>
-                    <Font name="System Bold" size="13.0" />
-                </font>
-            </Label>
-            <Button layoutX="68.0" layoutY="540.0" mnemonicParsing="false" onAction="#OpenEditPatientData" prefHeight="35.0" prefWidth="190.0" text="Edit patient data">
+            <Button layoutX="68.0" layoutY="490.0" mnemonicParsing="false" onAction="#OpenEditPatientData" prefHeight="35.0" prefWidth="390.0" text="Edit patient data">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="282.0" layoutY="540.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #FF0000;" text="Delete patient">
+            <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #FF0000;" text="Delete patient">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Label fx:id="phone_data" layoutX="243.0" layoutY="432.0" prefHeight="25.0" text="Phone data">
+            <Label fx:id="phone_data" layoutX="243.0" layoutY="386.0" prefHeight="25.0" text="Phone data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="478.0" prefHeight="25.0" text="E-mail">
+            <Label layoutX="67.0" layoutY="432.0" prefHeight="25.0" text="E-mail">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="email_data" layoutX="243.0" layoutY="478.0" prefHeight="25.0" text="E-mail data">
+            <Label fx:id="email_data" layoutX="243.0" layoutY="432.0" prefHeight="25.0" text="E-mail data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>

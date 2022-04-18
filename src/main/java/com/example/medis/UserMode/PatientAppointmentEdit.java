@@ -61,8 +61,7 @@ public class PatientAppointmentEdit implements Initializable {
 
     }
 
-//    public static String updateAppointment(long id, String title, String description, String start_time,
-//                                           String end_time, long patient_id, long doctor_id){
+
     public void updateAppointment(ActionEvent event) throws IOException {
         JavaPostgreSql.updateAppointment(
                 selectedAppointment.getId(),
@@ -75,5 +74,9 @@ public class PatientAppointmentEdit implements Initializable {
 
         SceneController s = new SceneController();
         s.switchToAppointments(selectedPatient, event);
+    }
+
+    // TO DO
+    public void deleteAppointment(ActionEvent event) {
     }
 }
