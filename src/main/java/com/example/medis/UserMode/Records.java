@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -52,6 +53,12 @@ public class Records implements Initializable {
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void switchToRecordCreation(MouseEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToRecordCreation(selectedPatient, event);
     }
 
     private void addButtonToTable() {

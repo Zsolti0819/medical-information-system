@@ -30,15 +30,6 @@ public class NewPatient implements Initializable {
     @FXML private TextField email_data;
     @FXML private Label missing_values_msg;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        insurance_co_data.setItems(FXCollections.observableArrayList("Union", "Dôvera", "VŠZP"));
-        sex_data.setItems(FXCollections.observableArrayList("Male","Female"));
-        blood_group_data.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "0","0+","0-"));
-
-    }
-
     public boolean hasValidID(String identificationNumber) {
         long identificationNumberLong = Long.parseLong(identificationNumber);
         long date = identificationNumberLong / 10000;
@@ -136,6 +127,15 @@ public class NewPatient implements Initializable {
     @FXML public void switchToDashboard(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToDashboard(loggedInUser, event);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        insurance_co_data.setItems(FXCollections.observableArrayList("Union", "Dôvera", "VŠZP"));
+        sex_data.setItems(FXCollections.observableArrayList("Male","Female"));
+        blood_group_data.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "0","0+","0-"));
+
     }
 
 }

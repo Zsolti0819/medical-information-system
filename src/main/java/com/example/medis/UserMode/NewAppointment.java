@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class NewAppointment implements Initializable {
 
     private Patient selectedPatient;
 
+    @FXML private Label patient_name_new_appointment;
     @FXML private TextField title_data;
     @FXML private DatePicker start_ymd_data;
     @FXML private ComboBox<String> start_h_data;
@@ -29,20 +31,9 @@ public class NewAppointment implements Initializable {
     @FXML private TextField description_data;
     @FXML private ComboBox <String> doctor_data;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        doctor_data.setItems(FXCollections.observableArrayList(JavaPostgreSql.getUsersByPosition("doctor")));
-        start_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
-        start_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
-        end_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
-        end_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
-
-    }
-
     // created_by is constant, needs to be implemented later
-
     @FXML
-    private void fetchData(ActionEvent event) throws IOException {
+    private void createAppointment(ActionEvent event) throws IOException {
         JavaPostgreSql.creteAppointment(
                 title_data.getText(),
                 description_data.getText(),
@@ -62,7 +53,14 @@ public class NewAppointment implements Initializable {
         s.switchToAppointments(selectedPatient, event);
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        AppointmentEdit.fillAppointmentOptions(doctor_data, start_h_data, start_min_data, end_h_data, end_min_data);
+
+    }
+
     public void initData(Patient patient) {
         selectedPatient = patient;
+        patient_name_new_appointment.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + "New appointment");
     }
 }

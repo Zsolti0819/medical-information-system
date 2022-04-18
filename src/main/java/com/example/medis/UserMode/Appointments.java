@@ -32,7 +32,7 @@ public class Appointments implements Initializable {
     @FXML private TableColumn<Appointment, LocalDateTime> end_time;
 
     @FXML
-    private void switchToPatientsInfo(ActionEvent event) throws IOException {
+    private void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPatientInfo(selectedPatient, event);
     }
@@ -48,6 +48,12 @@ public class Appointments implements Initializable {
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecords(selectedPatient, event);
+    }
+
+    @FXML
+    private void switchToAppointmentCreation(MouseEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToAppointmentCreation(selectedPatient, event);
     }
 
     @FXML
@@ -106,16 +112,6 @@ public class Appointments implements Initializable {
         start_time.setCellValueFactory(new PropertyValueFactory<>("start_time"));
         end_time.setCellValueFactory(new PropertyValueFactory<>("end_time"));
         addButtonToTable();
-    }
-
-    @FXML
-    private void addAppointment(MouseEvent event)  {
-        SceneController s = new SceneController();
-        try {
-            s.switchToAppointmentCreation(selectedPatient, event);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void initData(Patient patient) {

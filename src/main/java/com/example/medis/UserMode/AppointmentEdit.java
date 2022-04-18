@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 
 public class AppointmentEdit implements Initializable {
 
-
     Patient selectedPatient;
     Appointment selectedAppointment;
 
@@ -34,35 +33,10 @@ public class AppointmentEdit implements Initializable {
     @FXML private TextField description_data;
     @FXML private ComboBox <String> doctor_data;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        doctor_data.setItems(FXCollections.observableArrayList(JavaPostgreSql.getUsersByPosition("doctor")));
-        start_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
-        start_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
-        end_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
-        end_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
-    }
-
     @FXML
-    public void goBackToAppointments(ActionEvent event) throws IOException {
+    public void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToAppointments(selectedPatient, event);
-    }
-
-    public void initData(Patient patient, Appointment appointment) {
-        selectedPatient = patient;
-        selectedAppointment = appointment;
-        patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + selectedAppointment.getTitle());
-        title_data.setText(selectedAppointment.getTitle());
-        description_data.setText(selectedAppointment.getDescription());
-        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFullname());
-        start_ymd_data.setValue(selectedAppointment.getStart_time().toLocalDate());
-        end_ymd_data.setValue(selectedAppointment.getEnd_time().toLocalDate());
-        start_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_hour()));
-        end_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getEnd_hour()));
-        start_min_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_min()));
-        end_min_data.getSelectionModel().select(String.valueOf(selectedAppointment.getEnd_min()));
-
     }
 
     public void updateAppointment(ActionEvent event) throws IOException {
@@ -83,5 +57,34 @@ public class AppointmentEdit implements Initializable {
         JavaPostgreSql.deleteAppointment(selectedAppointment.getId());
         SceneController s = new SceneController();
         s.switchToAppointments(selectedPatient, event);
+    }
+
+    static void fillAppointmentOptions(ComboBox<String> doctor_data, ComboBox<String> start_h_data, ComboBox<String> start_min_data, ComboBox<String> end_h_data, ComboBox<String> end_min_data) {
+        doctor_data.setItems(FXCollections.observableArrayList(JavaPostgreSql.getUsersByPosition("doctor")));
+        start_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
+        start_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
+        end_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
+        end_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillAppointmentOptions(doctor_data, start_h_data, start_min_data, end_h_data, end_min_data);
+    }
+
+    public void initData(Patient patient, Appointment appointment) {
+        selectedPatient = patient;
+        selectedAppointment = appointment;
+        patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + selectedAppointment.getTitle());
+        title_data.setText(selectedAppointment.getTitle());
+        description_data.setText(selectedAppointment.getDescription());
+        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFullname());
+        start_ymd_data.setValue(selectedAppointment.getStart_time().toLocalDate());
+        end_ymd_data.setValue(selectedAppointment.getEnd_time().toLocalDate());
+        start_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_hour()));
+        end_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getEnd_hour()));
+        start_min_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_min()));
+        end_min_data.getSelectionModel().select(String.valueOf(selectedAppointment.getEnd_min()));
+
     }
 }

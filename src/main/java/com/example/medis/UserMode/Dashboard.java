@@ -36,16 +36,29 @@ public class Dashboard implements Initializable {
     private User loggedInUser;
     private Patient selectedPatient;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)  {
-        name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
-        surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        birth_id.setCellValueFactory(new PropertyValueFactory<>("birth_id"));
-        last_visit.setCellValueFactory(new PropertyValueFactory<>("last_visit"));
-        next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
-        addButtonToTable();
-        patientsTable.setItems(JavaPostgreSql.getAllPatients());
+    @FXML
+    private void showPatients(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchTo("user_mode/dashboard.fxml",event);
+    }
 
+    @FXML
+    public void newWindowWithPatient() throws IOException {
+        SceneController s = new SceneController();
+        s.newWindowWithPatient(selectedPatient);
+    }
+
+    @FXML
+    private void userLogOut(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchTo("login.fxml",event);
+
+    }
+
+    @FXML
+    private void switchToPatientCreation(MouseEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToPatientCreation(event);
     }
 
     private void addButtonToTable() {
@@ -64,7 +77,7 @@ public class Dashboard implements Initializable {
                             selectedPatient = JavaPostgreSql.getPatient(getPatientsTable().getItems().get(getIndex()).getId());
 
                             try {
-                                showPatientInfo();
+                                newWindowWithPatient();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -90,33 +103,19 @@ public class Dashboard implements Initializable {
 
     }
 
-    @FXML
-    private void userLogOut(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchTo("login.fxml",event);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)  {
+        name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
+        surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        birth_id.setCellValueFactory(new PropertyValueFactory<>("birth_id"));
+        last_visit.setCellValueFactory(new PropertyValueFactory<>("last_visit"));
+        next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
+        addButtonToTable();
+        patientsTable.setItems(JavaPostgreSql.getAllPatients());
 
-    }
-
-    @FXML
-    private void showPatients(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchTo("user_mode/dashboard.fxml",event);
-    }
-
-    @FXML
-    private void addPatient(MouseEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToPatientCreation(event);
-    }
-
-    @FXML
-    public void showPatientInfo() throws IOException {
-        SceneController s = new SceneController();
-        s.newWindowWithPatient(selectedPatient);
     }
 
     public void initData(User user) {
         loggedInUser = user;
-
     }
 }

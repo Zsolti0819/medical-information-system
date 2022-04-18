@@ -12,7 +12,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.UserMode.NewAppointment">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label layoutX="276.0" layoutY="30.0" prefHeight="43.0" prefWidth="430.0" text="Patient name - New appointment">
+            <Label fx:id="patient_name_new_appointment" layoutX="276.0" layoutY="30.0" prefHeight="43.0" prefWidth="430.0" text="Patient name - New appointment">
                 <font>
                     <Font size="25.0" />
                 </font>
@@ -33,7 +33,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Button layoutX="273.0" layoutY="360.0" mnemonicParsing="false" onAction="#fetchData" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create">
+            <Button layoutX="273.0" layoutY="360.0" mnemonicParsing="false" onAction="#createAppointment" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

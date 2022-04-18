@@ -29,15 +29,19 @@ public class RecordDetailed implements Initializable {
     @FXML private Label medicines_data;
 
     @FXML
+    public void switchToRecords(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToRecords(selectedPatient, event);
+    }
+
+    @FXML
     private void switchToRecordEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecordEdit(selectedPatient, selectedRecord,event);
     }
 
-    @FXML
-    public void switchToRecords(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToRecords(selectedPatient, event);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     public void initData(Patient patient, Record record) {
@@ -49,11 +53,6 @@ public class RecordDetailed implements Initializable {
         description_data.setText(selectedRecord.getDescription());
         notes_data.setText(selectedRecord.getNotes());
         medicines_data.setText("Not implemented");
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 

@@ -11,9 +11,10 @@ import java.io.IOException;
 
 public class RecordEdit {
 
-    @FXML private Label patient_name_record_title;
     private Patient selectedPatient;
     private Record selectedRecord;
+
+    @FXML private Label patient_name_record_title;
 
     @FXML
     public void switchToRecordDetailed(ActionEvent event) throws IOException {
