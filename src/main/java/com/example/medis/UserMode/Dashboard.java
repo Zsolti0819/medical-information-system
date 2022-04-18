@@ -115,8 +115,7 @@ public class Dashboard implements Initializable {
     @FXML
     public void showPatientInfo() throws IOException {
         SceneController s = new SceneController();
-        s.newWindowWithPatient(selectedPatient, "user_mode/patient_info.fxml");
-
+        s.newWindowWithPatient(selectedPatient);
     }
 
     public void initData(User user) {

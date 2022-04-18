@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 
 public class PatientInfo implements Initializable {
 
+    private Patient selectedPatient;
+
     @FXML private Label name_and_surname_data;
     @FXML private Label insurance_co_data;
     @FXML private Label birth_ID_data;
@@ -26,14 +28,11 @@ public class PatientInfo implements Initializable {
     @FXML private Label email_data;
 
 
-    private Patient selectedPatient;
-
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecords(selectedPatient, event);
     }
-
 
    @FXML
    private void switchToAppointments(ActionEvent event) throws  IOException {
@@ -50,7 +49,7 @@ public class PatientInfo implements Initializable {
     }
 
     @FXML
-    private void OpenEditPatientData() throws IOException {
+    private void switchToPatientInfoEdit() throws IOException {
         SceneController s = new SceneController();
         s.newWindow("user_mode/patient_info_edit.fxml");
     }

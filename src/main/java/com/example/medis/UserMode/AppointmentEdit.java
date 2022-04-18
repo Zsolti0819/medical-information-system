@@ -10,17 +10,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PatientAppointmentEdit implements Initializable {
+public class AppointmentEdit implements Initializable {
+
 
     Patient selectedPatient;
     Appointment selectedAppointment;
 
+    @FXML private Label patient_name_appointment_title;
     @FXML private TextField title_data;
     @FXML private DatePicker start_ymd_data;
     @FXML private ComboBox<String> start_h_data;
@@ -49,6 +52,7 @@ public class PatientAppointmentEdit implements Initializable {
     public void initData(Patient patient, Appointment appointment) {
         selectedPatient = patient;
         selectedAppointment = appointment;
+        patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + selectedAppointment.getTitle());
         title_data.setText(selectedAppointment.getTitle());
         description_data.setText(selectedAppointment.getDescription());
         doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFullname());
@@ -60,7 +64,6 @@ public class PatientAppointmentEdit implements Initializable {
         end_min_data.getSelectionModel().select(String.valueOf(selectedAppointment.getEnd_min()));
 
     }
-
 
     public void updateAppointment(ActionEvent event) throws IOException {
         JavaPostgreSql.updateAppointment(
@@ -76,7 +79,9 @@ public class PatientAppointmentEdit implements Initializable {
         s.switchToAppointments(selectedPatient, event);
     }
 
-    // TO DO
-    public void deleteAppointment(ActionEvent event) {
+    public void deleteAppointment(ActionEvent event) throws IOException {
+        JavaPostgreSql.deleteAppointment(selectedAppointment.getId());
+        SceneController s = new SceneController();
+        s.switchToAppointments(selectedPatient, event);
     }
 }

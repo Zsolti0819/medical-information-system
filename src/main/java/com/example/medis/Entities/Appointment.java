@@ -19,16 +19,6 @@ public class Appointment {
     private boolean deleted;
     private long created_by;
 
-    public Appointment(String title, LocalDateTime date, LocalDateTime updatedAt, Button appointmentInfo) {
-        this.title = title;
-        this.created_at = date;
-        this.updated_at = updatedAt;
-    }
-
-    public Appointment() {
-
-    }
-
     public String getTitle() {
         return title;
     }

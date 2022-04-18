@@ -10,17 +10,6 @@ public class Record {
     private Date date_executed;
     private boolean deleted;
 
-
-    public Record(String title, String description, LocalDateTime createdAt) {
-        this.title = title;
-        this.description = description;
-        this.created_at = createdAt;
-    }
-
-    public Record() {
-
-    }
-
     public String getTitle() {
         return title;
     }
