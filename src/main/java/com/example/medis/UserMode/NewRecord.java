@@ -28,7 +28,7 @@ public class NewRecord {
         patient_name_new_record.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + "New record");
     }
 
-    // Create prescription button
+    // Create record button
     @FXML
     public void createRecord(ActionEvent event) throws IOException {
         JavaPostgreSql.createRecord(title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), 1);

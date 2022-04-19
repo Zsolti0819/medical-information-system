@@ -27,23 +27,23 @@
                     <Font name="System Bold" size="14.0" />
                 </font>
             </Hyperlink>
-         <Hyperlink fx:id="recordsLink" layoutX="25.0" layoutY="157.0" onAction="#switchToRecords" text="Records" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToRecords" text="Records" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-         <Hyperlink fx:id="appointmentLink" layoutX="25.0" layoutY="210.0" onAction="#switchToAppointments" text="Appointments" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="210.0" onAction="#switchToAppointments" text="Appointments" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-         <Hyperlink fx:id="prescriptionsLink" layoutX="25.0" layoutY="263.0" onAction="#switchToPrescriptions" text="Prescriptions" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="263.0" onAction="#switchToPrescriptions" text="Prescriptions" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
             <Line endX="155.0" layoutX="50.0" layoutY="301.0" startX="-100.0" />
-            <Hyperlink fx:id="closeWindowButton" layoutX="25.0" layoutY="316.0" onAction="#closeCurrentWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
+            <Hyperlink layoutX="25.0" layoutY="316.0" onAction="#closeCurrentWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -27,7 +28,6 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <TextField fx:id="date_data" layoutX="449.0" layoutY="156.0" prefHeight="25.0" prefWidth="229.0" />
             <Label layoutX="273.0" layoutY="202.0" prefHeight="25.0" text="Description">
                 <font>
                     <Font name="System Bold" size="13.0" />
@@ -40,7 +40,7 @@
                 </font>
             </Label>
          <TextArea fx:id="notes_data" layoutX="449.0" layoutY="341.0" prefHeight="115.0" prefWidth="229.0" />
-            <Button layoutX="273.0" layoutY="500.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save record">
+            <Button layoutX="273.0" layoutY="500.0" mnemonicParsing="false" onAction="#updateRecord" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save record">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
@@ -50,6 +50,7 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
+         <DatePicker fx:id="date_data" layoutX="449.0" layoutY="156.0" prefWidth="229.0" />
         </AnchorPane>
     </center>
 </BorderPane>

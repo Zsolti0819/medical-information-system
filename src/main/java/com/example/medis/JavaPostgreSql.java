@@ -453,7 +453,7 @@ public class JavaPostgreSql {
             return "Record with this id not exists!";
         }
         else{
-            String query = "UPDATE appointments SET title=?, description=?, date_execute=?, notes=?, patient_id=?, doctor_id=?, updated_at=now()";
+            String query = "UPDATE records SET title=?, description=?, date_executed=?, notes=?, patient_id=?, doctor_id=?, updated_at=now()";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);

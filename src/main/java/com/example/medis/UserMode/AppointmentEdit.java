@@ -44,8 +44,7 @@ public class AppointmentEdit implements Initializable {
                 description_data.getText(),
                 start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(),
                 end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(),
-                selectedAppointment.getPatient_id(),
-                JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId());
+                selectedAppointment.getPatient_id(), 1);
 
         SceneController s = new SceneController();
         s.switchToAppointments(selectedPatient, event);

@@ -43,7 +43,7 @@ public class RecordDetailed implements Initializable {
 
     public void initData(Patient patient, Record record) {
         selectedPatient = patient;
-        selectedRecord = record;
+        selectedRecord = JavaPostgreSql.getRecord(record.getId());
         patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedRecord.getTitle());
         title_data.setText(selectedRecord.getTitle());
         date_data.setText(selectedRecord.getDate_executed().toString());

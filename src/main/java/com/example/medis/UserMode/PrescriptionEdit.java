@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class PrescriptionEdit implements Initializable {
     private Patient selectedPatient;
     private Prescription selectedPrescription;
 
+    @FXML private Label patient_name_appointment_title;
     @FXML private TextField title_data;
     @FXML private TextField description_data;
     @FXML private TextField drug_data;
@@ -47,6 +49,7 @@ public class PrescriptionEdit implements Initializable {
     public void initData(Patient patient, Prescription prescription) {
         selectedPatient = patient;
         selectedPrescription = prescription;
+        patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedPrescription.getTitle());
     }
 
 
