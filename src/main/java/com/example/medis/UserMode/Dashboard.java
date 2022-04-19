@@ -117,7 +117,7 @@ public class Dashboard implements Initializable {
         patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());
 
         searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() >= 3) {
+            if (newValue.length() >= 1) {
                 System.out.println();
                 patientsTable.setItems(JavaPostgreSql.filterPatients(newValue.replaceAll("[^a-zA-Z0-9]", "").toLowerCase()));
                 addButtonToTable();
