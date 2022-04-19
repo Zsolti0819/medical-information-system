@@ -16,7 +16,7 @@ public class GeneralLogger {
                 "[%1$tF %1$tT] [%4$-7s] %5$s %n");
         LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         LOGGER.setUseParentHandlers(false);
-        file = new FileHandler("./test.log",true);
+        file = new FileHandler("./general_logger.log",true);
         SimpleFormatter formatter = new SimpleFormatter();
 
         file.setFormatter(formatter);
