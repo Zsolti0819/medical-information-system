@@ -101,6 +101,7 @@ public class Dashboard implements Initializable {
 
         patientsTable.getColumns().add(details);
 
+
     }
 
     @Override

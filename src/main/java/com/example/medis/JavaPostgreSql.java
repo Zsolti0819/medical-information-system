@@ -7,6 +7,9 @@ import com.example.medis.Entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,10 +20,29 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 
+
 public class JavaPostgreSql {
     private static final String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
     private static final String user = "medis";
     private static final String pswd = "Uu39FC4W#Z";
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+
+    private static String hashPass(String password) throws NoSuchAlgorithmException {
+        final MessageDigest digest = MessageDigest.getInstance("SHA3-256");
+        final byte[] hashbytes = digest.digest(
+                password.getBytes(StandardCharsets.UTF_8));
+        return bytesToHex(hashbytes);
+    }
+
+    private static String bytesToHex(byte[] hashbytes) {
+        char[] hexChars = new char[hashbytes.length * 2];
+        for (int j = 0; j < hashbytes.length; j++) {
+            int v = hashbytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
 
     public static void createUser(String fullname, String username, String password, String email,
                                   String phone, String position, String birthdate){
@@ -71,7 +93,7 @@ public class JavaPostgreSql {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1,email);
-            preparedStatement.setString(2,password);
+            preparedStatement.setString(2,hashPass(password));
 
             System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -105,6 +127,8 @@ public class JavaPostgreSql {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
 
         return false;
