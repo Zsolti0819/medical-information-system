@@ -1,6 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,7 +60,7 @@ public class PatientInfo implements Initializable {
     }
 
     public void initData(Patient patient) {
-        selectedPatient = patient;
+        selectedPatient = JavaPostgreSql.getPatient(patient.getId());
         name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname());
         insurance_co_data.setText(selectedPatient.getInsurance_company());
         birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
