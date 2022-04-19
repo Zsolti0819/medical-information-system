@@ -24,7 +24,6 @@ public class RecordDetailed implements Initializable {
     @FXML private Label date_data;
     @FXML private Label description_data;
     @FXML private Label notes_data;
-    @FXML private Label medicines_data;
 
     @FXML
     public void switchToRecords(ActionEvent event) throws IOException {
