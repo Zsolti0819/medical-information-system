@@ -52,7 +52,6 @@ public class RecordDetailed implements Initializable {
         date_data.setText(selectedRecord.getDate_executed().toString());
         description_data.setText(selectedRecord.getDescription());
         notes_data.setText(selectedRecord.getNotes());
-        medicines_data.setText("Not implemented");
 
     }
 

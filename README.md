@@ -11,7 +11,7 @@ TO DO:
 | 4   	 | loggedInUser object needs to be created to identify which user is currently logged in. (Dashboard.java)       	 | 	          |
 | 5   	 | At appointment creation, created_by is set to 1. We need the loggedInUser to know who created the appointment 	 | 	          |
 | 6   	 | Distinguish user based on credentials (admin, doctor, nurse, receptionist)                                    	 | 	          |
-| 7   	 | Filling data on edit patient and record screens                                                               	 | 	          |
+| 7   	 | Filling data on edit patient and record screens                                                               	 | Zsolti	    |
 | 8   	 | Appointments table shows deleted (=true) appointments                                                         	 | 	          |
 | 9   	 | Implement delete patient function                                                                             	 | 	          |
 | 10  	 | Implement delete record function                                                                              	 | 	          |
