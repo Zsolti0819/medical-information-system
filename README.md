@@ -19,3 +19,4 @@ TO DO:
 | 12  	 | Add all blood groups to  blood group enum                                                             	                    | Simon	     |
 | 13  	 | Alert messages should be added when updating/deleting/creating is un/successfull                                           | Szaki      |
 | 14 	  | Password hashing                                                                                                           | Szaki      |
+| 15 	  | Prescription.java get method by id                                                                                         | Szaki      |
