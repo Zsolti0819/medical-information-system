@@ -16,3 +16,4 @@ TO DO:
 | 9   	 | Implement delete patient function                                                                             	 | 	          |
 | 10  	 | Implement delete record function                                                                              	 | 	          |
 | 11  	 | Implement update record function                                                                              	 | 	          |
+| 12  	 | Add all blood groups to  blood group enum                                                             	         | 	          |
