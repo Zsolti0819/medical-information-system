@@ -2,6 +2,7 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Appointment;
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
@@ -19,8 +20,9 @@ import java.util.ResourceBundle;
 
 public class AppointmentEdit implements Initializable {
 
-    Patient selectedPatient;
-    Appointment selectedAppointment;
+    private Patient selectedPatient;
+    private User loggedInUser;
+    private Appointment selectedAppointment;
 
     @FXML private Label patient_name_appointment_title;
     @FXML private TextField title_data;
@@ -47,14 +49,14 @@ public class AppointmentEdit implements Initializable {
                 selectedAppointment.getPatient_id(), 1);
 
         SceneController s = new SceneController();
-        s.switchToAppointments(selectedPatient, event);
+        s.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
     // Cancel button
     @FXML
     public void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToAppointments(selectedPatient, event);
+        s.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
     // Delete button
@@ -62,7 +64,7 @@ public class AppointmentEdit implements Initializable {
     public void deleteAppointment(ActionEvent event) throws IOException {
         JavaPostgreSql.deleteAppointment(selectedAppointment.getId());
         SceneController s = new SceneController();
-        s.switchToAppointments(selectedPatient, event);
+        s.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
     static void fillAppointmentOptions(ComboBox<String> doctor_data, ComboBox<String> start_h_data, ComboBox<String> start_min_data, ComboBox<String> end_h_data, ComboBox<String> end_min_data) {
@@ -78,8 +80,9 @@ public class AppointmentEdit implements Initializable {
         fillAppointmentOptions(doctor_data, start_h_data, start_min_data, end_h_data, end_min_data);
     }
 
-    public void initData(Patient patient, Appointment appointment) {
+    public void initData(Patient patient, Appointment appointment, User user) {
         selectedPatient = patient;
+        loggedInUser = user;
         selectedAppointment = appointment;
         patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedAppointment.getTitle());
         title_data.setText(selectedAppointment.getTitle());

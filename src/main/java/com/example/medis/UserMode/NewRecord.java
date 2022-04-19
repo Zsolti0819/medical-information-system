@@ -1,6 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class NewRecord {
 
     private Patient selectedPatient;
-
+    private User loggedInUser;
     @FXML private Label patient_name_new_record;
     @FXML private TextField title_data;
     @FXML private DatePicker date_data;
@@ -23,8 +24,9 @@ public class NewRecord {
     @FXML private TextArea notes_data;
 
 
-    public void initData(Patient patient) {
+    public void initData(Patient patient, User user) {
         selectedPatient = patient;
+        loggedInUser = user;
         patient_name_new_record.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + "New record");
     }
 
@@ -39,7 +41,7 @@ public class NewRecord {
     @FXML
     public void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecords(selectedPatient, event);
+        s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
 

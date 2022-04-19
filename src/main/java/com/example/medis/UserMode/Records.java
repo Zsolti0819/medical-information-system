@@ -2,6 +2,7 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.Record;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ public class Records implements Initializable {
 
     private Patient selectedPatient;
     private Record selectedRecord;
-
+    private User loggedInUser;
     @FXML private TableView<Record> recordsTable;
     @FXML private Label patient_name_records;
     @FXML private TableColumn<Record, String> title;
@@ -33,25 +34,25 @@ public class Records implements Initializable {
     @FXML
     public void switchToPatientInfo(ActionEvent event) throws IOException  {
         SceneController s = new SceneController();
-        s.switchToPatientInfo(selectedPatient, event);
+        s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     private void switchToRecordDetailed(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecordDetailed(selectedPatient, selectedRecord, event);
+        s.switchToRecordDetailed(loggedInUser, selectedPatient, selectedRecord, event);
     }
 
     @FXML
     private void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToAppointments(selectedPatient, event);
+        s.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptions(selectedPatient, event);
+        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     @FXML
@@ -64,7 +65,7 @@ public class Records implements Initializable {
     @FXML
     private void switchToRecordCreation(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecordCreation(selectedPatient, event);
+        s.switchToRecordCreation(loggedInUser, selectedPatient, event);
     }
 
     private void addButtonToTable() {
@@ -117,8 +118,9 @@ public class Records implements Initializable {
         addButtonToTable();
     }
 
-    public void initData(Patient patient) {
+    public void initData(Patient patient, User user) {
         selectedPatient = patient;
+        loggedInUser = user;
         patient_name_records.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s records");
         recordsTable.setItems(JavaPostgreSql.getAllNotDeletedRecordsByPatientId(selectedPatient.getId()));
     }

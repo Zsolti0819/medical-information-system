@@ -45,7 +45,7 @@ public class Dashboard implements Initializable {
     @FXML
     public void newWindowWithPatient() throws IOException {
         SceneController s = new SceneController();
-        s.newWindowWithPatient(selectedPatient);
+        s.newWindowWithPatient(loggedInUser, selectedPatient);
     }
 
     // Log out
@@ -60,7 +60,7 @@ public class Dashboard implements Initializable {
     @FXML
     private void switchToPatientCreation(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPatientCreation(event);
+        s.switchToPatientCreation(loggedInUser, event);
     }
 
     private void addButtonToTable() {

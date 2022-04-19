@@ -79,4 +79,7 @@ public class NewPatient implements Initializable {
         blood_group_data.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "O","O+","O-"));
 
     }
+    public void initData(User user) {
+        loggedInUser = user;
+    }
 }

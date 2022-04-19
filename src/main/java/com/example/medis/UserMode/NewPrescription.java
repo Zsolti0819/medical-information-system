@@ -1,6 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -18,7 +19,7 @@ public class NewPrescription implements Initializable {
 
 
     private Patient selectedPatient;
-
+    private User loggedInUser;
     @FXML private Label patient_name_prescription_title;
     @FXML private TextField title_data;
     @FXML private TextField description_data;
@@ -37,7 +38,7 @@ public class NewPrescription implements Initializable {
     @FXML
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptions(selectedPatient, event);
+        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     @Override
@@ -45,8 +46,9 @@ public class NewPrescription implements Initializable {
 
     }
 
-    public void initData(Patient patient) {
+    public void initData(Patient patient, User user) {
         selectedPatient = patient;
+        loggedInUser = user;
         patient_name_prescription_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + "New prescription");
     }
 }

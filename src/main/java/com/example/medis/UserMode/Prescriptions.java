@@ -2,6 +2,7 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.Prescription;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ public class Prescriptions implements Initializable {
 
     private Patient selectedPatient;
     private Prescription selectedPrescription;
-
+    private User loggedInUser;
     @FXML private TableView<Prescription> prescriptionsTable;
     @FXML private Label patient_name_prescriptions;
     @FXML private TableColumn <Prescription, String> title;
@@ -35,35 +36,35 @@ public class Prescriptions implements Initializable {
     @FXML
     public void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPatientInfo(selectedPatient, event);
+        s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecords(selectedPatient, event);
+        s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     private void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToAppointments(selectedPatient, event);
+        s.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptions(selectedPatient, event);
+        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     public void switchToPrescriptionEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptionEdit(selectedPatient, selectedPrescription, event);
+        s.switchToPrescriptionEdit(loggedInUser, selectedPatient, selectedPrescription, event);
     }
 
     public void switchToPrescriptionCreation(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptionCreation(selectedPatient, event);
+        s.switchToPrescriptionCreation(loggedInUser, selectedPatient, event);
     }
 
     @FXML
@@ -125,8 +126,9 @@ public class Prescriptions implements Initializable {
         addButtonToTable();
     }
 
-    public void initData(Patient patient) {
+    public void initData(Patient patient, User user) {
         selectedPatient = patient;
+        loggedInUser = user;
         patient_name_prescriptions.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s prescriptions");
         prescriptionsTable.setItems(JavaPostgreSql.getAllNotDeletedPrescriptionsByEntityID("patient", selectedPatient.getId()));
     }

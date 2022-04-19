@@ -2,6 +2,7 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Appointment;
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 public class Appointments implements Initializable {
 
     private Patient selectedPatient;
+    private User loggedInUser;
     private Appointment selectedAppointment;
 
     @FXML private TableView<Appointment> appointmentsTable;
@@ -35,21 +37,21 @@ public class Appointments implements Initializable {
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPatientInfo(selectedPatient, event);
+        s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
     // Records
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecords(selectedPatient, event);
+        s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
     // Edit buttons
     @FXML
     public void switchToAppointmentEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToAppointmentEdit(selectedPatient, selectedAppointment, event);
+        s.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, event);
 
     }
 
@@ -57,14 +59,14 @@ public class Appointments implements Initializable {
     @FXML
     private void switchToAppointmentCreation(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToAppointmentCreation(selectedPatient, event);
+        s.switchToAppointmentCreation(loggedInUser, selectedPatient, event);
     }
 
     // Prescriptions
     @FXML
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptions(selectedPatient, event);
+        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     // Close window button
@@ -126,7 +128,8 @@ public class Appointments implements Initializable {
         addButtonToTable();
     }
 
-    public void initData(Patient patient) {
+    public void initData(Patient patient, User user) {
+        loggedInUser = user;
         selectedPatient = patient;
         patient_name_appointments.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s appointments");
         appointmentsTable.setItems(JavaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId()));

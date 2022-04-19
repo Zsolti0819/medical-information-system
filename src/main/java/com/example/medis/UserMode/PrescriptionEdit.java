@@ -2,6 +2,7 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.Prescription;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -19,7 +20,7 @@ public class PrescriptionEdit implements Initializable {
 
     private Patient selectedPatient;
     private Prescription selectedPrescription;
-
+    private User loggedInUser;
     @FXML private Label patient_name_appointment_title;
     @FXML private TextField title_data;
     @FXML private TextField description_data;
@@ -34,7 +35,7 @@ public class PrescriptionEdit implements Initializable {
 
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptions(selectedPatient, event);
+        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     public void deletePrescription(ActionEvent event) throws IOException {
@@ -47,8 +48,9 @@ public class PrescriptionEdit implements Initializable {
 
     }
 
-    public void initData(Patient patient, Prescription prescription) {
+    public void initData(Patient patient, Prescription prescription, User user) {
         selectedPatient = patient;
+        loggedInUser = user;
         selectedPrescription = prescription;
         patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedPrescription.getTitle());
         title_data.setText(selectedPrescription.getTitle());

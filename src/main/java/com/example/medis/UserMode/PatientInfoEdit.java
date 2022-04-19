@@ -1,6 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
 public class PatientInfoEdit implements Initializable{
 
     private Patient selectedPatient;
+    private User loggedInUser;
     @FXML private Label first_name_and_last_name;
     @FXML private TextField first_name_data;
     @FXML private TextField last_name_data;
@@ -32,7 +34,7 @@ public class PatientInfoEdit implements Initializable{
     @FXML
     public void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPatientInfo(selectedPatient, event);
+        s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
     @FXML
@@ -51,8 +53,9 @@ public class PatientInfoEdit implements Initializable{
         blood_group_data.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "O","O+","O-"));
     }
 
-    public void initData(Patient patient) {
+    public void initData(Patient patient, User user) {
         selectedPatient = patient;
+        loggedInUser = user;
         first_name_and_last_name.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
         first_name_data.setText(selectedPatient.getFirst_name());
         last_name_data.setText(selectedPatient.getLast_name());

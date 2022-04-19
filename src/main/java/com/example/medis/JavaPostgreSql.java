@@ -733,7 +733,26 @@ public class JavaPostgreSql {
         return result;
 
     }
+    public static User getUserByEmail(String email){
+        User result = new User();
+        try {
+            String query = "SELECT * FROM users WHERE email=?;";
 
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = createUserFromResultSet(resultSet);
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     public static User getUserByFirstAndLastName(String first_name, String last_name){
         User result = new User();
         try {

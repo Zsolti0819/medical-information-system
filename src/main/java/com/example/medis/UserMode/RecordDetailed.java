@@ -2,6 +2,7 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.Record;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -17,7 +18,7 @@ public class RecordDetailed implements Initializable {
 
     private Patient selectedPatient;
     private Record selectedRecord;
-
+    private User loggedInUser;
     @FXML private Label patient_name_record_title;
     @FXML private Label title_data;
     @FXML private Label date_data;
@@ -28,22 +29,22 @@ public class RecordDetailed implements Initializable {
     @FXML
     public void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecords(selectedPatient, event);
+        s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     private void switchToRecordEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecordEdit(selectedPatient, selectedRecord,event);
+        s.switchToRecordEdit(loggedInUser, selectedPatient, selectedRecord,event);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void initData(Patient patient, Record record) {
+    public void initData(Patient patient, Record record, User loggedInUser) {
         selectedPatient = patient;
-        selectedRecord = JavaPostgreSql.getRecord(record.getId());
+        selectedRecord = record;
         patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedRecord.getTitle());
         title_data.setText(selectedRecord.getTitle());
         date_data.setText(selectedRecord.getDate_executed().toString());

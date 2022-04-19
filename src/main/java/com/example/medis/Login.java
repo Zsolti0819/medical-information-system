@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Login {
 
 
-    private User loggedInUser;
+
     @FXML private Label loginMsg;
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
@@ -29,7 +29,7 @@ public class Login {
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
 //            loginMsg.setText("Success!");
             if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
-                s.switchToDashboard(loggedInUser, event);
+                s.switchToDashboard(JavaPostgreSql.getUserByEmail(loginEmail.getText()), event);
 
             else
                 loginMsg.setText("Username or password are not valid!");

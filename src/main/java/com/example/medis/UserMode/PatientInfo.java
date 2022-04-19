@@ -1,6 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 public class PatientInfo implements Initializable {
 
     private Patient selectedPatient;
-
+    private User loggedInUser;
     @FXML private Label name_and_last_name_data;
     @FXML private Label insurance_co_data;
     @FXML private Label birth_ID_data;
@@ -31,19 +32,19 @@ public class PatientInfo implements Initializable {
     @FXML
     private void switchToPatientInfoEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPatientInfoEdit(selectedPatient, event);
+        s.switchToPatientInfoEdit(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecords(selectedPatient, event);
+        s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
    @FXML
    private void switchToAppointments(ActionEvent event) throws  IOException {
        SceneController s = new SceneController();
-       s.switchToAppointments(selectedPatient, event);
+       s.switchToAppointments(loggedInUser, selectedPatient, event);
 
    }
 
@@ -51,7 +52,7 @@ public class PatientInfo implements Initializable {
     @FXML
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToPrescriptions(selectedPatient, event);
+        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     @FXML
@@ -66,8 +67,9 @@ public class PatientInfo implements Initializable {
 
     }
 
-    public void initData(Patient patient) {
+    public void initData(Patient patient, User user) {
         selectedPatient = JavaPostgreSql.getPatient(patient.getId());
+        loggedInUser = user;
         name_and_last_name_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
         insurance_co_data.setText(selectedPatient.getInsurance_company());
         birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
