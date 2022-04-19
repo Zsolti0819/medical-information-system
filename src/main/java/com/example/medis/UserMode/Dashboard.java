@@ -111,7 +111,7 @@ public class Dashboard implements Initializable {
         last_visit.setCellValueFactory(new PropertyValueFactory<>("last_visit"));
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
         addButtonToTable();
-        patientsTable.setItems(JavaPostgreSql.getAllPatients());
+        patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());
 
     }
 

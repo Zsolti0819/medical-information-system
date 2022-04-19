@@ -117,7 +117,7 @@ public class Appointments implements Initializable {
     public void initData(Patient patient) {
         selectedPatient = patient;
         patient_name_appointments.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + "'s appointments");
-        appointmentsTable.setItems(JavaPostgreSql.getAllAppointmentsByPatientId(selectedPatient.getId()));
+        appointmentsTable.setItems(JavaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId()));
 
     }
 }

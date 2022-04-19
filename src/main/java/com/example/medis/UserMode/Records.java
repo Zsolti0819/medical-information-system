@@ -114,6 +114,6 @@ public class Records implements Initializable {
     public void initData(Patient patient) {
         selectedPatient = patient;
         patient_name_records.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + "'s records");
-        recordsTable.setItems(JavaPostgreSql.getAllRecordsByPatientId(selectedPatient.getId()));
+        recordsTable.setItems(JavaPostgreSql.getAllNotDeletedRecordsByPatientId(selectedPatient.getId()));
     }
 }
