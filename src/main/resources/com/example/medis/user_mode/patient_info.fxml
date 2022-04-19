@@ -125,7 +125,7 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #FF0000;" text="Delete patient">
+            <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" onAction="#deletePatient" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #FF0000;" text="Delete patient">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

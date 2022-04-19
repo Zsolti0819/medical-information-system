@@ -55,4 +55,8 @@ public class RecordDetailed implements Initializable {
 
     }
 
+    public void deleteRecord(ActionEvent event) throws IOException {
+        JavaPostgreSql.deleteRecord(selectedRecord.getId());
+        switchToRecords(event);
+    }
 }

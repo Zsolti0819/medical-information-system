@@ -72,4 +72,9 @@ public class PatientInfo implements Initializable {
         email_data.setText(selectedPatient.getEmail());
 
     }
+
+    public void deletePatient(ActionEvent event) {
+        JavaPostgreSql.deletePatient(selectedPatient.getId());
+        closeCurrentWindow(event);
+    }
 }
