@@ -48,7 +48,7 @@ public class PatientInfoEdit implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         insurance_co_data.setItems(FXCollections.observableArrayList("Union", "Dôvera", "VŠZP"));
         sex_data.setItems(FXCollections.observableArrayList("male","female"));
-        blood_group_data.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "0","0+","0-"));
+        blood_group_data.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "O","O+","O-"));
     }
 
     public void initData(Patient patient) {

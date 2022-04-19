@@ -411,7 +411,7 @@ public class JavaPostgreSql {
 
     public static String createRecord(String title, String description, String execute_date, String notes, long patient_id, long doctor_id){
 
-        String query = "INSERT INTO appointments VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
+        String query = "INSERT INTO records VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -570,7 +570,7 @@ public class JavaPostgreSql {
             return "Prescription with this id not exists!";
         }
         else{
-            String query = "UPDATE prescription SET deleted=true WHERE id=?";
+            String query = "UPDATE prescriptions SET deleted=true WHERE id=?";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -591,7 +591,7 @@ public class JavaPostgreSql {
 
     }
 
-    public static ObservableList<Prescription> getAllNotDeletedPrescriptionsByPatientId(String entity ,long id){
+    public static ObservableList<Prescription> getAllNotDeletedPrescriptionsByEntityID(String entity , long id){
         String query = "SELECT * from prescriptions WHERE " + entity + "_id=? AND deleted=false;";
         ObservableList<Prescription> result = FXCollections.observableArrayList();
         try {
@@ -599,6 +599,7 @@ public class JavaPostgreSql {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
 
             while (resultSet.next()) {
                 result.add(createPrescriptionFromResultSet(resultSet));

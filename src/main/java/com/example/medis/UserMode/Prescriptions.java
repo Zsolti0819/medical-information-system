@@ -121,13 +121,13 @@ public class Prescriptions implements Initializable {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         drug.setCellValueFactory(new PropertyValueFactory<>("description"));
         expiration_date.setCellValueFactory(new PropertyValueFactory<>("created_at"));
-        prescribed_by.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        prescribed_by.setCellValueFactory(new PropertyValueFactory<>("doctor_id"));
         addButtonToTable();
     }
 
     public void initData(Patient patient) {
         selectedPatient = patient;
         patient_name_prescriptions.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s prescriptions");
-        prescriptionsTable.setItems(JavaPostgreSql.getAllNotDeletedPrescriptionsByPatientId("patient", selectedPatient.getId()));
+        prescriptionsTable.setItems(JavaPostgreSql.getAllNotDeletedPrescriptionsByEntityID("patient", selectedPatient.getId()));
     }
 }
