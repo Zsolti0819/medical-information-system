@@ -57,7 +57,7 @@ public class NewAppointment implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        AppointmentEdit.fillAppointmentOptions(doctor_data, start_h_data, start_min_data, end_h_data, end_min_data);
+        EditAppointment.fillAppointmentOptions(doctor_data, start_h_data, start_min_data, end_h_data, end_min_data);
 
     }
 

@@ -848,7 +848,7 @@ public class JavaPostgreSql {
     public static String getTitleByPrescriptionId(long prescription_id){
         String result = "";
         try {
-            String query = "SELECT * FROM prescription WHERE id=?;";
+            String query = "SELECT * FROM prescriptions WHERE id=?;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -869,7 +869,7 @@ public class JavaPostgreSql {
     public static String getTitleByRecordId(long record_id){
         String result = "";
         try {
-            String query = "SELECT * FROM record WHERE id=?;";
+            String query = "SELECT * FROM records WHERE id=?;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);

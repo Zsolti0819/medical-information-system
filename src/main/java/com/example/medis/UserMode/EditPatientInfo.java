@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PatientInfoEdit implements Initializable{
+public class EditPatientInfo implements Initializable{
 
     private Patient selectedPatient;
     private User loggedInUser;

@@ -27,7 +27,7 @@
                <Font name="Consolas" size="18.0" />
             </font>
          </Label>
-         <TextField fx:id="loginEmail" layoutX="344.0" layoutY="266.0" prefHeight="26.0" prefWidth="245.0" promptText="E-mail" onAction="#userLogIn" style="-fx-background-color: grey;" text="xkiss@stubs.sk" />
+         <TextField fx:id="loginEmail" layoutX="344.0" layoutY="266.0" onAction="#userLogIn" prefHeight="26.0" prefWidth="245.0" promptText="E-mail" style="-fx-background-color: grey;" text="xszakal@stubs.sk" />
          <Label fx:id="passwordLabel" layoutX="248.0" layoutY="316.0" prefHeight="18.0" prefWidth="120.0" text="Password">
             <font>
                <Font name="Consolas" size="18.0" />

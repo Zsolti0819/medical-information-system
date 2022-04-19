@@ -21,8 +21,25 @@
 [2022-04-20 00:27:27] [INFO   ] User xkiss@stubs.sk logged in 
 [2022-04-20 00:28:07] [INFO   ] User xkiss@stubs.sk logged in 
 [2022-04-20 00:29:51] [INFO   ] User xkiss@stubs.sk logged in 
+[2022-04-20 00:33:57] [INFO   ] User xkiss@stubs.sk logged in 
+[2022-04-20 00:34:42] [INFO   ] User xkiss@stubs.sk logged in 
+[2022-04-20 00:37:36] [INFO   ] User xszakal@stubs.sk logged in 
 [2022-04-20 00:31:28] [INFO   ] User xkiss@stubs.sk logged in 
 [2022-04-20 00:32:57] [INFO   ] User xkiss@stubs.sk logged in 
 [2022-04-20 00:35:02] [INFO   ] User xkiss@stubs.sk logged in 
 [2022-04-20 00:36:15] [INFO   ] User xkiss@stubs.sk logged in 
-[2022-04-20 00:53:36] [INFO   ] LOGIN | USER: User xkiss@stubs.sk logged in 
+[2022-04-20 00:38:07] [INFO   ] User xszakal@stubs.sk logged in 
+[2022-04-20 00:38:07] [INFO   ] User xszakal@stubs.sk logged in 
+[2022-04-20 00:43:52] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 00:44:23] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 00:46:32] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 00:46:43] [INFO   ] RECORD | UPDATE: Record Record 1 updated 
+[2022-04-20 00:46:53] [INFO   ] APPOINTMENT | DELETE: Appointment dsfasffss deleted 
+[2022-04-20 00:47:00] [INFO   ] APPOINTMENT | DELETE: Appointment  deleted 
+[2022-04-20 00:48:49] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 00:49:55] [INFO   ] RECORD | CREATE: Record a created 
+[2022-04-20 00:49:59] [INFO   ] APPOINTMENT | DELETE: Appointment a deleted 
+[2022-04-20 00:50:16] [INFO   ] APPOINTMENT | CREATE: Appointment a created 
+[2022-04-20 00:50:26] [INFO   ] APPOINTMENT | UPDATE: Appointment a updated 
+[2022-04-20 00:50:33] [INFO   ] APPOINTMENT | DELETE: Appointment a deleted 
+[2022-04-20 00:50:45] [INFO   ] PRESCRIPTION | DELETE: Prescription  deleted 
