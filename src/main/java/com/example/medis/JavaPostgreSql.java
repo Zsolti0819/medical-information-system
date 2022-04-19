@@ -137,8 +137,9 @@ public class JavaPostgreSql {
                 preparedStatement.setLong(7,id);
                 preparedStatement.setString(9,username);
                 System.out.println(preparedStatement);
-                preparedStatement.execute();
-                return "Succesfully updated!";
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
+                return "Succesfully updated user!";
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -163,6 +164,8 @@ public class JavaPostgreSql {
 
                 preparedStatement.setString(1, String.valueOf(id));
                 System.out.println(preparedStatement);
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -233,7 +236,8 @@ public class JavaPostgreSql {
                 preparedStatement.setLong(10, id);
 
                 System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
                 return "Succesfully updated patient with id=" + id + " !";
 
 
@@ -262,7 +266,8 @@ public class JavaPostgreSql {
 
                 preparedStatement.setLong(1,id);
                 System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -353,7 +358,8 @@ public class JavaPostgreSql {
                 preparedStatement.setLong(1, id);
 
                 System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
                 return "Succesfully deleted appointment!";
 
 
@@ -458,7 +464,8 @@ public class JavaPostgreSql {
                 preparedStatement.setLong(6, doctor_id);
 
                 System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
                 return "Succesfully updated record!";
 
 
@@ -487,7 +494,8 @@ public class JavaPostgreSql {
                 preparedStatement.setLong(1, id);
 
                 System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
                 return "Succesfully deleted record!";
 
 
@@ -550,7 +558,8 @@ public class JavaPostgreSql {
                 preparedStatement.setLong(7, doctor_id);
 
                 System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
                 return "Succesfully updated prescription!";
 
 
@@ -579,7 +588,8 @@ public class JavaPostgreSql {
                 preparedStatement.setLong(1, id);
 
                 System.out.println(preparedStatement);
-                preparedStatement.executeUpdate();
+                int res = preparedStatement.executeUpdate();
+                System.out.println("Succesfully updated " + res +" row!");
                 return "Succesfully deleted prescription!";
 
 
