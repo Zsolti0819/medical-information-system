@@ -77,6 +77,7 @@ public class PatientInfoEdit implements Initializable{
                 address_data.getText(),
                 phone_data.getText(),
                 email_data.getText());
+
         SceneController s = new SceneController();
         s.switchToPatientInfo(selectedPatient, event);
     }

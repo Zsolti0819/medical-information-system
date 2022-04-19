@@ -166,7 +166,7 @@ public class Patient {
                 month <= 62 && day > 0 && day <= mdays[month];
     }
 
-    public String getGender(String identificationNumber) {
+    public static String getGender(String identificationNumber) {
 
         if (!(identificationNumber.equals(""))) {
             long identificationNumberLong = Long.parseLong(identificationNumber);

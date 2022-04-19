@@ -1,5 +1,6 @@
 package com.example.medis.UserMode;
 
+import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
@@ -30,74 +31,12 @@ public class NewPatient implements Initializable {
     @FXML private TextField email_data;
     @FXML private Label missing_values_msg;
 
-    public boolean hasValidID(String identificationNumber) {
-        long identificationNumberLong = Long.parseLong(identificationNumber);
-        long date = identificationNumberLong / 10000;
-        int day = (int) (date % 100);
-        int month = (int) (date / 100 % 100);
-
-        if (month >= 51 && month <= 62)
-            month -= 50;
-
-        int[] mdays = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-        return identificationNumberLong % 11 == 0 && month > 0 && (month <= 12 || month >= 51) &&
-                month <= 62 && day > 0 && day <= mdays[month];
-    }
-
-    public String getGender(String identificationNumber) {
-
-        if (!(identificationNumber.equals(""))) {
-            long identificationNumberLong = Long.parseLong(identificationNumber);
-            long date = identificationNumberLong / 10000;
-            int month = (int) (date / 100 % 100);
-            if (month >= 51 && month <= 62)
-                return "female";
-            else
-                return "male";
-        }
-        return null;
-    }
-
-    public int getYear(String identificationNumber) {
-        long identificationNumberLong = Long.parseLong(identificationNumber);
-        long date = identificationNumberLong / 10000;
-        int year = (int) (date / 10000 % 100);
-
-        if (year >= 20)
-            year += 1900;
-
-        else
-            year += 2000;
-
-        System.out.println(year);
-        return year;
-    }
-
-    public int getMonth(String identificationNumber) {
-        long identificationNumberLong = Long.parseLong(identificationNumber);
-        long date = identificationNumberLong / 10000;
-        int month = (int) (date / 100 % 100);
-
-        if (month >= 51 && month <= 62)
-            month -= 50;
-
-        return month;
-    }
-
-    public int getDay(String identificationNumber) {
-        long identificationNumberLong = Long.parseLong(identificationNumber);
-        long date = identificationNumberLong / 10000;
-
-        return (int) (date % 100);
-    }
-
     @FXML private void createPatient() {
         String firstNameText = first_name_data.getText();
         String surnameText = surname_data.getText();
         String insuranceCompanyText = insurance_co_data.getValue();
         String birthIdText = birth_ID_data.getText();
-        String birthDateFromId = getYear(birthIdText) + "-" + getMonth(birthIdText) + "-" + getDay(birthIdText);
+        String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
         String sexValue = sex_data.getValue();
         String bloodGroupValue = blood_group_data.getValue();
         String addressText = address_data.getText();
@@ -120,7 +59,7 @@ public class NewPatient implements Initializable {
         }
 
         else {
-            missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, surnameText, insuranceCompanyText, birthDateFromId, getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
+            missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, surnameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
         }
     }
 
