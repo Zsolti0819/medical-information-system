@@ -41,12 +41,11 @@ public class JavaPostgreSql {
         return new String(hexChars);
     }
 
-    public static void createUser(String fullname, String username, String password, String email,
+    public static void createUser(String first_name, String last_name, String username, String password, String email,
                                   String phone, String position, String birthdate){
 
 
-        //(id,fullname, username, password, email, phone, position, birthdate, created_at, updated_at, deleted(boolean))
-        String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
+        String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
 
         {
             try {
@@ -54,13 +53,14 @@ public class JavaPostgreSql {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
 
                 //adding values
-                preparedStatement.setString(1, fullname);
-                preparedStatement.setString(2, username);
-                preparedStatement.setString(3, password);
-                preparedStatement.setString(4, email);
-                preparedStatement.setString(5, phone);
-                preparedStatement.setString(6, position);
-                preparedStatement.setDate(7,  getDate(birthdate));
+                preparedStatement.setString(1, first_name);
+                preparedStatement.setString(2, last_name);
+                preparedStatement.setString(3, username);
+                preparedStatement.setString(4, password);
+                preparedStatement.setString(5, email);
+                preparedStatement.setString(6, phone);
+                preparedStatement.setString(7, position);
+                preparedStatement.setDate(8,  getDate(birthdate));
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
                 System.out.println("Succesfully created user!");
@@ -83,7 +83,7 @@ public class JavaPostgreSql {
     // login checker
     public static boolean checkUser(String email, String password){
 
-        String query = "SELECT id, fullname, username, deleted, position FROM users WHERE email=? and password=?";
+        String query = "SELECT id, first_name, last_name, username, deleted, position FROM users WHERE email=? and password=? and deleted=false;";
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -101,23 +101,7 @@ public class JavaPostgreSql {
             else {
                 List<User> result = new ArrayList<>();
                 while (resultSet.next()) {
-                    boolean deleted = resultSet.getBoolean("deleted");
-                    if (deleted){
-                        System.out.println("User was deleted before");
-                        return false;
-                    }
-                    long id = resultSet.getLong("id");
-                    String fullname = resultSet.getString("fullname");
-                    String username = resultSet.getString("username");
-                    String position = resultSet.getString("position");
-
-
-                    User obj = new User();
-                    obj.setId(id);
-                    obj.setFullname(fullname);
-                    obj.setPosition(position);
-                    obj.setUsername(username);
-                    result.add(obj);
+                    result.add(createUserFromResultSet(resultSet));
                 }
                 return true;
             }
@@ -132,25 +116,26 @@ public class JavaPostgreSql {
     }
 
     // update application users
-    public static String updateUser(long id, String username, String fullname, String password, String email, String phone, String position, String birthdate){
+    public static String updateUser(long id, String username, String first_name, String last_name, String password, String email, String phone, String position, String birthdate){
         if (!isUserExist(id)){
             return "User with this id not exists!";
         }
         else {
-            String query1 = "UPDATE users SET fullname=?, password=?, email=?, phone=?, birthdate=?, position=cast(? AS position_enum), updated_at=now()  WHERE id=? and username=?;";
+            String query1 = "UPDATE users SET first_name=?, last_name=?, password=?, email=?, phone=?, birthdate=?, position=cast(? AS position_enum), updated_at=now()  WHERE id=? and username=?;";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query1);
 
-                preparedStatement.setString(1,fullname);
-                preparedStatement.setString(2,password);
-                preparedStatement.setString(3,email);
-                preparedStatement.setString(4,phone);
-                preparedStatement.setDate(5,getDate(birthdate));
-                preparedStatement.setString(6,position);
+                preparedStatement.setString(1,first_name);
+                preparedStatement.setString(2,last_name);
+                preparedStatement.setString(3,password);
+                preparedStatement.setString(4,email);
+                preparedStatement.setString(5,phone);
+                preparedStatement.setDate(6,getDate(birthdate));
+                preparedStatement.setString(7,position);
                 preparedStatement.setLong(7,id);
-                preparedStatement.setString(8,username);
+                preparedStatement.setString(9,username);
                 System.out.println(preparedStatement);
                 preparedStatement.execute();
                 return "Succesfully updated!";
@@ -229,7 +214,7 @@ public class JavaPostgreSql {
             return "Patient with this id not exists!";
         }
         else{
-            String query1 = "UPDATE patients SET first_name=?, surname=?, insurance_company=cast(? as insurance_enum), birthdate=?, " +
+            String query1 = "UPDATE patients SET first_name=?, last_name=?, insurance_company=cast(? as insurance_enum), birthdate=?, " +
                     "sex=cast(? as sex_enum), blood_group=cast(? as blood_enum), phone=?, address=?, email=?, updated_at=now()  WHERE id=?;";
 
             try {
@@ -724,7 +709,8 @@ public class JavaPostgreSql {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                result.add(createUserFromResultSet(resultSet).getFullname());
+                User a = createUserFromResultSet(resultSet);
+                result.add(a.getFirst_name() + a.getLast_name());
             }
 
         } catch (SQLException e) {
@@ -734,15 +720,16 @@ public class JavaPostgreSql {
 
     }
 
-    public static User getUserByFullname(String fullname){
+    public static User getUserByFirstAndLastName(String first_name, String last_name){
         User result = new User();
         try {
-            String query = "SELECT * FROM users WHERE fullname=?;";
+            String query = "SELECT * FROM users WHERE first_name=? and last_name=?;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, fullname);
+            preparedStatement.setString(1, first_name);
+            preparedStatement.setString(2, last_name);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -777,7 +764,7 @@ public class JavaPostgreSql {
         Patient patient = new Patient();
         patient.setId(resultSet.getLong("id"));
         patient.setFirst_name(resultSet.getString("first_name"));
-        patient.setSurname(resultSet.getString("surname"));
+        patient.setLast_name(resultSet.getString("last_name"));
         patient.setBlood_group(resultSet.getString("blood_group"));
         patient.setSex(resultSet.getString("sex"));
         patient.setAddress(resultSet.getString("address"));
@@ -801,7 +788,8 @@ public class JavaPostgreSql {
     private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
         User obj = new User();
         obj.setId(resultSet.getLong("id"));
-        obj.setFullname(resultSet.getString("fullname"));
+        obj.setFirst_name(resultSet.getString("first_name"));
+        obj.setLast_name(resultSet.getString("last_name"));
         obj.setUsername(resultSet.getString("username"));
         obj.setEmail(resultSet.getString("email"));
         obj.setPhone(resultSet.getString("phone"));
@@ -823,7 +811,7 @@ public class JavaPostgreSql {
             query = "SELECT * FROM patients WHERE identification_number=?;";
 
         } else {
-            query = "SELECT * FROM patients WHERE first_name=? or surname=?;";
+            query = "SELECT * FROM patients WHERE first_name=? or last_name=?;";
         }
         try {
 
@@ -1010,44 +998,5 @@ public class JavaPostgreSql {
         return obj;
     }
 
-
-//    public static void main(String[] args){
-//
-//        String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-//        String user = "medis";
-//        String pswd = "Uu39FC4W#Z";
-//
-//        List<User> result = new ArrayList<>();
-//
-//        String SQL_SELECT = "Select * from users";
-//
-//        try (Connection conn = DriverManager.getConnection(url, user, pswd);
-//             PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
-//
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            while (resultSet.next()) {
-//
-//                long id = resultSet.getLong("id");
-//                String name = resultSet.getString("fullname");
-//                Timestamp createdDate = resultSet.getTimestamp("created_at");
-//
-//                User obj = new User();
-//                obj.setId(id);
-//                obj.setFullname(name);
-//                // Timestamp -> LocalDateTime
-//                obj.setCreated_at(createdDate.toLocalDateTime());
-//                result.add(obj);
-//                System.out.println(obj.getFullname());
-//
-//            }
-//            result.forEach(x -> System.out.println(x));
-//
-//        } catch (SQLException e) {
-//            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            System.err.println("Exception: " + e);
-//        }
-//    }
 }
 

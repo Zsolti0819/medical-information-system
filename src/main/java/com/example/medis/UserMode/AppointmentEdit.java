@@ -40,6 +40,7 @@ public class AppointmentEdit implements Initializable {
     }
 
     public void updateAppointment(ActionEvent event) throws IOException {
+        String[] doctor_name = doctor_data.getValue().split(" ");
         JavaPostgreSql.updateAppointment(
                 selectedAppointment.getId(),
                 title_data.getText(),
@@ -47,7 +48,7 @@ public class AppointmentEdit implements Initializable {
                 start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(),
                 end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(),
                 selectedAppointment.getPatient_id(),
-                JavaPostgreSql.getUserByFullname(doctor_data.getValue()).getId());
+                JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId());
 
         SceneController s = new SceneController();
         s.switchToAppointments(selectedPatient, event);
@@ -78,7 +79,7 @@ public class AppointmentEdit implements Initializable {
         patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + selectedAppointment.getTitle());
         title_data.setText(selectedAppointment.getTitle());
         description_data.setText(selectedAppointment.getDescription());
-        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFullname());
+        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFirst_name());
         start_ymd_data.setValue(selectedAppointment.getStart_time().toLocalDate());
         end_ymd_data.setValue(selectedAppointment.getEnd_time().toLocalDate());
         start_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_hour()));

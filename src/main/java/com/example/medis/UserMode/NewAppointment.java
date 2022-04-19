@@ -3,7 +3,6 @@ package com.example.medis.UserMode;
 import com.example.medis.Entities.Patient;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,13 +33,14 @@ public class NewAppointment implements Initializable {
     // created_by is constant, needs to be implemented later
     @FXML
     private void createAppointment(ActionEvent event) throws IOException {
+        String[] doctor_name = doctor_data.getValue().split(" ");
         JavaPostgreSql.creteAppointment(
                 title_data.getText(),
                 description_data.getText(),
                 start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(),
                 end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(),
                 selectedPatient.getId(),
-                JavaPostgreSql.getUserByFullname(doctor_data.getValue()).getId(), 1
+                JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId(), 1
                 );
 
         SceneController s = new SceneController();
