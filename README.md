@@ -23,3 +23,4 @@ TO DO:
 | 16 	  | Prescription.java get method by id, and all not deleted                                                                    | Szaki      |
 | 17 	  | Appointment update still doesn't work. Index 1 out of bounds for length 1 (AppointmentEdit.java:40)                        | Szaki      |
 | 18 	  | At appointments and at prescriptions, doctor names should be displayed instead of doctor ID-s.                             |            |
+| 18 	  | Fix search to not show deleted patients                                                                                    | Szaki      |
