@@ -38,6 +38,13 @@ public class RecordDetailed implements Initializable {
         s.switchToRecordEdit(loggedInUser, selectedPatient, selectedRecord,event);
     }
 
+
+
+    public void deleteRecord(ActionEvent event) throws IOException {
+        JavaPostgreSql.deleteRecord(selectedRecord.getId());
+        switchToRecords(event);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
@@ -51,10 +58,5 @@ public class RecordDetailed implements Initializable {
         description_data.setText(selectedRecord.getDescription());
         notes_data.setText(selectedRecord.getNotes());
 
-    }
-
-    public void deleteRecord(ActionEvent event) throws IOException {
-        JavaPostgreSql.deleteRecord(selectedRecord.getId());
-        switchToRecords(event);
     }
 }

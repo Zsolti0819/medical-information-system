@@ -26,6 +26,7 @@ public class Prescriptions implements Initializable {
     private Patient selectedPatient;
     private Prescription selectedPrescription;
     private User loggedInUser;
+
     @FXML private TableView<Prescription> prescriptionsTable;
     @FXML private Label patient_name_prescriptions;
     @FXML private TableColumn <Prescription, String> title;
