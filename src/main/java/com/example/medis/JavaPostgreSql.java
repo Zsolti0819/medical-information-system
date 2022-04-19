@@ -586,7 +586,7 @@ public class JavaPostgreSql {
     }
 
     public static ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patient_id){
-        String query = "SELECT * from appointments WHERE patient_id=? WHERE deleted=false;";
+        String query = "SELECT * from appointments WHERE patient_id=? AND deleted=false;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -605,7 +605,7 @@ public class JavaPostgreSql {
     }
 
     public static ObservableList<Record> getAllNotDeletedRecordsByPatientId(long patient_id){
-        String query = "SELECT * from records WHERE patient_id=? WHERE deleted=false;";
+        String query = "SELECT * from records WHERE patient_id=? AND deleted=false;";
         ObservableList<Record> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
