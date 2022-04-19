@@ -37,6 +37,7 @@ public class AppointmentEdit implements Initializable {
     @FXML
     public void updateAppointment(ActionEvent event) throws IOException {
         String[] doctor_name = doctor_data.getValue().split(" ");
+        System.out.println(JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId()+ " " + doctor_name[0] + " " + doctor_name[1]);
         JavaPostgreSql.updateAppointment(
                 selectedAppointment.getId(),
                 title_data.getText(),
