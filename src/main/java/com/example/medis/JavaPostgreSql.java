@@ -64,11 +64,11 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
                 System.out.println("Succesfully created user!");
-                GeneralLogger.log(Level.INFO, "User " + username + " created" );
+                GeneralLogger.log(Level.INFO, "REGISTER: User " + email + " created" );
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ParseException e){
-                System.out.println("Wrong fate format");
+                System.out.println("Wrong date format");
             }
         }
 
@@ -97,6 +97,7 @@ public class JavaPostgreSql {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()){
                 System.out.println("User not found in DB!");
+                GeneralLogger.log(Level.WARNING, "LOGIN | USER | FAILED: Unsuccessful login | " + email + " | " + password );
                 return false;
             }
             else {
@@ -104,7 +105,7 @@ public class JavaPostgreSql {
                 while (resultSet.next()) {
                     result.add(createUserFromResultSet(resultSet));
                 }
-                GeneralLogger.log(Level.INFO, "User " + email + " logged in" );
+                GeneralLogger.log(Level.INFO, "LOGIN | USER: User " + email + " logged in" );
                 return true;
             }
 
@@ -120,6 +121,7 @@ public class JavaPostgreSql {
     // update application users
     public static String updateUser(long id, String username, String first_name, String last_name, String password, String email, String phone, String position, String birthdate){
         if (!isUserExist(id)){
+            GeneralLogger.log(Level.WARNING, "USER | UPDATE | FAILED: User " + email + " not found" );
             return "User with this id not exists!";
         }
         else {
@@ -141,7 +143,7 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
-                GeneralLogger.log(Level.INFO, "User " + email + " updated" );
+                GeneralLogger.log(Level.INFO, "USER | UPDATE: User " + email + " updated" );
                 return "Succesfully updated user!";
 
             } catch (SQLException e) {
@@ -168,8 +170,9 @@ public class JavaPostgreSql {
                 preparedStatement.setString(1, String.valueOf(id));
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
+                String email = getEmailByUserId(id);
+                GeneralLogger.log(Level.INFO, "PATIENT | DELETE: User " + email + " deleted" );
                 System.out.println("Succesfully updated " + res +" row!");
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -200,6 +203,8 @@ public class JavaPostgreSql {
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
+
+            GeneralLogger.log(Level.INFO, "PATIENT | CREATE: Patient " + email + " created" );
             return "Succesfully created patient!";
 
 
@@ -217,6 +222,7 @@ public class JavaPostgreSql {
                                        String blood_group, String address, String phone, String email, String identification_number){
 
         if (!isPatientExist(id)){
+            GeneralLogger.log(Level.WARNING, "PATIENT | UPDATE | FAILED: Patient " + email + " not found" );
             return "Patient with this id not exists!";
         }
         else{
@@ -241,6 +247,7 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
+                GeneralLogger.log(Level.INFO, "PATIENT | UPDATE: Patient " + email + " updated" );
                 return "Succesfully updated patient with id=" + id + " !";
 
 
@@ -272,6 +279,9 @@ public class JavaPostgreSql {
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
 
+                String email = getEmailByPatientId(id);
+                GeneralLogger.log(Level.INFO, "PATIENT | DELETE: Patient " + email + " deleted" );
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return "SQLException: " + e;
@@ -299,6 +309,7 @@ public class JavaPostgreSql {
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
+            GeneralLogger.log(Level.INFO, "APPOINTMENT | CREATE: Appointment " + title + " created" );
             return "Succesfully created appointment!";
 
 
@@ -313,6 +324,7 @@ public class JavaPostgreSql {
 
     public static String updateAppointment(long id, String title, String description, String start_time, String end_time, long patient_id, long doctor_id){
         if(!isAppointmentExist(id)){
+            GeneralLogger.log(Level.WARNING, "APPOINTMENT | UPDATE | FAILED: Appointment " + title + " not found" );
             return "Appointment with this id not exists!";
         }
         else {
@@ -332,6 +344,7 @@ public class JavaPostgreSql {
 
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
+                GeneralLogger.log(Level.INFO, "APPOINTMENT | UPDATE: Appointment " + title + " updated" );
                 return "Succesfully updated appointment!";
 
 
@@ -363,6 +376,8 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
+                String title = getTitleByAppointmentId(id);
+                GeneralLogger.log(Level.INFO, "APPOINTMENT | DELETE: Appointment " + title + " deleted" );
                 return "Succesfully deleted appointment!";
 
 
@@ -435,6 +450,7 @@ public class JavaPostgreSql {
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
+            GeneralLogger.log(Level.INFO, "RECORD | CREATE: Record " + title + " created" );
             return "Succesfully created record!";
 
 
@@ -450,6 +466,7 @@ public class JavaPostgreSql {
 
     public static String updateRecord(long id, String title, String description, String execute_date, String notes, long patient_id, long doctor_id){
         if(!isRecordExist(id)){
+            GeneralLogger.log(Level.WARNING, "RECORD | UPDATE | FAILED: Record " + title + " not found" );
             return "Record with this id not exists!";
         }
         else{
@@ -469,6 +486,7 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
+                GeneralLogger.log(Level.INFO, "RECORD | UPDATE: Record " + title + " updated" );
                 return "Succesfully updated record!";
 
 
@@ -499,6 +517,8 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
+                String title = getTitleByRecordId(id);
+                GeneralLogger.log(Level.INFO, "APPOINTMENT | DELETE: Appointment " + title + " deleted" );
                 return "Succesfully deleted record!";
 
 
@@ -528,6 +548,7 @@ public class JavaPostgreSql {
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
+            GeneralLogger.log(Level.INFO, "PRESCRIPTION | CREATE: Prescription " + title + " created" );
             return "Succesfully created record!";
 
 
@@ -543,6 +564,7 @@ public class JavaPostgreSql {
 
     public static String updatePrescription(long id, String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes){
         if(!isPrescriptionExist(id)){
+            GeneralLogger.log(Level.WARNING, "PRESCRIPTION | UPDATE | FAILED: Prescription " + title + " not found" );
             return "Prescription with this id not exists!";
         }
         else{
@@ -563,6 +585,7 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
+                GeneralLogger.log(Level.INFO, "PRESCRIPTION | UPDATE: Prescription " + title + " updated" );
                 return "Succesfully updated prescription!";
 
 
@@ -593,6 +616,8 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
+                String title = getTitleByPrescriptionId(id);
+                GeneralLogger.log(Level.INFO, "PRESCRIPTION | DELETE: Prescription " + title + " deleted" );
                 return "Succesfully deleted prescription!";
 
 
@@ -753,6 +778,7 @@ public class JavaPostgreSql {
         }
         return result;
     }
+
     public static String getEmailByPatientId(long patient_id){
         String result = "";
         try {
@@ -773,6 +799,92 @@ public class JavaPostgreSql {
         }
         return result;
     }
+
+    public static String getEmailByUserId(long user_id){
+        String result = "";
+        try {
+            String query = "SELECT * FROM users WHERE id=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, user_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getString("email");
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static String getTitleByAppointmentId(long appointment_id){
+        String result = "";
+        try {
+            String query = "SELECT * FROM appointments WHERE id=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, appointment_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getString("title");
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+    public static String getTitleByPrescriptionId(long prescription_id){
+        String result = "";
+        try {
+            String query = "SELECT * FROM prescription WHERE id=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, prescription_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getString("title");
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static String getTitleByRecordId(long record_id){
+        String result = "";
+        try {
+            String query = "SELECT * FROM record WHERE id=?;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, record_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getString("title");
+            System.out.println(preparedStatement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static User getUserByFirstAndLastName(String first_name, String last_name){
         User result = new User();
         try {
