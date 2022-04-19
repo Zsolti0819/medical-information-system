@@ -33,12 +33,8 @@ public class AppointmentEdit implements Initializable {
     @FXML private TextField description_data;
     @FXML private ComboBox <String> doctor_data;
 
+    // Save button
     @FXML
-    public void switchToAppointments(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToAppointments(selectedPatient, event);
-    }
-
     public void updateAppointment(ActionEvent event) throws IOException {
         String[] doctor_name = doctor_data.getValue().split(" ");
         JavaPostgreSql.updateAppointment(
@@ -54,6 +50,15 @@ public class AppointmentEdit implements Initializable {
         s.switchToAppointments(selectedPatient, event);
     }
 
+    // Cancel button
+    @FXML
+    public void switchToAppointments(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToAppointments(selectedPatient, event);
+    }
+
+    // Delete button
+    @FXML
     public void deleteAppointment(ActionEvent event) throws IOException {
         JavaPostgreSql.deleteAppointment(selectedAppointment.getId());
         SceneController s = new SceneController();
@@ -76,7 +81,7 @@ public class AppointmentEdit implements Initializable {
     public void initData(Patient patient, Appointment appointment) {
         selectedPatient = patient;
         selectedAppointment = appointment;
-        patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + selectedAppointment.getTitle());
+        patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedAppointment.getTitle());
         title_data.setText(selectedAppointment.getTitle());
         description_data.setText(selectedAppointment.getDescription());
         doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFirst_name());

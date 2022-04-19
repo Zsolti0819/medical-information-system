@@ -3,10 +3,7 @@ package com.example.medis;
 import java.io.IOException;
 import java.util.Objects;
 
-import com.example.medis.Entities.Appointment;
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.Record;
-import com.example.medis.Entities.User;
+import com.example.medis.Entities.*;
 import com.example.medis.UserMode.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -195,4 +192,44 @@ public class SceneController extends NewPatient {
         stage.show();
     }
 
+    // Prescriptions
+
+    public void switchToPrescriptions(Patient patient, ActionEvent event) throws IOException {
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/prescriptions.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        Prescriptions controller = loader.getController();
+        controller.initData(patient);
+
+        stage.show();
+    }
+
+    public void switchToPrescriptionEdit(Patient patient, Prescription prescription, ActionEvent event) throws IOException {
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/prescription_edit.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        PrescriptionEdit controller = loader.getController();
+        controller.initData(patient, prescription);
+
+        stage.show();
+    }
+
+    public void switchToPrescriptionCreation(Patient patient, MouseEvent event) throws IOException {
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/new_prescription.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        NewPrescription controller = loader.getController();
+        controller.initData(patient);
+
+        stage.show();
+    }
 }

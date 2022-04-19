@@ -1,19 +1,15 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.Record;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +35,15 @@ public class PatientInfoEdit implements Initializable{
         s.switchToPatientInfo(selectedPatient, event);
     }
 
+    @FXML
+    public void updatePatientInfo(ActionEvent event) throws IOException {
+
+        String birthIdText = birth_ID_data.getText();
+        String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
+        JavaPostgreSql.updatePatient(selectedPatient.getId(), first_name_data.getText(), surname_data.getText(), insurance_co_data.getSelectionModel().getSelectedItem(), birthDateFromId, sex_data.getSelectionModel().getSelectedItem(), blood_group_data.getSelectionModel().getSelectedItem(), address_data.getText(), phone_data.getText(), email_data.getText(), birth_ID_data.getText());
+        switchToPatientInfo(event);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         insurance_co_data.setItems(FXCollections.observableArrayList("Union", "Dôvera", "VŠZP"));
@@ -48,9 +53,9 @@ public class PatientInfoEdit implements Initializable{
 
     public void initData(Patient patient) {
         selectedPatient = patient;
-        name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname());
+        name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
         first_name_data.setText(selectedPatient.getFirst_name());
-        surname_data.setText(selectedPatient.getSurname());
+        surname_data.setText(selectedPatient.getLast_name());
         insurance_co_data.getSelectionModel().select(String.valueOf(selectedPatient.getInsurance_company()));
         birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
         sex_data.getSelectionModel().select(String.valueOf(selectedPatient.getSex()));
@@ -58,28 +63,5 @@ public class PatientInfoEdit implements Initializable{
         address_data.setText(selectedPatient.getAddress());
         phone_data.setText(selectedPatient.getPhone());
         email_data.setText(selectedPatient.getEmail());
-    }
-
-
-    public void updatePatientInfo(ActionEvent event) throws IOException {
-
-        String birthIdText = birth_ID_data.getText();
-        String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
-
-        JavaPostgreSql.updatePatient(
-                selectedPatient.getId(),
-                first_name_data.getText(),
-                surname_data.getText(),
-                insurance_co_data.getSelectionModel().getSelectedItem(),
-                birthDateFromId,
-                sex_data.getSelectionModel().getSelectedItem(),
-                blood_group_data.getSelectionModel().getSelectedItem(),
-                address_data.getText(),
-                phone_data.getText(),
-                email_data.getText(),
-                birth_ID_data.getText());
-
-        SceneController s = new SceneController();
-        s.switchToPatientInfo(selectedPatient, event);
     }
 }

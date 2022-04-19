@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Patient {
     private long id;
-    private String first_name, surname;
+    private String first_name, last_name;
     private String insurance_company;
     private String phone;
     private Date birth_date;
@@ -79,12 +79,12 @@ public class Patient {
         this.first_name = first_name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getPhone() {

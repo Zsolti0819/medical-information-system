@@ -31,12 +31,21 @@ public class Appointments implements Initializable {
     @FXML private TableColumn<Appointment, LocalDateTime> start_time;
     @FXML private TableColumn<Appointment, LocalDateTime> end_time;
 
+    // Patient info
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPatientInfo(selectedPatient, event);
     }
 
+    // Records
+    @FXML
+    private void switchToRecords(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToRecords(selectedPatient, event);
+    }
+
+    // Edit buttons
     @FXML
     public void switchToAppointmentEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
@@ -44,18 +53,21 @@ public class Appointments implements Initializable {
 
     }
 
-    @FXML
-    private void switchToRecords(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToRecords(selectedPatient, event);
-    }
-
+    // Plus button
     @FXML
     private void switchToAppointmentCreation(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToAppointmentCreation(selectedPatient, event);
     }
 
+    // Prescriptions
+    @FXML
+    public void switchToPrescriptions(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToPrescriptions(selectedPatient, event);
+    }
+
+    // Close window button
     @FXML
     public void closeCurrentWindow(ActionEvent event) {
         final Node source = (Node) event.getSource();
@@ -116,8 +128,10 @@ public class Appointments implements Initializable {
 
     public void initData(Patient patient) {
         selectedPatient = patient;
-        patient_name_appointments.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + "'s appointments");
+        patient_name_appointments.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s appointments");
         appointmentsTable.setItems(JavaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId()));
 
     }
+
+
 }

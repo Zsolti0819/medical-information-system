@@ -1,6 +1,5 @@
 package com.example.medis.UserMode;
 
-import com.example.medis.Entities.Appointment;
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.Record;
 import com.example.medis.JavaPostgreSql;
@@ -8,9 +7,7 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +44,7 @@ public class RecordDetailed implements Initializable {
     public void initData(Patient patient, Record record) {
         selectedPatient = patient;
         selectedRecord = record;
-        patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + selectedRecord.getTitle());
+        patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedRecord.getTitle());
         title_data.setText(selectedRecord.getTitle());
         date_data.setText(selectedRecord.getDate_executed().toString());
         description_data.setText(selectedRecord.getDescription());

@@ -31,7 +31,9 @@ public class NewPatient implements Initializable {
     @FXML private TextField email_data;
     @FXML private Label missing_values_msg;
 
-    @FXML private void createPatient() {
+
+    // Create patient button
+    @FXML private void createPatient(ActionEvent event) throws IOException {
         String firstNameText = first_name_data.getText();
         String surnameText = surname_data.getText();
         String insuranceCompanyText = insurance_co_data.getValue();
@@ -60,9 +62,11 @@ public class NewPatient implements Initializable {
 
         else {
             missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, surnameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
+            switchToDashboard(event);
         }
     }
 
+    // Cancel button
     @FXML public void switchToDashboard(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToDashboard(loggedInUser, event);
@@ -75,5 +79,4 @@ public class NewPatient implements Initializable {
         blood_group_data.setItems(FXCollections.observableArrayList("A","A+","A-","B","B+","B-","AB","AB+","AB-", "0","0+","0-"));
 
     }
-
 }

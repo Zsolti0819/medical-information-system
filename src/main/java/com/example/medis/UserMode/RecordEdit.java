@@ -39,7 +39,7 @@ public class RecordEdit implements Initializable {
     public void initData(Patient patient, Record record) {
         selectedPatient = patient;
         selectedRecord = record;
-        patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + selectedRecord.getTitle());
+        patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedRecord.getTitle());
         title_data.setText(selectedRecord.getTitle());
         date_data.setText(selectedRecord.getDate_executed().toString());
         description_data.setText(selectedRecord.getDescription());

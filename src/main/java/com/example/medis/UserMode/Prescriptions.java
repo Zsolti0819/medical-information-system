@@ -1,7 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.Record;
+import com.example.medis.Entities.Prescription;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -16,30 +16,32 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
-public class Records implements Initializable {
+public class Prescriptions implements Initializable {
+
 
     private Patient selectedPatient;
-    private Record selectedRecord;
+    private Prescription selectedPrescription;
 
-    @FXML private TableView<Record> recordsTable;
-    @FXML private Label patient_name_records;
-    @FXML private TableColumn<Record, String> title;
-    @FXML private TableColumn<Record, String> description;
-    @FXML private TableColumn<Record, LocalDateTime> created_at;
+    @FXML private TableView<Prescription> prescriptionsTable;
+    @FXML private Label patient_name_prescriptions;
+    @FXML private TableColumn <Prescription, String> title;
+    @FXML private TableColumn <Prescription, String>drug;
+    @FXML private TableColumn <Prescription, Date> expiration_date;
+    @FXML private TableColumn <Prescription, Long> prescribed_by;
 
     @FXML
-    public void switchToPatientInfo(ActionEvent event) throws IOException  {
+    public void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPatientInfo(selectedPatient, event);
     }
 
     @FXML
-    private void switchToRecordDetailed(ActionEvent event) throws IOException {
+    private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToRecordDetailed(selectedPatient, selectedRecord, event);
+        s.switchToRecords(selectedPatient, event);
     }
 
     @FXML
@@ -54,6 +56,16 @@ public class Records implements Initializable {
         s.switchToPrescriptions(selectedPatient, event);
     }
 
+    public void switchToPrescriptionEdit(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToPrescriptionEdit(selectedPatient, selectedPrescription, event);
+    }
+
+    public void switchToPrescriptionCreation(MouseEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToPrescriptionCreation(selectedPatient, event);
+    }
+
     @FXML
     public void closeCurrentWindow(ActionEvent e) {
         final Node source = (Node) e.getSource();
@@ -61,28 +73,23 @@ public class Records implements Initializable {
         stage.close();
     }
 
-    @FXML
-    private void switchToRecordCreation(MouseEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToRecordCreation(selectedPatient, event);
-    }
 
     private void addButtonToTable() {
-        TableColumn<Record, Void> details  = new TableColumn<>();
+        TableColumn<Prescription, Void> details  = new TableColumn<>();
         details.setText("Details");
 
-        Callback<TableColumn<Record, Void>, TableCell<Record, Void>> cellFactory = new Callback<>() {
+        Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>> cellFactory = new Callback<>() {
             @Override
-            public TableCell<Record, Void> call(final TableColumn<Record, Void> param) {
+            public TableCell<Prescription, Void> call(final TableColumn<Prescription, Void> param) {
                 return new TableCell<>() {
 
                     private final Button openButton = new Button("View");
 
                     {
                         openButton.setOnAction((ActionEvent event) -> {
-                            selectedRecord  = JavaPostgreSql.getRecord(recordsTable.getItems().get(getIndex()).getId());
+                            selectedPrescription  = JavaPostgreSql.getPrescriptionById(prescriptionsTable.getItems().get(getIndex()).getId());
                             try {
-                                switchToRecordDetailed(event);
+                                switchToPrescriptionEdit(event);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -105,21 +112,22 @@ public class Records implements Initializable {
 
         details.setCellFactory(cellFactory);
 
-        recordsTable.getColumns().add(details);
+        prescriptionsTable.getColumns().add(details);
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        drug.setCellValueFactory(new PropertyValueFactory<>("description"));
+        expiration_date.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        prescribed_by.setCellValueFactory(new PropertyValueFactory<>("created_at"));
         addButtonToTable();
     }
 
     public void initData(Patient patient) {
         selectedPatient = patient;
-        patient_name_records.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s records");
-        recordsTable.setItems(JavaPostgreSql.getAllNotDeletedRecordsByPatientId(selectedPatient.getId()));
+        patient_name_prescriptions.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s prescriptions");
+        prescriptionsTable.setItems(JavaPostgreSql.getAllNotDeletedPrescriptionsByPatientId("patient", selectedPatient.getId()));
     }
 }

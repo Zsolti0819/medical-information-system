@@ -30,7 +30,7 @@ public class NewAppointment implements Initializable {
     @FXML private TextField description_data;
     @FXML private ComboBox <String> doctor_data;
 
-    // created_by is constant, needs to be implemented later
+    // Create appointment button
     @FXML
     private void createAppointment(ActionEvent event) throws IOException {
         String[] doctor_name = doctor_data.getValue().split(" ");
@@ -43,10 +43,10 @@ public class NewAppointment implements Initializable {
                 JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId(), 1
                 );
 
-        SceneController s = new SceneController();
-        s.switchToAppointments(selectedPatient, event);
+        switchToAppointments(event);
     }
 
+    // Cancel button
     @FXML
     public void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
@@ -61,6 +61,6 @@ public class NewAppointment implements Initializable {
 
     public void initData(Patient patient) {
         selectedPatient = patient;
-        patient_name_new_appointment.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname() + " - " + "New appointment");
+        patient_name_new_appointment.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + "New appointment");
     }
 }

@@ -47,6 +47,13 @@ public class PatientInfo implements Initializable {
 
    }
 
+
+    @FXML
+    public void switchToPrescriptions(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToPrescriptions(selectedPatient, event);
+    }
+
     @FXML
     public void closeCurrentWindow(ActionEvent event) {
         final Node source = (Node) event.getSource();
@@ -61,7 +68,7 @@ public class PatientInfo implements Initializable {
 
     public void initData(Patient patient) {
         selectedPatient = JavaPostgreSql.getPatient(patient.getId());
-        name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getSurname());
+        name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
         insurance_co_data.setText(selectedPatient.getInsurance_company());
         birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
         birth_date_data.setText(String.valueOf(selectedPatient.getBirth_date()));
@@ -77,4 +84,6 @@ public class PatientInfo implements Initializable {
         JavaPostgreSql.deletePatient(selectedPatient.getId());
         closeCurrentWindow(event);
     }
+
+
 }
