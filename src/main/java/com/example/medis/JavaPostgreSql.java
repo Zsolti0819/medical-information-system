@@ -202,13 +202,14 @@ public class JavaPostgreSql {
     }
 
     public static String updatePatient(long id, String first_name, String sure_name, String insurance_co, String birthdate, String sex,
-                                       String blood_group, String address, String phone, String email){
+                                       String blood_group, String address, String phone, String email, String identification_number){
 
         if (!isPatientExist(id)){
             return "Patient with this id not exists!";
         }
         else{
-            String query1 = "UPDATE patients SET first_name=?, sure_name=?, insurance_co=cast(? as insurance_enum), birthdate=?, sex=cast(? as sex_enum), blood_group=cast(? as blood_enum), phone=?, updated_at=now()  WHERE id=?;";
+            String query1 = "UPDATE patients SET first_name=?, surname=?, insurance_company=cast(? as insurance_enum), birthdate=?, " +
+                    "sex=cast(? as sex_enum), blood_group=cast(? as blood_enum), phone=?, address=?, email=?, updated_at=now()  WHERE id=?;";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -220,8 +221,10 @@ public class JavaPostgreSql {
                 preparedStatement.setDate(4,  getDate(birthdate));
                 preparedStatement.setString(5, sex);
                 preparedStatement.setString(6, blood_group);
-                preparedStatement.setString(7, address);
-                preparedStatement.setString(8, phone);
+                preparedStatement.setString(7, phone);
+                preparedStatement.setString(8, address);
+                preparedStatement.setString(9, email);
+                preparedStatement.setLong(10, id);
 
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
