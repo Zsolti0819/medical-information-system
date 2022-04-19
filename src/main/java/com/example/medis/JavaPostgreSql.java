@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.regex.Pattern;
-
 
 
 public class JavaPostgreSql {
@@ -64,6 +64,7 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
                 System.out.println("Succesfully created user!");
+                GeneralLogger.log(Level.INFO, "User " + username + " created" );
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ParseException e){
@@ -103,6 +104,7 @@ public class JavaPostgreSql {
                 while (resultSet.next()) {
                     result.add(createUserFromResultSet(resultSet));
                 }
+                GeneralLogger.log(Level.INFO, "User " + email + " logged in" );
                 return true;
             }
 
@@ -139,6 +141,7 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res +" row!");
+                GeneralLogger.log(Level.INFO, "User " + email + " updated" );
                 return "Succesfully updated user!";
 
             } catch (SQLException e) {
