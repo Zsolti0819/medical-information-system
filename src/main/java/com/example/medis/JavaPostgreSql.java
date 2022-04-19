@@ -724,7 +724,7 @@ public class JavaPostgreSql {
 
             while (resultSet.next()) {
                 User a = createUserFromResultSet(resultSet);
-                result.add(a.getFirst_name() + a.getLast_name());
+                result.add(a.getFirst_name() + " "+ a.getLast_name());
             }
 
         } catch (SQLException e) {
