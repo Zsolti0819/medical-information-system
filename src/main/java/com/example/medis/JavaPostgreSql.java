@@ -812,34 +812,57 @@ public class JavaPostgreSql {
         return obj;
     }
 
-    public static List<Patient> filterPatients(String filterWord) {
+    public static ObservableList<Patient> filterPatients(String filterWord) {
 
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         String query = "";
-        List<Patient> result = new ArrayList<>();
+        ObservableList<Patient> result = FXCollections.observableArrayList();
 
-        if (pattern.matcher(filterWord).matches()){
-            query = "SELECT * FROM patients WHERE identification_number=?;";
 
-        } else {
-            query = "SELECT * FROM patients WHERE first_name=? or last_name=?;";
-        }
-        try {
 
-            Connection connection = DriverManager.getConnection(url, user, pswd);
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            if (pattern.matcher(filterWord).matches()){
+                query = "SELECT * FROM patients WHERE identification_number=? AND deleted=false;";
 
-            preparedStatement.setString(1, filterWord);
-            preparedStatement.setString(2, filterWord);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                result.add(createPatientFromResultSet(resultSet));
+                try {
+                    Connection connection = DriverManager.getConnection(url, user, pswd);
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    preparedStatement.setString(1, filterWord);
+
+                    while (resultSet.next()) {
+                        result.add(createPatientFromResultSet(resultSet));
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                query = "SELECT * FROM patients WHERE LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? AND deleted=false;";
+
+
+
+                try {
+                    Connection connection = DriverManager.getConnection(url, user, pswd);
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+                    preparedStatement.setString(1, "%" + filterWord + "%");
+                    preparedStatement.setString(2, "%" + filterWord + "%");
+
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+
+                    while (resultSet.next()) {
+                        result.add(createPatientFromResultSet(resultSet));
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         return result;
 
     }

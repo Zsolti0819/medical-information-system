@@ -7,10 +7,7 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
@@ -32,6 +29,7 @@ public class Dashboard implements Initializable {
     @FXML private TableColumn<Patient, Long> birth_id;
     @FXML private TableColumn<Patient, LocalDateTime> last_visit;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
+    @FXML private TextField searchPatientField;
 
     private User loggedInUser;
     private Patient selectedPatient;
@@ -117,6 +115,20 @@ public class Dashboard implements Initializable {
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
         addButtonToTable();
         patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());
+
+        searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() >= 3) {
+                System.out.println();
+                patientsTable.setItems(JavaPostgreSql.filterPatients(newValue.replaceAll("[^a-zA-Z0-9]", "").toLowerCase()));
+                addButtonToTable();
+            }
+            if (newValue.equals("")) {
+                addButtonToTable();
+                patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());
+            }
+        });
+
+
     }
 
     public void initData(User user) {
