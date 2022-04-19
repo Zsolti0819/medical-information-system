@@ -547,7 +547,7 @@ public class JavaPostgreSql {
             return "Prescription with this id not exists!";
         }
         else{
-            String query = "UPDATE prescriptions SET title=?, description=?, drug=?, expiration_date=?, notes=?, patient_id=?, doctor_id=?, updated_at=now()";
+            String query = "UPDATE prescriptions SET title=?, description=?, drug=?, expiration_date=?, notes=?, patient_id=?, doctor_id=?, updated_at=now() WHERE id=?";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -560,6 +560,7 @@ public class JavaPostgreSql {
                 preparedStatement.setString(5,  notes);
                 preparedStatement.setLong(6, patient_id);
                 preparedStatement.setLong(7, doctor_id);
+                preparedStatement.setLong(8, id);
 
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
