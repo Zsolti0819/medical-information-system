@@ -779,7 +779,7 @@ public class JavaPostgreSql {
             query = "SELECT * FROM patients WHERE identification_number=?;";
 
         } else {
-            query = "SELECT * FROM patients WHERE email=?";
+            query = "SELECT * FROM patients WHERE firs_name=? or surname=?;";
         }
         try {
 
@@ -787,6 +787,7 @@ public class JavaPostgreSql {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, filterWord);
+            preparedStatement.setString(2, filterWord);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
