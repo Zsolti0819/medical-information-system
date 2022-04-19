@@ -606,6 +606,25 @@ public class JavaPostgreSql {
 
     }
 
+    public static ObservableList<Prescription> getAllNotDeletedPrescriptionsByPatientId(String entity ,long id){
+        String query = "SELECT * from prescriptions WHERE " + entity + "_id=? AND deleted=false;";
+        ObservableList<Prescription> result = FXCollections.observableArrayList();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setLong(1,id);
+
+            while (resultSet.next()) {
+                result.add(createPrescriptionFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patient_id){
         String query = "SELECT * from appointments WHERE patient_id=? AND deleted=false;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
