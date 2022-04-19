@@ -470,7 +470,7 @@ public class JavaPostgreSql {
             return "Record with this id not exists!";
         }
         else{
-            String query = "UPDATE records SET title=?, description=?, date_executed=?, notes=?, patient_id=?, doctor_id=?, updated_at=now()";
+            String query = "UPDATE records SET title=?, description=?, date_executed=?, notes=?, patient_id=?, doctor_id=?, updated_at=now() WHERE id=?";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -482,6 +482,7 @@ public class JavaPostgreSql {
                 preparedStatement.setString(4,  notes);
                 preparedStatement.setLong(5, patient_id);
                 preparedStatement.setLong(6, doctor_id);
+                preparedStatement.setLong(7, id);
 
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
@@ -749,7 +750,7 @@ public class JavaPostgreSql {
 
             while (resultSet.next()) {
                 User a = createUserFromResultSet(resultSet);
-                result.add(a.getFirst_name() + a.getLast_name());
+                result.add(a.getFirst_name() + " "+ a.getLast_name());
             }
 
         } catch (SQLException e) {

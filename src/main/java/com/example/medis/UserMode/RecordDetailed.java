@@ -24,7 +24,6 @@ public class RecordDetailed implements Initializable {
     @FXML private Label date_data;
     @FXML private Label description_data;
     @FXML private Label notes_data;
-    @FXML private Label medicines_data;
 
     @FXML
     public void switchToRecords(ActionEvent event) throws IOException {
@@ -49,9 +48,10 @@ public class RecordDetailed implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-    public void initData(Patient patient, Record record, User loggedInUser) {
+    public void initData(Patient patient, Record record, User user) {
         selectedPatient = patient;
-        selectedRecord = record;
+        selectedRecord = JavaPostgreSql.getRecord(record.getId());
+        loggedInUser = user;
         patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedRecord.getTitle());
         title_data.setText(selectedRecord.getTitle());
         date_data.setText(selectedRecord.getDate_executed().toString());

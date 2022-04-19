@@ -87,7 +87,7 @@ public class AppointmentEdit implements Initializable {
         patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedAppointment.getTitle());
         title_data.setText(selectedAppointment.getTitle());
         description_data.setText(selectedAppointment.getDescription());
-        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFirst_name());
+        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFirst_name() + " " + JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getLast_name());
         start_ymd_data.setValue(selectedAppointment.getStart_time().toLocalDate());
         end_ymd_data.setValue(selectedAppointment.getEnd_time().toLocalDate());
         start_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_hour()));
