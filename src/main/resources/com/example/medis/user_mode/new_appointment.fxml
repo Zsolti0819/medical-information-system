@@ -43,12 +43,12 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-         <DatePicker fx:id="start_ymd_data" layoutX="449.0" layoutY="156.0" prefHeight="25.0" prefWidth="111.0" />
-         <ComboBox fx:id="start_h_data" layoutX="565.0" layoutY="156.0" prefHeight="25.0" prefWidth="62.0" />
-         <ComboBox fx:id="start_min_data" layoutX="639.0" layoutY="156.0" prefHeight="25.0" prefWidth="62.0" />
-         <DatePicker fx:id="end_ymd_data" layoutX="449.0" layoutY="202.0" prefHeight="25.0" prefWidth="111.0" />
-         <ComboBox fx:id="end_min_data" layoutX="639.0" layoutY="202.0" prefHeight="25.0" prefWidth="62.0" />
-         <ComboBox fx:id="end_h_data" layoutX="565.0" layoutY="202.0" prefHeight="25.0" prefWidth="62.0" />
+         <DatePicker fx:id="start_ymd_data" layoutX="449.0" layoutY="156.0" prefHeight="25.0" prefWidth="98.0" />
+         <ComboBox fx:id="start_h_data" layoutX="552.0" layoutY="156.0" prefHeight="25.0" prefWidth="62.0" />
+         <ComboBox fx:id="start_min_data" layoutX="618.0" layoutY="156.0" prefHeight="25.0" prefWidth="62.0" />
+         <DatePicker fx:id="end_ymd_data" layoutX="449.0" layoutY="202.0" prefHeight="25.0" prefWidth="98.0" />
+         <ComboBox fx:id="end_min_data" layoutX="618.0" layoutY="202.0" prefHeight="25.0" prefWidth="62.0" />
+         <ComboBox fx:id="end_h_data" layoutX="552.0" layoutY="202.0" prefHeight="25.0" prefWidth="62.0" />
          <Label layoutX="273.0" layoutY="248.0" prefHeight="25.0" prefWidth="134.0" text="Description">
             <font>
                <Font name="System Bold" size="13.0" />

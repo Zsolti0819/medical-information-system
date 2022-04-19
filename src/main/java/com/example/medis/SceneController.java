@@ -70,7 +70,7 @@ public class SceneController extends NewPatient {
     }
 
     public void switchToPatientInfoEdit(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
-        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/patient_info_edit.fxml"));
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/edit_patient_info.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());

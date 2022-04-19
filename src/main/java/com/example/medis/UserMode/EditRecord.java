@@ -17,32 +17,30 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditRecord implements Initializable {
+public class EditRecord  {
 
     private Patient selectedPatient;
     private Record selectedRecord;
     private User loggedInUser;
+
     @FXML private Label patient_name_record_title;
     @FXML private TextField title_data;
     @FXML private DatePicker date_data;
     @FXML private TextArea description_data;
     @FXML private TextArea notes_data;
 
+    // Save record button
     public void updateRecord(ActionEvent event) throws IOException {
         System.out.println("Logged in user: " + loggedInUser.getId());
         JavaPostgreSql.updateRecord(selectedRecord.getId(), title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
         switchToRecordDetailed(event);
     }
 
+    // Cancel button
     @FXML
     public void switchToRecordDetailed(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecordDetailed(loggedInUser, selectedPatient, selectedRecord, event);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     public void initData(Patient patient, Record record, User user) {

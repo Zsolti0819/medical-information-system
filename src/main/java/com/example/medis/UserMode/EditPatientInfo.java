@@ -31,12 +31,7 @@ public class EditPatientInfo implements Initializable{
     @FXML private TextField phone_data;
     @FXML private TextField email_data;
 
-    @FXML
-    public void switchToPatientInfo(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToPatientInfo(loggedInUser, selectedPatient, event);
-    }
-
+    // Save button
     @FXML
     public void updatePatientInfo(ActionEvent event) throws IOException {
 
@@ -44,6 +39,13 @@ public class EditPatientInfo implements Initializable{
         String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
         JavaPostgreSql.updatePatient(selectedPatient.getId(), first_name_data.getText(), last_name_data.getText(), insurance_co_data.getSelectionModel().getSelectedItem(), birthDateFromId, sex_data.getSelectionModel().getSelectedItem(), blood_group_data.getSelectionModel().getSelectedItem(), address_data.getText(), phone_data.getText(), email_data.getText(), birth_ID_data.getText());
         switchToPatientInfo(event);
+    }
+
+    // Cancel button
+    @FXML
+    public void switchToPatientInfo(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
     @Override

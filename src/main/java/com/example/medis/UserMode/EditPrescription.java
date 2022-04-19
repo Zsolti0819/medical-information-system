@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditPrescription implements Initializable {
+public class EditPrescription  {
 
     private Patient selectedPatient;
     private Prescription selectedPrescription;
@@ -28,24 +28,22 @@ public class EditPrescription implements Initializable {
     @FXML private DatePicker exp_date_ymd_data;
     @FXML private TextField notes_data;
 
+    // Save button
     public void updatePrescription(ActionEvent event) throws IOException {
         JavaPostgreSql.updatePrescription(selectedPrescription.getId(), title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), 1, notes_data.getText());
         switchToPrescriptions(event);
     }
 
+    // Cancel button
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
+    // Delete prescription button
     public void deletePrescription(ActionEvent event) throws IOException {
         JavaPostgreSql.deletePrescription(selectedPrescription.getId());
         switchToPrescriptions(event);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     public void initData(Patient patient, Prescription prescription, User user) {

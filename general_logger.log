@@ -43,4 +43,12 @@
 [2022-04-20 00:50:26] [INFO   ] APPOINTMENT | UPDATE: Appointment a updated 
 [2022-04-20 00:50:33] [INFO   ] APPOINTMENT | DELETE: Appointment a deleted 
 [2022-04-20 00:50:45] [INFO   ] PRESCRIPTION | DELETE: Prescription  deleted 
+[2022-04-20 00:56:12] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 01:00:06] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 01:00:27] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
 [2022-04-20 00:55:12] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 01:01:51] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 01:01:59] [INFO   ] PATIENT | UPDATE: Patient 3a4f35a4f updated 
+[2022-04-20 01:02:21] [WARNING] PATIENT | UPDATE | FAILED: Patient 3a4f35a4f not found 
+[2022-04-20 01:06:39] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 01:07:04] [INFO   ] PRESCRIPTION | UPDATE: Prescription Psychedelic microdosing updated 

@@ -23,13 +23,6 @@ public class NewRecord {
     @FXML private TextArea description_data;
     @FXML private TextArea notes_data;
 
-
-    public void initData(Patient patient, User user) {
-        selectedPatient = patient;
-        loggedInUser = user;
-        patient_name_new_record.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + "New record");
-    }
-
     // Create record button
     @FXML
     public void createRecord(ActionEvent event) throws IOException {
@@ -44,5 +37,9 @@ public class NewRecord {
         s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
-
+    public void initData(Patient patient, User user) {
+        selectedPatient = patient;
+        loggedInUser = user;
+        patient_name_new_record.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + "New record");
+    }
 }

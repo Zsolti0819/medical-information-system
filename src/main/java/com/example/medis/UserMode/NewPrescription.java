@@ -15,11 +15,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NewPrescription implements Initializable {
-
+public class NewPrescription {
 
     private Patient selectedPatient;
     private User loggedInUser;
+
     @FXML private Label patient_name_prescription_title;
     @FXML private TextField title_data;
     @FXML private TextField description_data;
@@ -39,11 +39,6 @@ public class NewPrescription implements Initializable {
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     public void initData(Patient patient, User user) {

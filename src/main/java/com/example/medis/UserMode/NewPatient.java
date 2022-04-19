@@ -31,7 +31,6 @@ public class NewPatient implements Initializable {
     @FXML private TextField email_data;
     @FXML private Label missing_values_msg;
 
-
     // Create patient button
     @FXML private void createPatient(ActionEvent event) throws IOException {
         String firstNameText = first_name_data.getText();
