@@ -31,7 +31,7 @@ public class Prescriptions implements Initializable {
     @FXML private TableColumn <Prescription, String> title;
     @FXML private TableColumn <Prescription, String>drug;
     @FXML private TableColumn <Prescription, Date> expiration_date;
-    @FXML private TableColumn <Prescription, Long> prescribed_by;
+    @FXML private TableColumn <Prescription, String> prescribed_by;
 
     @FXML
     public void switchToPatientInfo(ActionEvent event) throws IOException {
@@ -121,7 +121,7 @@ public class Prescriptions implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         drug.setCellValueFactory(new PropertyValueFactory<>("description"));
-        expiration_date.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        expiration_date.setCellValueFactory(new PropertyValueFactory<>("expiration_date"));
         prescribed_by.setCellValueFactory(new PropertyValueFactory<>("doctor_id"));
         addButtonToTable();
     }

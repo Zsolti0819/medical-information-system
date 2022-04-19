@@ -1,12 +1,14 @@
 package com.example.medis.Entities;
 
+import com.example.medis.JavaPostgreSql;
+
 import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Prescription {
 
     private long id, patient_id, doctor_id;
-    private String title, description, drug, notes;
+    private String title, description, drug, notes, doctor_name;
     private LocalDateTime created_at, updated_at;
     private Date expiration_date;
     private boolean deleted;
@@ -98,4 +100,12 @@ public class Prescription {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+//    public String getDoctor_name() {
+//        return JavaPostgreSql.getUsersByPosition("doctor").get(ge);
+//    }
+//
+//    public void setDoctor_name(String doctor_name) {
+//        this.doctor_name = doctor_name;
+//    }
 }

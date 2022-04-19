@@ -21,3 +21,4 @@ TO DO:
 | 14  	 | Printing out how many rows was affected on update/delete                                                                   | Szaki      |
 | 15 	  | Password hashing                                                                                                           | Szaki      |
 | 16 	  | Prescription.java get method by id, and all not deleted                                                                    | Szaki      |
+| 17 	  | Appointmen update still doesn't work. Index 1 out of bounds for length 1 (AppointmentEdit.java:40)                         |       |
