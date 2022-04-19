@@ -27,8 +27,9 @@ public class PrescriptionEdit implements Initializable {
     @FXML private DatePicker exp_date_ymd_data;
     @FXML private TextField notes_data;
 
-    public void updatePrescription(ActionEvent event) {
+    public void updatePrescription(ActionEvent event) throws IOException {
         JavaPostgreSql.updatePrescription(selectedPrescription.getId(), title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), 1, notes_data.getText());
+        switchToPrescriptions(event);
     }
 
     public void switchToPrescriptions(ActionEvent event) throws IOException {
@@ -50,6 +51,11 @@ public class PrescriptionEdit implements Initializable {
         selectedPatient = patient;
         selectedPrescription = prescription;
         patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedPrescription.getTitle());
+        title_data.setText(selectedPrescription.getTitle());
+        description_data.setText(selectedPrescription.getDescription());
+        drug_data.setText(selectedPrescription.getDrug());
+        exp_date_ymd_data.setValue(selectedPrescription.getExpiration_date().toLocalDate());
+        notes_data.setText(selectedPrescription.getNotes());
     }
 
 

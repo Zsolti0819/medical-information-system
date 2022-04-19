@@ -14,8 +14,8 @@ TO DO:
 | 7   	 | Filling data on edit patient and record screens                                                               	            | Zsolti	    |
 | 8   	 | All tables show deleted (=true) items                                                         	                            | Szaki	     |
 | 9   	 | Implement delete patient function                                                                             	            | Zsolti     |
-| 10  	 | Implement delete record function                                                                              	            | Zsolti	    |
-| 11  	 | Implement update record function                                                                              	            | 	          |
+| 10  	 | Implement delete record function                                                                              	            | Zsolti     |
+| 11  	 | Implement update record function                                                                              	            | Zsolti     |
 | 12  	 | Add all blood groups to  blood group enum                                                             	                    | Simon	     |
 | 13  	 | Alert messages should be added when updating/deleting/creating is un/successful                                            |            |
 | 14  	 | Printing out how many rows was affected on update/delete                                                                   | Szaki      |
