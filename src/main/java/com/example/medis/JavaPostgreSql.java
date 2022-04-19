@@ -254,8 +254,9 @@ public class JavaPostgreSql {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query1);
 
-                preparedStatement.setString(1,String.valueOf(id));
+                preparedStatement.setLong(1,id);
                 System.out.println(preparedStatement);
+                preparedStatement.executeUpdate();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -925,7 +926,6 @@ public class JavaPostgreSql {
             System.out.println(preparedStatement);
             resultSet.next();
             result = createPatientFromResultSet(resultSet);
-            System.out.println(preparedStatement);
 
         } catch (SQLException e) {
             e.printStackTrace();
