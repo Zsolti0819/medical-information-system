@@ -2,12 +2,14 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.Record;
+import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -59,4 +61,23 @@ public class PatientInfoEdit implements Initializable{
     }
 
 
+    public void updatePatientInfo(ActionEvent event) throws IOException {
+
+        String birthIdText = birth_ID_data.getText();
+        String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
+
+        JavaPostgreSql.updatePatient(
+                selectedPatient.getId(),
+                first_name_data.getText(),
+                surname_data.getText(),
+                insurance_co_data.getSelectionModel().getSelectedItem(),
+                birthDateFromId,
+                sex_data.getSelectionModel().getSelectedItem(),
+                blood_group_data.getSelectionModel().getSelectedItem(),
+                address_data.getText(),
+                phone_data.getText(),
+                email_data.getText());
+        SceneController s = new SceneController();
+        s.switchToPatientInfo(selectedPatient, event);
+    }
 }

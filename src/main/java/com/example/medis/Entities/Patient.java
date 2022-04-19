@@ -150,4 +150,66 @@ public class Patient {
     public void setNext_visit(LocalDateTime next_visit) {
         this.next_visit = next_visit;
     }
+
+    public boolean hasValidID(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
+        int day = (int) (date % 100);
+        int month = (int) (date / 100 % 100);
+
+        if (month >= 51 && month <= 62)
+            month -= 50;
+
+        int[] mdays = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        return identificationNumberLong % 11 == 0 && month > 0 && (month <= 12 || month >= 51) &&
+                month <= 62 && day > 0 && day <= mdays[month];
+    }
+
+    public String getGender(String identificationNumber) {
+
+        if (!(identificationNumber.equals(""))) {
+            long identificationNumberLong = Long.parseLong(identificationNumber);
+            long date = identificationNumberLong / 10000;
+            int month = (int) (date / 100 % 100);
+            if (month >= 51 && month <= 62)
+                return "female";
+            else
+                return "male";
+        }
+        return null;
+    }
+
+    public static int getYear(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
+        int year = (int) (date / 10000 % 100);
+
+        if (year >= 20)
+            year += 1900;
+
+        else
+            year += 2000;
+
+        System.out.println(year);
+        return year;
+    }
+
+    public static int getMonth(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
+        int month = (int) (date / 100 % 100);
+
+        if (month >= 51 && month <= 62)
+            month -= 50;
+
+        return month;
+    }
+
+    public static int getDay(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
+
+        return (int) (date % 100);
+    }
 }
