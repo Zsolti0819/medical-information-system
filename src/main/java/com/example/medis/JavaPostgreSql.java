@@ -779,7 +779,7 @@ public class JavaPostgreSql {
             query = "SELECT * FROM patients WHERE identification_number=?;";
 
         } else {
-            query = "SELECT * FROM patients WHERE firs_name=? or surname=?;";
+            query = "SELECT * FROM patients WHERE first_name=? or surname=?;";
         }
         try {
 
