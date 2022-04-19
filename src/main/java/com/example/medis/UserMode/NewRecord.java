@@ -1,6 +1,7 @@
 package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
+import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,16 +31,10 @@ public class NewRecord {
 //        JavaPostgreSql.createRecord();
     }
 
-//    @FXML
-//    public void createPrescription(ActionEvent event) throws IOException {
-//        JavaPostgreSql.createPrescription(
-//                title_data.getText(),
-//                description_data.getText(),
-//                drug_data.getText(), exp_date_ymd_data.getValue().toString(),
-//                selectedPatient.getId(),
-//                1,
-//                notes_data.getText());
-//        SceneController s = new SceneController();
-//        s.switchToPrescriptions(selectedPatient, event);
-//    }
+    @FXML
+    public void createPrescription(ActionEvent event) throws IOException {
+//        JavaPostgreSql.createRecord()
+        SceneController s = new SceneController();
+        s.switchToPrescriptions(selectedPatient, event);
+    }
 }

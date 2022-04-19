@@ -33,7 +33,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Button layoutX="273.0" layoutY="360.0" mnemonicParsing="false" onAction="#createAppointment" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create">
+            <Button layoutX="273.0" layoutY="360.0" mnemonicParsing="false" onAction="#createAppointment" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create appointment">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

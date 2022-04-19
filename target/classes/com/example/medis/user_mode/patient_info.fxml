@@ -37,8 +37,13 @@
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-            <Line endX="155.0" layoutX="50.0" layoutY="248.0" startX="-50.0" />
-            <Hyperlink fx:id="closeWindowButton" layoutX="25.0" layoutY="263.0" onAction="#closeCurrentWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
+         <Hyperlink fx:id="prescriptionsLink" layoutX="25.0" layoutY="263.0" onAction="#switchToPrescriptions" text="Prescriptions" textFill="#151515">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </Hyperlink>
+            <Line endX="155.0" layoutX="50.0" layoutY="301.0" startX="-100.0" />
+            <Hyperlink fx:id="closeWindowButton" layoutX="25.0" layoutY="316.0" onAction="#closeCurrentWindow" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
@@ -47,7 +52,7 @@
     </left>
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label fx:id="name_and_surname_data" layoutX="163.0" layoutY="35.0" prefHeight="43.0" prefWidth="237.0" text="Patient name data">
+            <Label fx:id="name_and_last_name_data" layoutX="163.0" layoutY="35.0" prefHeight="43.0" prefWidth="237.0" text="Patient name data">
                 <font>
                     <Font size="25.0" />
                 </font>

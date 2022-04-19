@@ -597,8 +597,8 @@ public class JavaPostgreSql {
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
             preparedStatement.setLong(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 result.add(createPrescriptionFromResultSet(resultSet));
@@ -965,7 +965,7 @@ public class JavaPostgreSql {
 
         Prescription result = new Prescription();
         try {
-            String query = "SELECT * FROM prescription WHERE id=?";
+            String query = "SELECT * FROM prescriptions WHERE id=?";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);

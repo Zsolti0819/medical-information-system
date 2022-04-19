@@ -22,12 +22,12 @@
             </font>
          </Label>
          <TextField fx:id="first_name_data" layoutX="448.0" layoutY="138.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="184.0" prefHeight="25.0" prefWidth="140.0" text="Surname">
+         <Label layoutX="237.0" layoutY="184.0" prefHeight="25.0" prefWidth="140.0" text="Last name">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="surname_data" layoutX="448.0" layoutY="184.0" prefHeight="25.0" prefWidth="177.0" />
+         <TextField fx:id="last_name_data" layoutX="448.0" layoutY="184.0" prefHeight="25.0" prefWidth="177.0" />
          <Label layoutX="237.0" layoutY="230.0" prefHeight="25.0" prefWidth="140.0" text="Insurance company">
             <font>
                <Font name="System Bold" size="13.0" />
@@ -57,7 +57,6 @@
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="address" layoutX="448.0" layoutY="414.0" prefHeight="25.0" prefWidth="177.0" />
          <TextField fx:id="address_data" layoutX="448.0" layoutY="414.0" prefHeight="25.0" prefWidth="177.0" />
          <Label layoutX="237.0" layoutY="460.0" prefHeight="25.0" text="Phone">
             <font>

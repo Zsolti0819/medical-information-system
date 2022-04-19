@@ -18,9 +18,9 @@ import java.util.ResourceBundle;
 public class PatientInfoEdit implements Initializable{
 
     private Patient selectedPatient;
-    @FXML private Label name_and_surname_data;
+    @FXML private Label first_name_and_last_name;
     @FXML private TextField first_name_data;
-    @FXML private TextField surname_data;
+    @FXML private TextField last_name_data;
     @FXML private ComboBox<String> insurance_co_data;
     @FXML private TextField birth_ID_data;
     @FXML private ComboBox<String> sex_data;
@@ -40,7 +40,7 @@ public class PatientInfoEdit implements Initializable{
 
         String birthIdText = birth_ID_data.getText();
         String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
-        JavaPostgreSql.updatePatient(selectedPatient.getId(), first_name_data.getText(), surname_data.getText(), insurance_co_data.getSelectionModel().getSelectedItem(), birthDateFromId, sex_data.getSelectionModel().getSelectedItem(), blood_group_data.getSelectionModel().getSelectedItem(), address_data.getText(), phone_data.getText(), email_data.getText(), birth_ID_data.getText());
+        JavaPostgreSql.updatePatient(selectedPatient.getId(), first_name_data.getText(), last_name_data.getText(), insurance_co_data.getSelectionModel().getSelectedItem(), birthDateFromId, sex_data.getSelectionModel().getSelectedItem(), blood_group_data.getSelectionModel().getSelectedItem(), address_data.getText(), phone_data.getText(), email_data.getText(), birth_ID_data.getText());
         switchToPatientInfo(event);
     }
 
@@ -53,9 +53,9 @@ public class PatientInfoEdit implements Initializable{
 
     public void initData(Patient patient) {
         selectedPatient = patient;
-        name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
+        first_name_and_last_name.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
         first_name_data.setText(selectedPatient.getFirst_name());
-        surname_data.setText(selectedPatient.getLast_name());
+        last_name_data.setText(selectedPatient.getLast_name());
         insurance_co_data.getSelectionModel().select(String.valueOf(selectedPatient.getInsurance_company()));
         birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
         sex_data.getSelectionModel().select(String.valueOf(selectedPatient.getSex()));

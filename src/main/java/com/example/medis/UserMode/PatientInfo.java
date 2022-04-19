@@ -18,7 +18,7 @@ public class PatientInfo implements Initializable {
 
     private Patient selectedPatient;
 
-    @FXML private Label name_and_surname_data;
+    @FXML private Label name_and_last_name_data;
     @FXML private Label insurance_co_data;
     @FXML private Label birth_ID_data;
     @FXML private Label birth_date_data;
@@ -68,7 +68,7 @@ public class PatientInfo implements Initializable {
 
     public void initData(Patient patient) {
         selectedPatient = JavaPostgreSql.getPatient(patient.getId());
-        name_and_surname_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
+        name_and_last_name_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
         insurance_co_data.setText(selectedPatient.getInsurance_company());
         birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
         birth_date_data.setText(String.valueOf(selectedPatient.getBirth_date()));

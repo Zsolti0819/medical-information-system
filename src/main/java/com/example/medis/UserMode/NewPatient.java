@@ -21,7 +21,7 @@ public class NewPatient implements Initializable {
     private User loggedInUser;
 
     @FXML private TextField first_name_data;
-    @FXML private TextField surname_data;
+    @FXML private TextField last_name_data;
     @FXML private ComboBox<String> insurance_co_data;
     @FXML private TextField birth_ID_data;
     @FXML private ComboBox<String> sex_data;
@@ -35,7 +35,7 @@ public class NewPatient implements Initializable {
     // Create patient button
     @FXML private void createPatient(ActionEvent event) throws IOException {
         String firstNameText = first_name_data.getText();
-        String surnameText = surname_data.getText();
+        String lastNameText = last_name_data.getText();
         String insuranceCompanyText = insurance_co_data.getValue();
         String birthIdText = birth_ID_data.getText();
         String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
@@ -46,7 +46,7 @@ public class NewPatient implements Initializable {
         String emailText = email_data.getText();
 
         System.out.println(firstNameText);
-        System.out.println(surnameText);
+        System.out.println(lastNameText);
         System.out.println(insuranceCompanyText);
         System.out.println(birthIdText);
         System.out.println(birthDateFromId);
@@ -56,12 +56,12 @@ public class NewPatient implements Initializable {
         System.out.println(phoneText);
         System.out.println( emailText);
 
-        if (firstNameText.equals("") || surnameText.equals("") || bloodGroupValue.equals("") || sexValue.equals("") || birthIdText.isEmpty()) {
+        if (firstNameText.equals("") || lastNameText.equals("") || bloodGroupValue.equals("") || sexValue.equals("") || birthIdText.isEmpty()) {
             missing_values_msg.setText("Please fill in missing compulsory data!");
         }
 
         else {
-            missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, surnameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
+            missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
             switchToDashboard(event);
         }
     }

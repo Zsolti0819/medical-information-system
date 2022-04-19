@@ -52,7 +52,7 @@
     </left>
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label fx:id="name_and_surname_data" layoutX="163.0" layoutY="35.0" prefHeight="43.0" prefWidth="237.0" text="Patient name data">
+            <Label fx:id="name_and_last_name_data" layoutX="163.0" layoutY="35.0" prefHeight="43.0" prefWidth="237.0" text="Patient name data">
                 <font>
                     <Font size="25.0" />
                 </font>

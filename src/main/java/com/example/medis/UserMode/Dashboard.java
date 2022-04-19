@@ -28,7 +28,7 @@ public class Dashboard implements Initializable {
 
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
-    @FXML private TableColumn<Patient, String> surname;
+    @FXML private TableColumn<Patient, String> last_name;
     @FXML private TableColumn<Patient, Long> birth_id;
     @FXML private TableColumn<Patient, LocalDateTime> last_visit;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
@@ -111,7 +111,7 @@ public class Dashboard implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)  {
         name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
-        surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
         birth_id.setCellValueFactory(new PropertyValueFactory<>("birth_id"));
         last_visit.setCellValueFactory(new PropertyValueFactory<>("last_visit"));
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
