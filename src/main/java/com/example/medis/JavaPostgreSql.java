@@ -995,7 +995,7 @@ public class JavaPostgreSql {
                 }
 
             } else {
-                query = "SELECT * FROM patients WHERE LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ? AND deleted=false;";
+                query = "SELECT * FROM patients WHERE (LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ?)AND deleted=false;";
 
 
 
