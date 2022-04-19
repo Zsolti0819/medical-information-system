@@ -13,7 +13,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.UserMode.PatientInfoEdit">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label layoutX="384.0" layoutY="41.0" prefHeight="43.0" prefWidth="237.0" text="Patient's name">
+            <Label fx:id="name_and_surname_data" layoutX="384.0" layoutY="41.0" prefHeight="43.0" prefWidth="237.0" text="Patient's name">
                 <font>
                     <Font size="25.0" />
                 </font>
@@ -38,7 +38,7 @@
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="insurance_co_data" layoutX="448.0" layoutY="230.0" prefHeight="25.0" prefWidth="177.0" />
+         <ComboBox fx:id="insurance_co_data" layoutX="448.0" layoutY="230.0" prefHeight="25.0" prefWidth="177.0" />
          <Label layoutX="237.0" layoutY="276.0" prefHeight="25.0" text="Birth ID">
             <font>
                <Font name="System Bold" size="13.0" />
@@ -62,7 +62,6 @@
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="address1" layoutX="448.0" layoutY="414.0" prefHeight="25.0" prefWidth="177.0" />
          <TextField fx:id="address_data" layoutX="448.0" layoutY="414.0" prefHeight="25.0" prefWidth="177.0" />
          <Label layoutX="237.0" layoutY="460.0" prefHeight="25.0" text="Phone">
             <font>

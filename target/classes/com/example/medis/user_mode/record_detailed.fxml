@@ -44,22 +44,12 @@
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-            <Label layoutX="273.0" layoutY="248.0" prefHeight="25.0" text="Notes">
+            <Label layoutX="273.0" layoutY="340.0" prefHeight="25.0" text="Notes">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <Label fx:id="notes_data" layoutX="444.0" layoutY="248.0" prefHeight="25.0" text="Notes">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
-         </Label>
-            <Label layoutX="273.0" layoutY="294.0" prefHeight="25.0" text="Medicines">
-                <font>
-                    <Font name="System Bold" size="13.0" />
-                </font>
-            </Label>
-         <Label fx:id="medicines_data" layoutX="444.0" layoutY="294.0" prefHeight="25.0" text="Medicines">
+         <Label fx:id="notes_data" layoutX="444.0" layoutY="340.0" prefHeight="25.0" text="Notes">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
