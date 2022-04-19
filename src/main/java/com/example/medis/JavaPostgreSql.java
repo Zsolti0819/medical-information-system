@@ -1,9 +1,6 @@
 package com.example.medis;
 
-import com.example.medis.Entities.Appointment;
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.Record;
-import com.example.medis.Entities.User;
+import com.example.medis.Entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -957,7 +954,42 @@ public class JavaPostgreSql {
         return result;
     }
 
+    public static Prescription getPrescriptionById(Long prescription_id) {
 
+        Prescription result = new Prescription();
+        try {
+            String query = "SELECT * FROM prescription WHERE id=?";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setLong(1, prescription_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
+            resultSet.next();
+            result = createPrescriptionFromResultSet(resultSet);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private static Prescription createPrescriptionFromResultSet(ResultSet resultSet) throws SQLException {
+        Prescription obj = new Prescription();
+        obj.setId(resultSet.getLong("id"));
+        obj.setTitle(resultSet.getString("title"));
+        obj.setDescription(resultSet.getString("description"));
+        obj.setDrug(resultSet.getString("drug"));
+        obj.setNotes(resultSet.getString("notes"));
+        obj.setPatient_id(resultSet.getLong("patient_id"));
+        obj.setExpiration_date(resultSet.getDate("expiration_date"));
+        obj.setCreated_at(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
+        obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
+        obj.setDeleted(resultSet.getBoolean("deleted"));
+        return obj;
+    }
 
 
 //    public static void main(String[] args){
