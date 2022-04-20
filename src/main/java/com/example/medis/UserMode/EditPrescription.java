@@ -48,6 +48,9 @@ public class EditPrescription  {
     private void deletePrescription(ActionEvent event) throws IOException {
         JavaPostgreSql.deletePrescription(selectedPrescription.getId());
         switchToPrescriptions(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Prescription was deleted successfully!");
+        a.show();
     }
 
     public void initData(Patient patient, Prescription prescription, User user) {

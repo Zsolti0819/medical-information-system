@@ -64,6 +64,9 @@ public class EditAppointment implements Initializable {
         JavaPostgreSql.deleteAppointment(selectedAppointment.getId());
         SceneController s = new SceneController();
         s.switchToAppointments(loggedInUser, selectedPatient, event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Appointment was deleted successfully!");
+        a.show();
     }
 
     static void fillAppointmentOptions(ComboBox<String> doctor_data, ComboBox<String> start_h_data, ComboBox<String> start_min_data, ComboBox<String> end_h_data, ComboBox<String> end_min_data) {

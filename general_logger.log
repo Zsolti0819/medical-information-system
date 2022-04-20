@@ -223,3 +223,27 @@
 [2022-04-20 17:35:58] [INFO   ] APPOINTMENT | DELETE: Appointment aaaabbb deleted 
 [2022-04-20 17:36:07] [INFO   ] APPOINTMENT | DELETE: Appointment firsttt deleted 
 [2022-04-20 17:36:13] [INFO   ] APPOINTMENT | DELETE: Appointment s deleted 
+[2022-04-20 17:43:16] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:43:36] [INFO   ] RECORD | CREATE: Record hozza letre recordot more created 
+[2022-04-20 17:44:17] [INFO   ] RECORD | CREATE: Record ffd created 
+[2022-04-20 17:44:25] [INFO   ] APPOINTMENT | DELETE: Appointment ffd deleted 
+[2022-04-20 17:47:28] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:52:50] [INFO   ] PATIENT | CREATE: Patient johhnysins@gmail.com created 
+[2022-04-20 17:43:16] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:43:36] [INFO   ] RECORD | CREATE: Record hozza letre recordot more created 
+[2022-04-20 17:44:17] [INFO   ] RECORD | CREATE: Record ffd created 
+[2022-04-20 17:44:25] [INFO   ] APPOINTMENT | DELETE: Appointment ffd deleted 
+[2022-04-20 17:47:28] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:52:50] [INFO   ] PATIENT | CREATE: Patient johhnysins@gmail.com created 
+[2022-04-20 17:43:16] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:43:36] [INFO   ] RECORD | CREATE: Record hozza letre recordot more created 
+[2022-04-20 17:44:17] [INFO   ] RECORD | CREATE: Record ffd created 
+[2022-04-20 17:44:25] [INFO   ] APPOINTMENT | DELETE: Appointment ffd deleted 
+[2022-04-20 17:47:28] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:52:50] [INFO   ] PATIENT | CREATE: Patient johhnysins@gmail.com created 
+[2022-04-20 17:43:16] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:43:36] [INFO   ] RECORD | CREATE: Record hozza letre recordot more created 
+[2022-04-20 17:44:17] [INFO   ] RECORD | CREATE: Record ffd created 
+[2022-04-20 17:44:25] [INFO   ] APPOINTMENT | DELETE: Appointment ffd deleted 
+[2022-04-20 17:47:28] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 17:52:50] [INFO   ] PATIENT | CREATE: Patient johhnysins@gmail.com created 

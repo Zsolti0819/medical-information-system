@@ -49,6 +49,9 @@ public class EditRecord  {
     private void deleteRecord(ActionEvent event) throws IOException {
         JavaPostgreSql.deleteRecord(selectedRecord.getId());
         switchToRecords(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Record was deleted successfully!");
+        a.show();
     }
 
     @FXML
