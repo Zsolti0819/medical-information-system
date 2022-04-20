@@ -437,7 +437,6 @@ public class JavaPostgreSql {
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, description);
             preparedStatement.setDate(3, getDate(execute_date));

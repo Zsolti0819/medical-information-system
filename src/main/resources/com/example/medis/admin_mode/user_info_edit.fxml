@@ -66,12 +66,12 @@
             </font>
          </Label>
          <TextField fx:id="email_data" layoutX="445.0" layoutY="478.0" prefHeight="25.0" prefWidth="177.0" />
-            <Button layoutX="234.0" layoutY="513.0" mnemonicParsing="false" onAction="#updatePatientInfo" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save user info">
+            <Button layoutX="234.0" layoutY="513.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save user info">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="439.0" layoutY="513.0" mnemonicParsing="false" onAction="#switchToPatientInfo" prefHeight="35.0" prefWidth="190.0" text="Cancel">
+            <Button layoutX="439.0" layoutY="513.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" text="Cancel">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
@@ -82,7 +82,7 @@
             </font>
          </Label>
          <ComboBox fx:id="position_data" layoutX="445.0" layoutY="64.0" prefHeight="25.0" prefWidth="177.0" />
-         <Button layoutX="234.0" layoutY="561.0" mnemonicParsing="false" onAction="#deleteRecord" prefHeight="35.0" prefWidth="394.0" style="-fx-background-color: #DC143C #DC143C;" text="Delete record">
+         <Button layoutX="234.0" layoutY="561.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="394.0" style="-fx-background-color: #DC143C #DC143C;" text="Delete record">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
