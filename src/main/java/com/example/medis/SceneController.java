@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SceneController extends NewPatient {
+public class SceneController {
 
     // Dashboard
 

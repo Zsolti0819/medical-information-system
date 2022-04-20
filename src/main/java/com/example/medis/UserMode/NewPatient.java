@@ -44,17 +44,6 @@ public class NewPatient implements Initializable {
         String phoneText = phone_data.getText();
         String emailText = email_data.getText();
 
-        System.out.println(firstNameText);
-        System.out.println(lastNameText);
-        System.out.println(insuranceCompanyText);
-        System.out.println(birthIdText);
-        System.out.println(birthDateFromId);
-        System.out.println(sexValue);
-        System.out.println( bloodGroupValue);
-        System.out.println(addressText);
-        System.out.println(phoneText);
-        System.out.println( emailText);
-
         if (firstNameText.equals("") || lastNameText.equals("") || bloodGroupValue.equals("") || sexValue.equals("") || birthIdText.isEmpty()) {
             missing_values_msg.setText("Please fill in missing compulsory data!");
         }

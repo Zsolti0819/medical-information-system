@@ -69,7 +69,6 @@ public class Records implements Initializable {
 
     private void addButtonToTable() {
         TableColumn<Record, Void> details  = new TableColumn<>();
-        details.setText("Details");
 
         Callback<TableColumn<Record, Void>, TableCell<Record, Void>> cellFactory = new Callback<>() {
             @Override

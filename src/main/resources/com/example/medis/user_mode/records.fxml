@@ -61,9 +61,9 @@
             </Label>
          <TableView fx:id="recordsTable" layoutX="18.0" layoutY="137.0" prefHeight="402.0" prefWidth="654.0" style="-fx-background-color: white;">
             <columns>
-               <TableColumn fx:id="title" prefWidth="173.0" text="Title" />
-               <TableColumn fx:id="description" prefWidth="215.0" text="Description" />
-               <TableColumn fx:id="created_at" prefWidth="182.0" text="Created at" />
+               <TableColumn fx:id="title" prefWidth="200.0" text="Title" />
+               <TableColumn fx:id="description" prefWidth="200.0" text="Description" />
+               <TableColumn fx:id="created_at" prefWidth="200.0" text="Created at" />
             </columns>
          </TableView>
          <Pagination layoutX="18.0" layoutY="539.0" maxPageIndicatorCount="4" prefHeight="46.0" prefWidth="144.0" />

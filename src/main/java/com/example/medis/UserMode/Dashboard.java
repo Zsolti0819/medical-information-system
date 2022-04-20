@@ -57,7 +57,6 @@ public class Dashboard implements Initializable {
 
     private void addButtonToTable() {
         TableColumn<Patient, Void> details  = new TableColumn<>();
-        details.setText("Details");
 
         Callback<TableColumn<Patient, Void>, TableCell<Patient, Void>> cellFactory = new Callback<>() {
             @Override
@@ -103,7 +102,6 @@ public class Dashboard implements Initializable {
         name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
         last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
         birth_id.setCellValueFactory(new PropertyValueFactory<>("birth_id"));
-        last_visit.setCellValueFactory(new PropertyValueFactory<>("last_visit"));
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
         addButtonToTable();
         patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());

@@ -77,7 +77,6 @@ public class Prescriptions implements Initializable {
 
     private void addButtonToTable() {
         TableColumn<Prescription, Void> details  = new TableColumn<>();
-        details.setText("Details");
 
         Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>> cellFactory = new Callback<>() {
             @Override
@@ -120,7 +119,7 @@ public class Prescriptions implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        drug.setCellValueFactory(new PropertyValueFactory<>("description"));
+        drug.setCellValueFactory(new PropertyValueFactory<>("drug"));
         expiration_date.setCellValueFactory(new PropertyValueFactory<>("expiration_date"));
         prescribed_by.setCellValueFactory(new PropertyValueFactory<>("doctor_id"));
         addButtonToTable();

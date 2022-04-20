@@ -8,8 +8,8 @@ TO DO:
 | 1   	 | Some appointments cannot be updated for unknown reason.                                                       	            | 	Szaki     |
 | 2   	 | At patient creation screen, fields and input data should be controlled                                        	            | 	          |
 | 3   	 | Add search functionality to frontend                                                                                     	 | Andrej	    |
-| 4   	 | loggedInUser object needs to be created to identify which user is currently logged in. (Dashboard.java)       	            | 	  Szaki   |
-| 5   	 | At appointment creation, created_by is set to 1. We need the loggedInUser to know who created the appointment 	            | 	          |
+| 4   	 | loggedInUser object needs to be created to identify which user is currently logged in. (Dashboard.java)       	            | Szaki   |
+| 5   	 | At appointment creation, created_by is set to 1. We need the loggedInUser to know who created the appointment 	            | Szaki, Zsolti	          |
 | 6   	 | Distinguish user based on credentials (admin, doctor, nurse, receptionist)                                    	            | 	          |
 | 7   	 | Filling data on edit patient and record screens                                                               	            | Zsolti	    |
 | 8   	 | All tables show deleted (=true) items                                                         	                            | Szaki	     |

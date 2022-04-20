@@ -36,15 +36,7 @@ public class NewAppointment implements Initializable {
     @FXML
     private void createAppointment(ActionEvent event) throws IOException {
         String[] doctor_name = doctor_data.getValue().split(" ");
-        JavaPostgreSql.creteAppointment(
-                title_data.getText(),
-                description_data.getText(),
-                start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(),
-                end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(),
-                selectedPatient.getId(),
-                JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId(), 1
-                );
-
+        JavaPostgreSql.creteAppointment(title_data.getText(), description_data.getText(), start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(), end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(), selectedPatient.getId(), JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId(), loggedInUser.getId());
         switchToAppointments(event);
     }
 

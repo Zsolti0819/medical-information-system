@@ -31,7 +31,7 @@ public class NewPrescription {
     // Create prescription button
     @FXML
     public void createPrescription(ActionEvent event) throws IOException {
-        JavaPostgreSql.createPrescription(title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), 1, notes_data.getText());
+        JavaPostgreSql.createPrescription(title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notes_data.getText());
         switchToPrescriptions(event);
     }
 
