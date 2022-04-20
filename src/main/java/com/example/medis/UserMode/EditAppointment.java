@@ -9,10 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,9 +45,10 @@ public class EditAppointment implements Initializable {
                 end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(),
                 selectedAppointment.getPatient_id(), 1);
 
-        SceneController s = new SceneController();
-        s.switchToAppointments(loggedInUser, selectedPatient, event);
-        s.switchToPopup("Changes saved !");
+        switchToAppointments(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Appointment was updated successfully!");
+        a.show();
     }
 
     // Cancel button

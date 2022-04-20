@@ -7,10 +7,7 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,9 +29,10 @@ public class NewPrescription {
     @FXML
     public void createPrescription(ActionEvent event) throws IOException {
         JavaPostgreSql.createPrescription(title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notes_data.getText());
-        SceneController s = new SceneController();
-        s.switchToPopup("Changes saved !");
         switchToPrescriptions(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Prescription was created successfully!");
+        a.show();
     }
 
     // Cancel button

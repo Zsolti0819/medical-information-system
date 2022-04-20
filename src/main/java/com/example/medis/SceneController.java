@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -20,44 +21,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SceneController {
-
-
-    public void switchToPopup(String msg) throws IOException {
-
-        Stage s = new Stage();
-        s.setTitle("Medis");
-        s.initModality(Modality.APPLICATION_MODAL);
-        Button button = new Button("Ok");
-        TextFlow flow = new TextFlow();
-        Text text = new Text(msg);
-        Pane r = new Pane();
-        s.setResizable(false);
-
-        button.setTranslateX(110);
-        button.setTranslateY(135);
-        flow.setTranslateX(50);
-        flow.setTranslateY(70);
-        text.setStyle("-fx-font-weight: bold");
-        text.setStyle("-fx-font: 20 arial;");
-
-        flow.getChildren().addAll(text);
-        r.getChildren().add(flow);
-        r.getChildren().add(button);
-
-        Scene sc = new Scene(r, 250, 200);
-        s.setScene(sc);
-        s.show();
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-
-            public void handle(ActionEvent e)
-            {
-                s.close();
-            }
-        };
-        button.setOnAction(event);
-
-    }
-
 
     // Dashboard
 

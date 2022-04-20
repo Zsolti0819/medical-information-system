@@ -7,10 +7,7 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,9 +34,10 @@ public class NewAppointment implements Initializable {
     private void createAppointment(ActionEvent event) throws IOException {
         String[] doctor_name = doctor_data.getValue().split(" ");
         JavaPostgreSql.creteAppointment(title_data.getText(), description_data.getText(), start_ymd_data.getValue().toString()+" " + start_h_data.getValue() + ":" + start_min_data.getValue(), end_ymd_data.getValue().toString() + " "  + end_h_data.getValue()+":" + end_min_data.getValue(), selectedPatient.getId(), JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId(), loggedInUser.getId());
-        SceneController s = new SceneController();
-        s.switchToPopup("Changes saved !");
         switchToAppointments(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Appointment was created successfully!");
+        a.show();
     }
 
     // Cancel button

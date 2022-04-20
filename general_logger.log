@@ -119,6 +119,8 @@
 [2022-04-20 11:39:18] [INFO   ] RECORD | CREATE: Record Q created 
 [2022-04-20 11:39:46] [INFO   ] APPOINTMENT | CREATE: Appointment Q created 
 [2022-04-20 11:39:58] [INFO   ] PRESCRIPTION | CREATE: Prescription Q created 
+[2022-04-20 11:42:46] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 11:42:59] [INFO   ] PATIENT | UPDATE: Patient email updated 
 [2022-04-20 12:03:03] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
 [2022-04-20 12:07:19] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
 [2022-04-20 12:07:40] [INFO   ] PATIENT | CREATE: Patient asd@asd.com created 
@@ -129,3 +131,65 @@
 [2022-04-20 12:08:58] [INFO   ] APPOINTMENT | UPDATE: Appointment qwewww updated 
 [2022-04-20 12:09:15] [INFO   ] PRESCRIPTION | CREATE: Prescription trttt created 
 [2022-04-20 12:09:21] [INFO   ] PRESCRIPTION | UPDATE: Prescription trtttwwww updated 
+[2022-04-20 12:12:50] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:16:39] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:17:00] [INFO   ] PATIENT | CREATE: Patient a created 
+[2022-04-20 12:18:11] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:18:27] [INFO   ] PATIENT | CREATE: Patient  created 
+[2022-04-20 12:19:06] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:19:30] [INFO   ] PRESCRIPTION | CREATE: Prescription a created 
+[2022-04-20 12:20:07] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:20:28] [INFO   ] PRESCRIPTION | CREATE: Prescription a created 
+[2022-04-20 12:20:47] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:21:04] [INFO   ] PRESCRIPTION | CREATE: Prescription a created 
+[2022-04-20 12:21:45] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:22:44] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:23:07] [INFO   ] APPOINTMENT | CREATE: Appointment a created 
+[2022-04-20 12:28:54] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:29:09] [INFO   ] PATIENT | CREATE: Patient a created 
+[2022-04-20 12:31:13] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:31:26] [INFO   ] PATIENT | CREATE: Patient aaa created 
+[2022-04-20 12:32:32] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:32:44] [INFO   ] PATIENT | CREATE: Patient asas created 
+[2022-04-20 12:34:26] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:34:33] [INFO   ] PATIENT | DELETE: Patient asas deleted 
+[2022-04-20 12:35:38] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:35:44] [INFO   ] PATIENT | DELETE: Patient aaa deleted 
+[2022-04-20 12:35:49] [INFO   ] PATIENT | DELETE: Patient a deleted 
+[2022-04-20 12:35:54] [INFO   ] PATIENT | DELETE: Patient  deleted 
+[2022-04-20 12:35:59] [INFO   ] PATIENT | DELETE: Patient a deleted 
+[2022-04-20 12:36:13] [INFO   ] PATIENT | CREATE: Patient QQ created 
+[2022-04-20 12:37:00] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:37:25] [INFO   ] PATIENT | CREATE: Patient DD created 
+[2022-04-20 12:39:57] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:40:10] [INFO   ] PATIENT | CREATE: Patient aa created 
+[2022-04-20 12:44:12] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:44:25] [INFO   ] PATIENT | CREATE: Patient ASDASDDAS created 
+[2022-04-20 12:46:38] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:46:53] [INFO   ] PATIENT | CREATE: Patient AAA created 
+[2022-04-20 12:50:47] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:50:54] [INFO   ] PATIENT | DELETE: Patient AAA deleted 
+[2022-04-20 12:51:02] [INFO   ] PATIENT | DELETE: Patient asd@asd.com deleted 
+[2022-04-20 12:51:08] [INFO   ] PATIENT | DELETE: Patient aa deleted 
+[2022-04-20 12:51:25] [INFO   ] PATIENT | CREATE: Patient aaaa created 
+[2022-04-20 12:55:42] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:55:56] [INFO   ] PATIENT | CREATE: Patient sdadsfa created 
+[2022-04-20 12:56:15] [INFO   ] PATIENT | DELETE: Patient QQ deleted 
+[2022-04-20 12:56:19] [INFO   ] PATIENT | DELETE: Patient ASDASDDAS deleted 
+[2022-04-20 12:56:25] [INFO   ] PATIENT | DELETE: Patient sdadsfa deleted 
+[2022-04-20 12:58:07] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:58:24] [INFO   ] PATIENT | CREATE: Patient fsdsdf created 
+[2022-04-20 12:59:20] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 13:00:31] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 13:00:38] [INFO   ] PATIENT | DELETE: Patient aaaa deleted 
+[2022-04-20 13:00:56] [INFO   ] PATIENT | CREATE: Patient a created 
+[2022-04-20 13:01:32] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 13:01:38] [INFO   ] PATIENT | DELETE: Patient a deleted 
+[2022-04-20 13:01:57] [INFO   ] PATIENT | CREATE: Patient 655656165156 created 
+[2022-04-20 13:06:36] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 13:06:43] [INFO   ] PATIENT | UPDATE: Patient asd@gmail.com updated 
+[2022-04-20 13:09:21] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 13:10:51] [INFO   ] RECORD | CREATE: Record s created 
+[2022-04-20 13:11:14] [INFO   ] RECORD | UPDATE: Record firsttt updated 
+[2022-04-20 13:11:27] [INFO   ] APPOINTMENT | UPDATE: Appointment aaaabbb updated 
+[2022-04-20 13:11:32] [INFO   ] PRESCRIPTION | UPDATE: Prescription qeqwess updated 

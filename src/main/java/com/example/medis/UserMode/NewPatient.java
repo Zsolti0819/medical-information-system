@@ -6,11 +6,10 @@ import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +29,7 @@ public class NewPatient implements Initializable {
     @FXML private TextField phone_data;
     @FXML private TextField email_data;
     @FXML private Label missing_values_msg;
+    @FXML private Button createPatientButton;
 
     // Create patient button
     @FXML private void createPatient(ActionEvent event) throws IOException {
@@ -50,9 +50,10 @@ public class NewPatient implements Initializable {
 
         else {
             missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
-            SceneController s = new SceneController();
-            s.switchToPopup("Changes saved !");
             switchToDashboard(event);
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Patient "+ firstNameText + " " + lastNameText + " was created successfully!");
+            a.show();
         }
     }
 

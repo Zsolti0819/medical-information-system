@@ -8,10 +8,7 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,9 +30,10 @@ public class EditRecord  {
     public void updateRecord(ActionEvent event) throws IOException {
         System.out.println("Logged in user: " + loggedInUser.getId());
         JavaPostgreSql.updateRecord(selectedRecord.getId(), title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
-        SceneController s = new SceneController();
-        s.switchToPopup("Changes saved !");
         switchToRecordDetailed(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Record was updated successfully!");
+        a.show();
     }
 
     // Cancel button

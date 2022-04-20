@@ -6,10 +6,7 @@ import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -27,9 +24,10 @@ public class NewRecord {
     @FXML
     public void createRecord(ActionEvent event) throws IOException {
         JavaPostgreSql.createRecord(title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
-        SceneController s = new SceneController();
-        s.switchToPopup("Changes saved !");
         switchToRecords(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Record was created successfully!");
+        a.show();
     }
 
     // Cancel button
