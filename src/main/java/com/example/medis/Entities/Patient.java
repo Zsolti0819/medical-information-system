@@ -151,7 +151,7 @@ public class Patient {
         this.next_visit = next_visit;
     }
 
-    public boolean hasValidID(String identificationNumber) {
+    public static boolean hasValidID(String identificationNumber) {
         long identificationNumberLong = Long.parseLong(identificationNumber);
         long date = identificationNumberLong / 10000;
         int day = (int) (date % 100);

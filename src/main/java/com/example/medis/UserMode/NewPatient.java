@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class NewPatient implements Initializable {
 
@@ -37,23 +39,70 @@ public class NewPatient implements Initializable {
         String lastNameText = last_name_data.getText();
         String insuranceCompanyText = insurance_co_data.getValue();
         String birthIdText = birth_ID_data.getText();
-        String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
         String sexValue = sex_data.getValue();
+        String birthDateFromId = "";
         String bloodGroupValue = blood_group_data.getValue();
         String addressText = address_data.getText();
         String phoneText = phone_data.getText();
         String emailText = email_data.getText();
 
-        if (firstNameText.equals("") || lastNameText.equals("") || bloodGroupValue.equals("") || sexValue.equals("") || birthIdText.isEmpty()) {
+
+        if (!(firstNameText.equals("") || lastNameText.equals("") || insuranceCompanyText.equals("") | bloodGroupValue.equals("") || sexValue.equals("") || addressText.equals("") || emailText.equals("") || phoneText.equals("") || birthIdText.equals(""))){
+            if (validationBirthID(birthIdText)){
+                birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
+                if (validationPhone(phoneText)){
+                    if (validationEmail(emailText)){
+                        missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
+                        switchToDashboard(event);
+                        Alert a = new Alert(Alert.AlertType.INFORMATION);
+                        a.setContentText("Patient "+ firstNameText + " " + lastNameText + " was created successfully!");
+                        a.show();
+                    }
+                    else{
+                        missing_values_msg.setText("Please enter valid email!");
+                    }
+                }
+                else{
+                    missing_values_msg.setText("Please enter valid phone number!");
+                }
+            }else{
+
+                missing_values_msg.setText("Please enter valid birth id!");
+            }
+        }
+        else {
+
             missing_values_msg.setText("Please fill in missing compulsory data!");
         }
+    }
 
+
+    public boolean validationEmail(String emailText){
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(emailText);
+        return matcher.matches();
+    }
+
+    public boolean validationPhone(String phoneText){
+        String regex = "^[0-9]*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneText);
+        return matcher.matches();
+    }
+
+    public boolean validationBirthID(String birthId){
+        String regex = "^[0-9]*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(birthId);
+        if (matcher.matches()){
+            if (Patient.hasValidID(birthId)) {
+                return true;
+            }
+            return false;
+        }
         else {
-            missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
-            switchToDashboard(event);
-            Alert a = new Alert(Alert.AlertType.INFORMATION);
-            a.setContentText("Patient "+ firstNameText + " " + lastNameText + " was created successfully!");
-            a.show();
+            return false;
         }
     }
 
