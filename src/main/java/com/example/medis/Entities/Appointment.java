@@ -16,6 +16,7 @@ public class Appointment {
     private int start_hour, start_min, start_year, start_month, start_day,  end_hour, end_min, end_year, end_month, end_day;
     private long patient_id;
     private long doctor_id;
+    private String doctor_name;
     private boolean deleted;
     private long created_by;
 
@@ -163,5 +164,53 @@ public class Appointment {
 
     public Date getEndDate(){
         return new GregorianCalendar(end_year,end_month,end_day).getTime();
+    }
+
+    public void setStart_hour(int start_hour) {
+        this.start_hour = start_hour;
+    }
+
+    public void setStart_min(int start_min) {
+        this.start_min = start_min;
+    }
+
+    public void setStart_year(int start_year) {
+        this.start_year = start_year;
+    }
+
+    public void setStart_month(int start_month) {
+        this.start_month = start_month;
+    }
+
+    public void setStart_day(int start_day) {
+        this.start_day = start_day;
+    }
+
+    public void setEnd_hour(int end_hour) {
+        this.end_hour = end_hour;
+    }
+
+    public void setEnd_min(int end_min) {
+        this.end_min = end_min;
+    }
+
+    public void setEnd_year(int end_year) {
+        this.end_year = end_year;
+    }
+
+    public void setEnd_month(int end_month) {
+        this.end_month = end_month;
+    }
+
+    public void setEnd_day(int end_day) {
+        this.end_day = end_day;
+    }
+
+    public String getDoctor_name() {
+        return doctor_name;
+    }
+
+    public void setDoctor_name(String doctor_name) {
+        this.doctor_name = doctor_name;
     }
 }
