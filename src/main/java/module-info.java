@@ -11,4 +11,6 @@ module com.example.medis {
     exports com.example.medis.UserMode;
     opens com.example.medis.UserMode to javafx.fxml;
     exports com.example.medis;
+    exports com.example.medis.AdminMode;
+    opens com.example.medis.AdminMode to javafx.fxml;
 }

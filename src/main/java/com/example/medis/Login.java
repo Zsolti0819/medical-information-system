@@ -29,7 +29,13 @@ public class Login {
 //            loginMsg.setText("Success!");
             if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
                 loggedInUser = JavaPostgreSql.getUserByEmail(loginEmail.getText());
-                s.switchToDashboard(loggedInUser, event);
+                if (loggedInUser.getPosition().equals("admin")) {
+                    s.switchToUsers(loggedInUser, event);
+                }
+                else {
+                    s.switchToDashboard(loggedInUser, event);
+                }
+
             }
 
 

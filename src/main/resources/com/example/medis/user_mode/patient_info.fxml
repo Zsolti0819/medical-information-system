@@ -52,14 +52,11 @@
     </left>
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label fx:id="name_and_last_name_data" layoutX="163.0" layoutY="35.0" prefHeight="43.0" prefWidth="237.0" text="Patient name data">
+            <Label fx:id="name_and_last_name_data" layoutX="67.0" layoutY="35.0" prefHeight="43.0" prefWidth="237.0" text="Patient name data">
                 <font>
                     <Font size="25.0" />
                 </font>
             </Label>
-            <ImageView fitHeight="84.0" fitWidth="95.0" layoutX="49.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../img/placeholderProfPic.png" />
-            </ImageView>
             <Label layoutX="67.0" layoutY="110.0" prefHeight="25.0" prefWidth="140.0" text="Insurance company">
                 <font>
                     <Font name="System Bold" size="13.0" />
@@ -130,7 +127,7 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" onAction="#deletePatient" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #FF0000;" text="Delete patient">
+            <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" onAction="#deletePatient" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #DC143C;" text="Delete patient">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

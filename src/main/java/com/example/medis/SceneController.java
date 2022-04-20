@@ -1,5 +1,8 @@
 package com.example.medis;
 
+import com.example.medis.AdminMode.UserInfo;
+import com.example.medis.AdminMode.UserInfoEdit;
+import com.example.medis.AdminMode.Users;
 import com.example.medis.Entities.*;
 import com.example.medis.UserMode.*;
 import javafx.event.ActionEvent;
@@ -12,6 +15,48 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneController {
+
+    public void switchToUsers(User loggedInUser, ActionEvent event) throws IOException {
+
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/users.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        Users controller = loader.getController();
+        controller.initData(loggedInUser);
+
+        stage.show();
+    }
+
+    public void switchToUserInfo(User loggedInUser, ActionEvent event) throws IOException {
+
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/user_info.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        UserInfo controller = loader.getController();
+        controller.initData(loggedInUser);
+
+        stage.show();
+    }
+
+    public void switchToUserInfoEdit(User loggedInUser, ActionEvent event) throws IOException {
+
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/user_info_edit.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        UserInfoEdit controller = loader.getController();
+        controller.initData(loggedInUser);
+
+        stage.show();
+    }
 
     // Dashboard
 

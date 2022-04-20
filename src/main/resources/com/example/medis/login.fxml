@@ -39,11 +39,6 @@
                <Font name="System Bold" size="15.0" />
             </font>
          </Button>
-         <Button fx:id="loginAdminButton" layoutX="344.0" layoutY="410.0" mnemonicParsing="false" onAction="#userLogIn" prefHeight="31.0" prefWidth="245.0" style="-fx-background-color: #1E90FF;" text="Log in (admin)">
-            <font>
-               <Font name="System Bold" size="15.0" />
-            </font>
-         </Button>
          <Label fx:id="loginMsg" alignment="CENTER" layoutX="255.0" layoutY="234.0" prefHeight="20.0" prefWidth="400.0" textFill="RED">
             <font>
                <Font size="14.0" />
