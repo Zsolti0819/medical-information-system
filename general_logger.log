@@ -245,3 +245,13 @@
 [2022-04-20 17:53:29] [INFO   ] LOGIN | USER: User receptionist logged in 
 [2022-04-20 17:55:48] [INFO   ] LOGIN | USER: User receptionist logged in 
 [2022-04-20 17:58:27] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 18:30:39] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:31:30] [INFO   ] APPOINTMENT | CREATE: Appointment test created 
+[2022-04-20 18:34:17] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:36:16] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:38:39] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:39:22] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:42:48] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:43:23] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:51:21] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 18:52:32] [INFO   ] PRESCRIPTION | CREATE: Prescription Analgin for stress created 

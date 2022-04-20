@@ -123,7 +123,7 @@ public class Prescriptions implements Initializable {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         drug.setCellValueFactory(new PropertyValueFactory<>("drug"));
         expiration_date.setCellValueFactory(new PropertyValueFactory<>("expiration_date"));
-        prescribed_by.setCellValueFactory(new PropertyValueFactory<>("doctor_id"));
+        prescribed_by.setCellValueFactory(new PropertyValueFactory<>("doctor_name"));
         addButtonToTable();
     }
 
