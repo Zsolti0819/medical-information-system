@@ -127,7 +127,7 @@ public class Records implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        created_at.setCellValueFactory(new PropertyValueFactory<>("created_at_formatted"));
         addButtonToTable();
     }
 

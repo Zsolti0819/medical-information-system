@@ -22,7 +22,7 @@ public class PatientInfo {
     @FXML private Label birth_date_data;
     @FXML private Label sex_data;
     @FXML private Label blood_group_data;
-    @FXML private Label address1_data;
+    @FXML private Label address_data;
     @FXML private Label phone_data;
     @FXML private Label email_data;
 
@@ -100,7 +100,7 @@ public class PatientInfo {
         birth_date_data.setText(String.valueOf(selectedPatient.getBirth_date()));
         sex_data.setText(selectedPatient.getSex());
         blood_group_data.setText(selectedPatient.getBlood_group());
-        address1_data.setText(selectedPatient.getAddress());
+        address_data.setText(selectedPatient.getAddress());
         phone_data.setText(selectedPatient.getPhone());
         email_data.setText(selectedPatient.getEmail());
     }

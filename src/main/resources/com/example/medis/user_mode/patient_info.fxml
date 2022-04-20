@@ -57,67 +57,67 @@
                     <Font size="25.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="110.0" prefHeight="25.0" prefWidth="140.0" text="Insurance company">
+            <Label layoutX="67.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0" text="Insurance company">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="insurance_co_data" layoutX="243.0" layoutY="110.0" prefHeight="25.0" prefWidth="154.0" text="Insurance company data">
+            <Label fx:id="insurance_co_data" layoutX="295.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0" text="Insurance company data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="156.0" prefHeight="25.0" text="Birth ID">
+            <Label layoutX="67.0" layoutY="156.0" prefHeight="25.0" prefWidth="210.0" text="Birth ID">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="birth_ID_data" layoutX="243.0" layoutY="156.0" prefHeight="25.0" text="Birth number data">
+            <Label fx:id="birth_ID_data" layoutX="295.0" layoutY="156.0" prefHeight="25.0" prefWidth="210.0" text="Birth number data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="202.0" prefHeight="25.0" text="Birth date">
+            <Label layoutX="67.0" layoutY="202.0" prefHeight="25.0" prefWidth="210.0" text="Birth date">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="birth_date_data" layoutX="243.0" layoutY="202.0" prefHeight="25.0" text="Birth date data">
+            <Label fx:id="birth_date_data" layoutX="295.0" layoutY="202.0" prefHeight="25.0" prefWidth="210.0" text="Birth date data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="248.0" prefHeight="25.0" text="Sex">
+            <Label layoutX="67.0" layoutY="248.0" prefHeight="25.0" prefWidth="210.0" text="Sex">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="sex_data" layoutX="243.0" layoutY="248.0" prefHeight="25.0" text="Sex data">
+            <Label fx:id="sex_data" layoutX="295.0" layoutY="248.0" prefHeight="25.0" prefWidth="210.0" text="Sex data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="294.0" prefHeight="25.0" text="Blood group">
+            <Label layoutX="67.0" layoutY="294.0" prefHeight="25.0" prefWidth="210.0" text="Blood group">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="blood_group_data" layoutX="243.0" layoutY="294.0" prefHeight="25.0" text="Blood group data">
+            <Label fx:id="blood_group_data" layoutX="295.0" layoutY="294.0" prefHeight="25.0" prefWidth="210.0" text="Blood group data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="340.0" prefHeight="25.0" text="Address">
+            <Label layoutX="67.0" layoutY="340.0" prefHeight="25.0" prefWidth="210.0" text="Address">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="address1_data" layoutX="243.0" layoutY="340.0" prefHeight="25.0" text="Address 1 data">
+            <Label fx:id="address_data" layoutX="295.0" layoutY="340.0" prefHeight="25.0" prefWidth="210.0" text="Address data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="386.0" prefHeight="25.0" text="Phone">
+            <Label layoutX="67.0" layoutY="386.0" prefHeight="25.0" prefWidth="210.0" text="Phone">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -132,17 +132,17 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Label fx:id="phone_data" layoutX="243.0" layoutY="386.0" prefHeight="25.0" text="Phone data">
+            <Label fx:id="phone_data" layoutX="295.0" layoutY="386.0" prefHeight="25.0" prefWidth="210.0" text="Phone data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="432.0" prefHeight="25.0" text="E-mail">
+            <Label layoutX="67.0" layoutY="432.0" prefHeight="25.0" prefWidth="210.0" text="E-mail">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label fx:id="email_data" layoutX="243.0" layoutY="432.0" prefHeight="25.0" text="E-mail data">
+            <Label fx:id="email_data" layoutX="295.0" layoutY="432.0" prefHeight="25.0" prefWidth="210.0" text="E-mail data">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>

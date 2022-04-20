@@ -2,13 +2,19 @@ package com.example.medis.Entities;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Record {
     private long id, patient_id, doctor_id;
-    private String title, description,notes;
+    private String title, description,notes, created_at_formatted;
     private LocalDateTime created_at, updated_at;
     private Date date_executed;
     private boolean deleted;
+
+    public String getCreated_at_formatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return created_at.format(formatter);
+    }
 
     public String getTitle() {
         return title;
