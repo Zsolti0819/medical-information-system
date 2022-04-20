@@ -24,7 +24,6 @@ public class Login {
         // create user function to creating users in db.
         //JavaPostgreSql.createUser("Tamás Szakal", "xszakal12", "qwe123", "xszasadkal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
 
-
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
 //            loginMsg.setText("Success!");
             if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {

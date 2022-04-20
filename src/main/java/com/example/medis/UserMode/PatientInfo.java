@@ -2,6 +2,7 @@ package com.example.medis.UserMode;
 
 import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.User;
+import com.example.medis.GeneralLogger;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 public class PatientInfo {
 
@@ -41,6 +43,7 @@ public class PatientInfo {
             s.switchToRecords(loggedInUser, selectedPatient, event);
         }
         else{
+            GeneralLogger.log(Level.WARNING, "ACCESS | DENIED | RECORDS: Denied for " + loggedInUser.getId() );
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("You don't have permissions to show Records!");
             a.show();
@@ -62,6 +65,7 @@ public class PatientInfo {
             s.switchToPrescriptions(loggedInUser, selectedPatient, event);
         }
         else{
+            GeneralLogger.log(Level.WARNING, "ACCESS | DENIED | PRESCRIPTIONS: Denied for " + loggedInUser.getId() );
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("You don't have permissions to show Prescriptions!");
             a.show();
@@ -85,6 +89,7 @@ public class PatientInfo {
             a.show();
         }
         else{
+            GeneralLogger.log(Level.WARNING, "DELETE | DENIED | PATIENT: Denied for " + loggedInUser.getId() );
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("You don't have permissions to delete Patient!");
             a.show();

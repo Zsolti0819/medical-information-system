@@ -36,19 +36,21 @@ public class NewPatient implements Initializable {
     // Create patient button
     @FXML
     private void createPatient(ActionEvent event) throws IOException {
+
+        String birthDateFromId = "";
+
         String firstNameText = first_name_data.getText();
         String lastNameText = last_name_data.getText();
         String insuranceCompanyText = insurance_co_data.getValue();
         String birthIdText = birth_ID_data.getText();
         String sexValue = sex_data.getValue();
-        String birthDateFromId = "";
         String bloodGroupValue = blood_group_data.getValue();
         String addressText = address_data.getText();
         String phoneText = phone_data.getText();
         String emailText = email_data.getText();
 
 
-        if (!(firstNameText.equals("") || lastNameText.equals("") || insuranceCompanyText.equals("") | bloodGroupValue.equals("") || sexValue.equals("") || addressText.equals("") || emailText.equals("") || phoneText.equals("") || birthIdText.equals(""))){
+        if(!firstNameText.isEmpty() && !lastNameText.isEmpty() && insuranceCompanyText!=null && !birthIdText.isEmpty() && sexValue!=null && bloodGroupValue!=null && !addressText.isEmpty() && !phoneText.isEmpty() && !emailText.isEmpty()){
             if (validationBirthID(birthIdText)){
                 birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
                 if (validationPhone(phoneText)){
@@ -72,11 +74,17 @@ public class NewPatient implements Initializable {
             }
         }
         else {
-
             missing_values_msg.setText("Please fill in missing compulsory data!");
         }
+
     }
 
+    public static boolean validator(String... strings) {
+        for (String s : strings)
+            if (s == null || s.isEmpty())
+                return true;
+        return false;
+    }
 
     public boolean validationEmail(String emailText){
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";

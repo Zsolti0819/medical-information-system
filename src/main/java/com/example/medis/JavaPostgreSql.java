@@ -965,6 +965,28 @@ public class JavaPostgreSql {
         return obj;
     }
 
+    public static Timestamp getUpcomingAppointmentDate(Long patient_id) {
+        Timestamp result = null;
+        try {
+            String query = "SELECT * FROM appointments WHERE patient_id=? AND start_time>=? ORDER BY start_time ASC LIMIT 1;";
+
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, patient_id);
+            preparedStatement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getTimestamp("start_time");
+            System.out.println(preparedStatement);
+            System.out.println(result);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static ObservableList<Patient> filterPatients(String filterWord) {
 
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
