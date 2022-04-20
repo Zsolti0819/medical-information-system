@@ -245,3 +245,8 @@
 [2022-04-20 17:53:29] [INFO   ] LOGIN | USER: User receptionist logged in 
 [2022-04-20 17:55:48] [INFO   ] LOGIN | USER: User receptionist logged in 
 [2022-04-20 17:58:27] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 18:59:04] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 18:59:50] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 19:02:08] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 19:03:23] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-20 19:04:00] [INFO   ] APPOINTMENT | CREATE: Appointment New created 

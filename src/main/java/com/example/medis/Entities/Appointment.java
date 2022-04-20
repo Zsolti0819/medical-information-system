@@ -1,8 +1,7 @@
 package com.example.medis.Entities;
 
-import javafx.scene.control.Button;
-
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -12,6 +11,10 @@ public class Appointment {
     private String description;
     private LocalDateTime start_time;
     private LocalDateTime end_time;
+
+    private String start_time_formatted;
+
+    private String end_time_formatted;
     private LocalDateTime created_at, updated_at;
     private int start_hour, start_min, start_year, start_month, start_day,  end_hour, end_min, end_year, end_month, end_day;
     private long patient_id;
@@ -19,6 +22,17 @@ public class Appointment {
     private String doctor_name;
     private boolean deleted;
     private long created_by;
+
+    public String getStart_time_formatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return start_time.format(formatter);
+    }
+
+    public String getEnd_time_formatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return end_time.format(formatter);
+    }
+
 
     public String getTitle() {
         return title;

@@ -12,7 +12,7 @@ public class Record {
     private boolean deleted;
 
     public String getCreated_at_formatted() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return created_at.format(formatter);
     }
 

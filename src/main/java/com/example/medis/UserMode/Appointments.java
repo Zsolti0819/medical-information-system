@@ -135,8 +135,8 @@ public class Appointments implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         doctor.setCellValueFactory(new PropertyValueFactory<>("doctor_name"));
-        start_time.setCellValueFactory(new PropertyValueFactory<>("start_time"));
-        end_time.setCellValueFactory(new PropertyValueFactory<>("end_time"));
+        start_time.setCellValueFactory(new PropertyValueFactory<>("start_time_formatted"));
+        end_time.setCellValueFactory(new PropertyValueFactory<>("end_time_formatted"));
         addButtonToTable();
     }
 
