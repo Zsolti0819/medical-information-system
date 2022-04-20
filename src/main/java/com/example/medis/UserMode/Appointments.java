@@ -47,7 +47,7 @@ public class Appointments implements Initializable {
 
     // Edit buttons
     @FXML
-    public void switchToAppointmentEdit(ActionEvent event) throws IOException {
+    private void switchToAppointmentEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, event);
 
@@ -62,14 +62,14 @@ public class Appointments implements Initializable {
 
     // Prescriptions
     @FXML
-    public void switchToPrescriptions(ActionEvent event) throws IOException {
+    private void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     // Close window button
     @FXML
-    public void closeCurrentWindow(ActionEvent event) throws IOException {
+    private void closeCurrentWindow(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToDashboard(loggedInUser, event);
     }

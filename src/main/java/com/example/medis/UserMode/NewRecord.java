@@ -22,7 +22,7 @@ public class NewRecord {
 
     // Create record button
     @FXML
-    public void createRecord(ActionEvent event) throws IOException {
+    private void createRecord(ActionEvent event) throws IOException {
         JavaPostgreSql.createRecord(title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
         switchToRecords(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -32,7 +32,7 @@ public class NewRecord {
 
     // Cancel button
     @FXML
-    public void switchToRecords(ActionEvent event) throws IOException {
+    private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecords(loggedInUser, selectedPatient, event);
     }

@@ -27,7 +27,7 @@ public class NewPrescription {
 
     // Create prescription button
     @FXML
-    public void createPrescription(ActionEvent event) throws IOException {
+    private void createPrescription(ActionEvent event) throws IOException {
         JavaPostgreSql.createPrescription(title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notes_data.getText());
         switchToPrescriptions(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -37,7 +37,7 @@ public class NewPrescription {
 
     // Cancel button
     @FXML
-    public void switchToPrescriptions(ActionEvent event) throws IOException {
+    private void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }

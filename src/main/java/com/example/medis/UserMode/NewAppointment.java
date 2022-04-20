@@ -42,7 +42,7 @@ public class NewAppointment implements Initializable {
 
     // Cancel button
     @FXML
-    public void switchToAppointments(ActionEvent event) throws IOException {
+    private void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToAppointments(loggedInUser, selectedPatient, event);
     }

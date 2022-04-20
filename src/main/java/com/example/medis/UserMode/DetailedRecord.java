@@ -26,7 +26,7 @@ public class DetailedRecord implements Initializable {
     @FXML private Label notes_data;
 
     @FXML
-    public void switchToRecords(ActionEvent event) throws IOException {
+    private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecords(loggedInUser, selectedPatient, event);
     }

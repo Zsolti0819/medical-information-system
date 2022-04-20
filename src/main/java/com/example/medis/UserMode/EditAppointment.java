@@ -34,7 +34,7 @@ public class EditAppointment implements Initializable {
 
     // Save button
     @FXML
-    public void updateAppointment(ActionEvent event) throws IOException {
+    private void updateAppointment(ActionEvent event) throws IOException {
         String[] doctor_name = doctor_data.getValue().split(" ");
         System.out.println(JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId()+ " " + doctor_name[0] + " " + doctor_name[1]);
         JavaPostgreSql.updateAppointment(
@@ -53,14 +53,14 @@ public class EditAppointment implements Initializable {
 
     // Cancel button
     @FXML
-    public void switchToAppointments(ActionEvent event) throws IOException {
+    private void switchToAppointments(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
     // Delete button
     @FXML
-    public void deleteAppointment(ActionEvent event) throws IOException {
+    private void deleteAppointment(ActionEvent event) throws IOException {
         JavaPostgreSql.deleteAppointment(selectedAppointment.getId());
         SceneController s = new SceneController();
         s.switchToAppointments(loggedInUser, selectedPatient, event);

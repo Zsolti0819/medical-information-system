@@ -6,19 +6,16 @@ import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class PatientInfo implements Initializable {
+public class PatientInfo {
 
     private Patient selectedPatient;
     private User loggedInUser;
+
     @FXML private Label name_and_last_name_data;
     @FXML private Label insurance_co_data;
     @FXML private Label birth_ID_data;
@@ -52,20 +49,25 @@ public class PatientInfo implements Initializable {
 
     // Prescriptions
     @FXML
-    public void switchToPrescriptions(ActionEvent event) throws IOException {
+    private void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     @FXML
-    public void closeCurrentWindow(ActionEvent event) throws IOException {
+    private void closeCurrentWindow(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToDashboard(loggedInUser, event);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    // Delete patient button
+    @FXML
+    private void deletePatient(ActionEvent event) throws IOException {
+        JavaPostgreSql.deletePatient(selectedPatient.getId());
+        closeCurrentWindow(event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Patient was deleted successfully!");
+        a.show();
     }
 
     public void initData(Patient patient, User user) {
@@ -80,13 +82,5 @@ public class PatientInfo implements Initializable {
         address1_data.setText(selectedPatient.getAddress());
         phone_data.setText(selectedPatient.getPhone());
         email_data.setText(selectedPatient.getEmail());
-
     }
-
-    public void deletePatient(ActionEvent event) throws IOException {
-        JavaPostgreSql.deletePatient(selectedPatient.getId());
-        closeCurrentWindow(event);
-    }
-
-
 }

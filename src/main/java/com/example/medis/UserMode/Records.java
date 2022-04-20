@@ -32,7 +32,7 @@ public class Records implements Initializable {
     @FXML private TableColumn<Record, LocalDateTime> created_at;
 
     @FXML
-    public void switchToPatientInfo(ActionEvent event) throws IOException  {
+    private void switchToPatientInfo(ActionEvent event) throws IOException  {
         SceneController s = new SceneController();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
@@ -50,13 +50,13 @@ public class Records implements Initializable {
     }
 
     @FXML
-    public void switchToPrescriptions(ActionEvent event) throws IOException {
+    private void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
     @FXML
-    public void closeCurrentWindow(ActionEvent event) throws IOException {
+    private void closeCurrentWindow(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToDashboard(loggedInUser, event);
     }

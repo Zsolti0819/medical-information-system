@@ -36,7 +36,7 @@ public class Dashboard implements Initializable {
 
     // Open buttons
     @FXML
-    public void switchToPatientInfo(ActionEvent event) throws IOException {
+    private void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }

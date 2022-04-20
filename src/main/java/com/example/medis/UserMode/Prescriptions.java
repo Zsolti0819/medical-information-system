@@ -35,7 +35,7 @@ public class Prescriptions implements Initializable {
     @FXML private TableColumn <Prescription, String> prescribed_by;
 
     @FXML
-    public void switchToPatientInfo(ActionEvent event) throws IOException {
+    private void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
@@ -53,23 +53,25 @@ public class Prescriptions implements Initializable {
     }
 
     @FXML
-    public void switchToPrescriptions(ActionEvent event) throws IOException {
+    private void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 
-    public void switchToPrescriptionEdit(ActionEvent event) throws IOException {
+    @FXML
+    private void switchToPrescriptionEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptionEdit(loggedInUser, selectedPatient, selectedPrescription, event);
     }
 
-    public void switchToPrescriptionCreation(MouseEvent event) throws IOException {
+    @FXML
+    private void switchToPrescriptionCreation(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPrescriptionCreation(loggedInUser, selectedPatient, event);
     }
 
     @FXML
-    public void closeCurrentWindow(ActionEvent event) throws IOException {
+    private void closeCurrentWindow(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToDashboard(loggedInUser, event);
     }

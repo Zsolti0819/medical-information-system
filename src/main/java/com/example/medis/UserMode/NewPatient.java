@@ -34,7 +34,8 @@ public class NewPatient implements Initializable {
     @FXML private Button createPatientButton;
 
     // Create patient button
-    @FXML private void createPatient(ActionEvent event) throws IOException {
+    @FXML
+    private void createPatient(ActionEvent event) throws IOException {
         String firstNameText = first_name_data.getText();
         String lastNameText = last_name_data.getText();
         String insuranceCompanyText = insurance_co_data.getValue();
@@ -107,7 +108,8 @@ public class NewPatient implements Initializable {
     }
 
     // Cancel button
-    @FXML public void switchToDashboard(ActionEvent event) throws IOException {
+    @FXML
+    private void switchToDashboard(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToDashboard(loggedInUser, event);
     }

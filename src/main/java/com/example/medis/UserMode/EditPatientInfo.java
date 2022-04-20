@@ -34,7 +34,7 @@ public class EditPatientInfo implements Initializable{
 
     // Save button
     @FXML
-    public void updatePatientInfo(ActionEvent event) throws IOException {
+    private void updatePatientInfo(ActionEvent event) throws IOException {
 
         String birthIdText = birth_ID_data.getText();
         String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
@@ -47,7 +47,7 @@ public class EditPatientInfo implements Initializable{
 
     // Cancel button
     @FXML
-    public void switchToPatientInfo(ActionEvent event) throws IOException {
+    private void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }

@@ -2,7 +2,6 @@ package com.example.medis.AdminMode;
 
 import com.example.medis.Entities.User;
 import com.example.medis.SceneController;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,8 +14,6 @@ import java.util.ResourceBundle;
 public class Users implements Initializable {
 
     private User loggedInUser;
-
-
 
     public void addUser(MouseEvent event) {
     }

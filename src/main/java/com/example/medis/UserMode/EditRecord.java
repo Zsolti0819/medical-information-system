@@ -27,7 +27,8 @@ public class EditRecord  {
     @FXML private TextArea notes_data;
 
     // Save record button
-    public void updateRecord(ActionEvent event) throws IOException {
+    @FXML
+    private void updateRecord(ActionEvent event) throws IOException {
         System.out.println("Logged in user: " + loggedInUser.getId());
         JavaPostgreSql.updateRecord(selectedRecord.getId(), title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
         switchToRecordDetailed(event);
@@ -38,20 +39,20 @@ public class EditRecord  {
 
     // Cancel button
     @FXML
-    public void switchToRecordDetailed(ActionEvent event) throws IOException {
+    private void switchToRecordDetailed(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecordDetailed(loggedInUser, selectedPatient, selectedRecord, event);
     }
 
     // Delete record button
     @FXML
-    public void deleteRecord(ActionEvent event) throws IOException {
+    private void deleteRecord(ActionEvent event) throws IOException {
         JavaPostgreSql.deleteRecord(selectedRecord.getId());
         switchToRecords(event);
     }
 
     @FXML
-    public void switchToRecords(ActionEvent event) throws IOException {
+    private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecords(loggedInUser, selectedPatient, event);
     }
@@ -66,6 +67,4 @@ public class EditRecord  {
         description_data.setText(selectedRecord.getDescription());
         notes_data.setText(selectedRecord.getNotes());
     }
-
-
 }
