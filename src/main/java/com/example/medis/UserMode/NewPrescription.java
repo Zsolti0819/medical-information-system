@@ -32,6 +32,8 @@ public class NewPrescription {
     @FXML
     public void createPrescription(ActionEvent event) throws IOException {
         JavaPostgreSql.createPrescription(title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notes_data.getText());
+        SceneController s = new SceneController();
+        s.switchToPopup("Changes saved !");
         switchToPrescriptions(event);
     }
 

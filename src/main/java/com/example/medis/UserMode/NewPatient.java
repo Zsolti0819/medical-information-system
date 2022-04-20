@@ -50,6 +50,8 @@ public class NewPatient implements Initializable {
 
         else {
             missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
+            SceneController s = new SceneController();
+            s.switchToPopup("Changes saved !");
             switchToDashboard(event);
         }
     }

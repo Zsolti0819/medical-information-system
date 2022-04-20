@@ -38,6 +38,8 @@ public class EditPatientInfo implements Initializable{
         String birthIdText = birth_ID_data.getText();
         String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
         JavaPostgreSql.updatePatient(selectedPatient.getId(), first_name_data.getText(), last_name_data.getText(), insurance_co_data.getSelectionModel().getSelectedItem(), birthDateFromId, sex_data.getSelectionModel().getSelectedItem(), blood_group_data.getSelectionModel().getSelectedItem(), address_data.getText(), phone_data.getText(), email_data.getText(), birth_ID_data.getText());
+        SceneController s = new SceneController();
+        s.switchToPopup("Changes saved !");
         switchToPatientInfo(event);
     }
 

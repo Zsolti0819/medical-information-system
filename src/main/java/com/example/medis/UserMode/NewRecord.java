@@ -27,6 +27,8 @@ public class NewRecord {
     @FXML
     public void createRecord(ActionEvent event) throws IOException {
         JavaPostgreSql.createRecord(title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
+        SceneController s = new SceneController();
+        s.switchToPopup("Changes saved !");
         switchToRecords(event);
     }
 

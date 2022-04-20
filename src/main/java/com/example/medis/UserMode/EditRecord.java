@@ -33,6 +33,8 @@ public class EditRecord  {
     public void updateRecord(ActionEvent event) throws IOException {
         System.out.println("Logged in user: " + loggedInUser.getId());
         JavaPostgreSql.updateRecord(selectedRecord.getId(), title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
+        SceneController s = new SceneController();
+        s.switchToPopup("Changes saved !");
         switchToRecordDetailed(event);
     }
 

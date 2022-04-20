@@ -50,6 +50,7 @@ public class EditAppointment implements Initializable {
 
         SceneController s = new SceneController();
         s.switchToAppointments(loggedInUser, selectedPatient, event);
+        s.switchToPopup("Changes saved !");
     }
 
     // Cancel button

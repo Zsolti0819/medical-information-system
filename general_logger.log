@@ -119,3 +119,13 @@
 [2022-04-20 11:39:18] [INFO   ] RECORD | CREATE: Record Q created 
 [2022-04-20 11:39:46] [INFO   ] APPOINTMENT | CREATE: Appointment Q created 
 [2022-04-20 11:39:58] [INFO   ] PRESCRIPTION | CREATE: Prescription Q created 
+[2022-04-20 12:03:03] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:07:19] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 12:07:40] [INFO   ] PATIENT | CREATE: Patient asd@asd.com created 
+[2022-04-20 12:08:06] [INFO   ] PATIENT | UPDATE: Patient email updated 
+[2022-04-20 12:08:18] [INFO   ] RECORD | CREATE: Record qwe created 
+[2022-04-20 12:08:29] [INFO   ] RECORD | UPDATE: Record qweasdsad updated 
+[2022-04-20 12:08:49] [INFO   ] APPOINTMENT | CREATE: Appointment qqq created 
+[2022-04-20 12:08:58] [INFO   ] APPOINTMENT | UPDATE: Appointment qwewww updated 
+[2022-04-20 12:09:15] [INFO   ] PRESCRIPTION | CREATE: Prescription trttt created 
+[2022-04-20 12:09:21] [INFO   ] PRESCRIPTION | UPDATE: Prescription trtttwwww updated 
