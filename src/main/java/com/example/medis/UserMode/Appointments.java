@@ -34,6 +34,7 @@ public class Appointments implements Initializable {
     // Patient info
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
+
         SceneController s = new SceneController();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
@@ -41,8 +42,15 @@ public class Appointments implements Initializable {
     // Records
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToRecords(loggedInUser, selectedPatient, event);
+        if (!loggedInUser.getPosition().equals("receptionist")) {
+            SceneController s = new SceneController();
+            s.switchToRecords(loggedInUser, selectedPatient, event);
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("You don't have permissions to show Records!");
+            a.show();
+        }
     }
 
     // Edit buttons
@@ -63,8 +71,15 @@ public class Appointments implements Initializable {
     // Prescriptions
     @FXML
     private void switchToPrescriptions(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
+        if (loggedInUser.getPosition().equals("doctor")) {
+            SceneController s = new SceneController();
+            s.switchToPrescriptions(loggedInUser, selectedPatient, event);
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("You don't have permissions to show Prescriptions!");
+            a.show();
+        }
     }
 
     // Close window button

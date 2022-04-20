@@ -36,8 +36,15 @@ public class PatientInfo {
     // Records
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToRecords(loggedInUser, selectedPatient, event);
+        if (!loggedInUser.getPosition().equals("receptionist")){
+            SceneController s = new SceneController();
+            s.switchToRecords(loggedInUser, selectedPatient, event);
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("You don't have permissions to show Records!");
+            a.show();
+        }
     }
 
     // Appointments
@@ -50,8 +57,15 @@ public class PatientInfo {
     // Prescriptions
     @FXML
     private void switchToPrescriptions(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
+        if (loggedInUser.getPosition().equals("doctor")) {
+            SceneController s = new SceneController();
+            s.switchToPrescriptions(loggedInUser, selectedPatient, event);
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("You don't have permissions to show Prescriptions!");
+            a.show();
+        }
     }
 
     @FXML
@@ -63,11 +77,18 @@ public class PatientInfo {
     // Delete patient button
     @FXML
     private void deletePatient(ActionEvent event) throws IOException {
-        JavaPostgreSql.deletePatient(selectedPatient.getId());
-        closeCurrentWindow(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Patient was deleted successfully!");
-        a.show();
+        if (!loggedInUser.getPosition().equals("receptionist")) {
+            JavaPostgreSql.deletePatient(selectedPatient.getId());
+            closeCurrentWindow(event);
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Patient was deleted successfully!");
+            a.show();
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("You don't have permissions to delete Patient!");
+            a.show();
+        }
     }
 
     public void initData(Patient patient, User user) {
