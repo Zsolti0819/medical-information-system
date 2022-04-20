@@ -11,6 +11,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -298,11 +299,10 @@ public class JavaPostgreSql {
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, description);
-            preparedStatement.setDate(3, getDate(start_time));
-            preparedStatement.setDate(4,  getDate(end_time));
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(start_time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
+            preparedStatement.setTimestamp(4,  Timestamp.valueOf(LocalDateTime.parse(end_time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
             preparedStatement.setLong(5, patient_id);
             preparedStatement.setLong(6, doctor_id);
             preparedStatement.setLong(7, created_by);
@@ -316,9 +316,6 @@ public class JavaPostgreSql {
         } catch (SQLException e) {
             e.printStackTrace();
             return "SQLException: " + e;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return "ParseException: " + e;
         }
     }
 

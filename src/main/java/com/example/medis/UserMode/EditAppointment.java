@@ -71,9 +71,9 @@ public class EditAppointment implements Initializable {
 
     static void fillAppointmentOptions(ComboBox<String> doctor_data, ComboBox<String> start_h_data, ComboBox<String> start_min_data, ComboBox<String> end_h_data, ComboBox<String> end_min_data) {
         doctor_data.setItems(FXCollections.observableArrayList(JavaPostgreSql.getUsersByPosition("doctor")));
-        start_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
+        start_h_data.setItems(FXCollections.observableArrayList("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
         start_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
-        end_h_data.setItems(FXCollections.observableArrayList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
+        end_h_data.setItems(FXCollections.observableArrayList("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
         end_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
     }
 
