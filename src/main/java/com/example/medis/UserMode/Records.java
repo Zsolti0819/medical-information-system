@@ -18,6 +18,7 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Records implements Initializable {
@@ -51,8 +52,15 @@ public class Records implements Initializable {
 
     @FXML
     private void switchToPrescriptions(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToPrescriptions(loggedInUser, selectedPatient, event);
+        if (loggedInUser.getPosition().equals("doctor")) {
+            SceneController s = new SceneController();
+            s.switchToPrescriptions(loggedInUser, selectedPatient, event);
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("You don't have permissions to show Prescriptions!");
+            a.show();
+        }
     }
 
     @FXML
@@ -63,8 +71,15 @@ public class Records implements Initializable {
 
     @FXML
     private void switchToRecordCreation(MouseEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchToRecordCreation(loggedInUser, selectedPatient, event);
+        if (loggedInUser.getPosition().equals("doctor")) {
+            SceneController s = new SceneController();
+            s.switchToRecordCreation(loggedInUser, selectedPatient, event);
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText("You don't have permissions to create Record!");
+            a.show();
+        }
     }
 
     private void addButtonToTable() {
