@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RecordDetailed implements Initializable {
+public class DetailedRecord implements Initializable {
 
     private Patient selectedPatient;
     private Record selectedRecord;
@@ -37,12 +37,6 @@ public class RecordDetailed implements Initializable {
         s.switchToRecordEdit(loggedInUser, selectedPatient, selectedRecord,event);
     }
 
-
-
-    public void deleteRecord(ActionEvent event) throws IOException {
-        JavaPostgreSql.deleteRecord(selectedRecord.getId());
-        switchToRecords(event);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -8,11 +8,9 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -71,10 +69,9 @@ public class Appointments implements Initializable {
 
     // Close window button
     @FXML
-    public void closeCurrentWindow(ActionEvent event) {
-        final Node source = (Node) event.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+    public void closeCurrentWindow(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToDashboard(loggedInUser, event);
     }
 
     private void addButtonToTable() {

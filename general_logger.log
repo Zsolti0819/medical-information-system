@@ -52,3 +52,56 @@
 [2022-04-20 01:02:21] [WARNING] PATIENT | UPDATE | FAILED: Patient 3a4f35a4f not found 
 [2022-04-20 01:06:39] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
 [2022-04-20 01:07:04] [INFO   ] PRESCRIPTION | UPDATE: Prescription Psychedelic microdosing updated 
+[2022-04-20 09:06:57] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:13:51] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:14:53] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:20:03] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:20:11] [INFO   ] PATIENT | UPDATE: Patient elonmusk@gmail.com updated 
+[2022-04-20 09:22:37] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:22:44] [INFO   ] PATIENT | UPDATE: Patient email updated 
+[2022-04-20 09:23:12] [INFO   ] RECORD | UPDATE: Record aa updated 
+[2022-04-20 09:30:23] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:37:23] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:37:44] [INFO   ] PATIENT | UPDATE: Patient elonmusk@gmail.com updated 
+[2022-04-20 09:38:36] [INFO   ] APPOINTMENT | CREATE: Appointment A created 
+[2022-04-20 09:38:43] [INFO   ] APPOINTMENT | UPDATE: Appointment A updated 
+[2022-04-20 09:39:01] [INFO   ] PRESCRIPTION | UPDATE: Prescription Psychedelic microdosing updated 
+[2022-04-20 09:49:36] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:50:43] [INFO   ] PRESCRIPTION | CREATE: Prescription Test title created 
+[2022-04-20 09:58:08] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 09:58:58] [INFO   ] APPOINTMENT | CREATE: Appointment T created 
+[2022-04-20 09:59:19] [INFO   ] APPOINTMENT | UPDATE: Appointment Tfdsgkjklsdfjlfdskdsfakljlsdfkjlksdfalkfsdjklfsdjlkfjsdlkjsdfkljlfksdjsdf updated 
+[2022-04-20 10:20:10] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:20:39] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:20:58] [INFO   ] RECORD | UPDATE: Record Morning test updated 
+[2022-04-20 10:21:10] [INFO   ] APPOINTMENT | DELETE: Appointment ad deleted 
+[2022-04-20 10:22:15] [INFO   ] PRESCRIPTION | UPDATE: Prescription Test title updated 
+[2022-04-20 10:23:44] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:23:56] [INFO   ] RECORD | UPDATE: Record asd updated 
+[2022-04-20 10:24:02] [INFO   ] APPOINTMENT | DELETE: Appointment asd deleted 
+[2022-04-20 10:24:21] [INFO   ] APPOINTMENT | UPDATE: Appointment qwe updated 
+[2022-04-20 10:26:18] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:28:58] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:30:30] [INFO   ] PATIENT | CREATE: Patient mail created 
+[2022-04-20 10:32:24] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:41:21] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:41:54] [INFO   ] PATIENT | UPDATE: Patient mail updated 
+[2022-04-20 10:42:09] [INFO   ] RECORD | CREATE: Record A created 
+[2022-04-20 10:42:20] [INFO   ] APPOINTMENT | DELETE: Appointment A deleted 
+[2022-04-20 10:42:38] [INFO   ] APPOINTMENT | CREATE: Appointment a created 
+[2022-04-20 10:42:46] [INFO   ] APPOINTMENT | UPDATE: Appointment bbbb updated 
+[2022-04-20 10:42:54] [INFO   ] APPOINTMENT | DELETE: Appointment bbbb deleted 
+[2022-04-20 10:43:03] [INFO   ] PRESCRIPTION | CREATE: Prescription dssdfsdf created 
+[2022-04-20 10:43:12] [INFO   ] PRESCRIPTION | DELETE: Prescription dssdfsdf deleted 
+[2022-04-20 10:44:21] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:46:07] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:48:14] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:48:31] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:50:42] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:53:06] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:53:40] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 10:58:06] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 11:06:11] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 11:06:37] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 11:06:43] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 
+[2022-04-20 11:07:49] [INFO   ] LOGIN | USER: User xszakal@stubs.sk logged in 

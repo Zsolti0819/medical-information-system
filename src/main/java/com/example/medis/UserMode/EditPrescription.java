@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -23,10 +24,10 @@ public class EditPrescription  {
     private User loggedInUser;
     @FXML private Label patient_name_appointment_title;
     @FXML private TextField title_data;
-    @FXML private TextField description_data;
+    @FXML private TextArea description_data;
     @FXML private TextField drug_data;
     @FXML private DatePicker exp_date_ymd_data;
-    @FXML private TextField notes_data;
+    @FXML private TextArea notes_data;
 
     // Save button
     public void updatePrescription(ActionEvent event) throws IOException {

@@ -43,6 +43,19 @@ public class EditRecord  {
         s.switchToRecordDetailed(loggedInUser, selectedPatient, selectedRecord, event);
     }
 
+    // Delete record button
+    @FXML
+    public void deleteRecord(ActionEvent event) throws IOException {
+        JavaPostgreSql.deleteRecord(selectedRecord.getId());
+        switchToRecords(event);
+    }
+
+    @FXML
+    public void switchToRecords(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToRecords(loggedInUser, selectedPatient, event);
+    }
+
     public void initData(Patient patient, Record record, User user) {
         selectedPatient = patient;
         loggedInUser = user;
@@ -53,4 +66,6 @@ public class EditRecord  {
         description_data.setText(selectedRecord.getDescription());
         notes_data.setText(selectedRecord.getNotes());
     }
+
+
 }

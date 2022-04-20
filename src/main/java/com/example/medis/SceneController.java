@@ -16,47 +16,40 @@ import javafx.stage.Stage;
 
 public class SceneController extends NewPatient {
 
-    private Parent root;
-
-    public void switchTo(String fxml, ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Medis");
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+    // Dashboard
 
     public void switchToDashboard(User loggedInUser, ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("user_mode/dashboard.fxml"));
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
+
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/dashboard.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
 
         Dashboard controller = loader.getController();
         controller.initData(loggedInUser);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+        stage.show();
     }
 
-    public void newWindowWithPatient(User loggedInUser, Patient patient) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("user_mode/patient_info.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load()));
+    public void switchToLogout(User loggedInUser, ActionEvent event) throws IOException {
 
-        PatientInfo controller = loader.getController();
-        controller.initData(patient, loggedInUser);
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("login.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
 
-        stage.toFront();
-        stage.initModality(Modality.APPLICATION_MODAL);
+        Login controller = loader.getController();
+        controller.initData(loggedInUser);
+
         stage.show();
     }
 
     // Patient info
 
     public void switchToPatientInfo(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/patient_info.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -70,9 +63,10 @@ public class SceneController extends NewPatient {
     }
 
     public void switchToPatientInfoEdit(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/edit_patient_info.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Medis");
+        stage.setTitle("Edit patient info");
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 
@@ -83,11 +77,16 @@ public class SceneController extends NewPatient {
     }
 
     public void switchToPatientCreation(User loggedInUser, MouseEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("user_mode/new_patient.fxml")));
+
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/new_patient.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Medis");
-        Scene scene = new Scene(root);
+        stage.setTitle("New patient");
+        Scene scene = new Scene(loader.load());
         stage.setScene(scene);
+
+        NewPatient controller = loader.getController();
+        controller.initData(loggedInUser);
+
         stage.show();
     }
 
@@ -108,38 +107,37 @@ public class SceneController extends NewPatient {
 
     public void switchToRecordDetailed(User loggedInUser, Patient patient, Record record, ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("user_mode/record_detailed.fxml"));
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/detailed_record.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Record details");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
 
-        RecordDetailed controller = loader.getController();
+        DetailedRecord controller = loader.getController();
         controller.initData(patient, record, loggedInUser);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+        stage.show();
     }
 
     public void switchToRecordEdit(User loggedInUser, Patient patient, Record record, ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("user_mode/edit_record.fxml"));
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/edit_record.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Edit record");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
 
         EditRecord controller = loader.getController();
         controller.initData(patient, record, loggedInUser);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+        stage.show();
     }
 
     public void switchToRecordCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/new_record.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Medis");
+        stage.setTitle("New record");
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 
@@ -152,6 +150,7 @@ public class SceneController extends NewPatient {
     // Appointments
 
     public void switchToAppointments(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/appointments.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -166,23 +165,23 @@ public class SceneController extends NewPatient {
 
     public void switchToAppointmentEdit(User loggedInUser, Patient patient, Appointment appointment, ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("user_mode/edit_appointment.fxml"));
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/edit_appointment.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Edit appointment");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
 
         EditAppointment controller = loader.getController();
         controller.initData(patient, appointment, loggedInUser);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+        stage.show();
     }
 
     public void switchToAppointmentCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/new_appointment.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Medis");
+        stage.setTitle("New appointment");
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 
@@ -195,6 +194,7 @@ public class SceneController extends NewPatient {
     // Prescriptions
 
     public void switchToPrescriptions(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/prescriptions.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -208,9 +208,10 @@ public class SceneController extends NewPatient {
     }
 
     public void switchToPrescriptionEdit(User loggedInUser, Patient patient, Prescription prescription, ActionEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/edit_prescription.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Medis");
+        stage.setTitle("Edit prescription");
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 
@@ -221,9 +222,10 @@ public class SceneController extends NewPatient {
     }
 
     public void switchToPrescriptionCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
+
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_mode/new_prescription.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Medis");
+        stage.setTitle("New prescription");
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 

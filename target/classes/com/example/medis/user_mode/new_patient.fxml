@@ -11,71 +11,71 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.UserMode.NewPatient">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label layoutX="384.0" layoutY="41.0" prefHeight="43.0" prefWidth="237.0" text="New patient">
+            <Label layoutX="389.0" layoutY="44.0" prefHeight="43.0" prefWidth="237.0" text="New patient">
                 <font>
                     <Font size="25.0" />
                 </font>
             </Label>
-         <Label layoutX="237.0" layoutY="138.0" prefHeight="25.0" prefWidth="134.0" text="First name">
+         <Label layoutX="256.0" layoutY="122.0" prefHeight="25.0" prefWidth="134.0" text="First name">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="first_name_data" layoutX="448.0" layoutY="138.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="184.0" prefHeight="25.0" prefWidth="140.0" text="Last name">
+         <TextField fx:id="first_name_data" layoutX="467.0" layoutY="122.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="168.0" prefHeight="25.0" prefWidth="140.0" text="Last name">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="last_name_data" layoutX="448.0" layoutY="184.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="230.0" prefHeight="25.0" prefWidth="140.0" text="Insurance company">
+         <TextField fx:id="last_name_data" layoutX="467.0" layoutY="168.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="214.0" prefHeight="25.0" prefWidth="140.0" text="Insurance company">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="insurance_co_data" layoutX="448.0" layoutY="230.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="276.0" prefHeight="25.0" text="Birth ID">
+         <ComboBox fx:id="insurance_co_data" layoutX="467.0" layoutY="214.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="260.0" prefHeight="25.0" text="Birth ID">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="birth_ID_data" layoutX="448.0" layoutY="276.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="322.0" prefHeight="25.0" text="Sex">
+         <TextField fx:id="birth_ID_data" layoutX="467.0" layoutY="260.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="306.0" prefHeight="25.0" text="Sex">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="sex_data" layoutX="448.0" layoutY="322.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="368.0" prefHeight="25.0" text="Blood group">
+         <ComboBox fx:id="sex_data" layoutX="467.0" layoutY="306.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="352.0" prefHeight="25.0" text="Blood group">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="blood_group_data" layoutX="448.0" layoutY="368.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="414.0" prefHeight="25.0" text="Address">
+         <ComboBox fx:id="blood_group_data" layoutX="467.0" layoutY="352.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="398.0" prefHeight="25.0" text="Address">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="address_data" layoutX="448.0" layoutY="414.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="460.0" prefHeight="25.0" text="Phone">
+         <TextField fx:id="address_data" layoutX="467.0" layoutY="398.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="444.0" prefHeight="25.0" text="Phone">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="phone_data" layoutX="448.0" layoutY="460.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="237.0" layoutY="506.0" prefHeight="25.0" text="E-mail">
+         <TextField fx:id="phone_data" layoutX="467.0" layoutY="444.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="256.0" layoutY="490.0" prefHeight="25.0" text="E-mail">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="email_data" layoutX="448.0" layoutY="506.0" prefHeight="25.0" prefWidth="177.0" />
-            <Button layoutX="234.0" layoutY="546.0" mnemonicParsing="false" onAction="#createPatient" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create patient">
+         <TextField fx:id="email_data" layoutX="467.0" layoutY="490.0" prefHeight="25.0" prefWidth="177.0" />
+            <Button layoutX="253.0" layoutY="530.0" mnemonicParsing="false" onAction="#createPatient" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create patient">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="439.0" layoutY="546.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="35.0" prefWidth="190.0" text="Cancel">
+            <Button layoutX="458.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="35.0" prefWidth="190.0" text="Cancel">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

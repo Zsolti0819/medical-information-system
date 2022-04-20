@@ -34,26 +34,18 @@ public class Dashboard implements Initializable {
     private User loggedInUser;
     private Patient selectedPatient;
 
-    // Patients
-    @FXML
-    private void showPatients(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchTo("user_mode/dashboard.fxml",event);
-    }
-
     // Open buttons
     @FXML
-    public void newWindowWithPatient() throws IOException {
+    public void switchToPatientInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.newWindowWithPatient(loggedInUser, selectedPatient);
+        s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
     // Log out
     @FXML
     private void userLogOut(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchTo("login.fxml",event);
-
+        s.switchToLogout(null, event);
     }
 
     // Plus button
@@ -79,7 +71,7 @@ public class Dashboard implements Initializable {
                             selectedPatient = JavaPostgreSql.getPatient(getPatientsTable().getItems().get(getIndex()).getId());
 
                             try {
-                                newWindowWithPatient();
+                                switchToPatientInfo(event);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

@@ -10,8 +10,7 @@ import java.io.IOException;
 
 public class Login {
 
-
-
+    private User loggedInUser;
     @FXML private Label loginMsg;
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
@@ -28,8 +27,11 @@ public class Login {
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
 //            loginMsg.setText("Success!");
-            if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
-                s.switchToDashboard(JavaPostgreSql.getUserByEmail(loginEmail.getText()), event);
+            if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
+                loggedInUser = JavaPostgreSql.getUserByEmail(loginEmail.getText());
+                s.switchToDashboard(loggedInUser, event);
+            }
+
 
             else
                 loginMsg.setText("Username or password are not valid!");
@@ -46,4 +48,7 @@ public class Login {
     }
 
 
+    public void initData(User user) {
+        loggedInUser = user;
+    }
 }

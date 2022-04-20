@@ -29,26 +29,28 @@ public class PatientInfo implements Initializable {
     @FXML private Label phone_data;
     @FXML private Label email_data;
 
+    // Edit patient info button
     @FXML
     private void switchToPatientInfoEdit(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToPatientInfoEdit(loggedInUser, selectedPatient, event);
     }
 
+    // Records
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
-   @FXML
-   private void switchToAppointments(ActionEvent event) throws  IOException {
-       SceneController s = new SceneController();
-       s.switchToAppointments(loggedInUser, selectedPatient, event);
+    // Appointments
+    @FXML
+    private void switchToAppointments(ActionEvent event) throws  IOException {
+        SceneController s = new SceneController();
+        s.switchToAppointments(loggedInUser, selectedPatient, event);
+    }
 
-   }
-
-
+    // Prescriptions
     @FXML
     public void switchToPrescriptions(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
@@ -56,10 +58,9 @@ public class PatientInfo implements Initializable {
     }
 
     @FXML
-    public void closeCurrentWindow(ActionEvent event) {
-        final Node source = (Node) event.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+    public void closeCurrentWindow(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchToDashboard(loggedInUser, event);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class PatientInfo implements Initializable {
 
     }
 
-    public void deletePatient(ActionEvent event) {
+    public void deletePatient(ActionEvent event) throws IOException {
         JavaPostgreSql.deletePatient(selectedPatient.getId());
         closeCurrentWindow(event);
     }
