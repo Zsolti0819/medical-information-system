@@ -424,3 +424,8 @@
 [2022-04-21 21:47:56] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 22:02:38] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 22:02:56] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 22:09:36] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 22:09:45] [INFO   ] USER | UPDATE: User xkokavecs@stubs.sk updated 
+[2022-04-21 22:10:52] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:14:15] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:15:31] [INFO   ] RECORD | CREATE: Record fsddfgf created 

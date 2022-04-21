@@ -65,9 +65,9 @@ public class Records implements Initializable {
     }
 
     @FXML
-    private void closeCurrentWindow(ActionEvent event) throws IOException {
+    private void switchToPatients(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToDashboard(loggedInUser, event);
+        s.switchToPatients(loggedInUser, event);
     }
 
     @FXML
