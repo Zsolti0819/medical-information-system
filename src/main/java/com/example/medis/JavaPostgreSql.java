@@ -20,20 +20,19 @@ import java.util.regex.Pattern;
 
 
 public class JavaPostgreSql {
+    private static final String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
+    private static final String user = "medis";
+    private static final String pswd = "Uu39FC4W#Z";
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 
-    private final String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
-    private final String user = "medis";
-    private final String pswd = "Uu39FC4W#Z";
-    private final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
-
-    private String hashPass(String password) throws NoSuchAlgorithmException {
+    private static String hashPass(String password) throws NoSuchAlgorithmException {
         final MessageDigest digest = MessageDigest.getInstance("SHA3-256");
         final byte[] hashbytes = digest.digest(
                 password.getBytes(StandardCharsets.UTF_8));
         return bytesToHex(hashbytes);
     }
 
-    private String bytesToHex(byte[] hashbytes) {
+    private static String bytesToHex(byte[] hashbytes) {
         char[] hexChars = new char[hashbytes.length * 2];
         for (int j = 0; j < hashbytes.length; j++) {
             int v = hashbytes[j] & 0xFF;
@@ -43,7 +42,8 @@ public class JavaPostgreSql {
         return new String(hexChars);
     }
 
-    public void createUser(String first_name, String last_name, String username, String password, String email, String phone, String position, String birthdate){
+    public static void createUser(String first_name, String last_name, String username, String password, String email,
+                                  String phone, String position, String birthdate){
 
 
         String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
@@ -76,14 +76,14 @@ public class JavaPostgreSql {
     }
 
     // date modification for insert into query
-    private java.sql.Date getDate(String birthdate) throws ParseException {
+    private static java.sql.Date getDate(String birthdate) throws ParseException {
         Date t = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
         java.sql.Date sqlDate = new java.sql.Date(t.getTime());
         return sqlDate;
     }
 
     // login checker
-    boolean checkUser(String email, String password){
+    public static boolean checkUser(String email, String password){
 
         String query = "SELECT id, first_name, last_name, username, deleted, position FROM users WHERE email=? and password=? and deleted=false;";
 
@@ -120,7 +120,7 @@ public class JavaPostgreSql {
     }
 
     // update application users
-    private String updateUser(long id, String username, String first_name, String last_name, String password, String email, String phone, String position, String birthdate){
+    public static String updateUser(long id, String username, String first_name, String last_name, String password, String email, String phone, String position, String birthdate){
         if (!isUserExist(id)){
             GeneralLogger.log(Level.WARNING, "USER | UPDATE | FAILED: User " + email + " not found" );
             return "User with this id not exists!";
@@ -157,7 +157,7 @@ public class JavaPostgreSql {
         }
     }
 
-    private String deleteUser(long id){
+    public static String deleteUser(long id){
         if (!isUserExist(id)){
             return "User with this id not exists!";
         }
@@ -181,7 +181,8 @@ public class JavaPostgreSql {
         }
     }
 
-    public String createPatient(String first_name, String sure_name, String insurance_co, String birthdate, String sex, String blood_group, String address, String phone, String email, String birth_id){
+    public static String createPatient(String first_name, String sure_name, String insurance_co, String birthdate, String sex,
+                                     String blood_group, String address, String phone, String email, String birth_id){
 
         String query = "INSERT INTO patients VALUES(default, ?, ?, cast(? as insurance_enum), ?, " +
                 "cast(? as sex_enum), cast(? as blood_enum), ?, ?, now(), now(), false, ?, ?);";
@@ -218,7 +219,8 @@ public class JavaPostgreSql {
 
     }
 
-    public String updatePatient(long id, String first_name, String sure_name, String insurance_co, String birthdate, String sex, String blood_group, String address, String phone, String email, String identification_number){
+    public static String updatePatient(long id, String first_name, String sure_name, String insurance_co, String birthdate, String sex,
+                                       String blood_group, String address, String phone, String email, String identification_number){
 
         if (!isPatientExist(id)){
             GeneralLogger.log(Level.WARNING, "PATIENT | UPDATE | FAILED: Patient " + email + " not found" );
@@ -260,7 +262,7 @@ public class JavaPostgreSql {
         }
     }
 
-    public String deletePatient(long id){
+    public static String deletePatient(long id){
 
         if (!isPatientExist(id)){
             return "Patient with this id not exists!";
@@ -289,7 +291,7 @@ public class JavaPostgreSql {
         }
     }
 
-    public String creteAppointment(String title, String description, String start_time, String end_time, long patient_id, long doctor_id, long created_by){
+    public static String creteAppointment(String title, String description, String start_time, String end_time, long patient_id, long doctor_id, long created_by){
 
         String query = "INSERT INTO appointments VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false, ?);";
 
@@ -317,7 +319,7 @@ public class JavaPostgreSql {
         }
     }
 
-    public String updateAppointment(long id, String title, String description, String start_time, String end_time, long patient_id, long doctor_id){
+    public static String updateAppointment(long id, String title, String description, String start_time, String end_time, long patient_id, long doctor_id){
         if(!isAppointmentExist(id)){
             GeneralLogger.log(Level.WARNING, "APPOINTMENT | UPDATE | FAILED: Appointment " + title + " not found" );
             return "Appointment with this id not exists!";
@@ -354,7 +356,7 @@ public class JavaPostgreSql {
 
     }
 
-    public String deleteAppointment(long id){
+    public static String deleteAppointment(long id){
 
         if(!isAppointmentExist(id)){
             return "Appointment with this id not exists!";
@@ -384,32 +386,32 @@ public class JavaPostgreSql {
 
     }
 
-    private Boolean isAppointmentExist(long id) {
+    private static Boolean isAppointmentExist(long id) {
         String query = "SELECT * FROM appointments WHERE id=?;";
         return getaBoolean(id, query);
     }
 
-    private Boolean isPatientExist(long id) {
+    private static Boolean isPatientExist(long id) {
         String query = "SELECT * FROM patients WHERE id=?;";
         return getaBoolean(id, query);
     }
 
-    private Boolean isUserExist(long id) {
+    private static Boolean isUserExist(long id) {
         String query = "SELECT * FROM users WHERE id=?;";
         return getaBoolean(id, query);
     }
 
-    private Boolean isRecordExist(long id) {
+    private static Boolean isRecordExist(long id) {
         String query = "SELECT * FROM records WHERE id=?;";
         return getaBoolean(id, query);
     }
 
-    private Boolean isPrescriptionExist(long id) {
+    private static Boolean isPrescriptionExist(long id) {
         String query = "SELECT * FROM prescriptions WHERE id=?;";
         return getaBoolean(id, query);
     }
 
-    private Boolean getaBoolean(long id, String query) {
+    private static Boolean getaBoolean(long id, String query) {
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -428,7 +430,7 @@ public class JavaPostgreSql {
         return true;
     }
 
-    public String createRecord(String title, String description, String execute_date, String notes, long patient_id, long doctor_id){
+    public static String createRecord(String title, String description, String execute_date, String notes, long patient_id, long doctor_id){
 
         String query = "INSERT INTO records VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
 
@@ -458,7 +460,7 @@ public class JavaPostgreSql {
 
     }
 
-    public String updateRecord(long id, String title, String description, String execute_date, String notes, long patient_id, long doctor_id){
+    public static String updateRecord(long id, String title, String description, String execute_date, String notes, long patient_id, long doctor_id){
         if(!isRecordExist(id)){
             GeneralLogger.log(Level.WARNING, "RECORD | UPDATE | FAILED: Record " + title + " not found" );
             return "Record with this id not exists!";
@@ -495,7 +497,7 @@ public class JavaPostgreSql {
         }
     }
 
-    public String deleteRecord(long id){
+    public static String deleteRecord(long id){
 
         if(!isRecordExist(id)){
             return "Record with this id not exists!";
@@ -525,7 +527,7 @@ public class JavaPostgreSql {
 
     }
 
-    public String createPrescription(String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes){
+    public static String createPrescription(String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes){
 
         String query = "INSERT INTO prescriptions VALUES(default, ?, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
 
@@ -557,7 +559,7 @@ public class JavaPostgreSql {
 
     }
 
-    public String updatePrescription(long id, String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes){
+    public static String updatePrescription(long id, String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes){
         if(!isPrescriptionExist(id)){
             GeneralLogger.log(Level.WARNING, "PRESCRIPTION | UPDATE | FAILED: Prescription " + title + " not found" );
             return "Prescription with this id not exists!";
@@ -595,7 +597,7 @@ public class JavaPostgreSql {
         }
     }
 
-    public String deletePrescription(long id){
+    public static String deletePrescription(long id){
 
         if(!isPrescriptionExist(id)){
             return "Prescription with this id not exists!";
@@ -625,7 +627,7 @@ public class JavaPostgreSql {
 
     }
 
-    public ObservableList<Prescription> getAllNotDeletedPrescriptionsByEntityID(String entity, long id){
+    public static ObservableList<Prescription> getAllNotDeletedPrescriptionsByEntityID(String entity , long id){
         String query = "SELECT * from prescriptions WHERE " + entity + "_id=? AND deleted=false;";
         ObservableList<Prescription> result = FXCollections.observableArrayList();
         try {
@@ -645,7 +647,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patient_id){
+    public static ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patient_id){
         String query = "SELECT * from appointments WHERE patient_id=? AND deleted=false;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
         try {
@@ -664,7 +666,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public ObservableList<Record> getAllNotDeletedRecordsByPatientId(long patient_id){
+    public static ObservableList<Record> getAllNotDeletedRecordsByPatientId(long patient_id){
         String query = "SELECT * from records WHERE patient_id=? AND deleted=false;";
         ObservableList<Record> result = FXCollections.observableArrayList();
         try {
@@ -683,7 +685,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private Record createRecordFromResultSet(ResultSet resultSet) throws SQLException {
+    private static Record createRecordFromResultSet(ResultSet resultSet) throws SQLException {
         Record record = new Record();
         record.setId(resultSet.getLong("id"));
         record.setTitle(resultSet.getString("title"));
@@ -698,7 +700,7 @@ public class JavaPostgreSql {
         return record;
     }
 
-    private Appointment createAppointmentFromResultSet(ResultSet resultSet) throws SQLException {
+    private static Appointment createAppointmentFromResultSet(ResultSet resultSet) throws SQLException {
         Appointment appointment = new Appointment();
         appointment.setId(resultSet.getLong("id"));
         appointment.setTitle(resultSet.getString("title"));
@@ -707,7 +709,7 @@ public class JavaPostgreSql {
         appointment.setEnd_time(resultSet.getObject("end_time", LocalDateTime.class));
         appointment.setPatient_id(resultSet.getLong("patient_id"));
         appointment.setDoctor_id(resultSet.getLong("doctor_id"));
-        appointment.setDoctor_name(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
+        appointment.setDoctor_name(JavaPostgreSql.getUser(resultSet.getLong("doctor_id")).getFull_name());
         appointment.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
         appointment.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
         appointment.setDeleted(resultSet.getBoolean("deleted"));
@@ -716,7 +718,7 @@ public class JavaPostgreSql {
         return appointment;
     }
 
-    public ObservableList<User> getAllUsers(){
+    public static ObservableList<User> getAllUsers(){
 
         String query = "SELECT * from users;";
         ObservableList<User> result = FXCollections.observableArrayList();
@@ -735,7 +737,22 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public ObservableList<String> getUsersByPosition(String position){
+    public static int getUsersCount() {
+        String query = "SELECT count(*) from users;";
+        int result = 10;
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static ObservableList<String> getUsersByPosition(String position){
         String query = "SELECT * from users WHERE position=cast(? as position_enum);";
         ObservableList<String> result = FXCollections.observableArrayList();
         try {
@@ -756,7 +773,7 @@ public class JavaPostgreSql {
 
     }
 
-    User getUserByEmail(String email){
+    public static User getUserByEmail(String email){
         User result = new User();
         try {
             String query = "SELECT * FROM users WHERE email=?;";
@@ -777,7 +794,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private String getEmailByPatientId(long patient_id){
+    public static String getEmailByPatientId(long patient_id){
         String result = "";
         try {
             String query = "SELECT * FROM patients WHERE id=?;";
@@ -798,7 +815,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private String getEmailByUserId(long user_id){
+    public static String getEmailByUserId(long user_id){
         String result = "";
         try {
             String query = "SELECT * FROM users WHERE id=?;";
@@ -819,7 +836,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private String getTitleByAppointmentId(long appointment_id){
+    public static String getTitleByAppointmentId(long appointment_id){
         String result = "";
         try {
             String query = "SELECT * FROM appointments WHERE id=?;";
@@ -841,7 +858,7 @@ public class JavaPostgreSql {
     }
 
 
-    private String getTitleByPrescriptionId(long prescription_id){
+    public static String getTitleByPrescriptionId(long prescription_id){
         String result = "";
         try {
             String query = "SELECT * FROM prescriptions WHERE id=?;";
@@ -862,7 +879,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private String getTitleByRecordId(long record_id){
+    public static String getTitleByRecordId(long record_id){
         String result = "";
         try {
             String query = "SELECT * FROM records WHERE id=?;";
@@ -883,7 +900,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public User getUserByFirstAndLastName(String first_name, String last_name){
+    public static User getUserByFirstAndLastName(String first_name, String last_name){
         User result = new User();
         try {
             String query = "SELECT * FROM users WHERE first_name=? and last_name=?;";
@@ -905,7 +922,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public ObservableList<Patient> getAllNotDeletedPatients(){
+    public static ObservableList<Patient> getAllNotDeletedPatients(){
         String query = "SELECT * from patients WHERE deleted=false;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
@@ -923,7 +940,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
+    private static Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
         Patient patient = new Patient();
         patient.setId(resultSet.getLong("id"));
         patient.setFirst_name(resultSet.getString("first_name"));
@@ -948,7 +965,7 @@ public class JavaPostgreSql {
 
     }
 
-    private User createUserFromResultSet(ResultSet resultSet) throws SQLException {
+    private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
         User obj = new User();
         obj.setId(resultSet.getLong("id"));
         obj.setFirst_name(resultSet.getString("first_name"));
@@ -964,7 +981,7 @@ public class JavaPostgreSql {
         return obj;
     }
 
-    public Timestamp getUpcomingAppointmentDate(Long patient_id) {
+    public static Timestamp getUpcomingAppointmentDate(Long patient_id) {
         Timestamp result = null;
         try {
             String query = "SELECT * FROM appointments WHERE patient_id=? AND start_time>=? AND deleted=false ORDER BY start_time ASC LIMIT 1;";
@@ -996,7 +1013,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public ObservableList<Patient> filterPatients(String filterWord) {
+    public static ObservableList<Patient> filterPatients(String filterWord) {
 
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         String query = "";
@@ -1004,54 +1021,54 @@ public class JavaPostgreSql {
 
 
 
-        if (pattern.matcher(filterWord).matches()){
-            query = "SELECT * FROM patients WHERE identification_number=? AND deleted=false;";
+            if (pattern.matcher(filterWord).matches()){
+                query = "SELECT * FROM patients WHERE identification_number=? AND deleted=false;";
 
 
-            try {
-                Connection connection = DriverManager.getConnection(url, user, pswd);
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                preparedStatement.setString(1, filterWord);
+                try {
+                    Connection connection = DriverManager.getConnection(url, user, pswd);
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    preparedStatement.setString(1, filterWord);
 
-                while (resultSet.next()) {
-                    result.add(createPatientFromResultSet(resultSet));
+                    while (resultSet.next()) {
+                        result.add(createPatientFromResultSet(resultSet));
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            query = "SELECT * FROM patients WHERE (LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ?)AND deleted=false;";
+            } else {
+                query = "SELECT * FROM patients WHERE (LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ?)AND deleted=false;";
 
 
 
-            try {
-                Connection connection = DriverManager.getConnection(url, user, pswd);
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                try {
+                    Connection connection = DriverManager.getConnection(url, user, pswd);
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-                preparedStatement.setString(1, "%" + filterWord + "%");
-                preparedStatement.setString(2, "%" + filterWord + "%");
+                    preparedStatement.setString(1, "%" + filterWord + "%");
+                    preparedStatement.setString(2, "%" + filterWord + "%");
 
-                ResultSet resultSet = preparedStatement.executeQuery();
+                    ResultSet resultSet = preparedStatement.executeQuery();
 
 
-                while (resultSet.next()) {
-                    result.add(createPatientFromResultSet(resultSet));
+                    while (resultSet.next()) {
+                        result.add(createPatientFromResultSet(resultSet));
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
 
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-
-        }
 
         return result;
 
     }
 
-    private String filterRecords(Long patientId) {
+    public static String filterRecords(Long patientId) {
         try {
             String query = "SELECT * FROM patients WHERE patient_id=?;";
 
@@ -1071,7 +1088,7 @@ public class JavaPostgreSql {
 
     }
 
-    private String filterAppointments(Long patientId) {
+    public static String filterAppointments(Long patientId) {
         try {
             String query = "SELECT * FROM patients WHERE patient_id=?;";
 
@@ -1091,7 +1108,7 @@ public class JavaPostgreSql {
 
     }
 
-    public Appointment getAppointment(Long appointment_id) {
+    public static Appointment getAppointment(Long appointment_id) {
 
         Appointment result = new Appointment();
         try {
@@ -1113,7 +1130,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public Record getRecord(Long record_id) {
+    public static Record getRecord(Long record_id) {
 
         Record result = new Record();
         try {
@@ -1135,7 +1152,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public User getUser(Long user_id) {
+    public static User getUser(Long user_id) {
 
         User result = new User();
         try {
@@ -1156,7 +1173,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public Patient getPatient(Long patientId) {
+    public static Patient getPatient(Long patientId) {
 
         Patient result = new Patient();
         try {
@@ -1178,7 +1195,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    public Prescription getPrescriptionById(Long prescription_id) {
+    public static Prescription getPrescriptionById(Long prescription_id) {
 
         Prescription result = new Prescription();
         try {
@@ -1200,7 +1217,7 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private Prescription createPrescriptionFromResultSet(ResultSet resultSet) throws SQLException {
+    private static Prescription createPrescriptionFromResultSet(ResultSet resultSet) throws SQLException {
         Prescription obj = new Prescription();
         obj.setId(resultSet.getLong("id"));
         obj.setTitle(resultSet.getString("title"));
@@ -1209,7 +1226,7 @@ public class JavaPostgreSql {
         obj.setNotes(resultSet.getString("notes"));
         obj.setPatient_id(resultSet.getLong("patient_id"));
         obj.setDoctor_id(resultSet.getLong("doctor_id"));
-        obj.setDoctor_name(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
+        obj.setDoctor_name(JavaPostgreSql.getUser(resultSet.getLong("doctor_id")).getFull_name());
         obj.setExpiration_date(resultSet.getDate("expiration_date"));
         obj.setCreated_at(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
         obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
