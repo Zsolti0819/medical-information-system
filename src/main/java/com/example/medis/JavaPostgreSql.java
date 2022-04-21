@@ -43,7 +43,7 @@ public class JavaPostgreSql {
         return new String(hexChars);
     }
 
-    private void createUser(String first_name, String last_name, String username, String password, String email, String phone, String position, String birthdate){
+    public String createUser(String first_name, String last_name, String username, String password, String email, String phone, String position, String birthdate){
 
 
         String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
@@ -73,6 +73,7 @@ public class JavaPostgreSql {
             }
         }
 
+        return query;
     }
 
     // date modification for insert into query
@@ -120,7 +121,7 @@ public class JavaPostgreSql {
     }
 
     // update application users
-    private String updateUser(long id, String username, String first_name, String last_name, String password, String email, String phone, String position, String birthdate){
+    public String updateUser(long id, String username, String first_name, String last_name, String password, String email, String phone, String position, String birthdate){
         if (!isUserExist(id)){
             GeneralLogger.log(Level.WARNING, "USER | UPDATE | FAILED: User " + email + " not found" );
             return "User with this id not exists!";
@@ -716,7 +717,7 @@ public class JavaPostgreSql {
         return appointment;
     }
 
-    private ObservableList<User> getAllUsers(){
+    public ObservableList<User> getAllUsers(){
 
         String query = "SELECT * from users;";
         ObservableList<User> result = FXCollections.observableArrayList();
@@ -1270,6 +1271,21 @@ public class JavaPostgreSql {
         obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
         obj.setDeleted(resultSet.getBoolean("deleted"));
         return obj;
+    }
+
+    public  int getUsersCount() {
+        String query = "SELECT count(*) from users;";
+        int result = 10;
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

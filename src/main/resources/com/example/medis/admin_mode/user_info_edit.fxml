@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.AdminMode.UserInfoEdit">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.AdminMode.UserInfoEdit">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
             <Label fx:id="first_name_and_last_name_data" layoutX="391.0" layoutY="8.0" prefHeight="43.0" prefWidth="237.0" text="User's name">
@@ -12,81 +17,75 @@
                     <Font size="25.0" />
                 </font>
             </Label>
-         <Label layoutX="234.0" layoutY="110.0" prefHeight="25.0" prefWidth="134.0" text="First name">
+         <Label layoutX="233.0" layoutY="77.0" prefHeight="25.0" prefWidth="134.0" text="First name">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="first_name_data" layoutX="445.0" layoutY="110.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="156.0" prefHeight="25.0" prefWidth="140.0" text="Last name">
+         <TextField fx:id="first_name_data" layoutX="441.0" layoutY="77.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="234.0" layoutY="117.0" prefHeight="25.0" prefWidth="140.0" text="Last name">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="last_name_data" layoutX="445.0" layoutY="156.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="202.0" prefHeight="25.0" prefWidth="140.0" text="Insurance company">
+         <TextField fx:id="last_name_data" layoutX="441.0" layoutY="117.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="230.0" layoutY="241.0" prefHeight="25.0" text="Password">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="insurance_co_data" layoutX="445.0" layoutY="202.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="248.0" prefHeight="25.0" text="Birth ID">
+         <TextField fx:id="password_data" layoutX="441.0" layoutY="241.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="230.0" layoutY="290.0" prefHeight="25.0" text="Address">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="birth_ID_data" layoutX="445.0" layoutY="248.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="294.0" prefHeight="25.0" text="Sex">
+         <TextField fx:id="address_data" layoutX="441.0" layoutY="290.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="230.0" layoutY="336.0" prefHeight="25.0" text="Phone">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="sex_data" layoutX="445.0" layoutY="294.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="340.0" prefHeight="25.0" text="Blood group">
+         <TextField fx:id="phone_data" layoutX="441.0" layoutY="336.0" prefHeight="25.0" prefWidth="177.0" />
+         <Label layoutX="230.0" layoutY="382.0" prefHeight="25.0" text="E-mail">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="blood_group_data" layoutX="445.0" layoutY="340.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="386.0" prefHeight="25.0" text="Address">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
-         </Label>
-         <TextField fx:id="address_data" layoutX="445.0" layoutY="386.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="432.0" prefHeight="25.0" text="Phone">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
-         </Label>
-         <TextField fx:id="phone_data" layoutX="445.0" layoutY="432.0" prefHeight="25.0" prefWidth="177.0" />
-         <Label layoutX="234.0" layoutY="478.0" prefHeight="25.0" text="E-mail">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font>
-         </Label>
-         <TextField fx:id="email_data" layoutX="445.0" layoutY="478.0" prefHeight="25.0" prefWidth="177.0" />
-            <Button layoutX="234.0" layoutY="513.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save user info">
+         <TextField fx:id="email_data" layoutX="441.0" layoutY="382.0" prefHeight="25.0" prefWidth="177.0" />
+            <Button layoutX="234.0" layoutY="513.0" mnemonicParsing="false" onAction="#updateUserInfo" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save user info">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="439.0" layoutY="513.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="190.0" text="Cancel">
+            <Button layoutX="439.0" layoutY="513.0" mnemonicParsing="false" onAction="#switchToUserInfo" prefHeight="35.0" prefWidth="190.0" text="Cancel">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-         <Label layoutX="234.0" layoutY="64.0" prefHeight="25.0" prefWidth="134.0" text="Position">
+         <Label layoutX="230.0" layoutY="422.0" prefHeight="25.0" prefWidth="134.0" text="Position">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="position_data" layoutX="445.0" layoutY="64.0" prefHeight="25.0" prefWidth="177.0" />
-         <Button layoutX="234.0" layoutY="561.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="394.0" style="-fx-background-color: #DC143C #DC143C;" text="Delete record">
+         <ComboBox fx:id="position_data" layoutX="441.0" layoutY="422.0" prefHeight="25.0" prefWidth="177.0" />
+         <Button layoutX="234.0" layoutY="561.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="35.0" prefWidth="394.0" style="-fx-background-color: #DC143C #DC143C;" text="Delete user">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
          </Button>
+         <DatePicker fx:id="birthdate_data" layoutX="442.0" layoutY="194.0" />
+         <Label layoutX="230.0" layoutY="194.0" prefHeight="25.0" prefWidth="140.0" text="Birthdate">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+         </Label>
+         <Label layoutX="233.0" layoutY="152.0" prefHeight="25.0" prefWidth="134.0" text="Username">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+         </Label>
+         <TextField fx:id="username_data" layoutX="441.0" layoutY="152.0" prefHeight="25.0" prefWidth="177.0" />
         </AnchorPane>
     </center>
 </BorderPane>

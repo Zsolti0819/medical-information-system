@@ -1,5 +1,6 @@
 package com.example.medis;
 
+import com.example.medis.AdminMode.NewUser;
 import com.example.medis.AdminMode.UserInfo;
 import com.example.medis.AdminMode.UserInfoEdit;
 import com.example.medis.AdminMode.Users;
@@ -16,6 +17,20 @@ import java.io.IOException;
 
 public class SceneController {
 
+    public void switchToUserCreation(User loggedInUser, MouseEvent event) throws IOException {
+
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/new_user.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Medis");
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+        NewUser controller = loader.getController();
+        controller.initData(loggedInUser);
+
+        stage.show();
+    }
+
     public void switchToUsers(User loggedInUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/users.fxml"));
@@ -30,7 +45,7 @@ public class SceneController {
         stage.show();
     }
 
-    public void switchToUserInfo(User loggedInUser, ActionEvent event) throws IOException {
+    public void switchToUserInfo(User loggedInUser, User selectedUser,ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/user_info.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -39,12 +54,12 @@ public class SceneController {
         stage.setScene(scene);
 
         UserInfo controller = loader.getController();
-        controller.initData(loggedInUser);
+        controller.initData(loggedInUser, selectedUser);
 
         stage.show();
     }
 
-    public void switchToUserInfoEdit(User loggedInUser, ActionEvent event) throws IOException {
+    public void switchToUserInfoEdit(User loggedInUser, User selectedUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/user_info_edit.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -53,7 +68,7 @@ public class SceneController {
         stage.setScene(scene);
 
         UserInfoEdit controller = loader.getController();
-        controller.initData(loggedInUser);
+        controller.initData(loggedInUser, selectedUser);
 
         stage.show();
     }
