@@ -33,6 +33,7 @@ public class NewUser implements Initializable {
     @FXML private TextField email_data;
     @FXML private TextField passwordData;
     @FXML private DatePicker birthdayData;
+    @FXML private TextField usernameData;
     @FXML private Label missing_values_msg;
     @FXML private Button createUserButton;
 
@@ -40,7 +41,7 @@ public class NewUser implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        positionData.setItems(FXCollections.observableArrayList("doctor", "nurse", "recepcionist", "admin"));
+        positionData.setItems(FXCollections.observableArrayList("doctor", "nurse", "receptionist", "admin"));
 
     }
 
@@ -58,7 +59,7 @@ public class NewUser implements Initializable {
 
     }
 
-    // Add user button
+    // Create user button
     @FXML
     private void createUser(ActionEvent event) throws IOException {
 
@@ -72,6 +73,7 @@ public class NewUser implements Initializable {
         String emailText = email_data.getText();
         String passwordText = passwordData.getText();
         LocalDate birthdayText = birthdayData.getValue();
+        String usernameText = usernameData.getText();
 
 
 
@@ -80,7 +82,7 @@ public class NewUser implements Initializable {
               //  birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
                 if (validationPhone(phoneText)){
                     if (validationEmail(emailText)){
-                      //  missing_values_msg.setText(javaPostgreSql.createUser(firstNameText, lastNameText,positionText ,addressText, phoneText, emailText, passwordText, birthdayText.toString()));
+                       missing_values_msg.setText(javaPostgreSql.createUser(firstNameText, lastNameText, usernameText, passwordText, emailText, phoneText, positionText, birthdayText.toString()));
                         switchToUsers(event);
                         Alert a = new Alert(Alert.AlertType.INFORMATION);
                         a.setContentText("User "+ firstNameText + " " + lastNameText + " was created successfully!");

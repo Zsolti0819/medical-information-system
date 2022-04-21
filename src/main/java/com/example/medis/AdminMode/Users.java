@@ -56,12 +56,13 @@ public class Users implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
         first_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
         last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
+        position.setCellValueFactory(new PropertyValueFactory<>("position"));
+        deleted.setCellValueFactory(new PropertyValueFactory<>("deleted"));
         addButtonToTable();
         usersTable.setItems(javaPostgreSql.getAllUsers());
-
         /*searchUserfield.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() >= 3) {
                 System.out.println();

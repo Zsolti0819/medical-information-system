@@ -47,7 +47,7 @@
             </font>
          </Label>
          <TextField fx:id="email_data" layoutX="460.0" layoutY="425.0" prefHeight="25.0" prefWidth="177.0" />
-            <Button fx:id="createUserButton" layoutX="253.0" layoutY="530.0" mnemonicParsing="false" onAction="#createUser" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create patient">
+            <Button fx:id="createUserButton" layoutX="253.0" layoutY="530.0" mnemonicParsing="false" onAction="#createUser" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create user">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

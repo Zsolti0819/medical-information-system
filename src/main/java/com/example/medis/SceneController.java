@@ -59,7 +59,7 @@ public class SceneController {
         stage.show();
     }
 
-    public void switchToUserInfoEdit(User loggedInUser, ActionEvent event) throws IOException {
+    public void switchToUserInfoEdit(User loggedInUser, User selectedUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("admin_mode/user_info_edit.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -68,7 +68,7 @@ public class SceneController {
         stage.setScene(scene);
 
         UserInfoEdit controller = loader.getController();
-        controller.initData(loggedInUser);
+        controller.initData(loggedInUser, selectedUser);
 
         stage.show();
     }
