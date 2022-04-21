@@ -969,7 +969,7 @@ public class JavaPostgreSql {
     public Timestamp getUpcomingAppointmentDate(Long patient_id) {
         Timestamp result = null;
         try {
-            String query = "SELECT * FROM patients as t1 LEFT JOIN (SELECT start_time, patient_id as id FROM(SELECT ROW_NUMBER() OVER(PARTITION BY patient_id ORDER BY start_time DESC) row_num, start_time,patient_id FROM appointments WHERE start_time > ?)t WHERE row_num = 1) as t2 ON t1.id = t2.id";
+            String query = "SELECT start_time, patient_id as id FROM(SELECT ROW_NUMBER() OVER(PARTITION BY patient_id ORDER BY start_time DESC) row_num, start_time,patient_id FROM appointments WHERE start_time > ?)t WHERE row_num = 1";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);

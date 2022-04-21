@@ -27,8 +27,8 @@ TO DO:
 | 20 	  | At patients screen table, next visit should be displayed                                                                    | Simon, Zsolti  |
 | 21 	  | At records and appointments, the date and time should be formatted                                                          | Zsolti         |
 | 22 	  | Admin mode - add new user, view user info, edit user info ... the fxml files are there                                      | Martin         |
-| 23 	  | Add deleteUser function to backend                                                                                          |                |
-| 24 	  | After password updating in admin mode, the user cannot log in.                                                              |                |
-| 25 	  | Validation for inputs (new patient/record/appointment/prescription, edit patient/record/appointment/prescription            |                |
+| 23 	  | Add deleteUser function to backend                                                                                          | Simon          |
+| 24 	  | After password updating in admin mode, the user cannot log in.                                                              | Simon          |
+| 25 	  | Validation for inputs (new patient/record/appointment/prescription, edit patient/record/appointment/prescription            | Simon          |
 | 26 	  | Implement tasks (multithreading) for smoother GUI interaction                                                               |                |
-| 27 	  | Rework querries for faster results                                                                                          |                |
+| 27 	  | Rework querries for faster results                                                                                          | Andrej, Simon  |

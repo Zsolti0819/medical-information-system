@@ -475,3 +475,21 @@
 [2022-04-21 23:40:34] [INFO   ] RECORD | UPDATE: Record Hearth extraction updated 
 [2022-04-21 23:40:52] [INFO   ] RECORD | UPDATE: Record Hearth extraction updated 
 [2022-04-21 23:56:50] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 00:18:14] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 00:24:22] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 00:25:41] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 00:28:21] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 00:28:52] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 00:29:29] [INFO   ] REGISTER: User simon@simon.sk created 
+[2022-04-22 00:36:13] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 00:36:24] [INFO   ] USER | UPDATE: User simon@simon.sk updated 
+[2022-04-22 00:36:44] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | test | test 
+[2022-04-22 00:36:47] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | test | test+ 
+[2022-04-22 00:36:50] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | Test | test+ 
+[2022-04-22 00:37:12] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | simon@simon.sk | test+ 
+[2022-04-22 00:37:16] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | simon@simon.sk | Test1 
+[2022-04-22 00:37:17] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | simon@simon.sk | Test1 
+[2022-04-22 00:38:13] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 00:38:48] [INFO   ] REGISTER: User Testicek@testicek.sk created 
+[2022-04-22 00:40:18] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | simon@simon.sk | test1 
+[2022-04-22 00:42:23] [INFO   ] LOGIN | USER: User doctor logged in 
