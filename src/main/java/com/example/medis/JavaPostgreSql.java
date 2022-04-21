@@ -1217,5 +1217,20 @@ public class JavaPostgreSql {
         return obj;
     }
 
+    public  int getUsersCount() {
+        String query = "SELECT count(*) from users;";
+        int result = 10;
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }
 

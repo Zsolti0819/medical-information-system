@@ -27,6 +27,7 @@ public class Users implements Initializable {
     @FXML private TextField searchPatientField;
     @FXML private Pagination pagination;
 
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
     private User loggedInUser;
 
     public void addUser(MouseEvent event) {
@@ -41,7 +42,7 @@ public class Users implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int usersCount = JavaPostgreSql.getUsersCount();
+        int usersCount = javaPostgreSql.getUsersCount();
     }
 
     public void initData(User user) {
