@@ -1051,6 +1051,61 @@ public class JavaPostgreSql {
 
     }
 
+    public ObservableList<User> filterUsers(String filterWord) {
+
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        String query = "";
+        ObservableList<User> result = FXCollections.observableArrayList();
+
+
+
+        if (pattern.matcher(filterWord).matches()){
+            query = "SELECT * FROM users WHERE identification_number=?;";
+
+
+            try {
+                Connection connection = DriverManager.getConnection(url, user, pswd);
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                preparedStatement.setString(1, filterWord);
+
+                while (resultSet.next()) {
+                    result.add(createUserFromResultSet(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            query = "SELECT * FROM users WHERE (LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ?);";
+
+
+
+            try {
+                Connection connection = DriverManager.getConnection(url, user, pswd);
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1, "%" + filterWord + "%");
+                preparedStatement.setString(2, "%" + filterWord + "%");
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+
+                while (resultSet.next()) {
+                    result.add(createUserFromResultSet(resultSet));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return result;
+
+    }
+
     private String filterRecords(Long patientId) {
         try {
             String query = "SELECT * FROM patients WHERE patient_id=?;";
