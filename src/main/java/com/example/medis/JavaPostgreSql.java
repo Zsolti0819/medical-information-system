@@ -46,7 +46,8 @@ public class JavaPostgreSql {
     public String createUser(String first_name, String last_name, String username, String password, String email, String phone, String position, String birthdate){
 
 
-        String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
+//        String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
+        String query = "INSERT INTO users (id, first_name,last_name, username, password, email, phone, position,birthdate) VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
 
         {
             try {
