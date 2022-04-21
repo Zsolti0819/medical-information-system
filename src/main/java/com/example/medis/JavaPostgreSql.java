@@ -737,6 +737,21 @@ public class JavaPostgreSql {
         return result;
     }
 
+    public static int getUsersCount() {
+        String query = "SELECT count(*) from users;";
+        int result = 10;
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static ObservableList<String> getUsersByPosition(String position){
         String query = "SELECT * from users WHERE position=cast(? as position_enum);";
         ObservableList<String> result = FXCollections.observableArrayList();
