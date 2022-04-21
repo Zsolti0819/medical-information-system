@@ -43,7 +43,7 @@ public class JavaPostgreSql {
         return new String(hexChars);
     }
 
-    private void createUser(String first_name, String last_name, String username, String password, String email, String phone, String position, String birthdate){
+    public void createUser(String first_name, String last_name, String username, String password, String email, String phone, String position, String birthdate){
 
 
         String query = "INSERT INTO users VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
@@ -716,7 +716,7 @@ public class JavaPostgreSql {
         return appointment;
     }
 
-    private ObservableList<User> getAllUsers(){
+    public ObservableList<User> getAllUsers(){
 
         String query = "SELECT * from users;";
         ObservableList<User> result = FXCollections.observableArrayList();
