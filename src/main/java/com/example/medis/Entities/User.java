@@ -105,7 +105,7 @@ public class User {
         this.deleted = deleted;
     }
 
-    public String getFull_name(){
+    public String getFullName(){
         return firstName +" "+ lastName;
     }
 }

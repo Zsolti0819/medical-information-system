@@ -395,3 +395,22 @@
 [2022-04-21 18:03:50] [INFO   ] PRESCRIPTION | DELETE: Prescription AA deleted 
 [2022-04-21 18:04:11] [INFO   ] LOGIN | USER: User admin logged in 
 [2022-04-21 18:04:30] [INFO   ] REGISTER: User AA@gmail.com created 
+[2022-04-21 19:56:31] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 19:56:50] [INFO   ] PATIENT | UPDATE: Patient bezos@gmail.com updated 
+[2022-04-21 19:56:59] [INFO   ] RECORD | UPDATE: Record sd updated 
+[2022-04-21 19:57:10] [INFO   ] APPOINTMENT | UPDATE: Appointment dfsg updated 
+[2022-04-21 19:57:39] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 20:30:22] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 20:31:24] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 20:31:42] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 20:32:44] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 20:37:45] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 20:39:28] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 20:39:38] [INFO   ] USER | UPDATE: User AA@gmail.com updated 
+[2022-04-21 20:40:02] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | AA | 12345 
+[2022-04-21 20:40:20] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 20:42:05] [INFO   ] USER | UPDATE: User xkiss@stubs.sk updated 
+[2022-04-21 20:42:16] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | xkiss@stubs.sk | 12345 
+[2022-04-21 20:44:56] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 20:46:33] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 20:47:52] [INFO   ] LOGIN | USER: User doctor logged in 

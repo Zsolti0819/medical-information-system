@@ -141,7 +141,7 @@ public class JavaPostgreSql {
                 preparedStatement.setString(5,phone);
                 preparedStatement.setDate(6,getDate(birthdate));
                 preparedStatement.setString(7,position);
-                preparedStatement.setLong(7,id);
+                preparedStatement.setLong(8,id);
                 preparedStatement.setString(9,username);
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
@@ -709,7 +709,7 @@ public class JavaPostgreSql {
         appointment.setEndTime(resultSet.getObject("end_time", LocalDateTime.class));
         appointment.setPatientId(resultSet.getLong("patient_id"));
         appointment.setDoctorId(resultSet.getLong("doctor_id"));
-        appointment.setDoctorName(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
+        appointment.setDoctorName(this.getUser(resultSet.getLong("doctor_id")).getFullName());
         appointment.setCreatedAt(resultSet.getObject("created_at", LocalDateTime.class));
         appointment.setUpdatedAt(resultSet.getObject("updated_at", LocalDateTime.class));
         appointment.setDeleted(resultSet.getBoolean("deleted"));
@@ -1266,7 +1266,7 @@ public class JavaPostgreSql {
         obj.setNotes(resultSet.getString("notes"));
         obj.setPatientId(resultSet.getLong("patient_id"));
         obj.setDoctorId(resultSet.getLong("doctor_id"));
-        obj.setDoctorName(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
+        obj.setDoctorName(this.getUser(resultSet.getLong("doctor_id")).getFullName());
         obj.setExpirationDate(resultSet.getDate("expiration_date"));
         obj.setCreatedAt(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
         obj.setUpdatedAt(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));

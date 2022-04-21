@@ -141,8 +141,8 @@ public class Patient {
         return birthId;
     }
 
-    public void setBirth_ID(long birth_id) {
-        this.birthId = birth_id;
+    public void setBirth_ID(long birthId) {
+        this.birthId = birthId;
     }
 
     public static boolean hasValidID(String identificationNumber) {
