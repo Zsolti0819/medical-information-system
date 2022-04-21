@@ -19,6 +19,7 @@ public class EditRecord  {
     private Patient selectedPatient;
     private Record selectedRecord;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private Label patient_name_record_title;
     @FXML private TextField title_data;
@@ -30,7 +31,7 @@ public class EditRecord  {
     @FXML
     private void updateRecord(ActionEvent event) throws IOException {
         System.out.println("Logged in user: " + loggedInUser.getId());
-        JavaPostgreSql.updateRecord(selectedRecord.getId(), title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
+        javaPostgreSql.updateRecord(selectedRecord.getId(), title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
         switchToRecordDetailed(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("Record was updated successfully!");
@@ -47,7 +48,7 @@ public class EditRecord  {
     // Delete record button
     @FXML
     private void deleteRecord(ActionEvent event) throws IOException {
-        JavaPostgreSql.deleteRecord(selectedRecord.getId());
+        javaPostgreSql.deleteRecord(selectedRecord.getId());
         switchToRecords(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("Record was deleted successfully!");

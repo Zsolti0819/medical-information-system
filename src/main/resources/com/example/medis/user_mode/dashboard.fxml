@@ -30,7 +30,7 @@
             <ImageView fitHeight="52.0" fitWidth="59.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../img/logo.png" />
             </ImageView>
-            <Line endX="143.5" layoutX="58.0" layoutY="142.0" startX="-100.0" />
+            <Line endX="205.0" layoutY="142.0" />
             <Text layoutX="99.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIS">
                 <font>
                     <Font name="System Bold" size="24.0" />
@@ -55,9 +55,8 @@
                 </columns>
             </TableView>
             <Pagination layoutX="18.0" layoutY="539.0" maxPageIndicatorCount="4" prefHeight="46.0" prefWidth="144.0" />
-            <ImageView accessibleRole="BUTTON" fitHeight="55.0" fitWidth="180.0" layoutX="492.0" layoutY="541.0"
-                       onMousePressed="#switchToPatientCreation">
-                <Image url="@../../img/plusIcon.png"/>
+            <ImageView accessibleRole="BUTTON" fitHeight="55.0" fitWidth="180.0" layoutX="492.0" layoutY="541.0" onMousePressed="#switchToPatientCreation">
+                <Image url="@../../img/plusIcon.png" />
             </ImageView>
          <Text layoutX="556.0" layoutY="573.0" onMousePressed="#switchToPatientCreation" strokeType="OUTSIDE" strokeWidth="0.0" text="New patient" wrappingWidth="115.689453125">
             <font>

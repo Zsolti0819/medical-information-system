@@ -17,6 +17,7 @@ public class PatientInfo {
 
     private Patient selectedPatient;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private Label name_and_last_name_data;
     @FXML private Label insurance_co_data;
@@ -82,7 +83,7 @@ public class PatientInfo {
     @FXML
     private void deletePatient(ActionEvent event) throws IOException {
         if (!loggedInUser.getPosition().equals("receptionist")) {
-            JavaPostgreSql.deletePatient(selectedPatient.getId());
+            javaPostgreSql.deletePatient(selectedPatient.getId());
             closeCurrentWindow(event);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setContentText("Patient was deleted successfully!");
@@ -97,7 +98,7 @@ public class PatientInfo {
     }
 
     public void initData(Patient patient, User user) {
-        selectedPatient = JavaPostgreSql.getPatient(patient.getId());
+        selectedPatient = javaPostgreSql.getPatient(patient.getId());
         loggedInUser = user;
         name_and_last_name_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
         insurance_co_data.setText(selectedPatient.getInsurance_company());

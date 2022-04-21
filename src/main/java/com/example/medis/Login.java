@@ -11,6 +11,8 @@ import java.io.IOException;
 public class Login {
 
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     @FXML private Label loginMsg;
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
@@ -23,8 +25,8 @@ public class Login {
         SceneController s = new SceneController();
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
-            if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
-                loggedInUser = JavaPostgreSql.getUserByEmail(loginEmail.getText());
+            if (javaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
+                loggedInUser = javaPostgreSql.getUserByEmail(loginEmail.getText());
                 if (loggedInUser.getPosition().equals("admin")) {
                     s.switchToUsers(loggedInUser, event);
                 }

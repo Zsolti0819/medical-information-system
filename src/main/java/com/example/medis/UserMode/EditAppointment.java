@@ -20,6 +20,7 @@ public class EditAppointment implements Initializable {
     private Patient selectedPatient;
     private User loggedInUser;
     private Appointment selectedAppointment;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private Label patient_name_appointment_title;
     @FXML private TextField title_data;
@@ -36,8 +37,8 @@ public class EditAppointment implements Initializable {
     @FXML
     private void updateAppointment(ActionEvent event) throws IOException {
         String[] doctor_name = doctor_data.getValue().split(" ");
-        System.out.println(JavaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId()+ " " + doctor_name[0] + " " + doctor_name[1]);
-        JavaPostgreSql.updateAppointment(
+        System.out.println(javaPostgreSql.getUserByFirstAndLastName(doctor_name[0],doctor_name[1]).getId()+ " " + doctor_name[0] + " " + doctor_name[1]);
+        javaPostgreSql.updateAppointment(
                 selectedAppointment.getId(),
                 title_data.getText(),
                 description_data.getText(),
@@ -61,7 +62,7 @@ public class EditAppointment implements Initializable {
     // Delete button
     @FXML
     private void deleteAppointment(ActionEvent event) throws IOException {
-        JavaPostgreSql.deleteAppointment(selectedAppointment.getId());
+        javaPostgreSql.deleteAppointment(selectedAppointment.getId());
         SceneController s = new SceneController();
         s.switchToAppointments(loggedInUser, selectedPatient, event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -69,8 +70,8 @@ public class EditAppointment implements Initializable {
         a.show();
     }
 
-    static void fillAppointmentOptions(ComboBox<String> doctor_data, ComboBox<String> start_h_data, ComboBox<String> start_min_data, ComboBox<String> end_h_data, ComboBox<String> end_min_data) {
-        doctor_data.setItems(FXCollections.observableArrayList(JavaPostgreSql.getUsersByPosition("doctor")));
+    private void fillAppointmentOptions(ComboBox<String> doctor_data, ComboBox<String> start_h_data, ComboBox<String> start_min_data, ComboBox<String> end_h_data, ComboBox<String> end_min_data) {
+        doctor_data.setItems(FXCollections.observableArrayList(javaPostgreSql.getUsersByPosition("doctor")));
         start_h_data.setItems(FXCollections.observableArrayList("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
         start_min_data.setItems(FXCollections.observableArrayList("00", "15", "30", "45"));
         end_h_data.setItems(FXCollections.observableArrayList("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17","18","19","20","21","22","23"));
@@ -89,7 +90,7 @@ public class EditAppointment implements Initializable {
         patient_name_appointment_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedAppointment.getTitle());
         title_data.setText(selectedAppointment.getTitle());
         description_data.setText(selectedAppointment.getDescription());
-        doctor_data.getSelectionModel().select(JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFirst_name() + " " + JavaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getLast_name());
+        doctor_data.getSelectionModel().select(javaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getFirst_name() + " " + javaPostgreSql.getUser(selectedAppointment.getDoctor_id()).getLast_name());
         start_ymd_data.setValue(selectedAppointment.getStart_time().toLocalDate());
         end_ymd_data.setValue(selectedAppointment.getEnd_time().toLocalDate());
         start_h_data.getSelectionModel().select(String.valueOf(selectedAppointment.getStart_hour()));

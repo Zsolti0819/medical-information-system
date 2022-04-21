@@ -19,9 +19,9 @@ import java.util.ResourceBundle;
 
 public class Dashboard implements Initializable {
 
-    public TableView<Patient> getPatientsTable() {
-        return patientsTable;
-    }
+    private User loggedInUser;
+    private Patient selectedPatient;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
@@ -29,9 +29,6 @@ public class Dashboard implements Initializable {
     @FXML private TableColumn<Patient, Long> birth_id;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
     @FXML private TextField searchPatientField;
-
-    private User loggedInUser;
-    private Patient selectedPatient;
 
     // Open buttons
     @FXML
@@ -66,7 +63,7 @@ public class Dashboard implements Initializable {
                     {
                         openButton.setOnAction((ActionEvent event) -> {
 
-                            selectedPatient = JavaPostgreSql.getPatient(getPatientsTable().getItems().get(getIndex()).getId());
+                            selectedPatient = javaPostgreSql.getPatient(patientsTable.getItems().get(getIndex()).getId());
 
                             try {
                                 switchToPatientInfo(event);
@@ -103,17 +100,17 @@ public class Dashboard implements Initializable {
         birth_id.setCellValueFactory(new PropertyValueFactory<>("birth_id"));
         next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
         addButtonToTable();
-        patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());
+        patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
 
         searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() >= 3) {
                 System.out.println();
-                patientsTable.setItems(JavaPostgreSql.filterPatients(newValue.replaceAll("[^a-zA-Z\\d]", "").toLowerCase()));
+                patientsTable.setItems(javaPostgreSql.filterPatients(newValue.replaceAll("[^a-zA-Z\\d]", "").toLowerCase()));
                 addButtonToTable();
             }
             if (newValue.equals("")) {
                 addButtonToTable();
-                patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());
+                patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
             }
         });
 

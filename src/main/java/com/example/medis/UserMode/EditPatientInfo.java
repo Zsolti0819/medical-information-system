@@ -21,6 +21,8 @@ public class EditPatientInfo implements Initializable{
 
     private Patient selectedPatient;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     @FXML private Label first_name_and_last_name;
     @FXML private TextField first_name_data;
     @FXML private TextField last_name_data;
@@ -38,7 +40,7 @@ public class EditPatientInfo implements Initializable{
 
         String birthIdText = birth_ID_data.getText();
         String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
-        JavaPostgreSql.updatePatient(selectedPatient.getId(), first_name_data.getText(), last_name_data.getText(), insurance_co_data.getSelectionModel().getSelectedItem(), birthDateFromId, sex_data.getSelectionModel().getSelectedItem(), blood_group_data.getSelectionModel().getSelectedItem(), address_data.getText(), phone_data.getText(), email_data.getText(), birth_ID_data.getText());
+        javaPostgreSql.updatePatient(selectedPatient.getId(), first_name_data.getText(), last_name_data.getText(), insurance_co_data.getSelectionModel().getSelectedItem(), birthDateFromId, sex_data.getSelectionModel().getSelectedItem(), blood_group_data.getSelectionModel().getSelectedItem(), address_data.getText(), phone_data.getText(), email_data.getText(), birth_ID_data.getText());
         switchToPatientInfo(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("Patient info was updated successfully!");

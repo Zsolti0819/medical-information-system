@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Patient {
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
     private long id;
     private String first_name, last_name;
     private String insurance_company;
@@ -140,12 +141,9 @@ public class Patient {
     }
 
     public String getNext_visit() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(JavaPostgreSql.getUpcomingAppointmentDate(getId()));
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(javaPostgreSql.getUpcomingAppointmentDate(getId()));
     }
 
-    public void setNext_visit(String next_visit) {
-        this.next_visit = next_visit;
-    }
 
     public static boolean hasValidID(String identificationNumber) {
         long identificationNumberLong = Long.parseLong(identificationNumber);

@@ -9,17 +9,13 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
@@ -28,6 +24,8 @@ public class Records implements Initializable {
     private Patient selectedPatient;
     private Record selectedRecord;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     @FXML private TableView<Record> recordsTable;
     @FXML private Label patient_name_records;
     @FXML private TableColumn<Record, String> title;
@@ -98,7 +96,7 @@ public class Records implements Initializable {
 
                     {
                         openButton.setOnAction((ActionEvent event) -> {
-                            selectedRecord  = JavaPostgreSql.getRecord(recordsTable.getItems().get(getIndex()).getId());
+                            selectedRecord  = javaPostgreSql.getRecord(recordsTable.getItems().get(getIndex()).getId());
                             try {
                                 switchToRecordDetailed(event);
                             } catch (IOException e) {
@@ -139,6 +137,6 @@ public class Records implements Initializable {
         selectedPatient = patient;
         loggedInUser = user;
         patient_name_records.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s records");
-        recordsTable.setItems(JavaPostgreSql.getAllNotDeletedRecordsByPatientId(selectedPatient.getId()));
+        recordsTable.setItems(javaPostgreSql.getAllNotDeletedRecordsByPatientId(selectedPatient.getId()));
     }
 }

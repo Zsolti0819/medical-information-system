@@ -14,6 +14,8 @@ public class NewRecord {
 
     private Patient selectedPatient;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     @FXML private Label patient_name_new_record;
     @FXML private TextField title_data;
     @FXML private DatePicker date_data;
@@ -23,7 +25,7 @@ public class NewRecord {
     // Create record button
     @FXML
     private void createRecord(ActionEvent event) throws IOException {
-        JavaPostgreSql.createRecord(title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
+        javaPostgreSql.createRecord(title_data.getText(), description_data.getText(), date_data.getValue().toString(), notes_data.getText(), selectedPatient.getId(), loggedInUser.getId());
         switchToRecords(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("Record was created successfully!");

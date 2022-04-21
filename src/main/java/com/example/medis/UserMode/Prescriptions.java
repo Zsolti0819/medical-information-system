@@ -8,11 +8,9 @@ import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -26,6 +24,7 @@ public class Prescriptions implements Initializable {
     private Patient selectedPatient;
     private Prescription selectedPrescription;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TableView<Prescription> prescriptionsTable;
     @FXML private Label patient_name_prescriptions;
@@ -89,7 +88,7 @@ public class Prescriptions implements Initializable {
 
                     {
                         openButton.setOnAction((ActionEvent event) -> {
-                            selectedPrescription  = JavaPostgreSql.getPrescriptionById(prescriptionsTable.getItems().get(getIndex()).getId());
+                            selectedPrescription  = javaPostgreSql.getPrescriptionById(prescriptionsTable.getItems().get(getIndex()).getId());
                             try {
                                 switchToPrescriptionEdit(event);
                             } catch (IOException e) {
@@ -131,6 +130,6 @@ public class Prescriptions implements Initializable {
         selectedPatient = patient;
         loggedInUser = user;
         patient_name_prescriptions.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s prescriptions");
-        prescriptionsTable.setItems(JavaPostgreSql.getAllNotDeletedPrescriptionsByEntityID("patient", selectedPatient.getId()));
+        prescriptionsTable.setItems(javaPostgreSql.getAllNotDeletedPrescriptionsByEntityID("patient", selectedPatient.getId()));
     }
 }

@@ -20,6 +20,7 @@ import java.util.regex.Matcher;
 public class NewPatient implements Initializable {
 
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TextField first_name_data;
     @FXML private TextField last_name_data;
@@ -55,7 +56,7 @@ public class NewPatient implements Initializable {
                 birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
                 if (validationPhone(phoneText)){
                     if (validationEmail(emailText)){
-                        missing_values_msg.setText(JavaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
+                        missing_values_msg.setText(javaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
                         switchToDashboard(event);
                         Alert a = new Alert(Alert.AlertType.INFORMATION);
                         a.setContentText("Patient "+ firstNameText + " " + lastNameText + " was created successfully!");

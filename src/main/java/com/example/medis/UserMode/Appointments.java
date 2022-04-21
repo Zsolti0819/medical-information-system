@@ -25,6 +25,7 @@ public class Appointments implements Initializable {
     private Patient selectedPatient;
     private User loggedInUser;
     private Appointment selectedAppointment;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TableView<Appointment> appointmentsTable;
     @FXML private Label patient_name_appointments;
@@ -106,7 +107,7 @@ public class Appointments implements Initializable {
                     {
                         openButton.setOnAction((ActionEvent event) -> {
 
-                            selectedAppointment = JavaPostgreSql.getAppointment(appointmentsTable.getItems().get(getIndex()).getId());
+                            selectedAppointment = javaPostgreSql.getAppointment(appointmentsTable.getItems().get(getIndex()).getId());
                             try {
                                 switchToAppointmentEdit(event);
                             } catch (IOException e) {
@@ -148,7 +149,7 @@ public class Appointments implements Initializable {
         loggedInUser = user;
         selectedPatient = patient;
         patient_name_appointments.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s appointments");
-        appointmentsTable.setItems(JavaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId()));
+        appointmentsTable.setItems(javaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId()));
 
     }
 

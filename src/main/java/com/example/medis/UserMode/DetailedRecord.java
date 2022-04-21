@@ -19,6 +19,8 @@ public class DetailedRecord implements Initializable {
     private Patient selectedPatient;
     private Record selectedRecord;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     @FXML private Label patient_name_record_title;
     @FXML private Label title_data;
     @FXML private Label date_data;
@@ -44,7 +46,7 @@ public class DetailedRecord implements Initializable {
 
     public void initData(Patient patient, Record record, User user) {
         selectedPatient = patient;
-        selectedRecord = JavaPostgreSql.getRecord(record.getId());
+        selectedRecord = javaPostgreSql.getRecord(record.getId());
         loggedInUser = user;
         patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedRecord.getTitle());
         title_data.setText(selectedRecord.getTitle());

@@ -19,6 +19,8 @@ public class EditPrescription  {
     private Patient selectedPatient;
     private Prescription selectedPrescription;
     private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     @FXML private Label patient_name_appointment_title;
     @FXML private TextField title_data;
     @FXML private TextArea description_data;
@@ -29,7 +31,7 @@ public class EditPrescription  {
     // Save button
     @FXML
     private void updatePrescription(ActionEvent event) throws IOException {
-        JavaPostgreSql.updatePrescription(selectedPrescription.getId(), title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), 1, notes_data.getText());
+        javaPostgreSql.updatePrescription(selectedPrescription.getId(), title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), 1, notes_data.getText());
         switchToPrescriptions(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("Prescription was updated successfully!");
@@ -46,7 +48,7 @@ public class EditPrescription  {
     // Delete prescription button
     @FXML
     private void deletePrescription(ActionEvent event) throws IOException {
-        JavaPostgreSql.deletePrescription(selectedPrescription.getId());
+        javaPostgreSql.deletePrescription(selectedPrescription.getId());
         switchToPrescriptions(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("Prescription was deleted successfully!");
