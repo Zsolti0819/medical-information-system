@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EditPatientInfo implements Initializable{
 
@@ -40,13 +42,71 @@ public class EditPatientInfo implements Initializable{
     @FXML
     private void updatePatientInfo(ActionEvent event) throws IOException {
 
+
+        String firstNameText = firstNameData.getText();
+        String lastNameText = lastNameData.getText();
+        String insuranceCompanyText = insuranceCoData.getValue();
+        String sexValue = sexData.getValue();
         String birthIdText = birthIdData.getText();
-        String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
-        javaPostgreSql.updatePatient(selectedPatient.getId(), firstNameData.getText(), lastNameData.getText(), insuranceCoData.getSelectionModel().getSelectedItem(), birthDateFromId, sexData.getSelectionModel().getSelectedItem(), bloodGroupData.getSelectionModel().getSelectedItem(), addressData.getText(), phoneData.getText(), emailData.getText(), birthIdData.getText());
-        switchToPatientInfo(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Patient info was updated successfully!");
-        a.show();
+        String bloodGroupValue = bloodGroupData.getValue();
+        String addressText = addressData.getText();
+        String phoneText = phoneData.getText();
+        String emailText = emailData.getText();
+
+        if (!firstNameText.isEmpty() && !lastNameText.isEmpty() && insuranceCompanyText!=null && !birthIdText.isEmpty() && sexValue!=null && bloodGroupValue!=null && !addressText.isEmpty() && !phoneText.isEmpty() && !emailText.isEmpty()){
+            if (validationBirthID(birthIdText)){
+                if (validationPhone(phoneText)){
+                    if (validationEmail(emailText)){
+                        String birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
+                        javaPostgreSql.updatePatient(selectedPatient.getId(), firstNameData.getText(), lastNameData.getText(), insuranceCoData.getSelectionModel().getSelectedItem(), birthDateFromId, sexData.getSelectionModel().getSelectedItem(), bloodGroupData.getSelectionModel().getSelectedItem(), addressData.getText(), phoneData.getText(), emailData.getText(), birthIdData.getText());
+                        switchToPatientInfo(event);
+                        Alert a = new Alert(Alert.AlertType.INFORMATION);
+                        a.setContentText("Patient info was updated successfully!");
+                        a.show();
+                    } else {
+                        missingValuesMsg.setText("Please enter valid email!");
+                    }
+                } else {
+                    missingValuesMsg.setText("Please enter valid phone number!");
+                }
+            } else {
+                missingValuesMsg.setText("Please enter valid birth id!");
+            }
+        }else {
+            missingValuesMsg.setText("Please fill in missing compulsory data!");
+        }
+
+
+    }
+
+
+    public boolean validationEmail(String emailText){
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(emailText);
+        return matcher.matches();
+    }
+
+    public boolean validationPhone(String phoneText){
+        String regex = "^[0-9]*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneText);
+        return matcher.matches();
+    }
+
+    public boolean validationBirthID(String birthId){
+        String regex = "^[0-9]*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(birthId);
+        if (matcher.matches()){
+            if (Patient.hasValidID(birthId)) {
+                return true;
+            }
+            return false;
+        }
+        else {
+            return false;
+        }
     }
 
     // Cancel button

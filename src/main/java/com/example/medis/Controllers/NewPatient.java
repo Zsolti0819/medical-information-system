@@ -78,13 +78,6 @@ public class NewPatient implements Initializable {
 
     }
 
-    public static boolean validator(String... strings) {
-        for (String s : strings)
-            if (s == null || s.isEmpty())
-                return true;
-        return false;
-    }
-
     public boolean validationEmail(String emailText){
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);

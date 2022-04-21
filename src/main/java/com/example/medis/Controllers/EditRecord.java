@@ -28,12 +28,22 @@ public class EditRecord  {
     // Save record button
     @FXML
     private void updateRecord(ActionEvent event) throws IOException {
-        System.out.println("Logged in user: " + loggedInUser.getId());
-        javaPostgreSql.updateRecord(selectedRecord.getId(), titleData.getText(), descriptionData.getText(), dateData.getValue().toString(), notesData.getText(), selectedPatient.getId(), loggedInUser.getId());
-        switchToRecordDetailed(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Record was updated successfully!");
-        a.show();
+
+        String titleText = titleData.getText();
+        java.time.LocalDate dateText = dateData.getValue();
+        String descriptionText = descriptionData.getText();
+
+        if (!titleText.isEmpty() && dateText!=null && !descriptionText.isEmpty()){
+            System.out.println("Logged in user: " + loggedInUser.getId());
+            javaPostgreSql.updateRecord(selectedRecord.getId(), titleData.getText(), descriptionData.getText(), dateData.getValue().toString(), notesData.getText(), selectedPatient.getId(), loggedInUser.getId());
+            switchToRecordDetailed(event);
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Record was updated successfully!");
+            a.show();
+        }else {
+            missingValuesMsg.setText("Please fill in missing compulsory data!");
+        }
+
     }
 
     // Cancel button

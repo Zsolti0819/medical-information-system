@@ -434,3 +434,44 @@
 [2022-04-21 22:10:52] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 22:14:15] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 22:15:31] [INFO   ] RECORD | CREATE: Record fsddfgf created 
+[2022-04-21 22:38:12] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:38:40] [INFO   ] RECORD | CREATE: Record fgh created 
+[2022-04-21 22:39:05] [INFO   ] PRESCRIPTION | CREATE: Prescription hello created 
+[2022-04-21 22:45:44] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:46:20] [INFO   ] APPOINTMENT | CREATE: Appointment hi created 
+[2022-04-21 22:46:29] [INFO   ] APPOINTMENT | DELETE: Appointment hi deleted 
+[2022-04-21 22:48:22] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:49:07] [INFO   ] APPOINTMENT | CREATE: Appointment sdhsd created 
+[2022-04-21 22:50:08] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:50:35] [INFO   ] APPOINTMENT | CREATE: Appointment sdbhsdb created 
+[2022-04-21 22:51:03] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:51:20] [INFO   ] APPOINTMENT | DELETE: Appointment sdhsd deleted 
+[2022-04-21 22:51:25] [INFO   ] APPOINTMENT | DELETE: Appointment sdbhsdb deleted 
+[2022-04-21 22:53:56] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:56:56] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:58:59] [INFO   ] APPOINTMENT | CREATE: Appointment dfb created 
+[2022-04-21 22:59:17] [INFO   ] APPOINTMENT | DELETE: Appointment dfb deleted 
+[2022-04-21 23:02:59] [INFO   ] APPOINTMENT | CREATE: Appointment efhdfn created 
+[2022-04-21 23:04:15] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:05:15] [INFO   ] APPOINTMENT | CREATE: Appointment Dentist created 
+[2022-04-21 23:05:39] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:05:55] [INFO   ] APPOINTMENT | DELETE: Appointment Dentist deleted 
+[2022-04-21 23:07:02] [INFO   ] APPOINTMENT | CREATE: Appointment Detist created 
+[2022-04-21 23:08:34] [INFO   ] APPOINTMENT | CREATE: Appointment Brain surgery created 
+[2022-04-21 23:11:19] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:12:32] [INFO   ] PRESCRIPTION | CREATE: Prescription Paralen created 
+[2022-04-21 23:15:36] [INFO   ] PATIENT | UPDATE: Patient bezos@gmail.com updated 
+[2022-04-21 23:15:52] [INFO   ] PATIENT | UPDATE: Patient bezos@gmail.com updated 
+[2022-04-21 23:21:42] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:22:05] [INFO   ] PATIENT | UPDATE: Patient bezos@gmail.com updated 
+[2022-04-21 23:25:47] [INFO   ] PATIENT | UPDATE: Patient bezos updated 
+[2022-04-21 23:26:03] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:35:42] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:37:01] [INFO   ] APPOINTMENT | UPDATE: Appointment Brain surgery updated 
+[2022-04-21 23:38:05] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:38:37] [INFO   ] PRESCRIPTION | UPDATE: Prescription Paralen updated 
+[2022-04-21 23:39:03] [INFO   ] RECORD | CREATE: Record Hearth extraction created 
+[2022-04-21 23:40:11] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 23:40:34] [INFO   ] RECORD | UPDATE: Record Hearth extraction updated 
+[2022-04-21 23:40:52] [INFO   ] RECORD | UPDATE: Record Hearth extraction updated 
+[2022-04-21 23:56:50] [INFO   ] LOGIN | USER: User doctor logged in 
