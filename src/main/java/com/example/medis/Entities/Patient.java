@@ -3,33 +3,38 @@ package com.example.medis.Entities;
 import com.example.medis.JavaPostgreSql;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Patient {
+
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     private long id;
-    private String first_name, last_name;
-    private String insurance_company;
+    private String firstName, lastName;
+    private String insuranceCompany;
     private String phone;
-    private Date birth_date;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private Date birthDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private boolean deleted;
-    private long birth_id;
+    private long birthId;
     private String sex;
-    private String blood_group;
+    private String bloodGroup;
     private String address;
     private String email;
-    private String next_visit;
+    private String nextVisit;
 
-    public String getInsurance_company() {
-        return insurance_company;
+    public String getNextVisit() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(javaPostgreSql.getUpcomingAppointmentDate(getId()));
     }
 
-    public void setInsurance_company(String insurance_company) {
-        this.insurance_company = insurance_company;
+    public String getInsuranceCompany() {
+        return insuranceCompany;
+    }
+
+    public void setInsuranceCompany(String insuranceCompany) {
+        this.insuranceCompany = insuranceCompany;
     }
 
     public String getEmail() {
@@ -48,16 +53,16 @@ public class Patient {
         this.address = address;
     }
 
-    public String getBlood_group() {
-        return blood_group;
+    public String getBloodGroup() {
+        return bloodGroup;
     }
 
-    public void setBlood_group(String blood_group) {
-        this.blood_group = blood_group;
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
     }
 
-    public void setBirth_id(long birth_id) {
-        this.birth_id = birth_id;
+    public void setBirthId(long birthId) {
+        this.birthId = birthId;
     }
 
     public String getSex() {
@@ -76,20 +81,20 @@ public class Patient {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
@@ -100,28 +105,28 @@ public class Patient {
         this.phone = phone;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public boolean isDeleted() {
@@ -132,18 +137,13 @@ public class Patient {
         this.deleted = deleted;
     }
 
-    public long getBirth_id() {
-        return birth_id;
+    public long getBirthId() {
+        return birthId;
     }
 
     public void setBirth_ID(long birth_id) {
-        this.birth_id = birth_id;
+        this.birthId = birth_id;
     }
-
-    public String getNext_visit() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(javaPostgreSql.getUpcomingAppointmentDate(getId()));
-    }
-
 
     public static boolean hasValidID(String identificationNumber) {
         long identificationNumberLong = Long.parseLong(identificationNumber);

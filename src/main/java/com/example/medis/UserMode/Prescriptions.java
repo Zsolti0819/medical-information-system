@@ -27,11 +27,11 @@ public class Prescriptions implements Initializable {
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TableView<Prescription> prescriptionsTable;
-    @FXML private Label patient_name_prescriptions;
+    @FXML private Label patientNamePrescriptions;
     @FXML private TableColumn <Prescription, String> title;
     @FXML private TableColumn <Prescription, String>drug;
-    @FXML private TableColumn <Prescription, Date> expiration_date;
-    @FXML private TableColumn <Prescription, String> prescribed_by;
+    @FXML private TableColumn <Prescription, Date> expirationDate;
+    @FXML private TableColumn <Prescription, String> prescribedBy;
 
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
@@ -121,15 +121,15 @@ public class Prescriptions implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         drug.setCellValueFactory(new PropertyValueFactory<>("drug"));
-        expiration_date.setCellValueFactory(new PropertyValueFactory<>("expiration_date"));
-        prescribed_by.setCellValueFactory(new PropertyValueFactory<>("doctor_name"));
+        expirationDate.setCellValueFactory(new PropertyValueFactory<>("expirationDate"));
+        prescribedBy.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
         addButtonToTable();
     }
 
     public void initData(Patient patient, User user) {
         selectedPatient = patient;
         loggedInUser = user;
-        patient_name_prescriptions.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s prescriptions");
+        patientNamePrescriptions.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + "'s prescriptions");
         prescriptionsTable.setItems(javaPostgreSql.getAllNotDeletedPrescriptionsByEntityID("patient", selectedPatient.getId()));
     }
 }

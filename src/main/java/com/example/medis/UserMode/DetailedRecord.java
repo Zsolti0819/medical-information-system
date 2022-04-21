@@ -21,11 +21,11 @@ public class DetailedRecord implements Initializable {
     private User loggedInUser;
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
-    @FXML private Label patient_name_record_title;
-    @FXML private Label title_data;
-    @FXML private Label date_data;
-    @FXML private Label description_data;
-    @FXML private Label notes_data;
+    @FXML private Label patientNameRecordTitle;
+    @FXML private Label titleData;
+    @FXML private Label dateData;
+    @FXML private Label descriptionData;
+    @FXML private Label notesData;
 
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
@@ -48,11 +48,11 @@ public class DetailedRecord implements Initializable {
         selectedPatient = patient;
         selectedRecord = javaPostgreSql.getRecord(record.getId());
         loggedInUser = user;
-        patient_name_record_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + selectedRecord.getTitle());
-        title_data.setText(selectedRecord.getTitle());
-        date_data.setText(selectedRecord.getDate_executed().toString());
-        description_data.setText(selectedRecord.getDescription());
-        notes_data.setText(selectedRecord.getNotes());
+        patientNameRecordTitle.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + " - " + selectedRecord.getTitle());
+        titleData.setText(selectedRecord.getTitle());
+        dateData.setText(selectedRecord.getDateExecuted().toString());
+        descriptionData.setText(selectedRecord.getDescription());
+        notesData.setText(selectedRecord.getNotes());
 
     }
 }

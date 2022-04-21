@@ -6,12 +6,9 @@ import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class NewPrescription {
 
@@ -19,17 +16,17 @@ public class NewPrescription {
     private User loggedInUser;
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
-    @FXML private Label patient_name_prescription_title;
-    @FXML private TextField title_data;
-    @FXML private TextArea description_data;
-    @FXML private TextField drug_data;
-    @FXML private DatePicker exp_date_ymd_data;
-    @FXML private TextArea notes_data;
+    @FXML private Label patientNamePrescriptionTitle;
+    @FXML private TextField titleData;
+    @FXML private TextArea descriptionData;
+    @FXML private TextField drugData;
+    @FXML private DatePicker expDateYmdData;
+    @FXML private TextArea notesData;
 
     // Create prescription button
     @FXML
     private void createPrescription(ActionEvent event) throws IOException {
-        javaPostgreSql.createPrescription(title_data.getText(), description_data.getText(), drug_data.getText(), exp_date_ymd_data.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notes_data.getText());
+        javaPostgreSql.createPrescription(titleData.getText(), descriptionData.getText(), drugData.getText(), expDateYmdData.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notesData.getText());
         switchToPrescriptions(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("Prescription was created successfully!");
@@ -46,6 +43,6 @@ public class NewPrescription {
     public void initData(Patient patient, User user) {
         selectedPatient = patient;
         loggedInUser = user;
-        patient_name_prescription_title.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + " - " + "New prescription");
+        patientNamePrescriptionTitle.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + " - " + "New prescription");
     }
 }

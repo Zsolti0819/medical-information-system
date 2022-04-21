@@ -19,15 +19,15 @@ public class PatientInfo {
     private User loggedInUser;
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
-    @FXML private Label name_and_last_name_data;
-    @FXML private Label insurance_co_data;
-    @FXML private Label birth_ID_data;
-    @FXML private Label birth_date_data;
-    @FXML private Label sex_data;
-    @FXML private Label blood_group_data;
-    @FXML private Label address_data;
-    @FXML private Label phone_data;
-    @FXML private Label email_data;
+    @FXML private Label nameAndLastNameData;
+    @FXML private Label insuranceCoData;
+    @FXML private Label birthIdData;
+    @FXML private Label birthDateData;
+    @FXML private Label sexData;
+    @FXML private Label bloodGroupData;
+    @FXML private Label addressData;
+    @FXML private Label phoneData;
+    @FXML private Label emailData;
 
     // Edit patient info button
     @FXML
@@ -100,14 +100,14 @@ public class PatientInfo {
     public void initData(Patient patient, User user) {
         selectedPatient = javaPostgreSql.getPatient(patient.getId());
         loggedInUser = user;
-        name_and_last_name_data.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name());
-        insurance_co_data.setText(selectedPatient.getInsurance_company());
-        birth_ID_data.setText(String.valueOf(selectedPatient.getBirth_id()));
-        birth_date_data.setText(String.valueOf(selectedPatient.getBirth_date()));
-        sex_data.setText(selectedPatient.getSex());
-        blood_group_data.setText(selectedPatient.getBlood_group());
-        address_data.setText(selectedPatient.getAddress());
-        phone_data.setText(selectedPatient.getPhone());
-        email_data.setText(selectedPatient.getEmail());
+        nameAndLastNameData.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName());
+        insuranceCoData.setText(selectedPatient.getInsuranceCompany());
+        birthIdData.setText(String.valueOf(selectedPatient.getBirthId()));
+        birthDateData.setText(String.valueOf(selectedPatient.getBirthDate()));
+        sexData.setText(selectedPatient.getSex());
+        bloodGroupData.setText(selectedPatient.getBloodGroup());
+        addressData.setText(selectedPatient.getAddress());
+        phoneData.setText(selectedPatient.getPhone());
+        emailData.setText(selectedPatient.getEmail());
     }
 }

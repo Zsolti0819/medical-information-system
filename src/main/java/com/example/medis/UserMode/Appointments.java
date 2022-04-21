@@ -28,11 +28,11 @@ public class Appointments implements Initializable {
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TableView<Appointment> appointmentsTable;
-    @FXML private Label patient_name_appointments;
+    @FXML private Label patientNameAppointments;
     @FXML private TableColumn<Appointment, String> title;
     @FXML private TableColumn<Appointment, Long> doctor;
-    @FXML private TableColumn<Appointment, LocalDateTime> start_time;
-    @FXML private TableColumn<Appointment, LocalDateTime> end_time;
+    @FXML private TableColumn<Appointment, LocalDateTime> startTime;
+    @FXML private TableColumn<Appointment, LocalDateTime> endTime;
 
     // Patient info
     @FXML
@@ -139,16 +139,16 @@ public class Appointments implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        doctor.setCellValueFactory(new PropertyValueFactory<>("doctor_name"));
-        start_time.setCellValueFactory(new PropertyValueFactory<>("start_time_formatted"));
-        end_time.setCellValueFactory(new PropertyValueFactory<>("end_time_formatted"));
+        doctor.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
+        startTime.setCellValueFactory(new PropertyValueFactory<>("startTimeFormatted"));
+        endTime.setCellValueFactory(new PropertyValueFactory<>("endTimeFormatted"));
         addButtonToTable();
     }
 
     public void initData(Patient patient, User user) {
         loggedInUser = user;
         selectedPatient = patient;
-        patient_name_appointments.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s appointments");
+        patientNameAppointments.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + "'s appointments");
         appointmentsTable.setItems(javaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId()));
 
     }

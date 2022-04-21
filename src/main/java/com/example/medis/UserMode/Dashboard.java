@@ -25,9 +25,9 @@ public class Dashboard implements Initializable {
 
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
-    @FXML private TableColumn<Patient, String> last_name;
-    @FXML private TableColumn<Patient, Long> birth_id;
-    @FXML private TableColumn<Patient, LocalDateTime> next_visit;
+    @FXML private TableColumn<Patient, String> lastName;
+    @FXML private TableColumn<Patient, Long> birthId;
+    @FXML private TableColumn<Patient, LocalDateTime> nextVisit;
     @FXML private TextField searchPatientField;
 
     // Open buttons
@@ -95,10 +95,10 @@ public class Dashboard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)  {
-        name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
-        last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
-        birth_id.setCellValueFactory(new PropertyValueFactory<>("birth_id"));
-        next_visit.setCellValueFactory(new PropertyValueFactory<>("next_visit"));
+        name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        birthId.setCellValueFactory(new PropertyValueFactory<>("birthId"));
+        nextVisit.setCellValueFactory(new PropertyValueFactory<>("nextVisit"));
         addButtonToTable();
         patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
 

@@ -1,6 +1,5 @@
 package com.example.medis.AdminMode;
 
-import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
@@ -14,7 +13,6 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class Users implements Initializable {
@@ -24,14 +22,14 @@ public class Users implements Initializable {
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TableView<User> usersTable;
-    @FXML private TableColumn<User, String> first_name;
-    @FXML private TableColumn<User, String> last_name;
+    @FXML private TableColumn<User, String> firstName;
+    @FXML private TableColumn<User, String> lastName;
     @FXML private TableColumn<User, String> position;
     @FXML private TableColumn<User, Boolean> deleted;
     @FXML private TableColumn<User, Long> id;
-    @FXML private TextField searchUserfield;
 
-
+    // Plus button
+    @FXML
     public void addUser(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToUserCreation(loggedInUser, event);
@@ -44,39 +42,10 @@ public class Users implements Initializable {
         s.switchToLogout(null, event);
     }
 
-
-
     @FXML
     private void switchToUserInfo(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToUserInfo(loggedInUser, selectedUser, event);
-    }
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        first_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
-        last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
-        position.setCellValueFactory(new PropertyValueFactory<>("position"));
-        deleted.setCellValueFactory(new PropertyValueFactory<>("deleted"));
-        addButtonToTable();
-        usersTable.setItems(javaPostgreSql.getAllUsers());
-        /*searchUserfield.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() >= 3) {
-                System.out.println();
-               // usersTable.setItems(javaPostgreSql.filterPatients(newValue.replaceAll("[^a-zA-Z\\d]", "").toLowerCase()));
-                addButtonToTable();
-            }
-            if (newValue.equals("")) {
-                addButtonToTable();
-                usersTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
-            }
-        });*/
-
-
-
     }
 
     private void addButtonToTable() {
@@ -119,6 +88,18 @@ public class Users implements Initializable {
 
         usersTable.getColumns().add(details);
 
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        position.setCellValueFactory(new PropertyValueFactory<>("position"));
+        deleted.setCellValueFactory(new PropertyValueFactory<>("deleted"));
+        addButtonToTable();
+        usersTable.setItems(javaPostgreSql.getAllUsers());
 
     }
 

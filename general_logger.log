@@ -349,6 +349,8 @@
 [2022-04-21 14:35:58] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 15:44:49] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 15:45:04] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 16:03:03] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 16:23:39] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 15:53:18] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 15:53:29] [INFO   ] LOGIN | USER: User admin logged in 
 [2022-04-21 15:54:03] [INFO   ] LOGIN | USER: User admin logged in 
@@ -362,3 +364,34 @@
 [2022-04-21 16:47:57] [INFO   ] LOGIN | USER: User admin logged in 
 [2022-04-21 16:52:41] [INFO   ] LOGIN | USER: User admin logged in 
 [2022-04-21 17:05:29] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 17:13:25] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:13:38] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 17:21:31] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:25:22] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:26:02] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:28:53] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:29:55] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:30:25] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:31:12] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:36:41] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 17:37:19] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 17:40:56] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:13:25] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:13:38] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 17:21:31] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:25:22] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:26:02] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:28:53] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:29:55] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:30:25] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:31:12] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:36:41] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 17:37:19] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 17:40:56] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:45:46] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 17:52:16] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 18:03:04] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 18:03:36] [INFO   ] PRESCRIPTION | CREATE: Prescription AA created 
+[2022-04-21 18:03:50] [INFO   ] PRESCRIPTION | DELETE: Prescription AA deleted 
+[2022-04-21 18:04:11] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 18:04:30] [INFO   ] REGISTER: User AA@gmail.com created 

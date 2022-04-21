@@ -24,6 +24,6 @@ TO DO:
 | 17 	  | Appointment update still doesn't work. Index 1 out of bounds for length 1 (AppointmentEdit.java:40)                         | Szaki          |
 | 18 	  | At appointments and at prescriptions, doctor names should be displayed instead of doctor ID-s.                              | Szaki          |
 | 19 	  | Fix search to not show deleted patients                                                                                     | Szaki          |
-| 20 	  | At patients screen table, next visit should be displayed                                                                    |                |
+| 20 	  | At patients screen table, next visit should be displayed                                                                    | Simon, Zsolti  |
 | 21 	  | At records and appointments, the date and time should be formatted                                                          | Zsolti         |
 | 22 	  | Admin mode - add new user, view user info, edit user info ... the fxml files are there                                      |                |

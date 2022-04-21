@@ -54,7 +54,7 @@
     </left>
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label fx:id="patient_name_records" layoutX="18.0" layoutY="53.0" prefHeight="43.0" prefWidth="655.0" text="Patient's records">
+            <Label fx:id="patientNameRecords" layoutX="18.0" layoutY="53.0" prefHeight="43.0" prefWidth="655.0" text="Patient's records">
                 <font>
                     <Font size="25.0" />
                 </font>
@@ -63,7 +63,7 @@
             <columns>
                <TableColumn fx:id="title" prefWidth="200.0" text="Title" />
                <TableColumn fx:id="description" prefWidth="200.0" text="Description" />
-               <TableColumn fx:id="created_at" prefWidth="200.0" text="Created at" />
+               <TableColumn fx:id="createdAt" prefWidth="200.0" text="Created at" />
             </columns>
          </TableView>
          <Pagination layoutX="18.0" layoutY="539.0" maxPageIndicatorCount="4" prefHeight="46.0" prefWidth="144.0" />

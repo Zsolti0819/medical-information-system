@@ -9,28 +9,27 @@ public class Appointment {
     private long id;
     private String title;
     private String description;
-    private LocalDateTime start_time;
-    private LocalDateTime end_time;
-
-    private String start_time_formatted;
-
-    private String end_time_formatted;
-    private LocalDateTime created_at, updated_at;
-    private int start_hour, start_min, start_year, start_month, start_day,  end_hour, end_min, end_year, end_month, end_day;
-    private long patient_id;
-    private long doctor_id;
-    private String doctor_name;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String startTimeFormatted;
+    private String endTimeFormatted;
+    private LocalDateTime createdAt, updatedAt;
+    private int startHour, startMin, startYear, startMonth, startDay, endHour, endMin, endYear, endMonth, endDay;
+    private long patientId;
+    private long doctorId;
+    private String doctorName;
     private boolean deleted;
-    private long created_by;
+    private long createdBy;
 
-    public String getStart_time_formatted() {
+    public String getStartTimeFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return start_time.format(formatter);
+        return startTime.format(formatter);
     }
 
-    public String getEnd_time_formatted() {
+
+    public String getEndTimeFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return end_time.format(formatter);
+        return endTime.format(formatter);
     }
 
 
@@ -42,20 +41,20 @@ public class Appointment {
         this.title = title;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public long getId() {
@@ -74,46 +73,46 @@ public class Appointment {
         this.description = description;
     }
 
-    public LocalDateTime getStart_time() {
-        return start_time;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setStart_time(LocalDateTime start_time) {
-        this.start_time = start_time;
-        this.start_year = start_time.getYear();
-        this.start_month = start_time.getMonthValue();
-        this.start_day = start_time.getDayOfMonth();
-        this.start_hour = start_time.getHour();
-        this.start_min = start_time.getMinute();
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+        this.startYear = startTime.getYear();
+        this.startMonth = startTime.getMonthValue();
+        this.startDay = startTime.getDayOfMonth();
+        this.startHour = startTime.getHour();
+        this.startMin = startTime.getMinute();
     }
 
-    public LocalDateTime getEnd_time() {
-        return end_time;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setEnd_time(LocalDateTime end_time) {
-        this.end_time = end_time;
-        this.end_year = end_time.getYear();
-        this.end_month = end_time.getMonthValue();
-        this.end_day = end_time.getDayOfMonth();
-        this.end_hour = end_time.getHour();
-        this.end_min = end_time.getMinute();
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+        this.endYear = endTime.getYear();
+        this.endMonth = endTime.getMonthValue();
+        this.endDay = endTime.getDayOfMonth();
+        this.endHour = endTime.getHour();
+        this.endMin = endTime.getMinute();
     }
 
-    public long getPatient_id() {
-        return patient_id;
+    public long getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(long patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(long patientId) {
+        this.patientId = patientId;
     }
 
-    public long getDoctor_id() {
-        return doctor_id;
+    public long getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(long doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
     public boolean isDeleted() {
@@ -124,107 +123,107 @@ public class Appointment {
         this.deleted = deleted;
     }
 
-    public long getCreated_by() {
-        return created_by;
+    public long getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreated_by(long created_by) {
-        this.created_by = created_by;
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public int getStart_hour() {
-        return start_hour;
+    public int getStartHour() {
+        return startHour;
     }
 
-    public int getStart_min() {
-        return start_min;
+    public int getStartMin() {
+        return startMin;
     }
 
-    public int getStart_year() {
-        return start_year;
+    public int getStartYear() {
+        return startYear;
     }
 
-    public int getStart_month() {
-        return start_month;
+    public int getStartMonth() {
+        return startMonth;
     }
 
-    public int getStart_day() {
-        return start_day;
+    public int getStartDay() {
+        return startDay;
     }
 
-    public int getEnd_hour() {
-        return end_hour;
+    public int getEndHour() {
+        return endHour;
     }
 
-    public int getEnd_min() {
-        return end_min;
+    public int getEndMin() {
+        return endMin;
     }
 
-    public int getEnd_year() {
-        return end_year;
+    public int getEndYear() {
+        return endYear;
     }
 
-    public int getEnd_month() {
-        return end_month;
+    public int getEndMonth() {
+        return endMonth;
     }
 
-    public int getEnd_day() {
-        return end_day;
+    public int getEndDay() {
+        return endDay;
     }
 
     public Date getStartDate(){
-        return new GregorianCalendar(start_year,start_month,start_day).getTime();
+        return new GregorianCalendar(startYear, startMonth, startDay).getTime();
     }
 
     public Date getEndDate(){
-        return new GregorianCalendar(end_year,end_month,end_day).getTime();
+        return new GregorianCalendar(endYear, endMonth, endDay).getTime();
     }
 
-    public void setStart_hour(int start_hour) {
-        this.start_hour = start_hour;
+    public void setStartHour(int startHour) {
+        this.startHour = startHour;
     }
 
-    public void setStart_min(int start_min) {
-        this.start_min = start_min;
+    public void setStartMin(int startMin) {
+        this.startMin = startMin;
     }
 
-    public void setStart_year(int start_year) {
-        this.start_year = start_year;
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
     }
 
-    public void setStart_month(int start_month) {
-        this.start_month = start_month;
+    public void setStartMonth(int startMonth) {
+        this.startMonth = startMonth;
     }
 
-    public void setStart_day(int start_day) {
-        this.start_day = start_day;
+    public void setStartDay(int startDay) {
+        this.startDay = startDay;
     }
 
-    public void setEnd_hour(int end_hour) {
-        this.end_hour = end_hour;
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
     }
 
-    public void setEnd_min(int end_min) {
-        this.end_min = end_min;
+    public void setEndMin(int endMin) {
+        this.endMin = endMin;
     }
 
-    public void setEnd_year(int end_year) {
-        this.end_year = end_year;
+    public void setEndYear(int endYear) {
+        this.endYear = endYear;
     }
 
-    public void setEnd_month(int end_month) {
-        this.end_month = end_month;
+    public void setEndMonth(int endMonth) {
+        this.endMonth = endMonth;
     }
 
-    public void setEnd_day(int end_day) {
-        this.end_day = end_day;
+    public void setEndDay(int endDay) {
+        this.endDay = endDay;
     }
 
-    public String getDoctor_name() {
-        return doctor_name;
+    public String getDoctorName() {
+        return doctorName;
     }
 
-    public void setDoctor_name(String doctor_name) {
-        this.doctor_name = doctor_name;
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 }

@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 
 public class Prescription {
 
-    private long id, patient_id, doctor_id;
-    private String title, description, drug, notes, doctor_name;
-    private LocalDateTime created_at, updated_at;
-    private Date expiration_date;
+    private long id, patientId, doctorId;
+    private String title, description, drug, notes, doctorName;
+    private LocalDateTime createdAt, updatedAt;
+    private Date expirationDate;
     private boolean deleted;
 
     public long getId() {
@@ -19,20 +19,20 @@ public class Prescription {
         this.id = id;
     }
 
-    public long getPatient_id() {
-        return patient_id;
+    public long getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(long patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(long patientId) {
+        this.patientId = patientId;
     }
 
-    public long getDoctor_id() {
-        return doctor_id;
+    public long getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(long doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
     public String getTitle() {
@@ -67,28 +67,28 @@ public class Prescription {
         this.notes = notes;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public Date getExpiration_date() {
-        return expiration_date;
+    public Date getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setExpiration_date(Date expiration_date) {
-        this.expiration_date = expiration_date;
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public boolean isDeleted() {
@@ -99,11 +99,11 @@ public class Prescription {
         this.deleted = deleted;
     }
 
-    public String getDoctor_name() {
-        return doctor_name;
+    public String getDoctorName() {
+        return doctorName;
     }
 
-    public void setDoctor_name(String doctor_name) {
-        this.doctor_name = doctor_name;
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 }

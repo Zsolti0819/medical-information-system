@@ -5,16 +5,16 @@ import java.time.LocalDateTime;
 public class User {
 
     private Long id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String username;
 //    private String password;
     private String email;
     private String phone;
     private String position;
-    private LocalDateTime birthdate;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime birthDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private boolean deleted;
 
     public Long getId() {
@@ -25,28 +25,28 @@ public class User {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getPosition() {
@@ -81,20 +81,20 @@ public class User {
         this.phone = phone;
     }
 
-    public LocalDateTime getBirthdate() {
-        return birthdate;
+    public LocalDateTime getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDateTime birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDateTime birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public boolean isDeleted() {
@@ -106,6 +106,6 @@ public class User {
     }
 
     public String getFull_name(){
-        return first_name+" "+last_name;
+        return firstName +" "+ lastName;
     }
 }

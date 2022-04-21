@@ -690,12 +690,12 @@ public class JavaPostgreSql {
         record.setId(resultSet.getLong("id"));
         record.setTitle(resultSet.getString("title"));
         record.setDescription(resultSet.getString("description"));
-        record.setDate_executed(resultSet.getDate("date_executed"));
+        record.setDateExecuted(resultSet.getDate("date_executed"));
         record.setNotes(resultSet.getString("notes"));
-        record.setPatient_id(resultSet.getLong("patient_id"));
-        record.setDoctor_id(resultSet.getLong("doctor_id"));
-        record.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
-        record.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
+        record.setPatientId(resultSet.getLong("patient_id"));
+        record.setDoctorId(resultSet.getLong("doctor_id"));
+        record.setCreatedAt(resultSet.getObject("created_at", LocalDateTime.class));
+        record.setUpdatedAt(resultSet.getObject("updated_at", LocalDateTime.class));
         record.setDeleted(resultSet.getBoolean("deleted"));
         return record;
     }
@@ -705,15 +705,15 @@ public class JavaPostgreSql {
         appointment.setId(resultSet.getLong("id"));
         appointment.setTitle(resultSet.getString("title"));
         appointment.setDescription(resultSet.getString("description"));
-        appointment.setStart_time(resultSet.getObject("start_time", LocalDateTime.class));
-        appointment.setEnd_time(resultSet.getObject("end_time", LocalDateTime.class));
-        appointment.setPatient_id(resultSet.getLong("patient_id"));
-        appointment.setDoctor_id(resultSet.getLong("doctor_id"));
-        appointment.setDoctor_name(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
-        appointment.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
-        appointment.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
+        appointment.setStartTime(resultSet.getObject("start_time", LocalDateTime.class));
+        appointment.setEndTime(resultSet.getObject("end_time", LocalDateTime.class));
+        appointment.setPatientId(resultSet.getLong("patient_id"));
+        appointment.setDoctorId(resultSet.getLong("doctor_id"));
+        appointment.setDoctorName(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
+        appointment.setCreatedAt(resultSet.getObject("created_at", LocalDateTime.class));
+        appointment.setUpdatedAt(resultSet.getObject("updated_at", LocalDateTime.class));
         appointment.setDeleted(resultSet.getBoolean("deleted"));
-        appointment.setCreated_by(resultSet.getLong("created_by"));
+        appointment.setCreatedBy(resultSet.getLong("created_by"));
 
         return appointment;
     }
@@ -748,7 +748,7 @@ public class JavaPostgreSql {
 
             while (resultSet.next()) {
                 User a = createUserFromResultSet(resultSet);
-                result.add(a.getFirst_name() + " "+ a.getLast_name());
+                result.add(a.getFirstName() + " "+ a.getLastName());
             }
 
         } catch (SQLException e) {
@@ -928,17 +928,17 @@ public class JavaPostgreSql {
     private Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
         Patient patient = new Patient();
         patient.setId(resultSet.getLong("id"));
-        patient.setFirst_name(resultSet.getString("first_name"));
-        patient.setLast_name(resultSet.getString("last_name"));
-        patient.setBlood_group(resultSet.getString("blood_group"));
+        patient.setFirstName(resultSet.getString("first_name"));
+        patient.setLastName(resultSet.getString("last_name"));
+        patient.setBloodGroup(resultSet.getString("blood_group"));
         patient.setSex(resultSet.getString("sex"));
         patient.setAddress(resultSet.getString("address"));
         patient.setEmail(resultSet.getString("email"));
-        patient.setInsurance_company(resultSet.getString("insurance_company"));
+        patient.setInsuranceCompany(resultSet.getString("insurance_company"));
         patient.setPhone(resultSet.getString("phone"));
-        patient.setBirth_date(resultSet.getDate("birthdate"));
-        patient.setCreated_at(resultSet.getObject("created_at", LocalDateTime.class));
-        patient.setUpdated_at(resultSet.getObject("updated_at", LocalDateTime.class));
+        patient.setBirthDate(resultSet.getDate("birthdate"));
+        patient.setCreatedAt(resultSet.getObject("created_at", LocalDateTime.class));
+        patient.setUpdatedAt(resultSet.getObject("updated_at", LocalDateTime.class));
         patient.setDeleted(resultSet.getBoolean("deleted"));
         patient.setBirth_ID(resultSet.getLong("identification_number"));
 
@@ -953,15 +953,15 @@ public class JavaPostgreSql {
     private User createUserFromResultSet(ResultSet resultSet) throws SQLException {
         User obj = new User();
         obj.setId(resultSet.getLong("id"));
-        obj.setFirst_name(resultSet.getString("first_name"));
-        obj.setLast_name(resultSet.getString("last_name"));
+        obj.setFirstName(resultSet.getString("first_name"));
+        obj.setLastName(resultSet.getString("last_name"));
         obj.setUsername(resultSet.getString("username"));
         obj.setEmail(resultSet.getString("email"));
         obj.setPhone(resultSet.getString("phone"));
         obj.setPosition(resultSet.getString("position"));
-        obj.setBirthdate(LocalDateTime.from(resultSet.getTimestamp("birthdate").toLocalDateTime()));
-        obj.setCreated_at(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
-        obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
+        obj.setBirthDate(LocalDateTime.from(resultSet.getTimestamp("birthdate").toLocalDateTime()));
+        obj.setCreatedAt(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
+        obj.setUpdatedAt(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
         obj.setDeleted(resultSet.getBoolean("deleted"));
         return obj;
     }
@@ -1264,12 +1264,12 @@ public class JavaPostgreSql {
         obj.setDescription(resultSet.getString("description"));
         obj.setDrug(resultSet.getString("drug"));
         obj.setNotes(resultSet.getString("notes"));
-        obj.setPatient_id(resultSet.getLong("patient_id"));
-        obj.setDoctor_id(resultSet.getLong("doctor_id"));
-        obj.setDoctor_name(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
-        obj.setExpiration_date(resultSet.getDate("expiration_date"));
-        obj.setCreated_at(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
-        obj.setUpdated_at(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
+        obj.setPatientId(resultSet.getLong("patient_id"));
+        obj.setDoctorId(resultSet.getLong("doctor_id"));
+        obj.setDoctorName(this.getUser(resultSet.getLong("doctor_id")).getFull_name());
+        obj.setExpirationDate(resultSet.getDate("expiration_date"));
+        obj.setCreatedAt(LocalDateTime.from(resultSet.getTimestamp("created_at").toLocalDateTime()));
+        obj.setUpdatedAt(LocalDateTime.from(resultSet.getTimestamp("updated_at").toLocalDateTime()));
         obj.setDeleted(resultSet.getBoolean("deleted"));
         return obj;
     }

@@ -9,7 +9,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.UserMode.DetailedRecord">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label fx:id="patient_name_record_title" layoutX="249.0" layoutY="55.0" prefHeight="43.0" prefWidth="405.0" text="Patient name - Record title">
+            <Label fx:id="patientNameRecordTitle" layoutX="249.0" layoutY="55.0" prefHeight="43.0" prefWidth="405.0" text="Patient name - Record title">
                 <font>
                     <Font size="25.0" />
                 </font>
@@ -19,7 +19,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <Label fx:id="title_data" layoutX="425.0" layoutY="131.0" prefHeight="25.0" prefWidth="134.0" text="Title">
+         <Label fx:id="titleData" layoutX="425.0" layoutY="131.0" prefHeight="25.0" prefWidth="134.0" text="Title">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
@@ -29,7 +29,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <Label fx:id="date_data" layoutX="425.0" layoutY="177.0" prefHeight="25.0" prefWidth="140.0" text="Date">
+         <Label fx:id="dateData" layoutX="425.0" layoutY="177.0" prefHeight="25.0" prefWidth="140.0" text="Date">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
@@ -39,7 +39,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <Label fx:id="description_data" layoutX="425.0" layoutY="223.0" prefHeight="25.0" text="Description">
+         <Label fx:id="descriptionData" layoutX="425.0" layoutY="223.0" prefHeight="25.0" text="Description">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
@@ -49,7 +49,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <Label fx:id="notes_data" layoutX="425.0" layoutY="362.0" prefHeight="25.0" text="Notes">
+         <Label fx:id="notesData" layoutX="425.0" layoutY="362.0" prefHeight="25.0" text="Notes">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>

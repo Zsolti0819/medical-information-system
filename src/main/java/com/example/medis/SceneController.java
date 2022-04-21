@@ -2,7 +2,7 @@ package com.example.medis;
 
 import com.example.medis.AdminMode.NewUser;
 import com.example.medis.AdminMode.UserInfo;
-import com.example.medis.AdminMode.UserInfoEdit;
+import com.example.medis.AdminMode.EditUserInfo;
 import com.example.medis.AdminMode.Users;
 import com.example.medis.Entities.*;
 import com.example.medis.UserMode.*;
@@ -67,7 +67,7 @@ public class SceneController {
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 
-        UserInfoEdit controller = loader.getController();
+        EditUserInfo controller = loader.getController();
         controller.initData(loggedInUser, selectedUser);
 
         stage.show();

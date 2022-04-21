@@ -5,15 +5,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Record {
-    private long id, patient_id, doctor_id;
-    private String title, description,notes, created_at_formatted;
-    private LocalDateTime created_at, updated_at;
-    private Date date_executed;
+    private long id, patientId, doctorId;
+    private String title, description,notes, createdAtFormatted;
+    private LocalDateTime createdAt, updatedAt;
+    private Date dateExecuted;
     private boolean deleted;
 
-    public String getCreated_at_formatted() {
+    public String getCreatedAtFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return created_at.format(formatter);
+        return createdAt.format(formatter);
     }
 
     public String getTitle() {
@@ -32,12 +32,12 @@ public class Record {
         this.description = description;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public long getId() {
@@ -48,20 +48,20 @@ public class Record {
         this.id = id;
     }
 
-    public long getPatient_id() {
-        return patient_id;
+    public long getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(long patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(long patientId) {
+        this.patientId = patientId;
     }
 
-    public long getDoctor_id() {
-        return doctor_id;
+    public long getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(long doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
     public String getNotes() {
@@ -72,20 +72,20 @@ public class Record {
         this.notes = notes;
     }
 
-    public Date getDate_executed() {
-        return date_executed;
+    public Date getDateExecuted() {
+        return dateExecuted;
     }
 
-    public void setDate_executed(Date date_executed) {
-        this.date_executed = date_executed;
+    public void setDateExecuted(Date dateExecuted) {
+        this.dateExecuted = dateExecuted;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public boolean isDeleted() {
@@ -95,4 +95,6 @@ public class Record {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+
 }

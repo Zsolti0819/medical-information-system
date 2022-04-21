@@ -27,10 +27,10 @@ public class Records implements Initializable {
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML private TableView<Record> recordsTable;
-    @FXML private Label patient_name_records;
+    @FXML private Label patientNameRecords;
     @FXML private TableColumn<Record, String> title;
     @FXML private TableColumn<Record, String> description;
-    @FXML private TableColumn<Record, LocalDateTime> created_at;
+    @FXML private TableColumn<Record, LocalDateTime> createdAt;
 
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException  {
@@ -129,14 +129,14 @@ public class Records implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        created_at.setCellValueFactory(new PropertyValueFactory<>("created_at_formatted"));
+        createdAt.setCellValueFactory(new PropertyValueFactory<>("createdAtFormatted"));
         addButtonToTable();
     }
 
     public void initData(Patient patient, User user) {
         selectedPatient = patient;
         loggedInUser = user;
-        patient_name_records.setText(selectedPatient.getFirst_name() + " " + selectedPatient.getLast_name() + "'s records");
+        patientNameRecords.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + "'s records");
         recordsTable.setItems(javaPostgreSql.getAllNotDeletedRecordsByPatientId(selectedPatient.getId()));
     }
 }

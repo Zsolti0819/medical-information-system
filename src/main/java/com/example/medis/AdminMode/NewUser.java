@@ -1,6 +1,5 @@
 package com.example.medis.AdminMode;
 
-import com.example.medis.Entities.Patient;
 import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
@@ -13,7 +12,6 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,18 +22,16 @@ public class NewUser implements Initializable {
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
     @FXML
-    private TextField first_name_data;
-    @FXML private TextField last_name_data;
+    private TextField firstNameData;
+    @FXML private TextField lastNameData;
     @FXML private ComboBox<String> positionData;
-    @FXML private TextField birth_ID_data;
-    @FXML private TextField address_data;
-    @FXML private TextField phone_data;
-    @FXML private TextField email_data;
+    @FXML private TextField addressData;
+    @FXML private TextField phoneData;
+    @FXML private TextField emailData;
     @FXML private TextField passwordData;
     @FXML private DatePicker birthdayData;
     @FXML private TextField usernameData;
     @FXML private Label missing_values_msg;
-    @FXML private Button createUserButton;
 
 
     @Override
@@ -62,24 +58,17 @@ public class NewUser implements Initializable {
     // Create user button
     @FXML
     private void createUser(ActionEvent event) throws IOException {
-
-        String birthDateFromId = "";
-
-        String firstNameText = first_name_data.getText();
-        String lastNameText = last_name_data.getText();
+        String firstNameText = firstNameData.getText();
+        String lastNameText = lastNameData.getText();
         String positionText = positionData.getValue();
-        String addressText = address_data.getText();
-        String phoneText = phone_data.getText();
-        String emailText = email_data.getText();
+        String addressText = addressData.getText();
+        String phoneText = phoneData.getText();
+        String emailText = emailData.getText();
         String passwordText = passwordData.getText();
         LocalDate birthdayText = birthdayData.getValue();
         String usernameText = usernameData.getText();
 
-
-
         if(!firstNameText.isEmpty() && !lastNameText.isEmpty() && positionText!=null && !passwordText.isEmpty() &&  !addressText.isEmpty() && !phoneText.isEmpty() && !emailText.isEmpty() && birthdayText != null){
-          //  if (validationBirthID(birthIdText)){
-              //  birthDateFromId = Patient.getYear(birthIdText) + "-" + Patient.getMonth(birthIdText) + "-" + Patient.getDay(birthIdText);
                 if (validationPhone(phoneText)){
                     if (validationEmail(emailText)){
                        missing_values_msg.setText(javaPostgreSql.createUser(firstNameText, lastNameText, usernameText, passwordText, emailText, phoneText, positionText, birthdayText.toString()));
@@ -95,11 +84,7 @@ public class NewUser implements Initializable {
                 else{
                     missing_values_msg.setText("Please enter valid phone number!");
                 }
-          //  }
-            /*else{
 
-                missing_values_msg.setText("Please enter valid birth id!");
-            }*/
         }
         else {
             missing_values_msg.setText("Please fill in missing compulsory data!");

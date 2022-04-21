@@ -12,7 +12,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.UserMode.NewAppointment">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label fx:id="patient_name_new_appointment" layoutX="249.0" layoutY="124.0" prefHeight="43.0" prefWidth="405.0" text="Patient name - New appointment">
+            <Label fx:id="patientNameNewAppointment" layoutX="249.0" layoutY="124.0" prefHeight="43.0" prefWidth="405.0" text="Patient name - New appointment">
                 <font>
                     <Font size="25.0" />
                 </font>
@@ -22,35 +22,35 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <TextField fx:id="title_data" layoutX="423.0" layoutY="199.0" prefHeight="25.0" prefWidth="231.0" />
+         <TextField fx:id="titleData" layoutX="423.0" layoutY="199.0" prefHeight="25.0" prefWidth="231.0" />
             <Label layoutX="249.0" layoutY="245.0" prefHeight="25.0" prefWidth="140.0" text="Start time">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <DatePicker fx:id="start_ymd_data" layoutX="423.0" layoutY="245.0" prefHeight="25.0" prefWidth="98.0" />
-         <ComboBox fx:id="start_h_data" layoutX="526.0" layoutY="245.0" prefHeight="25.0" prefWidth="62.0" />
-         <ComboBox fx:id="start_min_data" layoutX="592.0" layoutY="245.0" prefHeight="25.0" prefWidth="62.0" />
+         <DatePicker fx:id="startYmdData" layoutX="423.0" layoutY="245.0" prefHeight="25.0" prefWidth="98.0" />
+         <ComboBox fx:id="startHData" layoutX="526.0" layoutY="245.0" prefHeight="25.0" prefWidth="62.0" />
+         <ComboBox fx:id="startMinData" layoutX="592.0" layoutY="245.0" prefHeight="25.0" prefWidth="62.0" />
          <Label layoutX="249.0" layoutY="291.0" prefHeight="25.0" prefWidth="140.0" text="End time">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <DatePicker fx:id="end_ymd_data" layoutX="423.0" layoutY="291.0" prefHeight="25.0" prefWidth="98.0" />
-         <ComboBox fx:id="end_min_data" layoutX="592.0" layoutY="291.0" prefHeight="25.0" prefWidth="62.0" />
-         <ComboBox fx:id="end_h_data" layoutX="526.0" layoutY="291.0" prefHeight="25.0" prefWidth="62.0" />
+         <DatePicker fx:id="endYmdData" layoutX="423.0" layoutY="291.0" prefHeight="25.0" prefWidth="98.0" />
+         <ComboBox fx:id="endMinData" layoutX="592.0" layoutY="291.0" prefHeight="25.0" prefWidth="62.0" />
+         <ComboBox fx:id="endHData" layoutX="526.0" layoutY="291.0" prefHeight="25.0" prefWidth="62.0" />
          <Label layoutX="249.0" layoutY="337.0" prefHeight="25.0" prefWidth="134.0" text="Description">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="description_data" layoutX="423.0" layoutY="337.0" prefHeight="25.0" prefWidth="231.0" />
+         <TextField fx:id="descriptionData" layoutX="423.0" layoutY="337.0" prefHeight="25.0" prefWidth="231.0" />
          <Label layoutX="249.0" layoutY="383.0" prefHeight="25.0" prefWidth="134.0" text="Doctor">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <ComboBox fx:id="doctor_data" layoutX="425.0" layoutY="383.0" prefHeight="25.0" prefWidth="229.0" />
+         <ComboBox fx:id="doctorData" layoutX="425.0" layoutY="383.0" prefHeight="25.0" prefWidth="229.0" />
             <Button layoutX="249.0" layoutY="451.0" mnemonicParsing="false" onAction="#createAppointment" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create appointment">
                 <font>
                     <Font name="System Bold" size="12.0" />
