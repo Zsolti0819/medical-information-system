@@ -2,43 +2,14 @@ package com.example.medis.Entities;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-public class Record {
+public class Prescription {
+
     private long id, patientId, doctorId;
-    private String title, description,notes, createdAtFormatted;
+    private String title, description, drug, notes, doctorName;
     private LocalDateTime createdAt, updatedAt;
-    private Date dateExecuted;
+    private Date expirationDate;
     private boolean deleted;
-
-    public String getCreatedAtFormatted() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return createdAt.format(formatter);
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public long getId() {
         return id;
@@ -64,6 +35,30 @@ public class Record {
         this.doctorId = doctorId;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDrug() {
+        return drug;
+    }
+
+    public void setDrug(String drug) {
+        this.drug = drug;
+    }
+
     public String getNotes() {
         return notes;
     }
@@ -72,12 +67,12 @@ public class Record {
         this.notes = notes;
     }
 
-    public Date getDateExecuted() {
-        return dateExecuted;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDateExecuted(Date dateExecuted) {
-        this.dateExecuted = dateExecuted;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDateTime getUpdatedAt() {
@@ -88,6 +83,14 @@ public class Record {
         this.updatedAt = updatedAt;
     }
 
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -96,5 +99,11 @@ public class Record {
         this.deleted = deleted;
     }
 
+    public String getDoctorName() {
+        return doctorName;
+    }
 
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
 }

@@ -1,4 +1,5 @@
 package com.example.medis;
+import com.example.medis.Entities.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -9,28 +10,34 @@ import java.io.IOException;
 
 public class Login {
 
-    @FXML
-    private Label loginMsg;
-    @FXML
-    private TextField loginEmail;
-    @FXML
-    private PasswordField loginPassword;
+    private User loggedInUser;
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
-    public void userLogIn(ActionEvent event) throws IOException, InterruptedException {
+    @FXML private Label loginMsg;
+    @FXML private TextField loginEmail;
+    @FXML private PasswordField loginPassword;
+
+    // Login button
+    @FXML
+    private void userLogIn(ActionEvent event) throws IOException {
         checkLogin(event);
-
     }
 
-    private void checkLogin(ActionEvent event) throws IOException, InterruptedException {
+    private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        // create user function to creating users in db.
-        //JavaPostgreSql.createUser("Tamás Szakal", "xszakal12", "qwe123", "xszasadkal@stubs.sk", "0900000000", "doctor",  "2022-01-01");
-
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
-            loginMsg.setText("Success!");
-            if (JavaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText()))
-                s.switchTo("user_mode/after_login.fxml",event);
+            if (javaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
+                loggedInUser = javaPostgreSql.getUserByEmail(loginEmail.getText());
+                if (loggedInUser.getPosition().equals("admin")) {
+                    s.switchToUsers(loggedInUser, event);
+                }
+                else {
+                    s.switchToPatients(loggedInUser, event);
+                }
+            }
+
+
             else
                 loginMsg.setText("Username or password are not valid!");
         }
@@ -41,9 +48,9 @@ public class Login {
         else {
             loginMsg.setText("Username or password are not valid!");
         }
-//        loginMsg.setText(JavaPostgreSql.updateUser( 2,"xszakal", "Tamás Szakal","12345", "xszakal@stubs.sk", "0900000000", "doctor",  "2022-01-01"));
-//        loginMsg.setText(JavaPostgreSql.deleteUser(8));
     }
 
-
+    public void initData(User user) {
+        loggedInUser = user;
+    }
 }

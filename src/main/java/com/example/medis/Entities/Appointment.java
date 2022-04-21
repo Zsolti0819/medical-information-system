@@ -1,28 +1,37 @@
 package com.example.medis.Entities;
 
-import javafx.scene.control.Button;
-
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Appointment {
     private long id;
     private String title;
     private String description;
-    private LocalDateTime start_time;
-    private LocalDateTime end_time;
-    private LocalDateTime date, updatedAt;
-    private long patient_id;
-    private long doctor_id;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String startTimeFormatted;
+    private String endTimeFormatted;
+    private LocalDateTime createdAt, updatedAt;
+    private int startHour, startMin, startYear, startMonth, startDay, endHour, endMin, endYear, endMonth, endDay;
+    private long patientId;
+    private long doctorId;
+    private String doctorName;
     private boolean deleted;
-    private Button appointmentInfo;
+    private long createdBy;
 
-    public Appointment(String title, LocalDateTime date, LocalDateTime updatedAt, Button appointmentInfo) {
-        this.title = title;
-        this.date = date;
-        this.updatedAt = updatedAt;
-        this.appointmentInfo = appointmentInfo;
-        this.appointmentInfo.setText("Open");
+    public String getStartTimeFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return startTime.format(formatter);
     }
+
+
+    public String getEndTimeFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return endTime.format(formatter);
+    }
+
 
     public String getTitle() {
         return title;
@@ -32,12 +41,12 @@ public class Appointment {
         this.title = title;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDateTime getUpdatedAt() {
@@ -46,14 +55,6 @@ public class Appointment {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Button getAppointmentInfo() {
-        return appointmentInfo;
-    }
-
-    public void setAppointmentInfo(Button appointmentInfo) {
-        this.appointmentInfo = appointmentInfo;
     }
 
     public long getId() {
@@ -72,36 +73,46 @@ public class Appointment {
         this.description = description;
     }
 
-    public LocalDateTime getStart_time() {
-        return start_time;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setStart_time(LocalDateTime start_time) {
-        this.start_time = start_time;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+        this.startYear = startTime.getYear();
+        this.startMonth = startTime.getMonthValue();
+        this.startDay = startTime.getDayOfMonth();
+        this.startHour = startTime.getHour();
+        this.startMin = startTime.getMinute();
     }
 
-    public LocalDateTime getEnd_time() {
-        return end_time;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setEnd_time(LocalDateTime end_time) {
-        this.end_time = end_time;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+        this.endYear = endTime.getYear();
+        this.endMonth = endTime.getMonthValue();
+        this.endDay = endTime.getDayOfMonth();
+        this.endHour = endTime.getHour();
+        this.endMin = endTime.getMinute();
     }
 
-    public long getPatient_id() {
-        return patient_id;
+    public long getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(long patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(long patientId) {
+        this.patientId = patientId;
     }
 
-    public long getDoctor_id() {
-        return doctor_id;
+    public long getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(long doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(long doctorId) {
+        this.doctorId = doctorId;
     }
 
     public boolean isDeleted() {
@@ -110,5 +121,109 @@ public class Appointment {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public int getStartHour() {
+        return startHour;
+    }
+
+    public int getStartMin() {
+        return startMin;
+    }
+
+    public int getStartYear() {
+        return startYear;
+    }
+
+    public int getStartMonth() {
+        return startMonth;
+    }
+
+    public int getStartDay() {
+        return startDay;
+    }
+
+    public int getEndHour() {
+        return endHour;
+    }
+
+    public int getEndMin() {
+        return endMin;
+    }
+
+    public int getEndYear() {
+        return endYear;
+    }
+
+    public int getEndMonth() {
+        return endMonth;
+    }
+
+    public int getEndDay() {
+        return endDay;
+    }
+
+    public Date getStartDate(){
+        return new GregorianCalendar(startYear, startMonth, startDay).getTime();
+    }
+
+    public Date getEndDate(){
+        return new GregorianCalendar(endYear, endMonth, endDay).getTime();
+    }
+
+    public void setStartHour(int startHour) {
+        this.startHour = startHour;
+    }
+
+    public void setStartMin(int startMin) {
+        this.startMin = startMin;
+    }
+
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
+    }
+
+    public void setStartMonth(int startMonth) {
+        this.startMonth = startMonth;
+    }
+
+    public void setStartDay(int startDay) {
+        this.startDay = startDay;
+    }
+
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+
+    public void setEndMin(int endMin) {
+        this.endMin = endMin;
+    }
+
+    public void setEndYear(int endYear) {
+        this.endYear = endYear;
+    }
+
+    public void setEndMonth(int endMonth) {
+        this.endMonth = endMonth;
+    }
+
+    public void setEndDay(int endDay) {
+        this.endDay = endDay;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 }

@@ -1,21 +1,77 @@
 package com.example.medis.Entities;
 
-import javafx.scene.control.Button;
+import com.example.medis.JavaPostgreSql;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Patient {
+
+    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+
     private long id;
-    private String first_name, surname;
+    private String firstName, lastName;
+    private String insuranceCompany;
     private String phone;
-    private Date birth_date;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private Date birthDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private boolean deleted;
-    private long birth_number;
-    private LocalDateTime last_visit, next_visit;
-    private Button patient_info;
+    private long birthId;
+    private String sex;
+    private String bloodGroup;
+    private String address;
+    private String email;
+    private String nextVisit;
+
+    public String getNextVisit() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(javaPostgreSql.getUpcomingAppointmentDate(getId()));
+    }
+
+    public String getInsuranceCompany() {
+        return insuranceCompany;
+    }
+
+    public void setInsuranceCompany(String insuranceCompany) {
+        this.insuranceCompany = insuranceCompany;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public void setBirthId(long birthId) {
+        this.birthId = birthId;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public long getId() {
         return id;
@@ -25,20 +81,20 @@ public class Patient {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
@@ -49,28 +105,28 @@ public class Patient {
         this.phone = phone;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public boolean isDeleted() {
@@ -81,35 +137,73 @@ public class Patient {
         this.deleted = deleted;
     }
 
-    public long getBirth_number() {
-        return birth_number;
+    public long getBirthId() {
+        return birthId;
     }
 
-    public void setBirth_number(long birth_number) {
-        this.birth_number = birth_number;
+    public void setBirth_ID(long birthId) {
+        this.birthId = birthId;
     }
 
-    public LocalDateTime getLast_visit() {
-        return last_visit;
+    public static boolean hasValidID(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
+        int day = (int) (date % 100);
+        int month = (int) (date / 100 % 100);
+
+        if (month >= 51 && month <= 62)
+            month -= 50;
+
+        int[] mdays = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        return identificationNumberLong % 11 == 0 && month > 0 && (month <= 12 || month >= 51) &&
+                month <= 62 && day > 0 && day <= mdays[month];
     }
 
-    public void setLast_visit(LocalDateTime last_visit) {
-        this.last_visit = last_visit;
+    public static String getGender(String identificationNumber) {
+
+        if (!(identificationNumber.equals(""))) {
+            long identificationNumberLong = Long.parseLong(identificationNumber);
+            long date = identificationNumberLong / 10000;
+            int month = (int) (date / 100 % 100);
+            if (month >= 51 && month <= 62)
+                return "female";
+            else
+                return "male";
+        }
+        return null;
     }
 
-    public LocalDateTime getNext_visit() {
-        return next_visit;
+    public static int getYear(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
+        int year = (int) (date / 10000 % 100);
+
+        if (year >= 20)
+            year += 1900;
+
+        else
+            year += 2000;
+
+        System.out.println(year);
+        return year;
     }
 
-    public void setNext_visit(LocalDateTime next_visit) {
-        this.next_visit = next_visit;
+    public static int getMonth(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
+        int month = (int) (date / 100 % 100);
+
+        if (month >= 51 && month <= 62)
+            month -= 50;
+
+        return month;
     }
 
-    public Button getPatient_info() {
-        return patient_info;
-    }
+    public static int getDay(String identificationNumber) {
+        long identificationNumberLong = Long.parseLong(identificationNumber);
+        long date = identificationNumberLong / 10000;
 
-    public void setPatient_info(Button patient_info) {
-        this.patient_info = patient_info;
+        return (int) (date % 100);
     }
 }
