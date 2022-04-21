@@ -23,6 +23,7 @@ public class EditRecord  {
     @FXML private DatePicker dateData;
     @FXML private TextArea descriptionData;
     @FXML private TextArea notesData;
+    @FXML private Label missingValuesMsg;
 
     // Save record button
     @FXML

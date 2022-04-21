@@ -24,6 +24,7 @@ public class EditPrescription  {
     @FXML private TextField drugData;
     @FXML private DatePicker expDateYmdData;
     @FXML private TextArea notesData;
+    @FXML private Label missingValuesMsg;
 
     // Save button
     @FXML

@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class EditAppointment implements Initializable {
 
+
     private Patient selectedPatient;
     private User loggedInUser;
     private Appointment selectedAppointment;
@@ -32,6 +33,7 @@ public class EditAppointment implements Initializable {
     @FXML private ComboBox<String> endMinData;
     @FXML private TextField descriptionData;
     @FXML private ComboBox <String> doctorData;
+    @FXML private Label missingValuesMsg;
 
     // Save button
     @FXML

@@ -17,11 +17,13 @@ public class Login {
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
 
-    public void userLogIn(ActionEvent event) throws IOException, InterruptedException {
+    // Login button
+    @FXML
+    private void userLogIn(ActionEvent event) throws IOException {
         checkLogin(event);
     }
 
-    private void checkLogin(ActionEvent event) throws IOException, InterruptedException {
+    private void checkLogin(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
@@ -47,7 +49,6 @@ public class Login {
             loginMsg.setText("Username or password are not valid!");
         }
     }
-
 
     public void initData(User user) {
         loggedInUser = user;

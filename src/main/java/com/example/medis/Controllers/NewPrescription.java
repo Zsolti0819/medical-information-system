@@ -22,6 +22,7 @@ public class NewPrescription {
     @FXML private TextField drugData;
     @FXML private DatePicker expDateYmdData;
     @FXML private TextArea notesData;
+    @FXML private Label missingValuesMsg;
 
     // Create prescription button
     @FXML

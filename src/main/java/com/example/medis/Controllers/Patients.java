@@ -17,7 +17,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
-public class Dashboard implements Initializable {
+public class Patients implements Initializable {
 
     private User loggedInUser;
     private Patient selectedPatient;

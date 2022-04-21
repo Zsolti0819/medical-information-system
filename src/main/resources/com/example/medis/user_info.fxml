@@ -28,7 +28,7 @@
                 </font>
             </Hyperlink>
             <Line endX="155.0" layoutX="50.0" layoutY="142.0" startX="-50.0" />
-            <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToUsers" prefHeight="26.0" prefWidth="108.0" text="Close window" textFill="#151515">
+            <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToUsers" prefHeight="26.0" prefWidth="108.0" text="Back" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>

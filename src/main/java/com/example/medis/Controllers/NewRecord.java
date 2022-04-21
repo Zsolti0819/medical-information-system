@@ -21,6 +21,7 @@ public class NewRecord {
     @FXML private DatePicker dateData;
     @FXML private TextArea descriptionData;
     @FXML private TextArea notesData;
+    @FXML private Label missingValuesMsg;
 
     // Create record button
     @FXML

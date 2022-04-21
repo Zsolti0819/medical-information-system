@@ -30,6 +30,7 @@ public class NewAppointment implements Initializable {
     @FXML private ComboBox<String> endMinData;
     @FXML private TextField descriptionData;
     @FXML private ComboBox <String> doctorData;
+    @FXML private Label missingValuesMsg;
 
     // Create appointment button
     @FXML

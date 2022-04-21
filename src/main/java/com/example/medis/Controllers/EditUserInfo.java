@@ -7,10 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +27,7 @@ public class EditUserInfo implements Initializable {
     @FXML private TextField emailData;
     @FXML private ComboBox<String> positionData;
     @FXML private DatePicker birthDateData;
+    @FXML private Label missingValuesMsg;
 
     // Save button
     @FXML

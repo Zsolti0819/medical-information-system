@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class EditPatientInfo implements Initializable{
 
+
     private Patient selectedPatient;
     private User loggedInUser;
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
@@ -33,6 +34,7 @@ public class EditPatientInfo implements Initializable{
     @FXML private TextField addressData;
     @FXML private TextField phoneData;
     @FXML private TextField emailData;
+    public Label missingValuesMsg;
 
     // Save button
     @FXML

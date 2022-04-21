@@ -77,13 +77,13 @@ public class SceneController {
 
     public void switchToDashboard(User loggedInUser, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(getClass().getResource("dashboard.fxml"));
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource("patients.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 
-        Dashboard controller = loader.getController();
+        Patients controller = loader.getController();
         controller.initData(loggedInUser);
 
         stage.show();
