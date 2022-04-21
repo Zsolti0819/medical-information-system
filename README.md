@@ -29,3 +29,6 @@ TO DO:
 | 22 	  | Admin mode - add new user, view user info, edit user info ... the fxml files are there                                      | Martin         |
 | 23 	  | Add deleteUser function to backend                                                                                          |                |
 | 24 	  | After password updating in admin mode, the user cannot log in.                                                              |                |
+| 25 	  | Validation for inputs (new patient/record/appointment/prescription, edit patient/record/appointment/prescription            |                |
+| 26 	  | Implement tasks (multithreading) for smoother GUI interaction                                                               |                |
+| 27 	  | Rework querries for faster results                                                                                          |                |

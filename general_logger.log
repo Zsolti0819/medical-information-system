@@ -421,3 +421,6 @@
 [2022-04-21 21:45:03] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 21:45:17] [INFO   ] LOGIN | USER: User admin logged in 
 [2022-04-21 21:45:39] [INFO   ] REGISTER: User QQQ@gmail.com created 
+[2022-04-21 21:47:56] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:02:38] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 22:02:56] [INFO   ] LOGIN | USER: User admin logged in 
