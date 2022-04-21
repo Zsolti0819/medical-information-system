@@ -299,3 +299,39 @@
 [2022-04-21 00:21:25] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 00:21:46] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-21 00:22:28] [INFO   ] LOGIN | USER: User xkokavecs@stubs.sk logged in 
+[2022-04-21 10:18:31] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 10:20:50] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 10:21:09] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 10:22:05] [INFO   ] APPOINTMENT | CREATE: Appointment lol created 
+[2022-04-21 10:25:05] [INFO   ] APPOINTMENT | UPDATE: Appointment lol updated 
+[2022-04-21 10:26:23] [INFO   ] APPOINTMENT | DELETE: Appointment A deleted 
+[2022-04-21 10:26:33] [INFO   ] APPOINTMENT | UPDATE: Appointment lol updated 
+[2022-04-21 10:29:22] [INFO   ] LOGIN | USER: User nurse logged in 
+[2022-04-21 10:29:49] [WARNING] ACCESS | DENIED | PRESCRIPTIONS: Denied for 11 
+[2022-04-21 10:32:53] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 10:33:09] [INFO   ] LOGIN | USER: User nurse logged in 
+[2022-04-21 10:33:40] [INFO   ] APPOINTMENT | UPDATE: Appointment lol updated 
+[2022-04-21 10:35:47] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 10:58:24] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 10:58:50] [INFO   ] APPOINTMENT | UPDATE: Appointment dfsg updated 
+[2022-04-21 10:59:29] [INFO   ] APPOINTMENT | CREATE: Appointment aaaa created 
+[2022-04-21 11:00:00] [INFO   ] APPOINTMENT | CREATE: Appointment aaa created 
+[2022-04-21 11:00:57] [INFO   ] APPOINTMENT | CREATE: Appointment dd created 
+[2022-04-21 11:01:36] [INFO   ] APPOINTMENT | CREATE: Appointment ddd created 
+[2022-04-21 11:01:55] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:07:11] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:08:03] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:20:28] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:20:58] [INFO   ] APPOINTMENT | UPDATE: Appointment test updated 
+[2022-04-21 11:21:50] [INFO   ] APPOINTMENT | UPDATE: Appointment aaaa updated 
+[2022-04-21 11:22:13] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:24:04] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-21 11:31:58] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:43:42] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:47:08] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:48:02] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:49:24] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:50:03] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:52:14] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:52:54] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-21 11:53:16] [INFO   ] LOGIN | USER: User doctor logged in 

@@ -27,7 +27,6 @@ public class Dashboard implements Initializable {
     @FXML private TableColumn<Patient, String> name;
     @FXML private TableColumn<Patient, String> last_name;
     @FXML private TableColumn<Patient, Long> birth_id;
-    @FXML private TableColumn<Patient, LocalDateTime> last_visit;
     @FXML private TableColumn<Patient, LocalDateTime> next_visit;
     @FXML private TextField searchPatientField;
 
@@ -107,9 +106,9 @@ public class Dashboard implements Initializable {
         patientsTable.setItems(JavaPostgreSql.getAllNotDeletedPatients());
 
         searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() >= 1) {
+            if (newValue.length() >= 3) {
                 System.out.println();
-                patientsTable.setItems(JavaPostgreSql.filterPatients(newValue.replaceAll("[^a-zA-Z0-9]", "").toLowerCase()));
+                patientsTable.setItems(JavaPostgreSql.filterPatients(newValue.replaceAll("[^a-zA-Z\\d]", "").toLowerCase()));
                 addButtonToTable();
             }
             if (newValue.equals("")) {

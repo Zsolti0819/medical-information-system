@@ -757,6 +757,7 @@ public class JavaPostgreSql {
         return result;
 
     }
+
     public static User getUserByEmail(String email){
         User result = new User();
         try {
@@ -968,7 +969,7 @@ public class JavaPostgreSql {
     public static Timestamp getUpcomingAppointmentDate(Long patient_id) {
         Timestamp result = null;
         try {
-            String query = "SELECT * FROM appointments WHERE patient_id=? AND start_time>=? ORDER BY start_time ASC LIMIT 1;";
+            String query = "SELECT * FROM appointments WHERE patient_id=? AND start_time>=? AND deleted=false ORDER BY start_time ASC LIMIT 1;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -976,10 +977,20 @@ public class JavaPostgreSql {
             preparedStatement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            result = resultSet.getTimestamp("start_time");
-            System.out.println(preparedStatement);
-            System.out.println(result);
+            if(resultSet.next()){
+                result = resultSet.getTimestamp("start_time");
+                System.out.println(preparedStatement);
+                System.out.println(result);
+            }else{
+                try {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                    Date parsedDate = dateFormat.parse("0000-00-00 00:00");
+                    result = new java.sql.Timestamp(parsedDate.getTime());
+                } catch(Exception e) {
+                    System.out.println("Exception e: " + e);
+                }
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();

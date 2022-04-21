@@ -51,6 +51,7 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
+         <Label fx:id="missing_values_msg" layoutX="387.0" layoutY="98.0" prefHeight="17.0" prefWidth="202.0" textFill="RED" />
         </AnchorPane>
     </center>
 </BorderPane>

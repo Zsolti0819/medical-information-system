@@ -1,6 +1,10 @@
 package com.example.medis.Entities;
 
+import com.example.medis.JavaPostgreSql;
+
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Patient {
@@ -17,7 +21,7 @@ public class Patient {
     private String blood_group;
     private String address;
     private String email;
-    private LocalDateTime last_visit, next_visit;
+    private String next_visit;
 
     public String getInsurance_company() {
         return insurance_company;
@@ -135,19 +139,11 @@ public class Patient {
         this.birth_id = birth_id;
     }
 
-    public LocalDateTime getLast_visit() {
-        return last_visit;
+    public String getNext_visit() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(JavaPostgreSql.getUpcomingAppointmentDate(getId()));
     }
 
-    public void setLast_visit(LocalDateTime last_visit) {
-        this.last_visit = last_visit;
-    }
-
-    public LocalDateTime getNext_visit() {
-        return next_visit;
-    }
-
-    public void setNext_visit(LocalDateTime next_visit) {
+    public void setNext_visit(String next_visit) {
         this.next_visit = next_visit;
     }
 

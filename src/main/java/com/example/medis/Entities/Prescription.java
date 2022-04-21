@@ -1,7 +1,5 @@
 package com.example.medis.Entities;
 
-import com.example.medis.JavaPostgreSql;
-
 import java.sql.Date;
 import java.time.LocalDateTime;
 
