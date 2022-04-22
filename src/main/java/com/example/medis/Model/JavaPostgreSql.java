@@ -140,7 +140,7 @@ public class JavaPostgreSql {
 
                 preparedStatement.setString(1,first_name);
                 preparedStatement.setString(2,last_name);
-                preparedStatement.setString(3,password);
+                preparedStatement.setString(3,hashPass(password));
                 preparedStatement.setString(4,email);
                 preparedStatement.setString(5,phone);
                 preparedStatement.setDate(6,getDate(birthdate));
@@ -159,6 +159,8 @@ public class JavaPostgreSql {
             } catch (ParseException e) {
                 e.printStackTrace();
                 return "ParseException: " + e;
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
             }
         }
     }
