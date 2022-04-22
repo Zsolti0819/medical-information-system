@@ -913,7 +913,7 @@ public class JavaPostgreSql {
 
     public ObservableList<Patient> getAllNotDeletedPatients(){
 //        String query = "SELECT * from patients WHERE deleted=false;";
-        String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id where appointments.start_time > now() and patients.deleted=false and appointments.deleted=false;";
+        String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id and appointments.deleted=false and appointments.start_time > now() where patients.deleted=false;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
