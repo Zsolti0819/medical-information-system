@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
 
@@ -1053,43 +1054,53 @@ public class JavaPostgreSql {
 
     }
 
-    public ObservableList<User> filterUsers(String filterWord) {
+    public ObservableList<User> filterUsersById( Long id) {
 
-        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
-        String query = "";
         ObservableList<User> result = FXCollections.observableArrayList();
+        String query = "SELECT * FROM users WHERE id = ?;";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
 
 
+            preparedStatement.setLong(1, id);
 
-        if (pattern.matcher(filterWord).matches()){
-            query = "SELECT * FROM users WHERE identification_number=?;";
+            ResultSet resultSet = preparedStatement.executeQuery();
 
+
+            while (resultSet.next()) {
+                result.add(createUserFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
+
+    public ObservableList<User> filterUsers(String column, String filterWord) {
 
             try {
-                Connection connection = DriverManager.getConnection(url, user, pswd);
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                preparedStatement.setString(1, filterWord);
-
-                while (resultSet.next()) {
-                    result.add(createUserFromResultSet(resultSet));
+                if (!Objects.equals(column, "first_name") && !Objects.equals(column, "last_name") && !Objects.equals(column, "position")) {
+                    throw new Exception("Invalid column provided");
                 }
-
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
-        } else {
-            query = "SELECT * FROM users WHERE (LOWER(first_name) LIKE ? or LOWER(last_name) LIKE ?);";
 
-
+        ObservableList<User> result = FXCollections.observableArrayList();
+        String query = "SELECT * FROM users WHERE LOWER(" + column + ") LIKE ?;";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
+
 
                 preparedStatement.setString(1, "%" + filterWord + "%");
-                preparedStatement.setString(2, "%" + filterWord + "%");
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -1101,8 +1112,6 @@ public class JavaPostgreSql {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-        }
 
         return result;
 

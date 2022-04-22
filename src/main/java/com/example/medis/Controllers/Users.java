@@ -3,17 +3,21 @@ package com.example.medis.Controllers;
 import com.example.medis.Entities.User;
 import com.example.medis.JavaPostgreSql;
 import com.example.medis.SceneController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Users implements Initializable {
 
@@ -27,9 +31,10 @@ public class Users implements Initializable {
     @FXML private TableColumn<User, String> position;
     @FXML private TableColumn<User, Boolean> deleted;
     @FXML private TableColumn<User, Long> id;
-
+    @FXML private TextField searchUserfield;
+    @FXML private Label searchLabel;
     // Plus button
-    @FXML
+
     public void addUser(MouseEvent event) throws IOException {
         SceneController s = new SceneController();
         s.switchToUserCreation(loggedInUser, event);
@@ -100,6 +105,43 @@ public class Users implements Initializable {
         deleted.setCellValueFactory(new PropertyValueFactory<>("deleted"));
         addButtonToTable();
         usersTable.setItems(javaPostgreSql.getAllUsers());
+        //
+        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b):([A-Za-z0-9 ]+)$");
+        Pattern numCols = Pattern.compile("^((?i)\\bid\\b):([1-9][0-9]{0,18})$");
+
+        searchUserfield.textProperty().addListener((observable, oldValue, newValue) -> {
+            Matcher textMatcher = textCols.matcher(newValue);
+            Matcher numberMatcher = numCols.matcher(newValue);
+            if (newValue.equals("")) {
+                searchLabel.setText("");
+            } else {
+                if (textMatcher.find()) {
+                    System.out.println(textMatcher.group(1) + " " + textMatcher.group(2));
+                    String col = textMatcher.group(1).toLowerCase().replace(" ", "_");
+                    usersTable.setItems(javaPostgreSql.filterUsers(col, textMatcher.group(2).toLowerCase()));
+                    addButtonToTable();
+                    searchLabel.setTextFill(Color.color(0, 0.6, 0));
+                    searchLabel.setText("Searching over column: " + col + "string: " + textMatcher.group(2));
+                    return;
+                }
+                if (numberMatcher.find()) {
+                    System.out.println(numberMatcher.group(1) + " " + numberMatcher.group(2));
+                    System.out.println();
+                    usersTable.setItems( javaPostgreSql.filterUsersById(Long.parseLong(numberMatcher.group(2))));
+                    addButtonToTable();
+                    searchLabel.setTextFill(Color.color(0, 0.6, 0));
+                    searchLabel.setText("Searching over column: id, number: " + numberMatcher.group(2));
+                    return;
+                }
+
+                searchLabel.setTextFill(Color.color(0.8, 0, 0));
+                searchLabel.setText("Search pattern not matched try:\n<first name/last name/id/position>:<number/text>");
+
+
+            }
+
+
+        });
 
     }
 

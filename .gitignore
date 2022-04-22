@@ -3,3 +3,5 @@
 medis.iml
 pom.xml
 target
+general_logger.log
+general_logger.log.lck
