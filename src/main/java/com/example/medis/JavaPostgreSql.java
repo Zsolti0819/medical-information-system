@@ -970,12 +970,11 @@ public class JavaPostgreSql {
     public Timestamp getUpcomingAppointmentDate(Long patient_id) {
         Timestamp result = null;
         try {
-            String query = "SELECT * FROM appointments WHERE patient_id=? AND start_time>=? AND deleted=false ORDER BY start_time ASC LIMIT 1;";
+            String query = "SELECT start_time, patient_id as id FROM(SELECT ROW_NUMBER() OVER(PARTITION BY patient_id ORDER BY start_time DESC) row_num, start_time,patient_id FROM appointments WHERE start_time > ?)t WHERE row_num = 1";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, patient_id);
-            preparedStatement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){

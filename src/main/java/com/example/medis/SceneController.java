@@ -17,6 +17,8 @@ import java.io.IOException;
 
 public class SceneController {
 
+    // Admin mode
+
     public void switchToUserCreation(User loggedInUser, MouseEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("new_user.fxml"));
@@ -75,7 +77,7 @@ public class SceneController {
 
     // Dashboard
 
-    public void switchToDashboard(User loggedInUser, ActionEvent event) throws IOException {
+    public void switchToPatients(User loggedInUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("patients.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

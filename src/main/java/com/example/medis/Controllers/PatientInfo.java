@@ -78,7 +78,7 @@ public class PatientInfo {
     private void deletePatient(ActionEvent event) throws IOException {
         if (!loggedInUser.getPosition().equals("receptionist")) {
             javaPostgreSql.deletePatient(selectedPatient.getId());
-            switchToDashboard(event);
+            switchToPatients(event);
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setContentText("Patient was deleted successfully!");
             a.show();
@@ -92,9 +92,9 @@ public class PatientInfo {
     }
 
     @FXML
-    private void switchToDashboard(ActionEvent event) throws IOException {
+    private void switchToPatients(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToDashboard(loggedInUser, event);
+        s.switchToPatients(loggedInUser, event);
     }
 
     public void initData(Patient patient, User user) {

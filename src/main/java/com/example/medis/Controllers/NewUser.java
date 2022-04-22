@@ -34,6 +34,7 @@ public class NewUser implements Initializable {
     // Create user button
     @FXML
     private void createUser(ActionEvent event) throws IOException {
+
         String firstNameText = firstNameData.getText();
         String lastNameText = lastNameData.getText();
         String positionText = positionData.getValue();
@@ -43,7 +44,7 @@ public class NewUser implements Initializable {
         LocalDate birthDateText = birthDateData.getValue();
         String usernameText = usernameData.getText();
 
-        if(!firstNameText.isEmpty() && !lastNameText.isEmpty() && positionText!=null && !passwordText.isEmpty() &&  !phoneText.isEmpty() && !emailText.isEmpty() && birthDateText != null){
+        if(!firstNameText.isEmpty() && !lastNameText.isEmpty() && positionText!=null && !passwordText.isEmpty() &&  !phoneText.isEmpty() && !emailText.isEmpty() && birthDateText != null && !usernameText.isEmpty()){
             if (validationPhone(phoneText)){
                 if (validationEmail(emailText)){
                     missingValuesMsg.setText(javaPostgreSql.createUser(firstNameText, lastNameText, usernameText, passwordText, emailText, phoneText, positionText, birthDateText.toString()));

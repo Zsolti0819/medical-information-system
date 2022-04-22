@@ -55,7 +55,7 @@ public class NewPatient implements Initializable {
                 if (validationPhone(phoneText)){
                     if (validationEmail(emailText)){
                         missingValuesMsg.setText(javaPostgreSql.createPatient(firstNameText, lastNameText, insuranceCompanyText, birthDateFromId, Patient.getGender(birthIdText), bloodGroupValue, addressText, phoneText, emailText, birthIdText));
-                        switchToDashboard(event);
+                        switchToPatients(event);
                         Alert a = new Alert(Alert.AlertType.INFORMATION);
                         a.setContentText("Patient "+ firstNameText + " " + lastNameText + " was created successfully!");
                         a.show();
@@ -76,13 +76,6 @@ public class NewPatient implements Initializable {
             missingValuesMsg.setText("Please fill in missing compulsory data!");
         }
 
-    }
-
-    public static boolean validator(String... strings) {
-        for (String s : strings)
-            if (s == null || s.isEmpty())
-                return true;
-        return false;
     }
 
     public boolean validationEmail(String emailText){
@@ -116,9 +109,9 @@ public class NewPatient implements Initializable {
 
     // Cancel button
     @FXML
-    private void switchToDashboard(ActionEvent event) throws IOException {
+    private void switchToPatients(ActionEvent event) throws IOException {
         SceneController s = new SceneController();
-        s.switchToDashboard(loggedInUser, event);
+        s.switchToPatients(loggedInUser, event);
     }
 
     @Override

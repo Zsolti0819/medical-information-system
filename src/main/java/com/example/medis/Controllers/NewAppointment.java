@@ -12,6 +12,10 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class NewAppointment implements Initializable {
@@ -35,12 +39,54 @@ public class NewAppointment implements Initializable {
     // Create appointment button
     @FXML
     private void createAppointment(ActionEvent event) throws IOException {
-        String[] doctorName = doctorData.getValue().split(" ");
-        javaPostgreSql.creteAppointment(titleData.getText(), descriptionData.getText(), startYmdData.getValue().toString()+" " + startHData.getValue() + ":" + startMinData.getValue(), endYmdData.getValue().toString() + " "  + endHData.getValue()+":" + endMinData.getValue(), selectedPatient.getId(), javaPostgreSql.getUserByFirstAndLastName(doctorName[0],doctorName[1]).getId(), loggedInUser.getId());
-        switchToAppointments(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Appointment was created successfully!");
-        a.show();
+
+        String titleText = titleData.getText();
+        LocalDate startYmdText =  startYmdData.getValue();
+        String startHText =  startHData.getValue();
+        String startMinText =  startMinData.getValue();
+        LocalDate endYmdText =  endYmdData.getValue();
+        String endHText =  endHData.getValue();
+        String endMinText =  endMinData.getValue();
+        String descriptionText =  descriptionData.getText();
+        String doctorText = doctorData.getValue();
+
+
+
+
+        if (!titleText.isEmpty() && startYmdText!=null && startHText!=null && startMinText!=null && endYmdText!=null && endHText!=null && endMinText!=null && !descriptionText.isEmpty() && doctorText!=null){
+            LocalDateTime today = LocalDateTime.now();
+            String startstr = startYmdText + " " + startHText + ":" + startMinText;
+            String endstr = endYmdText + " " + endHText + ":" + endMinText;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime startdateTime = LocalDateTime.parse(startstr, formatter);
+            LocalDateTime enddateTime = LocalDateTime.parse(endstr, formatter);
+            if (today.isBefore(startdateTime)){
+                if (today.isBefore(enddateTime)){
+                    if (startdateTime.isBefore(enddateTime)){
+                        String[] doctorName = doctorData.getValue().split(" ");
+                        javaPostgreSql.creteAppointment(titleData.getText(), descriptionData.getText(), startYmdData.getValue().toString()+" " + startHData.getValue() + ":" + startMinData.getValue(), endYmdData.getValue().toString() + " "  + endHData.getValue()+":" + endMinData.getValue(), selectedPatient.getId(), javaPostgreSql.getUserByFirstAndLastName(doctorName[0],doctorName[1]).getId(), loggedInUser.getId());
+                        switchToAppointments(event);
+                        Alert a = new Alert(Alert.AlertType.INFORMATION);
+                        a.setContentText("Appointment was created successfully!");
+                        a.show();
+                    } else {
+                        missingValuesMsg.setText("Starting date have to be before ending date!");
+                    }
+                }
+                else {
+                    missingValuesMsg.setText("Please fill appropriate ending date!");
+                }
+
+            }
+            else {
+                missingValuesMsg.setText("Please fill appropriate starting date!");
+            }
+        }else {
+
+            missingValuesMsg.setText("Please fill in missing compulsory data!");
+
+        }
+
     }
 
     // Cancel button

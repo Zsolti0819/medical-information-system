@@ -26,11 +26,21 @@ public class NewRecord {
     // Create record button
     @FXML
     private void createRecord(ActionEvent event) throws IOException {
-        javaPostgreSql.createRecord(titleData.getText(), descriptionData.getText(), dateData.getValue().toString(), notesData.getText(), selectedPatient.getId(), loggedInUser.getId());
-        switchToRecords(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Record was created successfully!");
-        a.show();
+
+        String titleText = titleData.getText();
+        java.time.LocalDate dateText = dateData.getValue();
+        String descriptionText = descriptionData.getText();
+
+        if (!titleText.isEmpty() && dateText!=null && !descriptionText.isEmpty()){
+            javaPostgreSql.createRecord(titleData.getText(), descriptionData.getText(), dateData.getValue().toString(), notesData.getText(), selectedPatient.getId(), loggedInUser.getId());
+            switchToRecords(event);
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Record was created successfully!");
+            a.show();
+        } else {
+            missingValuesMsg.setText("Please fill in missing compulsory data!");
+        }
+
     }
 
     // Cancel button

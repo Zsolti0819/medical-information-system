@@ -33,7 +33,7 @@ public class Login {
                     s.switchToUsers(loggedInUser, event);
                 }
                 else {
-                    s.switchToDashboard(loggedInUser, event);
+                    s.switchToPatients(loggedInUser, event);
                 }
             }
 

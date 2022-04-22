@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class NewPrescription {
 
@@ -27,11 +29,29 @@ public class NewPrescription {
     // Create prescription button
     @FXML
     private void createPrescription(ActionEvent event) throws IOException {
-        javaPostgreSql.createPrescription(titleData.getText(), descriptionData.getText(), drugData.getText(), expDateYmdData.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notesData.getText());
-        switchToPrescriptions(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Prescription was created successfully!");
-        a.show();
+
+
+        String titleText = titleData.getText();
+        String descriptionText = descriptionData.getText();
+        String drugText = drugData.getText();
+        java.time.LocalDate expDateText = expDateYmdData.getValue();
+
+        if (!titleText.isEmpty() && expDateText!=null && !descriptionText.isEmpty() && !drugText.isEmpty()){
+            LocalDate today = LocalDate.now();
+            if (today.isBefore(expDateText)){
+                javaPostgreSql.createPrescription(titleData.getText(), descriptionData.getText(), drugData.getText(), expDateYmdData.getValue().toString(), selectedPatient.getId(), loggedInUser.getId(), notesData.getText());
+                switchToPrescriptions(event);
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setContentText("Prescription was created successfully!");
+                a.show();
+            }else {
+                missingValuesMsg.setText("Expiration data should be later than today!");
+            }
+        } else {
+            missingValuesMsg.setText("Please fill in missing compulsory data!");
+        }
+
+
     }
 
     // Cancel button
