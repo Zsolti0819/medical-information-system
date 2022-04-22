@@ -5,6 +5,7 @@ import com.example.medis.JavaPostgreSql;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Patient {
 
@@ -25,8 +26,12 @@ public class Patient {
     private String email;
     private String nextVisit;
 
+    public void setNextVisit(String nextVisit) {
+        this.nextVisit = nextVisit;
+    }
+
     public String getNextVisit() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(javaPostgreSql.getUpcomingAppointmentDate(getId()));
+        return nextVisit;
     }
 
     public String getInsuranceCompany() {

@@ -912,7 +912,8 @@ public class JavaPostgreSql {
     }
 
     public ObservableList<Patient> getAllNotDeletedPatients(){
-        String query = "SELECT * from patients WHERE deleted=false;";
+//        String query = "SELECT * from patients WHERE deleted=false;";
+        String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id and appointments.start_time > now() and patients.deleted=false;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -943,6 +944,12 @@ public class JavaPostgreSql {
         patient.setBirthDate(resultSet.getDate("birthdate"));
         patient.setCreatedAt(resultSet.getObject("created_at", LocalDateTime.class));
         patient.setUpdatedAt(resultSet.getObject("updated_at", LocalDateTime.class));
+        try{
+            patient.setNextVisit(resultSet.getObject("start_time",LocalDateTime.class).toString());
+        }
+        catch (Exception e){
+            patient.setNextVisit("0000-00-00 00:00");
+        }
         patient.setDeleted(resultSet.getBoolean("deleted"));
         patient.setBirth_ID(resultSet.getLong("identification_number"));
 
