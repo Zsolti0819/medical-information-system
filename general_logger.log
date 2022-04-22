@@ -525,3 +525,33 @@
 [2022-04-22 14:00:10] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-22 14:04:08] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-22 14:04:52] [INFO   ] APPOINTMENT | CREATE: Appointment LMAO created 
+[2022-04-22 14:07:35] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 14:08:10] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:08:24] [INFO   ] USER | UPDATE: User xkiss@stubs.sk updated 
+[2022-04-22 14:08:37] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | xkiss@stubs.sk | 12345 
+[2022-04-22 14:09:11] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:09:39] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | xkiss@stubs.sk | 7D4E3EEC80026719639ED4DBA68916EB94C7A49A053E05C8F9578FE4E5A3D7EA 
+[2022-04-22 14:10:51] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:11:02] [INFO   ] USER | UPDATE: User xkiss@stubs.sk updated 
+[2022-04-22 14:11:20] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | xkiss@stubs.sk | 12345 
+[2022-04-22 14:11:28] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:13:11] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:13:32] [INFO   ] USER | UPDATE: User xkiss@stubs.sk updated 
+[2022-04-22 14:14:32] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | xkiss | 123456789 
+[2022-04-22 14:15:52] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | admin | 123456789 
+[2022-04-22 14:15:59] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:16:54] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:17:36] [INFO   ] USER | UPDATE: User xkiss@stubs.sk updated 
+[2022-04-22 14:17:51] [INFO   ] LOGIN | USER: User xkiss@stubs.sk logged in 
+[2022-04-22 14:18:44] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:19:15] [INFO   ] USER | UPDATE: User xkiss@stubs.sk updated 
+[2022-04-22 14:19:36] [INFO   ] LOGIN | USER: User xkiss@stubs.sk logged in 
+[2022-04-22 14:19:45] [WARNING] ACCESS | DENIED | PRESCRIPTIONS: Denied for 3 
+[2022-04-22 14:19:50] [WARNING] ACCESS | DENIED | PRESCRIPTIONS: Denied for 3 
+[2022-04-22 14:20:01] [INFO   ] PATIENT | DELETE: Patient asd@gmail.com deleted 
+[2022-04-22 14:20:31] [INFO   ] PATIENT | UPDATE: Patient aabb@gmail.com updated 
+[2022-04-22 14:22:54] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:23:25] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 14:23:36] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:26:09] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:26:39] [INFO   ] LOGIN | USER: User admin logged in 

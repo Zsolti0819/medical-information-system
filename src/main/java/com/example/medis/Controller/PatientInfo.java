@@ -98,8 +98,8 @@ public class PatientInfo {
     }
 
     public void initData(Patient patient, User user) {
-        selectedPatient = javaPostgreSql.getPatient(patient.getId());
         loggedInUser = user;
+        selectedPatient = javaPostgreSql.getPatient(patient.getId());
         patientNameData.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName());
         insuranceCoData.setText(selectedPatient.getInsuranceCompany());
         birthIdData.setText(String.valueOf(selectedPatient.getBirthId()));

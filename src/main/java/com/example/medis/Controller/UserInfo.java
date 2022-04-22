@@ -37,7 +37,7 @@ public class UserInfo {
     //Delete user button
     @FXML
     private void deleteUser(ActionEvent event) throws IOException {
-//        javaPostgreSql.(selectedUser.getId());
+        javaPostgreSql.deleteUser(selectedUser.getId());
         switchToUsers(event);
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText("User was deleted successfully!");
@@ -52,7 +52,7 @@ public class UserInfo {
 
     public void initData(User user, User user2) {
         loggedInUser = user;
-        selectedUser = user2;
+        selectedUser = javaPostgreSql.getUser(user2.getId());
         userNameData.setText(selectedUser.getUsername());
         firstNameData.setText(selectedUser.getFirstName());
         lastNameData.setText(selectedUser.getLastName());

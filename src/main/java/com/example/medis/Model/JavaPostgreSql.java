@@ -165,13 +165,13 @@ public class JavaPostgreSql {
         }
     }
 
-    private String deleteUser(long id){
+    public String deleteUser(long id){
         if (!isUserExist(id)){
             GeneralLogger.log(Level.WARNING, "USER | UPDATE | FAILED: User with id " + id + " not found" );
             return "User with this id not exists!";
         }
         else {
-            String query1 = "UPDATE USERS SET deleted=true, updated_at=now() WHERE id=?";
+            String query1 = "UPDATE users SET deleted=true, updated_at=now() WHERE id=?";
 
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);

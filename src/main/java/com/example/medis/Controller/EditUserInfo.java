@@ -49,10 +49,10 @@ public class EditUserInfo implements Initializable {
         if(!firstNameText.isEmpty() && !lastNameText.isEmpty() && positionText!=null && !passwordText.isEmpty() &&  !phoneText.isEmpty() && !emailText.isEmpty() && birthDateText != null && !usernameText.isEmpty()){
             if (validationPhone(phoneText)){
                 if (validationEmail(emailText)){
-                    javaPostgreSql.updateUser(selectedUser.getId(), usernameData.getText(), firstNameData.getText(), lastNameData.getText(),  passwordData.getText(), emailData.getText(), phoneData.getText(), String.valueOf(positionData.getSelectionModel().getSelectedItem()), birthDateData.getValue().toString());
+                    javaPostgreSql.updateUser(selectedUser.getId(), usernameData.getText(), firstNameData.getText(), lastNameData.getText(), passwordData.getText(), emailData.getText(), phoneData.getText(), String.valueOf(positionData.getSelectionModel().getSelectedItem()), birthDateData.getValue().toString());
                     switchToUserInfo(event);
                     Alert a = new Alert(Alert.AlertType.INFORMATION);
-                    a.setContentText("Patient info was updated successfully!");
+                    a.setContentText("User info was updated successfully!");
                     a.show();
                 }
                 else{
