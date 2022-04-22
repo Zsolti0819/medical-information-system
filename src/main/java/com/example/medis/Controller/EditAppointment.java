@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 
 public class EditAppointment implements Initializable {
 
-
     private Patient selectedPatient;
     private User loggedInUser;
     private Appointment selectedAppointment;
@@ -105,13 +104,24 @@ public class EditAppointment implements Initializable {
 
     // Delete button
     @FXML
-    private void deleteAppointment(ActionEvent event) throws IOException {
-        javaPostgreSql.deleteAppointment(selectedAppointment.getId());
-        ControllerBuffer s = new ControllerBuffer();
-        s.switchToAppointments(loggedInUser, selectedPatient, event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Appointment was deleted successfully!");
-        a.show();
+    private void deleteAppointment(ActionEvent event) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Are you sure you want to delete appointment " + selectedAppointment.getTitle() +"?");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                javaPostgreSql.deleteAppointment(selectedAppointment.getId());
+                ControllerBuffer s = new ControllerBuffer();
+                try {
+                    s.switchToAppointments(loggedInUser, selectedPatient, event);
+                    Alert b = new Alert(Alert.AlertType.INFORMATION);
+                    b.setContentText("Appointment " + selectedAppointment.getTitle() + " was deleted successfully!");
+                    b.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
     }
 
     private void fillAppointmentOptions(ComboBox<String> doctorData, ComboBox<String> startHData, ComboBox<String> startMinData, ComboBox<String> endHData, ComboBox<String> endMinData) {

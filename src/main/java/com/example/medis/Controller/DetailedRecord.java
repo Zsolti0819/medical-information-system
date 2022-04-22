@@ -8,6 +8,8 @@ import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -33,12 +35,33 @@ public class DetailedRecord implements Initializable {
         s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
+    // Edit record button
     @FXML
     private void switchToRecordEdit(ActionEvent event) throws IOException {
         ControllerBuffer s = new ControllerBuffer();
         s.switchToRecordEdit(loggedInUser, selectedPatient, selectedRecord,event);
     }
 
+    // Delete record button
+    @FXML
+    private void deleteRecord(ActionEvent event) {
+
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Are you sure you want to delete record " + selectedRecord.getTitle() + "?");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                javaPostgreSql.deleteRecord(selectedRecord.getId());
+                try {
+                    switchToRecords(event);
+                    Alert b = new Alert(Alert.AlertType.INFORMATION);
+                    b.setContentText("Record " + selectedRecord.getTitle() + " was deleted successfully!");
+                    b.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

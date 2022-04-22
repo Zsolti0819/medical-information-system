@@ -61,12 +61,24 @@ public class EditPrescription  {
 
     // Delete prescription button
     @FXML
-    private void deletePrescription(ActionEvent event) throws IOException {
-        javaPostgreSql.deletePrescription(selectedPrescription.getId());
-        switchToPrescriptions(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Prescription was deleted successfully!");
-        a.show();
+    private void deletePrescription(ActionEvent event) {
+
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Are you sure you want to delete prescription " + selectedPrescription.getTitle() + "?");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                javaPostgreSql.deletePrescription(selectedPrescription.getId());
+                try {
+                    switchToPrescriptions(event);
+                    Alert b = new Alert(Alert.AlertType.INFORMATION);
+                    b.setContentText("Prescription " + selectedPrescription.getTitle() + " was deleted successfully!");
+                    b.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
     }
 
     public void initData(Patient patient, Prescription prescription, User user) {

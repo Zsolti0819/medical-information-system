@@ -15,7 +15,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
         primaryStage.setTitle("Medis");
-        primaryStage.setScene(new Scene(root, 902, 610));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

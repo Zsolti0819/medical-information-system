@@ -6,6 +6,7 @@ import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -36,12 +37,23 @@ public class UserInfo {
 
     //Delete user button
     @FXML
-    private void deleteUser(ActionEvent event) throws IOException {
-        javaPostgreSql.deleteUser(selectedUser.getId());
-        switchToUsers(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("User was deleted successfully!");
-        a.show();
+    private void deleteUser(ActionEvent event) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Are you sure you want to delete user " + selectedUser.getUsername() + "?");
+        a.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                javaPostgreSql.deleteUser(selectedUser.getId());
+                try {
+                    switchToUsers(event);
+                    Alert b = new Alert(Alert.AlertType.INFORMATION);
+                    b.setContentText("User " + selectedUser.getUsername() + " was deleted successfully!");
+                    b.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
     }
 
     @FXML

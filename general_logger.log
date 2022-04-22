@@ -555,3 +555,36 @@
 [2022-04-22 14:23:36] [INFO   ] LOGIN | USER: User admin logged in 
 [2022-04-22 14:26:09] [INFO   ] LOGIN | USER: User admin logged in 
 [2022-04-22 14:26:39] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:36:26] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 14:36:35] [INFO   ] USER | DELETE: User Testicek@testicek.sk deleted 
+[2022-04-22 14:37:02] [INFO   ] LOGIN | USER: User xkiss@stubs.sk logged in 
+[2022-04-22 14:37:17] [WARNING] ACCESS | DENIED | RECORDS: Denied for 3 
+[2022-04-22 14:37:25] [WARNING] ACCESS | DENIED | PRESCRIPTIONS: Denied for 3 
+[2022-04-22 17:53:01] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 17:53:17] [INFO   ] PATIENT | DELETE: Patient DD deleted 
+[2022-04-22 18:05:31] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:05:52] [INFO   ] APPOINTMENT | DELETE: Appointment LMAO deleted 
+[2022-04-22 18:06:49] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:07:12] [INFO   ] APPOINTMENT | DELETE: Appointment Detist deleted 
+[2022-04-22 18:25:43] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:25:58] [INFO   ] PATIENT | DELETE: Patient johhnysins@gmail.com deleted 
+[2022-04-22 18:26:32] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:26:48] [INFO   ] PATIENT | DELETE: Patient aabb@gmail.com deleted 
+[2022-04-22 18:27:09] [INFO   ] APPOINTMENT | DELETE: Appointment Hearth extraction deleted 
+[2022-04-22 18:27:27] [INFO   ] RECORD | UPDATE: Record fgh updated 
+[2022-04-22 18:27:42] [INFO   ] APPOINTMENT | DELETE: Appointment Brain surgery deleted 
+[2022-04-22 18:27:53] [INFO   ] PRESCRIPTION | DELETE: Prescription Paralen deleted 
+[2022-04-22 18:31:27] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:32:04] [INFO   ] PATIENT | CREATE: Patient tomi@gmail.com created 
+[2022-04-22 18:32:22] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:32:49] [INFO   ] PATIENT | DELETE: Patient tomi@gmail.com deleted 
+[2022-04-22 18:40:14] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:40:30] [INFO   ] PATIENT | DELETE: Patient a@brazzers.com deleted 
+[2022-04-22 18:40:51] [INFO   ] APPOINTMENT | DELETE: Appointment fgh deleted 
+[2022-04-22 18:41:11] [INFO   ] APPOINTMENT | CREATE: Appointment xcsdvvxc created 
+[2022-04-22 18:41:24] [INFO   ] APPOINTMENT | DELETE: Appointment xcsdvvxc deleted 
+[2022-04-22 18:41:35] [INFO   ] PRESCRIPTION | DELETE: Prescription hello deleted 
+[2022-04-22 18:41:46] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 18:42:51] [WARNING] USER | UPDATE | FAILED: User with id 17 not found 
+[2022-04-22 18:43:44] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 18:43:53] [INFO   ] LOGIN | USER: User admin logged in 

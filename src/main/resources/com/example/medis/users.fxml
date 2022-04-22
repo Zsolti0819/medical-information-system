@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Controller.Users">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Controller.Users">
     <left>
         <AnchorPane prefHeight="610.0" prefWidth="145.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
             <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="24.0" prefWidth="81.0" text="Users" textFill="#151515">
@@ -51,7 +51,7 @@
                     <TableColumn fx:id="id" prefWidth="100.0" text="ID" />
                     <TableColumn fx:id="firstName" prefWidth="150.0" text="First name" />
                     <TableColumn fx:id="lastName" prefWidth="150.0" text="Last name" />
-                    <TableColumn fx:id="position" prefWidth="150.0" text="Position" />
+                    <TableColumn fx:id="position" prefWidth="125.0" text="Position" />
                     <TableColumn fx:id="deleted" prefWidth="50.0" text="deleted" />
                 </columns>
             </TableView>

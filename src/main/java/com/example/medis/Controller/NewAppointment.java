@@ -49,9 +49,6 @@ public class NewAppointment implements Initializable {
         String descriptionText =  descriptionData.getText();
         String doctorText = doctorData.getValue();
 
-
-
-
         if (!titleText.isEmpty() && startYmdText!=null && startHText!=null && startMinText!=null && endYmdText!=null && endHText!=null && endMinText!=null && !descriptionText.isEmpty() && doctorText!=null){
             LocalDateTime today = LocalDateTime.now();
             String startstr = startYmdText + " " + startHText + ":" + startMinText;

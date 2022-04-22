@@ -53,21 +53,6 @@ public class EditRecord  {
         s.switchToRecordDetailed(loggedInUser, selectedPatient, selectedRecord, event);
     }
 
-    // Delete record button
-    @FXML
-    private void deleteRecord(ActionEvent event) throws IOException {
-        javaPostgreSql.deleteRecord(selectedRecord.getId());
-        switchToRecords(event);
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        a.setContentText("Record was deleted successfully!");
-        a.show();
-    }
-
-    @FXML
-    private void switchToRecords(ActionEvent event) throws IOException {
-        ControllerBuffer s = new ControllerBuffer();
-        s.switchToRecords(loggedInUser, selectedPatient, event);
-    }
 
     public void initData(Patient patient, Record record, User user) {
         selectedPatient = patient;

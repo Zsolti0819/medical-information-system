@@ -8,6 +8,7 @@ import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -75,13 +76,25 @@ public class PatientInfo {
 
     // Delete patient button
     @FXML
-    private void deletePatient(ActionEvent event) throws IOException {
+    private void deletePatient(ActionEvent event) {
         if (!loggedInUser.getPosition().equals("receptionist")) {
-            javaPostgreSql.deletePatient(selectedPatient.getId());
-            switchToPatients(event);
-            Alert a = new Alert(Alert.AlertType.INFORMATION);
-            a.setContentText("Patient was deleted successfully!");
-            a.show();
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            a.setContentText("Are you sure you want to delete patient " + selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + "?");
+            a.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    javaPostgreSql.deletePatient(selectedPatient.getId());
+                    ControllerBuffer s = new ControllerBuffer();
+                    try {
+                        switchToPatients(event);
+                        Alert b = new Alert(Alert.AlertType.INFORMATION);
+                        b.setContentText("Patient "+ selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + " was deleted successfully!");
+                        b.show();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            });
         }
         else{
             GeneralLogger.log(Level.WARNING, "DELETE | DENIED | PATIENT: Denied for " + loggedInUser.getId() );
@@ -90,6 +103,8 @@ public class PatientInfo {
             a.show();
         }
     }
+
+
 
     @FXML
     private void switchToPatients(ActionEvent event) throws IOException {
