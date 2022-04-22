@@ -177,7 +177,7 @@ public class JavaPostgreSql {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query1);
 
-                preparedStatement.setString(1, String.valueOf(id));
+                preparedStatement.setLong(1, id);
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 String email = getEmailByUserId(id);
