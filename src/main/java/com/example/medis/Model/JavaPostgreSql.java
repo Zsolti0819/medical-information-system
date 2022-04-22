@@ -745,7 +745,7 @@ public class JavaPostgreSql {
     }
 
     public ObservableList<String> getUsersByPosition(String position){
-        String query = "SELECT * from users WHERE position=cast(? as position_enum);";
+        String query = "SELECT * from users WHERE position=cast(? as position_enum) and deleted=false;";
         ObservableList<String> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
