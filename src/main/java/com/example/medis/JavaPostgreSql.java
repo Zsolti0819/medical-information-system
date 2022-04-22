@@ -59,7 +59,7 @@ public class JavaPostgreSql {
                 preparedStatement.setString(1, first_name);
                 preparedStatement.setString(2, last_name);
                 preparedStatement.setString(3, username);
-                preparedStatement.setString(4, password);
+                preparedStatement.setString(4, hashPass(password));
                 preparedStatement.setString(5, email);
                 preparedStatement.setString(6, phone);
                 preparedStatement.setString(7, position);
@@ -72,6 +72,8 @@ public class JavaPostgreSql {
                 e.printStackTrace();
             } catch (ParseException e){
                 System.out.println("Wrong date format");
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -162,6 +164,7 @@ public class JavaPostgreSql {
 
     private String deleteUser(long id){
         if (!isUserExist(id)){
+            GeneralLogger.log(Level.WARNING, "USER | UPDATE | FAILED: User with id " + id + " not found" );
             return "User with this id not exists!";
         }
         else {
@@ -175,7 +178,7 @@ public class JavaPostgreSql {
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 String email = getEmailByUserId(id);
-                GeneralLogger.log(Level.INFO, "PATIENT | DELETE: User " + email + " deleted" );
+                GeneralLogger.log(Level.INFO, "USER | DELETE: User " + email + " deleted" );
                 System.out.println("Succesfully updated " + res +" row!");
             } catch (SQLException e) {
                 e.printStackTrace();
