@@ -493,3 +493,9 @@
 [2022-04-22 00:38:48] [INFO   ] REGISTER: User Testicek@testicek.sk created 
 [2022-04-22 00:40:18] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | simon@simon.sk | test1 
 [2022-04-22 00:42:23] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-22 02:12:30] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 02:13:47] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 02:19:47] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 02:25:07] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 02:27:01] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 02:28:08] [INFO   ] LOGIN | USER: User admin logged in 
