@@ -1,9 +1,9 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.User;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.User;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +14,6 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class Patients implements Initializable {
@@ -27,27 +26,27 @@ public class Patients implements Initializable {
     @FXML private TableColumn<Patient, String> name;
     @FXML private TableColumn<Patient, String> lastName;
     @FXML private TableColumn<Patient, Long> birthId;
-    @FXML private TableColumn<Patient, LocalDateTime> nextVisit;
+    @FXML private TableColumn<Patient, String> nextVisit;
     @FXML private TextField searchPatientField;
 
     // Open buttons
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
     // Log out
     @FXML
     private void userLogOut(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToLogout(null, event);
     }
 
     // Plus button
     @FXML
     private void switchToPatientCreation(MouseEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPatientCreation(loggedInUser, event);
     }
 
@@ -98,7 +97,7 @@ public class Patients implements Initializable {
         name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         birthId.setCellValueFactory(new PropertyValueFactory<>("birthId"));
-        nextVisit.setCellValueFactory(new PropertyValueFactory<>("nextVisit"));
+        nextVisit.setCellValueFactory(new PropertyValueFactory<>("formattedNextVisit"));
         addButtonToTable();
         patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
 

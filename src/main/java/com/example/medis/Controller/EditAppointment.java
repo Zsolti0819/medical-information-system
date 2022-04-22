@@ -1,9 +1,10 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.User;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Entity.Appointment;
+import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.User;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,17 +15,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class NewAppointment implements Initializable {
+public class EditAppointment implements Initializable {
+
 
     private Patient selectedPatient;
     private User loggedInUser;
+    private Appointment selectedAppointment;
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
 
-    @FXML private Label patientNameNewAppointment;
+    @FXML private Label patientNameAppointmentTitle;
     @FXML private TextField titleData;
     @FXML private DatePicker startYmdData;
     @FXML private ComboBox<String> startHData;
@@ -36,9 +38,9 @@ public class NewAppointment implements Initializable {
     @FXML private ComboBox <String> doctorData;
     @FXML private Label missingValuesMsg;
 
-    // Create appointment button
+    // Save button
     @FXML
-    private void createAppointment(ActionEvent event) throws IOException {
+    private void updateAppointment(ActionEvent event) throws IOException {
 
         String titleText = titleData.getText();
         LocalDate startYmdText =  startYmdData.getValue();
@@ -49,9 +51,6 @@ public class NewAppointment implements Initializable {
         String endMinText =  endMinData.getValue();
         String descriptionText =  descriptionData.getText();
         String doctorText = doctorData.getValue();
-
-
-
 
         if (!titleText.isEmpty() && startYmdText!=null && startHText!=null && startMinText!=null && endYmdText!=null && endHText!=null && endMinText!=null && !descriptionText.isEmpty() && doctorText!=null){
             LocalDateTime today = LocalDateTime.now();
@@ -64,10 +63,18 @@ public class NewAppointment implements Initializable {
                 if (today.isBefore(enddateTime)){
                     if (startdateTime.isBefore(enddateTime)){
                         String[] doctorName = doctorData.getValue().split(" ");
-                        javaPostgreSql.creteAppointment(titleData.getText(), descriptionData.getText(), startYmdData.getValue().toString()+" " + startHData.getValue() + ":" + startMinData.getValue(), endYmdData.getValue().toString() + " "  + endHData.getValue()+":" + endMinData.getValue(), selectedPatient.getId(), javaPostgreSql.getUserByFirstAndLastName(doctorName[0],doctorName[1]).getId(), loggedInUser.getId());
+                        System.out.println(javaPostgreSql.getUserByFirstAndLastName(doctorName[0],doctorName[1]).getId()+ " " + doctorName[0] + " " + doctorName[1]);
+                        javaPostgreSql.updateAppointment(
+                                selectedAppointment.getId(),
+                                titleData.getText(),
+                                descriptionData.getText(),
+                                startYmdData.getValue().toString()+" " + startHData.getValue() + ":" + startMinData.getValue(),
+                                endYmdData.getValue().toString() + " "  + endHData.getValue()+":" + endMinData.getValue(),
+                                selectedAppointment.getPatientId(), 1);
+
                         switchToAppointments(event);
                         Alert a = new Alert(Alert.AlertType.INFORMATION);
-                        a.setContentText("Appointment was created successfully!");
+                        a.setContentText("Appointment was updated successfully!");
                         a.show();
                     } else {
                         missingValuesMsg.setText("Starting date have to be before ending date!");
@@ -92,8 +99,19 @@ public class NewAppointment implements Initializable {
     // Cancel button
     @FXML
     private void switchToAppointments(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToAppointments(loggedInUser, selectedPatient, event);
+    }
+
+    // Delete button
+    @FXML
+    private void deleteAppointment(ActionEvent event) throws IOException {
+        javaPostgreSql.deleteAppointment(selectedAppointment.getId());
+        ControllerBuffer s = new ControllerBuffer();
+        s.switchToAppointments(loggedInUser, selectedPatient, event);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("Appointment was deleted successfully!");
+        a.show();
     }
 
     private void fillAppointmentOptions(ComboBox<String> doctorData, ComboBox<String> startHData, ComboBox<String> startMinData, ComboBox<String> endHData, ComboBox<String> endMinData) {
@@ -109,9 +127,20 @@ public class NewAppointment implements Initializable {
         fillAppointmentOptions(doctorData, startHData, startMinData, endHData, endMinData);
     }
 
-    public void initData(Patient patient, User user) {
+    public void initData(Patient patient, Appointment appointment, User user) {
         selectedPatient = patient;
         loggedInUser = user;
-        patientNameNewAppointment.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + " - " + "New appointment");
+        selectedAppointment = appointment;
+        patientNameAppointmentTitle.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + " - " + selectedAppointment.getTitle());
+        titleData.setText(selectedAppointment.getTitle());
+        descriptionData.setText(selectedAppointment.getDescription());
+        doctorData.getSelectionModel().select(javaPostgreSql.getUser(selectedAppointment.getDoctorId()).getFirstName() + " " + javaPostgreSql.getUser(selectedAppointment.getDoctorId()).getLastName());
+        startYmdData.setValue(selectedAppointment.getStartTime().toLocalDate());
+        endYmdData.setValue(selectedAppointment.getEndTime().toLocalDate());
+        startHData.getSelectionModel().select(String.valueOf(selectedAppointment.getStartHour()));
+        endHData.getSelectionModel().select(String.valueOf(selectedAppointment.getEndHour()));
+        startMinData.getSelectionModel().select(String.valueOf(selectedAppointment.getStartMin()));
+        endMinData.getSelectionModel().select(String.valueOf(selectedAppointment.getEndMin()));
+
     }
 }

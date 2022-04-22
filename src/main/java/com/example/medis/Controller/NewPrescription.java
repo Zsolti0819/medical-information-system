@@ -1,16 +1,15 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.User;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.User;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class NewPrescription {
 
@@ -57,7 +56,7 @@ public class NewPrescription {
     // Cancel button
     @FXML
     private void switchToPrescriptions(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPrescriptions(loggedInUser, selectedPatient, event);
     }
 

@@ -1,11 +1,11 @@
 package com.example.medis;
 
-import com.example.medis.Controllers.NewUser;
-import com.example.medis.Controllers.UserInfo;
-import com.example.medis.Controllers.EditUserInfo;
-import com.example.medis.Controllers.Users;
-import com.example.medis.Controllers.*;
-import com.example.medis.Entities.*;
+import com.example.medis.Controller.NewUser;
+import com.example.medis.Controller.UserInfo;
+import com.example.medis.Controller.EditUserInfo;
+import com.example.medis.Controller.Users;
+import com.example.medis.Controller.*;
+import com.example.medis.Entity.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SceneController {
+public class ControllerBuffer {
 
     // Admin mode
 

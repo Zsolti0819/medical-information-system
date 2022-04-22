@@ -1,11 +1,9 @@
-package com.example.medis.Entities;
+package com.example.medis.Entity;
 
-import com.example.medis.JavaPostgreSql;
+import com.example.medis.Model.JavaPostgreSql;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Patient {
 
@@ -25,13 +23,18 @@ public class Patient {
     private String address;
     private String email;
     private String nextVisit;
+    private String formattedNextVisit;
 
     public void setNextVisit(String nextVisit) {
         this.nextVisit = nextVisit;
     }
 
-    public String getNextVisit() {
-        return nextVisit;
+
+    public String getFormattedNextVisit() {
+        if (nextVisit.equals("0000-00-00 00:00")) {
+            return "Not specified";
+        }
+        return nextVisit.replace("T", " at ");
     }
 
     public String getInsuranceCompany() {

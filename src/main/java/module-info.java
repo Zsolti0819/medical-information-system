@@ -6,9 +6,11 @@ module com.example.medis {
 
 
     opens com.example.medis to javafx.fxml;
-    exports com.example.medis.Entities;
-    opens com.example.medis.Entities to javafx.fxml;
+    exports com.example.medis.Entity;
+    opens com.example.medis.Entity to javafx.fxml;
     exports com.example.medis;
-    exports com.example.medis.Controllers;
-    opens com.example.medis.Controllers to javafx.fxml;
+    exports com.example.medis.Controller;
+    opens com.example.medis.Controller to javafx.fxml;
+    exports com.example.medis.Model;
+    opens com.example.medis.Model to javafx.fxml;
 }

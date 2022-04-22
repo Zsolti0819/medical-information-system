@@ -1,9 +1,9 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.User;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.User;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -112,7 +112,7 @@ public class EditPatientInfo implements Initializable{
     // Cancel button
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 

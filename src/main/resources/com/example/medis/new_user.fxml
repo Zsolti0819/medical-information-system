@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Controllers.NewUser">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.medis.Controller.NewUser">
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
             <Label layoutX="389.0" layoutY="44.0" prefHeight="43.0" prefWidth="237.0" text="New user">

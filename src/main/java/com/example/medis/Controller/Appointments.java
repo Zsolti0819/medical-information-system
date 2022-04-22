@@ -1,11 +1,11 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Appointment;
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.User;
+import com.example.medis.Entity.Appointment;
+import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.User;
 import com.example.medis.GeneralLogger;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,7 +38,7 @@ public class Appointments implements Initializable {
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
 
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
@@ -46,7 +46,7 @@ public class Appointments implements Initializable {
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         if (!loggedInUser.getPosition().equals("receptionist")) {
-            SceneController s = new SceneController();
+            ControllerBuffer s = new ControllerBuffer();
             s.switchToRecords(loggedInUser, selectedPatient, event);
         }
         else{
@@ -60,7 +60,7 @@ public class Appointments implements Initializable {
     // Edit buttons
     @FXML
     private void switchToAppointmentEdit(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, event);
 
     }
@@ -68,7 +68,7 @@ public class Appointments implements Initializable {
     // Plus button
     @FXML
     private void switchToAppointmentCreation(MouseEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToAppointmentCreation(loggedInUser, selectedPatient, event);
     }
 
@@ -76,7 +76,7 @@ public class Appointments implements Initializable {
     @FXML
     private void switchToPrescriptions(ActionEvent event) throws IOException {
         if (loggedInUser.getPosition().equals("doctor")) {
-            SceneController s = new SceneController();
+            ControllerBuffer s = new ControllerBuffer();
             s.switchToPrescriptions(loggedInUser, selectedPatient, event);
         }
         else{
@@ -90,7 +90,7 @@ public class Appointments implements Initializable {
     // Close window button
     @FXML
     private void switchToPatients(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPatients(loggedInUser, event);
     }
 

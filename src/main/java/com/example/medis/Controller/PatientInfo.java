@@ -1,10 +1,10 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.User;
+import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.User;
 import com.example.medis.GeneralLogger;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -32,7 +32,7 @@ public class PatientInfo {
     // Edit patient info button
     @FXML
     private void switchToPatientInfoEdit(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPatientInfoEdit(loggedInUser, selectedPatient, event);
     }
 
@@ -40,7 +40,7 @@ public class PatientInfo {
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
         if (!loggedInUser.getPosition().equals("receptionist")){
-            SceneController s = new SceneController();
+            ControllerBuffer s = new ControllerBuffer();
             s.switchToRecords(loggedInUser, selectedPatient, event);
         }
         else{
@@ -54,7 +54,7 @@ public class PatientInfo {
     // Appointments
     @FXML
     private void switchToAppointments(ActionEvent event) throws  IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
@@ -62,7 +62,7 @@ public class PatientInfo {
     @FXML
     private void switchToPrescriptions(ActionEvent event) throws IOException {
         if (loggedInUser.getPosition().equals("doctor")) {
-            SceneController s = new SceneController();
+            ControllerBuffer s = new ControllerBuffer();
             s.switchToPrescriptions(loggedInUser, selectedPatient, event);
         }
         else{
@@ -93,7 +93,7 @@ public class PatientInfo {
 
     @FXML
     private void switchToPatients(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToPatients(loggedInUser, event);
     }
 

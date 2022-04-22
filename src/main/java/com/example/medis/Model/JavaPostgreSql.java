@@ -1,6 +1,7 @@
-package com.example.medis;
+package com.example.medis.Model;
 
-import com.example.medis.Entities.*;
+import com.example.medis.Entity.*;
+import com.example.medis.GeneralLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -88,7 +89,7 @@ public class JavaPostgreSql {
     }
 
     // login checker
-    boolean checkUser(String email, String password){
+    public boolean checkUser(String email, String password){
 
         String query = "SELECT id, first_name, last_name, username, deleted, position FROM users WHERE email=? and password=? and deleted=false;";
 
@@ -762,7 +763,7 @@ public class JavaPostgreSql {
 
     }
 
-    User getUserByEmail(String email){
+    public User getUserByEmail(String email){
         User result = new User();
         try {
             String query = "SELECT * FROM users WHERE email=?;";

@@ -1,5 +1,7 @@
-package com.example.medis;
-import com.example.medis.Entities.User;
+package com.example.medis.Controller;
+import com.example.medis.Entity.User;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -24,7 +26,7 @@ public class Login {
     }
 
     private void checkLogin(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             if (javaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {

@@ -1,9 +1,8 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.User;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Entity.User;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -30,7 +29,7 @@ public class UserInfo {
     // Edit user info button
     @FXML
     public void switchToUserInfoEdit(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToUserInfoEdit(loggedInUser, selectedUser, event);
 
     }
@@ -47,7 +46,7 @@ public class UserInfo {
 
     @FXML
     public void switchToUsers(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToUsers(loggedInUser, event);
     }
 

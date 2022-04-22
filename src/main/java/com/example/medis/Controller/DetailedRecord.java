@@ -1,10 +1,10 @@
-package com.example.medis.Controllers;
+package com.example.medis.Controller;
 
-import com.example.medis.Entities.Patient;
-import com.example.medis.Entities.Record;
-import com.example.medis.Entities.User;
-import com.example.medis.JavaPostgreSql;
-import com.example.medis.SceneController;
+import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.Record;
+import com.example.medis.Entity.User;
+import com.example.medis.Model.JavaPostgreSql;
+import com.example.medis.ControllerBuffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,13 +29,13 @@ public class DetailedRecord implements Initializable {
 
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToRecords(loggedInUser, selectedPatient, event);
     }
 
     @FXML
     private void switchToRecordEdit(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
+        ControllerBuffer s = new ControllerBuffer();
         s.switchToRecordEdit(loggedInUser, selectedPatient, selectedRecord,event);
     }
 
