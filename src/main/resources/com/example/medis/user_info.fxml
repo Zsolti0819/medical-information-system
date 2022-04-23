@@ -22,13 +22,13 @@
                     <Font name="System Bold" size="24.0" />
                 </font>
             </Text>
-            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="25.0" prefWidth="103.0" text="User info" textFill="#0ebfda">
+            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="25.0" prefWidth="103.0" text="%user.info" textFill="#0ebfda">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
             </Hyperlink>
             <Line endX="155.0" layoutX="50.0" layoutY="142.0" startX="-50.0" />
-            <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToUsers" prefHeight="26.0" prefWidth="108.0" text="Back" textFill="#151515">
+            <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToUsers" prefHeight="26.0" prefWidth="108.0" text="%user.back" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
@@ -42,7 +42,7 @@
                     <Font size="25.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="156.0" prefHeight="25.0" prefWidth="140.0" text="Last name">
+            <Label layoutX="67.0" layoutY="156.0" prefHeight="25.0" prefWidth="140.0" text="%user.lastName">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -52,7 +52,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="202.0" prefHeight="25.0" text="Username">
+            <Label layoutX="67.0" layoutY="202.0" prefHeight="25.0" text="%user.username">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -62,7 +62,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="248.0" prefHeight="25.0" text="E-mail">
+            <Label layoutX="67.0" layoutY="248.0" prefHeight="25.0" text="%user.email">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -72,7 +72,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="294.0" prefHeight="25.0" prefWidth="86.0" text="Phone">
+            <Label layoutX="67.0" layoutY="294.0" prefHeight="25.0" prefWidth="86.0" text="%user.phone">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -82,7 +82,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="340.0" prefHeight="25.0" text="Position">
+            <Label layoutX="67.0" layoutY="340.0" prefHeight="25.0" text="%user.position">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -92,7 +92,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="386.0" prefHeight="25.0" text="Birth date">
+            <Label layoutX="67.0" layoutY="386.0" prefHeight="25.0" text="%user.birthDate">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -102,12 +102,12 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Button layoutX="68.0" layoutY="490.0" mnemonicParsing="false" onAction="#switchToUserInfoEdit" prefHeight="35.0" prefWidth="390.0" text="Edit user info">
+            <Button layoutX="68.0" layoutY="490.0" mnemonicParsing="false" onAction="#switchToUserInfoEdit" prefHeight="35.0" prefWidth="390.0" text="%user.edit">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-         <Label layoutX="67.0" layoutY="110.0" prefHeight="25.0" prefWidth="140.0" text="First name">
+         <Label layoutX="67.0" layoutY="110.0" prefHeight="25.0" prefWidth="140.0" text="%user.firstName">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
@@ -117,7 +117,7 @@
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #DC143C;" text="Delete user">
+         <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #DC143C;" text="%user.delete">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>

@@ -17,47 +17,47 @@
                     <Font size="25.0" />
                 </font>
             </Label>
-            <Label layoutX="248.0" layoutY="156.0" prefHeight="25.0" prefWidth="134.0" text="Title">
+            <Label layoutX="248.0" layoutY="156.0" prefHeight="25.0" prefWidth="134.0" text="%prescription.title">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
          <TextField fx:id="titleData" layoutX="424.0" layoutY="156.0" prefHeight="25.0" prefWidth="231.0" />
-         <Label layoutX="248.0" layoutY="202.0" prefHeight="25.0" prefWidth="134.0" text="Description">
+         <Label layoutX="248.0" layoutY="202.0" prefHeight="25.0" prefWidth="134.0" text="%prescription.description">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
          <TextArea fx:id="descriptionData" layoutX="424.0" layoutY="202.0" prefHeight="75.0" prefWidth="231.0" />
-         <Label layoutX="248.0" layoutY="294.0" prefHeight="25.0" prefWidth="134.0" text="Drug">
+         <Label layoutX="248.0" layoutY="294.0" prefHeight="25.0" prefWidth="134.0" text="%prescription.drug">
             <font>
                <Font name="System Bold" size="13.0" />
             </font>
          </Label>
-         <TextField fx:id="drugData" layoutX="424.0" layoutY="294.0" prefHeight="25.0" prefWidth="231.0" />
-            <Label layoutX="248.0" layoutY="340.0" prefHeight="25.0" prefWidth="140.0" text="Expiration date">
+         <TextField fx:id="drugData" layoutX="424.0" layoutY="294.0" prefHeight="25.0" prefWidth="231.0" promptText="%prescription.drug" />
+            <Label layoutX="248.0" layoutY="340.0" prefHeight="25.0" prefWidth="140.0" text="%prescription.expiration">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <DatePicker fx:id="expDateYmdData" layoutX="424.0" layoutY="340.0" prefHeight="25.0" prefWidth="231.0" />
-            <Label layoutX="248.0" layoutY="389.0" prefHeight="25.0" prefWidth="134.0" text="Notes">
+         <DatePicker fx:id="expDateYmdData" layoutX="424.0" layoutY="340.0" prefHeight="25.0" prefWidth="231.0" promptText="%prescription.expiration" />
+            <Label layoutX="248.0" layoutY="389.0" prefHeight="25.0" prefWidth="134.0" text="%prescription.notes">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
          <TextArea fx:id="notesData" layoutX="424.0" layoutY="389.0" prefHeight="75.0" prefWidth="231.0" />
-            <Button layoutX="248.0" layoutY="491.0" mnemonicParsing="false" onAction="#updatePrescription" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Save prescription">
+            <Button layoutX="248.0" layoutY="491.0" mnemonicParsing="false" onAction="#updatePrescription" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="%prescription.save">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="463.0" layoutY="491.0" mnemonicParsing="false" onAction="#switchToPrescriptions" prefHeight="35.0" prefWidth="190.0" text="Cancel">
+            <Button layoutX="463.0" layoutY="491.0" mnemonicParsing="false" onAction="#switchToPrescriptions" prefHeight="35.0" prefWidth="190.0" text="%prescription.cancel">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-         <Button layoutX="248.0" layoutY="539.0" mnemonicParsing="false" onAction="#deletePrescription" prefHeight="35.0" prefWidth="406.0" style="-fx-background-color: #DC143C;" text="Delete prescription">
+         <Button layoutX="248.0" layoutY="539.0" mnemonicParsing="false" onAction="#deletePrescription" prefHeight="35.0" prefWidth="406.0" style="-fx-background-color: #DC143C;" text="%prescription.delete">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>

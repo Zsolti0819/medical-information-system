@@ -17,36 +17,36 @@
                     <Font size="25.0" />
                 </font>
             </Label>
-            <Label layoutX="249.0" layoutY="131.0" prefHeight="25.0" prefWidth="134.0" text="Title">
+            <Label layoutX="249.0" layoutY="131.0" prefHeight="25.0" prefWidth="134.0" text="%records.title">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
          <TextField fx:id="titleData" layoutX="425.0" layoutY="131.0" prefHeight="25.0" prefWidth="229.0" />
-            <Label layoutX="249.0" layoutY="177.0" prefHeight="25.0" prefWidth="140.0" text="Date">
+            <Label layoutX="249.0" layoutY="177.0" prefHeight="25.0" prefWidth="140.0" text="%records.date">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
          <DatePicker fx:id="dateData" layoutX="425.0" layoutY="177.0" prefWidth="229.0" />
-            <Label layoutX="249.0" layoutY="223.0" prefHeight="25.0" text="Description">
+            <Label layoutX="249.0" layoutY="223.0" prefHeight="25.0" text="%records.description">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
          <TextArea fx:id="descriptionData" layoutX="425.0" layoutY="223.0" prefHeight="115.0" prefWidth="229.0" />
-            <Label layoutX="249.0" layoutY="361.0" prefHeight="25.0" text="Notes">
+            <Label layoutX="249.0" layoutY="361.0" prefHeight="25.0" text="%records.notes">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
          <TextArea fx:id="notesData" layoutX="425.0" layoutY="362.0" prefHeight="115.0" prefWidth="229.0" />
-            <Button layoutX="249.0" layoutY="521.0" mnemonicParsing="false" onAction="#createRecord" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="Create record">
+            <Button layoutX="249.0" layoutY="521.0" mnemonicParsing="false" onAction="#createRecord" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="%records.create">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="463.0" layoutY="521.0" mnemonicParsing="false" onAction="#switchToRecords" prefHeight="35.0" prefWidth="190.0" text="Cancel">
+            <Button layoutX="463.0" layoutY="521.0" mnemonicParsing="false" onAction="#switchToRecords" prefHeight="35.0" prefWidth="190.0" text="%records.cancel">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>

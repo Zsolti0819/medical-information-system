@@ -613,3 +613,20 @@
 [2022-04-23 14:09:07] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-23 14:09:44] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-23 14:13:52] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 14:39:50] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 14:59:12] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:06:28] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:09:29] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:11:46] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:20:23] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:22:39] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:22:46] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:35:56] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:47:53] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:49:44] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:49:53] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 15:50:36] [INFO   ] PRESCRIPTION | CREATE: Prescription Prescription created 
+[2022-04-23 16:33:54] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 16:34:37] [INFO   ] RECORD | CREATE: Record Nazov created 
+[2022-04-23 16:35:55] [INFO   ] PRESCRIPTION | CREATE: Prescription Predpis created 
+[2022-04-23 16:36:06] [INFO   ] LOGIN | USER: User admin logged in 

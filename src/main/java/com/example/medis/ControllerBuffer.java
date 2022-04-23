@@ -39,6 +39,8 @@ public class ControllerBuffer {
     public void switchToUserCreation(User loggedInUser, MouseEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("new_user.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -68,6 +70,7 @@ public class ControllerBuffer {
     public void switchToUserInfo(User loggedInUser, User selectedUser,ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("user_info.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -82,6 +85,8 @@ public class ControllerBuffer {
     public void switchToUserInfoEdit(User loggedInUser, User selectedUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("edit_user_info.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -113,6 +118,7 @@ public class ControllerBuffer {
     public void switchToLogout(User loggedInUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("login.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -159,6 +165,8 @@ public class ControllerBuffer {
     public void switchToPatientCreation(User loggedInUser, MouseEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("new_patient.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("New patient");
         Scene scene = new Scene(loader.load());
@@ -174,6 +182,7 @@ public class ControllerBuffer {
 
     public void switchToRecords(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("records.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -188,6 +197,8 @@ public class ControllerBuffer {
     public void switchToRecordDetailed(User loggedInUser, Patient patient, Record record, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("detailed_record.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Record details");
         Scene scene = new Scene(loader.load());
@@ -202,6 +213,8 @@ public class ControllerBuffer {
     public void switchToRecordEdit(User loggedInUser, Patient patient, Record record, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("edit_record.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Edit record");
         Scene scene = new Scene(loader.load());
@@ -216,6 +229,7 @@ public class ControllerBuffer {
     public void switchToRecordCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("new_record.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("New record");
         Scene scene = new Scene(loader.load());
@@ -232,6 +246,8 @@ public class ControllerBuffer {
     public void switchToAppointments(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("appointments.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -246,6 +262,8 @@ public class ControllerBuffer {
     public void switchToAppointmentEdit(User loggedInUser, Patient patient, Appointment appointment, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("edit_appointment.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Edit appointment");
         Scene scene = new Scene(loader.load());
@@ -260,6 +278,8 @@ public class ControllerBuffer {
     public void switchToAppointmentCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("new_appointment.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("New appointment");
         Scene scene = new Scene(loader.load());
@@ -276,6 +296,7 @@ public class ControllerBuffer {
     public void switchToPrescriptions(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("prescriptions.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -290,6 +311,8 @@ public class ControllerBuffer {
     public void switchToPrescriptionEdit(User loggedInUser, Patient patient, Prescription prescription, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("edit_prescription.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Edit prescription");
         Scene scene = new Scene(loader.load());
@@ -304,6 +327,8 @@ public class ControllerBuffer {
     public void switchToPrescriptionCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("new_prescription.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("New prescription");
         Scene scene = new Scene(loader.load());
