@@ -22,28 +22,28 @@
                     <Font name="System Bold" size="24.0" />
                 </font>
             </Text>
-            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="25.0" prefWidth="103.0" text="Patient info" textFill="#0ebfda">
+            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="26.0" prefWidth="162.0" text="%patientInfo.info" textFill="#0ebfda">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
             </Hyperlink>
-         <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToRecords" text="Records" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToRecords" prefHeight="26.0" prefWidth="166.0" text="%patientInfo.records" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-         <Hyperlink layoutX="25.0" layoutY="210.0" onAction="#switchToAppointments" text="Appointments" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="210.0" onAction="#switchToAppointments" prefHeight="26.0" prefWidth="168.0" text="%patientInfo.appointments" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-         <Hyperlink layoutX="25.0" layoutY="263.0" onAction="#switchToPrescriptions" text="Prescriptions" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="263.0" onAction="#switchToPrescriptions" prefHeight="26.0" prefWidth="168.0" text="%patientInfo.prescriptions" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
             <Line endX="205.0" layoutY="301.0" />
-            <Hyperlink layoutX="25.0" layoutY="316.0" onAction="#switchToPatients" prefHeight="26.0" prefWidth="108.0" text="Back" textFill="#151515">
+            <Hyperlink layoutX="25.0" layoutY="316.0" onAction="#switchToPatients" prefHeight="26.0" prefWidth="166.0" text="%patientInfo.back" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
@@ -57,7 +57,7 @@
                     <Font size="25.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0" text="Insurance company">
+            <Label layoutX="67.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.insurance">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -67,7 +67,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="156.0" prefHeight="25.0" prefWidth="210.0" text="Birth ID">
+            <Label layoutX="67.0" layoutY="156.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.birthId">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -77,7 +77,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="202.0" prefHeight="25.0" prefWidth="210.0" text="Birth date">
+            <Label layoutX="67.0" layoutY="202.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.birthDate">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -87,7 +87,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="248.0" prefHeight="25.0" prefWidth="210.0" text="Sex">
+            <Label layoutX="67.0" layoutY="248.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.sex">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -97,7 +97,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="294.0" prefHeight="25.0" prefWidth="210.0" text="Blood group">
+            <Label layoutX="67.0" layoutY="294.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.bloodGroup">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -107,7 +107,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="340.0" prefHeight="25.0" prefWidth="210.0" text="Address">
+            <Label layoutX="67.0" layoutY="340.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.address">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -117,17 +117,17 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="386.0" prefHeight="25.0" prefWidth="210.0" text="Phone">
+            <Label layoutX="67.0" layoutY="386.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.phone">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Button layoutX="68.0" layoutY="490.0" mnemonicParsing="false" onAction="#switchToPatientInfoEdit" prefHeight="35.0" prefWidth="390.0" text="Edit patient info">
+            <Button layoutX="68.0" layoutY="490.0" mnemonicParsing="false" onAction="#switchToPatientInfoEdit" prefHeight="35.0" prefWidth="390.0" text="%patientInfo.edit">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" onAction="#deletePatient" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #DC143C;" text="Delete patient">
+            <Button layoutX="68.0" layoutY="539.0" mnemonicParsing="false" onAction="#deletePatient" prefHeight="35.0" prefWidth="390.0" style="-fx-background-color: #DC143C;" text="%patientInfo.delete">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
@@ -137,7 +137,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <Label layoutX="67.0" layoutY="432.0" prefHeight="25.0" prefWidth="210.0" text="E-mail">
+            <Label layoutX="67.0" layoutY="432.0" prefHeight="25.0" prefWidth="210.0" text="%patientInfo.email">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -147,7 +147,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-         <Button layoutX="488.0" layoutY="490.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="180.0" style="-fx-background-color: #1E90FF;" text="Export data to XML">
+         <Button layoutX="488.0" layoutY="490.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="180.0" style="-fx-background-color: #1E90FF;" text="%patientInfo.export">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
