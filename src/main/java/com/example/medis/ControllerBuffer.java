@@ -129,6 +129,7 @@ public class ControllerBuffer {
     public void switchToPatientInfo(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("patient_info.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -143,6 +144,7 @@ public class ControllerBuffer {
     public void switchToPatientInfoEdit(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("edit_patient_info.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Edit patient info");
         Scene scene = new Scene(loader.load());
