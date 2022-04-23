@@ -588,3 +588,16 @@
 [2022-04-22 18:42:51] [WARNING] USER | UPDATE | FAILED: User with id 17 not found 
 [2022-04-22 18:43:44] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-22 18:43:53] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-22 20:34:48] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 11:46:29] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 12:04:18] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 12:23:31] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 12:50:57] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:02:27] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:04:13] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:06:16] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:08:40] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:09:59] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:13:16] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:20:17] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-23 13:20:38] [INFO   ] LOGIN | USER: User doctor logged in 

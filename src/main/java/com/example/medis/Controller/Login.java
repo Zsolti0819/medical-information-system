@@ -3,14 +3,19 @@ import com.example.medis.Entity.User;
 import com.example.medis.Model.JavaPostgreSql;
 import com.example.medis.ControllerBuffer;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class Login {
+public class Login implements Initializable {
 
     private User loggedInUser;
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
@@ -18,7 +23,7 @@ public class Login {
     @FXML private Label loginMsg;
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
-
+    @FXML private ComboBox<String> localeComboBox;
     // Login button
     @FXML
     private void userLogIn(ActionEvent event) throws IOException {
@@ -26,7 +31,12 @@ public class Login {
     }
 
     private void checkLogin(ActionEvent event) throws IOException {
+
+        Locale locale = new Locale(localeComboBox.getValue());
+        ControllerBuffer.setLocale(locale);
         ControllerBuffer s = new ControllerBuffer();
+
+
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             if (javaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
@@ -50,6 +60,12 @@ public class Login {
         else {
             loginMsg.setText("Username or password are not valid!");
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        localeComboBox.getItems().addAll("SK", "EN");
+        localeComboBox.setValue("SK");
     }
 
     public void initData(User user) {

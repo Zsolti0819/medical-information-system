@@ -14,8 +14,25 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ControllerBuffer {
+    public ControllerBuffer() {
+
+    }
+
+
+    public static void setLocale(Locale locale) {
+        ControllerBuffer.locale = locale;
+    }
+
+
+    public static Locale getLocale() {
+        return locale;
+    }
+
+    private static Locale locale;
 
     // Admin mode
 
@@ -36,6 +53,7 @@ public class ControllerBuffer {
     public void switchToUsers(User loggedInUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("users.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
@@ -80,6 +98,7 @@ public class ControllerBuffer {
     public void switchToPatients(User loggedInUser, ActionEvent event) throws IOException {
 
         FXMLLoader loader  = new FXMLLoader(getClass().getResource("patients.fxml"));
+        loader.setResources(ResourceBundle.getBundle("medis", ControllerBuffer.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
         Scene scene = new Scene(loader.load());
