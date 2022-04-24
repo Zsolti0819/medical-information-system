@@ -5,14 +5,10 @@ module com.example.medis {
     requires javafx.graphics;
     requires com.fasterxml.jackson.dataformat.xml;
 
-
-
-    opens com.example.medis to javafx.fxml;
-    exports com.example.medis.Entity;
-    opens com.example.medis.Entity to javafx.fxml;
-    exports com.example.medis;
-    exports com.example.medis.Controller;
-    opens com.example.medis.Controller to javafx.fxml;
-    exports com.example.medis.Model;
-    opens com.example.medis.Model to javafx.fxml;
+    exports com.medis;
+    opens com.medis to javafx.fxml;
+    exports com.medis.controllers;
+    opens com.medis.controllers to javafx.fxml;
+    exports com.medis.models;
+    opens com.medis.models to javafx.fxml;
 }
