@@ -131,12 +131,20 @@ public class Appointment {
         this.createdBy = createdBy;
     }
 
-    public int getStartHour() {
-        return startHour;
+    public String getStartHour() {
+        if (startHour > 9) {
+            return String.valueOf(startHour);
+        }else {
+            return "0"+ startHour;
+        }
     }
 
-    public int getStartMin() {
-        return startMin;
+    public String getStartMin() {
+        if (startMin > 9) {
+            return String.valueOf(startMin);
+        }else {
+            return "0"+ startMin;
+        }
     }
 
     public int getStartYear() {
@@ -151,12 +159,20 @@ public class Appointment {
         return startDay;
     }
 
-    public int getEndHour() {
-        return endHour;
+    public String getEndHour() {
+        if (endHour > 9) {
+            return String.valueOf(endHour);
+        }else {
+            return "0"+ endHour;
+        }
     }
 
-    public int getEndMin() {
-        return endMin;
+    public String getEndMin() {
+        if (endMin > 9) {
+            return String.valueOf(endMin);
+        }else {
+            return "0"+ endMin;
+        }
     }
 
     public int getEndYear() {
