@@ -143,16 +143,18 @@ public class Patients implements Initializable {
 
         searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
             matchSearch(newValue, textCols, numCols);
+            patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFilteredColumn("first_name", "an"));
+
         });
 
         searchPatientField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-                                                          @Override
-                                                          public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-                                                              if (!newPropertyValue && Objects.equals(searchPatientField.getText(), "")) {
-                                                                  patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
-                                                              }
-                                                          }
-                                                      }
+                  @Override
+                  public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
+                      if (!newPropertyValue && Objects.equals(searchPatientField.getText(), "")) {
+                          patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
+                      }
+                  }
+              }
         );
 
     }

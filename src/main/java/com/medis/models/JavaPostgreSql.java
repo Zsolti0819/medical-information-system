@@ -912,6 +912,36 @@ public class JavaPostgreSql {
         }
         return result;
     }
+    public ObservableList<Patient> getAllNotDeletedPatientsFilteredColumn(String column, String filterWord){
+
+        try {
+            if (!Objects.equals(column, "first_name") && !Objects.equals(column, "last_name") && !Objects.equals(column, "position")) {
+                throw new Exception("Invalid column provided");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+//        String query = "SELECT * from patients WHERE deleted=false;";
+        String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id and appointments.deleted=false and appointments.start_time > now() where patients.deleted=false AND LOWER(patients."+ column +") LIKE ?;";
+        ObservableList<Patient> result = FXCollections.observableArrayList();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, "%" + filterWord + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            while (resultSet.next()) {
+                result.add(createPatientFromResultSet(resultSet));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     public ObservableList<Patient> getAllNotDeletedPatients(){
 //        String query = "SELECT * from patients WHERE deleted=false;";

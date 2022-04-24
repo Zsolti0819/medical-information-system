@@ -21,6 +21,15 @@ public class Main extends Application {
     public static void setLocale(Locale locale) {
         Main.locale = locale;
     }
+    public static void setLocale(String locale) {
+        if (Objects.equals(locale, "SK")) {
+            Main.locale = new Locale("sk", "SK");
+
+        }
+        if (Objects.equals(locale, "EN")) {
+            Main.locale = new Locale("en", "EN");
+        }
+    }
 
     public static Locale getLocale() {
         return locale;
