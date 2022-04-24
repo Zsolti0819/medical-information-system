@@ -1,7 +1,8 @@
 package com.example.medis.Entity;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+import java.time.LocalDateTime;
 public class User {
 
     private Long id;

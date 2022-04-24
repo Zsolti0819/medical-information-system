@@ -6,19 +6,22 @@ import com.example.medis.Entity.User;
 import com.example.medis.GeneralLogger;
 import com.example.medis.Model.JavaPostgreSql;
 import com.example.medis.ControllerBuffer;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
+
 
 public class PatientInfo {
 
@@ -122,43 +125,25 @@ public class PatientInfo {
     private void handleExportPatient(ActionEvent event) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("medis", ControllerBuffer.getLocale());
         Stage stage = new Stage();
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        File selectedDirectory = directoryChooser.showDialog(stage);
-        if (selectedDirectory != null) {
-            selectedDirectory.getAbsolutePath();
-        }
-        else {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File selectedFile = fileChooser.showSaveDialog(stage);
+        if (selectedFile == null) {
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setContentText(bundle.getString("user.export.invalidPath"));
             a.show();
+            return;
         }
         // Direct
         PatientData data = new PatientData(selectedPatient);
-        JAXBContext jaxbContext = JAXBContext.newInstance(PatientData.class);
+        data.setAppointment(new ArrayList<>(javaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId())));
+        data.setPrescription(new ArrayList<>(javaPostgreSql.getAllNotDeletedPrescriptionsByEntityID("patient", selectedPatient.getId())));
+        data.setRecords(new ArrayList<>(javaPostgreSql.getAllNotDeletedRecordsByPatientId(selectedPatient.getId())));
 
-        /*
-        try
-        {
-            //Create JAXB Context
-            //;
-
-            //Create Marshaller
-            //Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            //Required formatting??
-            //jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            //Store XML to File
-            //File file = new File("employee.xml");
-
-            //Writes XML file to file-system
-            //jaxbMarshaller.marshal(data, file);
-        }
-        catch (JAXBException e)
-        {
-            e.printStackTrace();
-        }
-        */
+        XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
+        xmlMapper.writeValue(selectedFile, data);
     }
 
     public void initData(Patient patient, User user) {

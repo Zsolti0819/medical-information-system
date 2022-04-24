@@ -3,6 +3,8 @@ module com.example.medis {
     requires javafx.fxml;
     requires java.sql;
     requires javafx.graphics;
+    requires com.fasterxml.jackson.dataformat.xml;
+
 
 
     opens com.example.medis to javafx.fxml;
