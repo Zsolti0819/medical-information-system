@@ -138,6 +138,10 @@ public class PatientInfo {
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
         xmlMapper.writeValue(selectedFile, data);
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText(bundle.getString("user.export.success"));
+        a.show();
+
     }
 
     public void initData(Patient patient, User user) {
