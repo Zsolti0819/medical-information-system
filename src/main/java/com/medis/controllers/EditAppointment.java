@@ -58,6 +58,8 @@ public class EditAppointment implements Initializable {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime startdateTime = LocalDateTime.parse(startstr, formatter);
             LocalDateTime enddateTime = LocalDateTime.parse(endstr, formatter);
+            System.out.println(startYmdData.getValue().toString()+" " + startHData.getValue() + ":" + startMinData.getValue());
+            System.out.println(endYmdData.getValue().toString() + " "  + endHData.getValue()+":" + endMinData.getValue());
             if (today.isBefore(startdateTime)){
                 if (today.isBefore(enddateTime)){
                     if (startdateTime.isBefore(enddateTime)){
