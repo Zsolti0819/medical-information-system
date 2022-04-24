@@ -6,6 +6,8 @@ import com.medis.models.User;
 import com.medis.models.JavaPostgreSql;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,7 +30,7 @@ public class Patients implements Initializable {
     private User loggedInUser;
     private Patient selectedPatient;
     private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
-
+    private ObservableList<Patient> allPatients;
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
     @FXML private TableColumn<Patient, String> lastName;
@@ -36,6 +38,11 @@ public class Patients implements Initializable {
     @FXML private TableColumn<Patient, String> nextVisit;
     @FXML private TextField searchPatientField;
     @FXML private Label searchLabel;
+
+    public Patients() {
+        allPatients =  javaPostgreSql.getAllNotDeletedPatients();
+    }
+
     // Open buttons
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
@@ -61,12 +68,12 @@ public class Patients implements Initializable {
         if (newValue.equals("")) {
             searchLabel.setText("");
             if (patientsTable.getItems().size() == 0) {
-                patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
+                patientsTable.setItems(allPatients);
             }
         } else {
             if (textMatcher.find()) {
                 System.out.println(textMatcher.group(1) + " " + textMatcher.group());
-                if (textMatcher.group(1).toLowerCase().equals("first name") || textMatcher.group(1).toLowerCase().equals("meno")) {
+                if (textMatcher.group(1).toLowerCase().contains("name") || textMatcher.group(1).toLowerCase().equals("meno") || textMatcher.group(1).toLowerCase().equals("priezvisko")) {
                     patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("first_name", textMatcher.group(2).toLowerCase()));
                 }
 
@@ -83,7 +90,7 @@ public class Patients implements Initializable {
                 System.out.println(numberMatcher.group(1) + " " + numberMatcher.group(2));
                 System.out.println();
 
-                if (numberMatcher.group(1).toLowerCase().equals("id") || Objects.equals(numberMatcher.group(1), "birth id")) {
+                if (numberMatcher.group(1).toLowerCase().contains("id")) {
                     patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered(numberMatcher.group(2)));
                     searchLabel.setTextFill(Color.color(0, 0.6, 0));
                     searchLabel.setText(bundle.getString("patients.search.success"));
@@ -149,8 +156,8 @@ public class Patients implements Initializable {
         addButtonToTable();
         patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
 
-        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b|(?i)\\bmeno\\b|(?i)\\bpriezvisko\\b):([A-Za-z0-9 ]+)$");
-        Pattern numCols = Pattern.compile("^((?i)\\bid\\b):([1-9][0-9]{0,18})$");
+        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b|(?i)\\bmeno\\b|(?i)\\bpriezvisko\\b|(?i)\\bfirstname\\b|(?i)\\blastname\\b):([A-Za-z0-9 ]+)$");
+        Pattern numCols = Pattern.compile("^((?i)\\bid\\b|(?i)\\bbirth id\\b|(?i)\\bbirthid\\b):([1-9][0-9]{0,18})$");
 
         searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
             matchSearch(newValue, textCols, numCols);
@@ -161,7 +168,7 @@ public class Patients implements Initializable {
                   @Override
                   public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
                       if (!newPropertyValue && Objects.equals(searchPatientField.getText(), "")) {
-                          patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
+                          patientsTable.setItems(allPatients);
                       }
                   }
               }
