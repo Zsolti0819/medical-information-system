@@ -12,12 +12,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.ConsoleHandler;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Patients implements Initializable {
@@ -52,39 +55,47 @@ public class Patients implements Initializable {
     }
 
     private void matchSearch(String newValue, Pattern textCols, Pattern numCols) {
-        /*
+        ResourceBundle bundle = ResourceBundle.getBundle("medis", Main.getLocale());
         Matcher textMatcher = textCols.matcher(newValue);
         Matcher numberMatcher = numCols.matcher(newValue);
         if (newValue.equals("")) {
             searchLabel.setText("");
             if (patientsTable.getItems().size() == 0) {
-                patientsTable.setItems(javaPostgreSql.getAllUsers());
+                patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
             }
         } else {
             if (textMatcher.find()) {
-                System.out.println(textMatcher.group(1) + " " + textMatcher.group(2));
-                String col = textMatcher.group(1).toLowerCase().replace(" ", "_");
-                patientsTable.setItems(javaPostgreSql.filterUsers(col, textMatcher.group(2).toLowerCase()));
-                addButtonToTable();
+                System.out.println(textMatcher.group(1) + " " + textMatcher.group());
+                if (textMatcher.group(1).toLowerCase().equals("first name") || textMatcher.group(1).toLowerCase().equals("meno")) {
+                    patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("first_name", textMatcher.group(2).toLowerCase()));
+                }
+
+                if (textMatcher.group(1).toLowerCase().equals("last name") || textMatcher.group(1).toLowerCase().equals("priezvisko")) {
+                    patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("first_name", textMatcher.group(2).toLowerCase()));
+                }
+
                 searchLabel.setTextFill(Color.color(0, 0.6, 0));
-                searchLabel.setText("Searching over column: " + col + "string: " + textMatcher.group(2));
+                searchLabel.setText(bundle.getString("patients.search.success"));
                 return;
             }
+
             if (numberMatcher.find()) {
                 System.out.println(numberMatcher.group(1) + " " + numberMatcher.group(2));
                 System.out.println();
-                patientsTable.setItems( javaPostgreSql.filterUsersById(Long.parseLong(numberMatcher.group(2))));
-                searchLabel.setTextFill(Color.color(0, 0.6, 0));
-                searchLabel.setText("Searching over column: id, number: " + numberMatcher.group(2));
+
+                if (numberMatcher.group(1).toLowerCase().equals("id") || Objects.equals(numberMatcher.group(1), "birth id")) {
+                    patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered(numberMatcher.group(2)));
+                    searchLabel.setTextFill(Color.color(0, 0.6, 0));
+                    searchLabel.setText(bundle.getString("patients.search.success"));
+
+                }
                 return;
             }
 
             searchLabel.setTextFill(Color.color(0.8, 0, 0));
-            searchLabel.setText("Search pattern not matched try:\n<first name/last name/id/position>:<number/text>");
-
-
+            searchLabel.setText(bundle.getString("patients.search.failure"));
         }
-        */
+
     }
 
     private void addButtonToTable() {
@@ -138,12 +149,11 @@ public class Patients implements Initializable {
         addButtonToTable();
         patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
 
-        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b):([A-Za-z0-9 ]+)$");
+        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b|(?i)\\bmeno\\b|(?i)\\bpriezvisko\\b):([A-Za-z0-9 ]+)$");
         Pattern numCols = Pattern.compile("^((?i)\\bid\\b):([1-9][0-9]{0,18})$");
 
         searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
             matchSearch(newValue, textCols, numCols);
-            patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFilteredColumn("first_name", "an"));
 
         });
 
