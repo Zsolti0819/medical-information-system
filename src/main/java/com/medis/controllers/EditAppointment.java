@@ -71,7 +71,7 @@ public class EditAppointment implements Initializable {
                                 descriptionData.getText(),
                                 startYmdData.getValue().toString()+" " + startHData.getValue() + ":" + startMinData.getValue(),
                                 endYmdData.getValue().toString() + " "  + endHData.getValue()+":" + endMinData.getValue(),
-                                selectedAppointment.getPatientId(), 1);
+                                selectedAppointment.getPatientId(), javaPostgreSql.getUserByFirstAndLastName(doctorName[0],doctorName[1]).getId());
 
                         switchToAppointments(event);
                         Alert a = new Alert(Alert.AlertType.INFORMATION);
