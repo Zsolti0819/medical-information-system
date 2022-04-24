@@ -1,6 +1,7 @@
 package com.example.medis.Controller;
 
 import com.example.medis.Entity.Patient;
+import com.example.medis.Entity.PatientData;
 import com.example.medis.Entity.User;
 import com.example.medis.GeneralLogger;
 import com.example.medis.Model.JavaPostgreSql;
@@ -10,8 +11,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 
 public class PatientInfo {
@@ -110,6 +116,49 @@ public class PatientInfo {
     private void switchToPatients(ActionEvent event) throws IOException {
         ControllerBuffer s = new ControllerBuffer();
         s.switchToPatients(loggedInUser, event);
+    }
+
+    @FXML
+    private void handleExportPatient(ActionEvent event) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("medis", ControllerBuffer.getLocale());
+        Stage stage = new Stage();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(stage);
+        if (selectedDirectory != null) {
+            selectedDirectory.getAbsolutePath();
+        }
+        else {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText(bundle.getString("user.export.invalidPath"));
+            a.show();
+        }
+        // Direct
+        PatientData data = new PatientData(selectedPatient);
+        //JAXBContext jaxbContext = JAXBContext.newInstance(PatientData.class);
+
+        /*
+        try
+        {
+            //Create JAXB Context
+            //;
+
+            //Create Marshaller
+            //Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            //Required formatting??
+            //jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            //Store XML to File
+            //File file = new File("employee.xml");
+
+            //Writes XML file to file-system
+            //jaxbMarshaller.marshal(data, file);
+        }
+        catch (JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        */
     }
 
     public void initData(Patient patient, User user) {

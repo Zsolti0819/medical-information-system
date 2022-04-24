@@ -630,3 +630,9 @@
 [2022-04-23 16:34:37] [INFO   ] RECORD | CREATE: Record Nazov created 
 [2022-04-23 16:35:55] [INFO   ] PRESCRIPTION | CREATE: Prescription Predpis created 
 [2022-04-23 16:36:06] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-23 18:30:18] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-24 15:47:17] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-24 16:07:30] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-24 16:39:29] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-24 16:39:38] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-24 16:40:25] [INFO   ] LOGIN | USER: User doctor logged in 
