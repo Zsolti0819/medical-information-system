@@ -134,7 +134,7 @@ public class PatientInfo {
         }
         // Direct
         PatientData data = new PatientData(selectedPatient);
-        //JAXBContext jaxbContext = JAXBContext.newInstance(PatientData.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(PatientData.class);
 
         /*
         try
