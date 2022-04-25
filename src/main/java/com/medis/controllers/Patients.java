@@ -72,13 +72,13 @@ public class Patients implements Initializable {
             }
         } else {
             if (textMatcher.find()) {
-                System.out.println(textMatcher.group(1) + " " + textMatcher.group());
-                if (textMatcher.group(1).toLowerCase().contains("name") || textMatcher.group(1).toLowerCase().equals("meno") || textMatcher.group(1).toLowerCase().equals("priezvisko")) {
+                //System.out.println(textMatcher.group(1) + " " + textMatcher.group());
+                if (textMatcher.group(1).toLowerCase().contains("first") || textMatcher.group(1).toLowerCase().equals("meno")) {
                     patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("first_name", textMatcher.group(2).toLowerCase()));
                 }
 
-                if (textMatcher.group(1).toLowerCase().equals("last name") || textMatcher.group(1).toLowerCase().equals("priezvisko")) {
-                    patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("first_name", textMatcher.group(2).toLowerCase()));
+                if (textMatcher.group(1).toLowerCase().contains("last") || textMatcher.group(1).toLowerCase().equals("priezvisko")) {
+                    patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("last_name", textMatcher.group(2).toLowerCase()));
                 }
 
                 searchLabel.setTextFill(Color.color(0, 0.6, 0));
@@ -87,7 +87,7 @@ public class Patients implements Initializable {
             }
 
             if (numberMatcher.find()) {
-                System.out.println(numberMatcher.group(1) + " " + numberMatcher.group(2));
+                //System.out.println(numberMatcher.group(1) + " " + numberMatcher.group(2));
                 System.out.println();
 
                 if (numberMatcher.group(1).toLowerCase().contains("id")) {

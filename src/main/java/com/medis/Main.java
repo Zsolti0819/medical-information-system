@@ -2,7 +2,6 @@ package com.medis;
 
 import com.medis.controllers.*;
 import com.medis.models.*;
-import com.medis.models.Record;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +19,20 @@ import java.util.ResourceBundle;
 
 public class Main extends Application {
 
+    private static Locale locale;
+
+    public Main() {
+        Main.setLocale("EN");
+    }
+
+    public static Locale getLocale() {
+        return locale;
+    }
+
     public static void setLocale(Locale locale) {
         Main.locale = locale;
     }
+
     public static void setLocale(String locale) {
         if (Objects.equals(locale, "SK")) {
             Main.locale = new Locale("sk", "SK");
@@ -33,21 +43,9 @@ public class Main extends Application {
         }
     }
 
-    public Main() {
-        Main.setLocale("EN");
-    }
-
-    public static Locale getLocale() {
-        return locale;
-    }
-
-    private static Locale locale;
-
-    // Admin
-
     public static void switchToUserCreation(User loggedInUser, MouseEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/new_user.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/new_user.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -63,7 +61,7 @@ public class Main extends Application {
 
     public static void switchToUsers(User loggedInUser, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/users.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/users.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -76,9 +74,9 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void switchToUserInfo(User loggedInUser, User selectedUser,ActionEvent event) throws IOException {
+    public static void switchToUserInfo(User loggedInUser, User selectedUser, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/user_info.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/user_info.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -93,7 +91,7 @@ public class Main extends Application {
 
     public static void switchToUserInfoEdit(User loggedInUser, User selectedUser, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/edit_user_info.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/edit_user_info.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -111,7 +109,7 @@ public class Main extends Application {
 
     public static void switchToPatients(User loggedInUser, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/patients.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/patients.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -126,7 +124,7 @@ public class Main extends Application {
 
     public static void switchToLogout(User loggedInUser, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/login.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -143,7 +141,7 @@ public class Main extends Application {
 
     public static void switchToPatientInfo(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/patient_info.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/patient_info.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -158,7 +156,7 @@ public class Main extends Application {
 
     public static void switchToPatientInfoEdit(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/edit_patient_info.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/edit_patient_info.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Edit patient info");
@@ -173,7 +171,7 @@ public class Main extends Application {
 
     public static void switchToPatientCreation(User loggedInUser, MouseEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/new_patient.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/new_patient.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -190,7 +188,7 @@ public class Main extends Application {
     // Records
 
     public static void switchToRecords(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/records.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/records.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -205,7 +203,7 @@ public class Main extends Application {
 
     public static void switchToRecordDetailed(User loggedInUser, Patient patient, Record record, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/detailed_record.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/detailed_record.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -221,7 +219,7 @@ public class Main extends Application {
 
     public static void switchToRecordEdit(User loggedInUser, Patient patient, Record record, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/edit_record.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/edit_record.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -237,7 +235,7 @@ public class Main extends Application {
 
     public static void switchToRecordCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/new_record.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/new_record.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("New record");
@@ -254,7 +252,7 @@ public class Main extends Application {
 
     public static void switchToAppointments(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/appointments.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/appointments.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -270,7 +268,7 @@ public class Main extends Application {
 
     public static void switchToAppointmentEdit(User loggedInUser, Patient patient, Appointment appointment, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/edit_appointment.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/edit_appointment.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -286,7 +284,7 @@ public class Main extends Application {
 
     public static void switchToAppointmentCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/new_appointment.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/new_appointment.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -304,7 +302,7 @@ public class Main extends Application {
 
     public static void switchToPrescriptions(User loggedInUser, Patient patient, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/prescriptions.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/prescriptions.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Medis");
@@ -319,7 +317,7 @@ public class Main extends Application {
 
     public static void switchToPrescriptionEdit(User loggedInUser, Patient patient, Prescription prescription, ActionEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/edit_prescription.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/edit_prescription.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -335,7 +333,7 @@ public class Main extends Application {
 
     public static void switchToPrescriptionCreation(User loggedInUser, Patient patient, MouseEvent event) throws IOException {
 
-        FXMLLoader loader  = new FXMLLoader(Main.class.getResource("fxml/new_prescription.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/new_prescription.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -349,8 +347,12 @@ public class Main extends Application {
         stage.show();
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setResizable(false);
         Locale locale = new Locale("EN");
         FXMLLoader loader = new FXMLLoader();
@@ -362,9 +364,5 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image(String.valueOf(getClass().getResource("img/logo.png"))));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
