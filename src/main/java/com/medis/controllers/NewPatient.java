@@ -143,8 +143,26 @@ public class NewPatient implements Initializable {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(selectedFile);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             Element element = doc.getDocumentElement();
+
+            element = (Element) element.getElementsByTagName("data").item(0);
+
+            try {
+                element.getNodeName();
+            } catch (NullPointerException e) {
+                element = doc.getDocumentElement();
+            }
+
+            if (!element.getNodeName().equals("data")) {
+                element = doc.getDocumentElement();
+            }
+
+            try {
+            } catch (NullPointerException e) {
+                element = doc.getDocumentElement();
+                System.out.println(element.getNodeName());
+            }
 
             try {
                 firstNameData.setText(element
