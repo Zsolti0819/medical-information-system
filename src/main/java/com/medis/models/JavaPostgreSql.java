@@ -738,7 +738,6 @@ public class JavaPostgreSql {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        String query = "SELECT * from patients WHERE deleted=false;";
         String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id and appointments.deleted=false and appointments.start_time > now() where patients.deleted=false AND LOWER(patients." + column + ") LIKE ?;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
@@ -756,7 +755,6 @@ public class JavaPostgreSql {
     }
 
     public ObservableList<Patient> getAllNotDeletedPatientsFiltered(String id) {
-//        String query = "SELECT * from patients WHERE deleted=false;";
         String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id and appointments.deleted=false and appointments.start_time > now() where patients.deleted=false AND patients.identification_number LIKE ?;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
