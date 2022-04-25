@@ -36,7 +36,7 @@ public class Login implements Initializable {
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             if (javaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
-                loggedInUser = javaPostgreSql.getUserByEmail(loginEmail.getText());
+                loggedInUser = javaPostgreSql.getUserByEmailOrUsername(loginEmail.getText());
                 if (loggedInUser.getPosition().equals("admin")) {
                     Main.switchToUsers(loggedInUser, event);
                 }

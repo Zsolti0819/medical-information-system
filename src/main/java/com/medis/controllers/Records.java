@@ -90,7 +90,7 @@ public class Records implements Initializable {
 
                     {
                         openButton.setOnAction((ActionEvent event) -> {
-                            selectedRecord  = javaPostgreSql.getRecord(recordsTable.getItems().get(getIndex()).getId());
+                            selectedRecord  = javaPostgreSql.getRecordById(recordsTable.getItems().get(getIndex()).getId());
                             try {
                                 switchToRecordDetailed(event);
                             } catch (IOException e) {

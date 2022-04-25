@@ -99,7 +99,7 @@ public class Users implements Initializable {
                     {
                         openButton.setOnAction((ActionEvent event) -> {
 
-                            selectedUser = javaPostgreSql.getUser(usersTable.getItems().get(getIndex()).getId());
+                            selectedUser = javaPostgreSql.getUserById(usersTable.getItems().get(getIndex()).getId());
 
                             try {
                                 switchToUserInfo(event);

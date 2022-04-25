@@ -144,7 +144,7 @@ public class EditAppointment implements Initializable {
         patientNameAppointmentTitle.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName() + " - " + selectedAppointment.getTitle());
         titleData.setText(selectedAppointment.getTitle());
         descriptionData.setText(selectedAppointment.getDescription());
-        doctorData.getSelectionModel().select(javaPostgreSql.getUser(selectedAppointment.getDoctorId()).getFirstName() + " " + javaPostgreSql.getUser(selectedAppointment.getDoctorId()).getLastName());
+        doctorData.getSelectionModel().select(javaPostgreSql.getUserById(selectedAppointment.getDoctorId()).getFirstName() + " " + javaPostgreSql.getUserById(selectedAppointment.getDoctorId()).getLastName());
         startYmdData.setValue(selectedAppointment.getStartTime().toLocalDate());
         endYmdData.setValue(selectedAppointment.getEndTime().toLocalDate());
         startHData.getSelectionModel().select(String.valueOf(selectedAppointment.getStartHour()));

@@ -15,24 +15,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.jsoup.parser.Parser;
-import org.w3c.dom.Document;
-import org.jsoup.Jsoup;
 
 
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
-
-import org.w3c.dom.*;
-import javax.xml.parsers.*;
-import java.io.*;
 
 public class PatientInfo {
 
@@ -157,7 +147,7 @@ public class PatientInfo {
 
     public void initData(Patient patient, User user) {
         loggedInUser = user;
-        selectedPatient = javaPostgreSql.getPatient(patient.getId());
+        selectedPatient = javaPostgreSql.getPatientById(patient.getId());
         patientNameData.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName());
         insuranceCoData.setText(selectedPatient.getInsuranceCompany());
         birthIdData.setText(String.valueOf(selectedPatient.getBirthId()));
