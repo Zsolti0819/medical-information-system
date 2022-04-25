@@ -15,8 +15,16 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.jsoup.parser.Parser;
+import org.w3c.dom.Document;
+import org.jsoup.Jsoup;
 
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -116,7 +124,7 @@ public class PatientInfo {
     }
 
     @FXML
-    private void handleExportPatient(ActionEvent event) throws IOException {
+    private void handleExportPatient(ActionEvent event) throws IOException, XMLStreamException {
         ResourceBundle bundle = ResourceBundle.getBundle("medis", Main.getLocale());
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();

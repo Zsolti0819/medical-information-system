@@ -4,6 +4,7 @@ module com.example.medis {
     requires java.sql;
     requires javafx.graphics;
     requires com.fasterxml.jackson.dataformat.xml;
+    requires org.jsoup;
 
     exports com.medis;
     opens com.medis to javafx.fxml;

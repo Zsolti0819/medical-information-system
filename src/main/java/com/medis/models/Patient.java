@@ -212,4 +212,8 @@ public class Patient {
 
         return (int) (date % 100);
     }
+
+    public void setFormattedNextVisit(String formattedNextVisit) {
+        this.formattedNextVisit = formattedNextVisit;
+    }
 }

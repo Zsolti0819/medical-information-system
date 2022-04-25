@@ -1,5 +1,7 @@
 package com.medis.controllers;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import com.medis.Main;
 import com.medis.models.Patient;
 import com.medis.models.User;
@@ -10,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +34,7 @@ public class NewPatient implements Initializable {
     @FXML private TextField phoneData;
     @FXML private TextField emailData;
     @FXML private Label missingValuesMsg;
+    @FXML private Button inputFormDataButton;
 
     // Create patient button
     @FXML
@@ -111,6 +115,14 @@ public class NewPatient implements Initializable {
     @FXML
     private void switchToPatients(ActionEvent event) throws IOException {
         Main.switchToPatients(loggedInUser, event);
+    }
+
+    @FXML
+    private void handleInputData(ActionEvent event) throws IOException {
+        XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
+        File file = new File("out.xml");
+        //xmlMapper.writeValue(file, se);
     }
 
     @Override

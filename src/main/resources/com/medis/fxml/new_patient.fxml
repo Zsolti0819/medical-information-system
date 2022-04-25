@@ -81,6 +81,11 @@
                 </font>
             </Button>
          <Label fx:id="missingValuesMsg" layoutX="347.0" layoutY="93.0" prefHeight="17.0" prefWidth="202.0" textFill="RED" />
+         <Button layoutX="45.0" layoutY="531.0" mnemonicParsing="false" onAction="#handleInputData" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #1E90FF;" text="%patientInfo.import">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Button>
         </AnchorPane>
     </center>
 </BorderPane>
