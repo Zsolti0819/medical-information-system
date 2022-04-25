@@ -647,6 +647,7 @@
 [2022-04-24 20:36:21] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-24 20:43:48] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-24 20:55:25] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-24 21:59:00] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-24 21:10:37] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-24 21:15:32] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-24 21:27:09] [INFO   ] LOGIN | USER: User doctor logged in 
@@ -709,3 +710,15 @@
 [2022-04-25 14:50:32] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-25 14:51:52] [INFO   ] PATIENT | CREATE: Patient elonmusk@gmail.com created 
 [2022-04-25 14:54:46] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 19:57:16] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 20:01:03] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 20:01:45] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 20:17:46] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 20:18:01] [INFO   ] PATIENT | UPDATE: Patient elonmusk@gmail.com updated 
+[2022-04-25 20:18:10] [INFO   ] PATIENT | UPDATE: Patient elonmusk@gmail.com updated 
+[2022-04-25 20:25:52] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-25 20:30:56] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-25 20:31:42] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 20:31:47] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-25 20:32:28] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-25 20:32:48] [INFO   ] USER | UPDATE: User xgazik@stubs.sk updated 

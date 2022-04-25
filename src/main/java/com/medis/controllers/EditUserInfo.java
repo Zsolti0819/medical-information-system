@@ -104,7 +104,7 @@ public class EditUserInfo implements Initializable {
         phoneData.setText(selectedUser.getPhone());
         emailData.setText(selectedUser.getEmail());
         positionData.getSelectionModel().select(String.valueOf(selectedUser.getPosition()));
-        birthDateData.setValue(selectedUser.getBirthDate().toLocalDate());
+        birthDateData.setValue(LocalDate.parse(selectedUser.getBirthDateFormatted()));
 
     }
 }

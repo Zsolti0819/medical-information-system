@@ -26,12 +26,10 @@ public class Appointment {
         return startTime.format(formatter);
     }
 
-
     public String getEndTimeFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return endTime.format(formatter);
     }
-
 
     public String getTitle() {
         return title;

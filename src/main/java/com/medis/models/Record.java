@@ -13,7 +13,7 @@ public class Record {
 
     public String getCreatedAtFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return createdAt.format(formatter);
+        return createdAt.format(formatter).replace(" ", " at ");
     }
 
     public String getTitle() {

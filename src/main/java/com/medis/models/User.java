@@ -1,17 +1,19 @@
 package com.medis.models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class User {
 
     private Long id;
     private String firstName;
     private String lastName;
     private String username;
-//    private String password;
     private String email;
     private String phone;
     private String position;
     private LocalDateTime birthDate;
+    private String birthDateFormatted;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean deleted;
@@ -82,6 +84,11 @@ public class User {
 
     public LocalDateTime getBirthDate() {
         return birthDate;
+    }
+
+    public String getBirthDateFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return birthDate.format(formatter);
     }
 
     public void setBirthDate(LocalDateTime birthDate) {
