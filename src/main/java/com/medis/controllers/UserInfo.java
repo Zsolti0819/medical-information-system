@@ -62,7 +62,7 @@ public class UserInfo {
 
     public void initData(User user, User user2) {
         loggedInUser = user;
-        selectedUser = javaPostgreSql.getUser(user2.getId());
+        selectedUser = javaPostgreSql.getUserById(user2.getId());
         userNameData.setText(selectedUser.getUsername());
         firstNameData.setText(selectedUser.getFirstName());
         lastNameData.setText(selectedUser.getLastName());

@@ -6,7 +6,6 @@ import com.medis.models.User;
 import com.medis.models.JavaPostgreSql;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.logging.ConsoleHandler;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -117,7 +115,7 @@ public class Patients implements Initializable {
                     {
                         openButton.setOnAction((ActionEvent event) -> {
 
-                            selectedPatient = javaPostgreSql.getPatient(patientsTable.getItems().get(getIndex()).getId());
+                            selectedPatient = javaPostgreSql.getPatientById(patientsTable.getItems().get(getIndex()).getId());
 
                             try {
                                 switchToPatientInfo(event);

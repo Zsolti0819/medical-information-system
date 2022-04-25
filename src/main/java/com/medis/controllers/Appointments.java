@@ -127,7 +127,7 @@ public class Appointments implements Initializable {
                     {
                         openButton.setOnAction((ActionEvent event) -> {
 
-                            selectedAppointment = javaPostgreSql.getAppointment(appointmentsTable.getItems().get(getIndex()).getId());
+                            selectedAppointment = javaPostgreSql.getAppointmentById(appointmentsTable.getItems().get(getIndex()).getId());
                             try {
                                 switchToAppointmentEdit(event);
                             } catch (IOException e) {
