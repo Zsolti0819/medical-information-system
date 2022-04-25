@@ -709,3 +709,5 @@
 [2022-04-25 14:50:32] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-25 14:51:52] [INFO   ] PATIENT | CREATE: Patient elonmusk@gmail.com created 
 [2022-04-25 14:54:46] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 21:04:23] [INFO   ] LOGIN | USER: User admin logged in 
+[2022-04-25 21:08:18] [INFO   ] LOGIN | USER: User admin logged in 

@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class NewPatient implements Initializable {
 
     private User loggedInUser;
@@ -40,6 +41,10 @@ public class NewPatient implements Initializable {
     @FXML private Label missingValuesMsg;
     @FXML private Button inputFormDataButton;
 
+    /**
+     * @param event
+     * @throws IOException
+     */
     // Create patient button
     @FXML
     private void createPatient(ActionEvent event) throws IOException {
