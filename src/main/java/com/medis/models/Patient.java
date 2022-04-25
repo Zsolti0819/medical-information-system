@@ -191,7 +191,7 @@ public class Patient {
         else
             year += 2000;
 
-        System.out.println(year);
+
         return year;
     }
 
