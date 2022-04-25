@@ -30,26 +30,5 @@ TO DO:
 | 23 	  | Add deleteUser function to backend                                                                                          | Szaki          |
 | 24 	  | After password updating in admin mode, the user cannot log in.                                                              | Szaki          |
 | 25 	  | Validation for inputs (new patient/record/appointment/prescription, edit patient/record/appointment/prescription            | Simon          |
-| 26 	  | Implement tasks (multithreading) for smoother GUI interaction                                                               |                |
+| 26 	  | Localization                                                                                                                | Andrej         |
 | 27 	  | Rework querries for faster results                                                                                          | Andrej, Simon  |
-
-## Translations 
-- [X] appointments.fxml 
-- [X] detailed_record.fxml
-- [X] edit_appointment.fxml
-- [X] edit_patient_info.fxml
-- [X] edit_prescription.fxml
-- [X] edit_record.fxml
-- [X] edit_user_info.fxml
-- [X] login.fxml
-- [X] new_appointment.fxml
-- [X] new_patient.fxml
-- [X] new_prescription.fxml
-- [X] new_record.fxml
-- [X] new_user.fxml
-- [x] patient_info.fxml
-- [X] patients.fxml
-- [X] prescriptions.fxml
-- [X] records.fxml
-- [X] user_info.fxml
-- [X] users.fxml

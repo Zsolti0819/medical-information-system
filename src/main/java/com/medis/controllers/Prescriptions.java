@@ -77,7 +77,7 @@ public class Prescriptions implements Initializable {
             public TableCell<Prescription, Void> call(final TableColumn<Prescription, Void> param) {
                 return new TableCell<>() {
 
-                    private final Button openButton = new Button("View");
+                    private final Button openButton = new Button("Edit");
 
                     {
                         openButton.setOnAction((ActionEvent event) -> {
