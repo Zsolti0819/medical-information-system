@@ -30,6 +30,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import java.io.*;
 
 public class PatientInfo {
 
