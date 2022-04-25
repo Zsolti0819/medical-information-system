@@ -27,17 +27,17 @@
                     <Font name="System Bold" size="14.0" />
                 </font>
             </Hyperlink>
-         <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToRecords" prefHeight="26.0" prefWidth="166.0" text="%patientInfo.records" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToAppointments" prefHeight="26.0" prefWidth="168.0" text="%patientInfo.appointments" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-         <Hyperlink layoutX="25.0" layoutY="210.0" onAction="#switchToAppointments" prefHeight="26.0" prefWidth="168.0" text="%patientInfo.appointments" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="210.0" onAction="#switchToPrescriptions" prefHeight="26.0" prefWidth="168.0" text="%patientInfo.prescriptions" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
          </Hyperlink>
-         <Hyperlink layoutX="25.0" layoutY="263.0" onAction="#switchToPrescriptions" prefHeight="26.0" prefWidth="168.0" text="%patientInfo.prescriptions" textFill="#151515">
+         <Hyperlink layoutX="25.0" layoutY="263.0" onAction="#switchToRecords" prefHeight="26.0" prefWidth="166.0" text="%patientInfo.records" textFill="#151515">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
