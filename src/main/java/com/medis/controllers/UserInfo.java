@@ -70,6 +70,6 @@ public class UserInfo {
         emailData.setText(selectedUser.getEmail());
         phoneData.setText(selectedUser.getPhone());
         positionData.setText(selectedUser.getPosition());
-        birthDateData.setText(String.valueOf(selectedUser.getBirthDate()));
+        birthDateData.setText(selectedUser.getBirthDateFormatted());
     }
 }
