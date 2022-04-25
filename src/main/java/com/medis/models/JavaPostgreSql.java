@@ -119,7 +119,7 @@ public class JavaPostgreSql {
             patient.setNextVisit("0000-00-00 00:00");
         }
         patient.setDeleted(resultSet.getBoolean("deleted"));
-        patient.setBirth_ID(resultSet.getLong("identification_number"));
+        patient.setBirthID(resultSet.getLong("identification_number"));
         return patient;
     }
 

@@ -147,7 +147,7 @@ public class Patient {
         return birthId;
     }
 
-    public void setBirth_ID(long birthId) {
+    public void setBirthID(long birthId) {
         this.birthId = birthId;
     }
 
