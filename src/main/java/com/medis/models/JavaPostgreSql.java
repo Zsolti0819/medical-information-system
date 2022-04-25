@@ -24,7 +24,7 @@ public class JavaPostgreSql {
     private final String url = "jdbc:postgresql://postgresql.r1.websupport.sk:5432/medis";
     private final String user = "medis";
     private final String pswd = "Uu39FC4W#Z";
-    private final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+    private final char[] hexArray = "0123456789ABCDEF".toCharArray();
 
     // Buffer methods
 
@@ -50,8 +50,8 @@ public class JavaPostgreSql {
         char[] hexChars = new char[hashbytes.length * 2];
         for (int j = 0; j < hashbytes.length; j++) {
             int v = hashbytes[j] & 0xFF;
-            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
-            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
         }
         return new String(hexChars);
     }
@@ -179,16 +179,16 @@ public class JavaPostgreSql {
      * @param address
      * @param phone
      * @param email
-     * @param identification_number
+     * @param identificationNumber
      */
-    public void updatePatient(long id, String firstName, String lastName, String insuranceCo, String birthdate, String sex, String bloodGroup, String address, String phone, String email, String identification_number) {
+    public void updatePatient(long id, String firstName, String lastName, String insuranceCo, String birthdate, String sex, String bloodGroup, String address, String phone, String email, String identificationNumber) {
         if (!isPatientExist(id)) {
             GeneralLogger.log(Level.WARNING, "PATIENT | UPDATE | FAILED: Patient " + email + " not found");
             System.out.println("Patient with this id not exists!");
         }
         else {
             String query1 = "UPDATE patients SET first_name=?, last_name=?, insurance_company=cast(? as insurance_enum), birthdate=?, " +
-                    "sex=cast(? as sex_enum), blood_group=cast(? as blood_enum), phone=?, address=?, email=?, updated_at=now()  WHERE id=?;";
+                    "sex=cast(? as sex_enum), blood_group=cast(? as blood_enum), phone=?, address=?, email=?, updated_at=now(), identification_number=?  WHERE id=?;";
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query1);
@@ -202,6 +202,7 @@ public class JavaPostgreSql {
                 preparedStatement.setString(8, address);
                 preparedStatement.setString(9, email);
                 preparedStatement.setLong(10, id);
+                preparedStatement.setString(11, identificationNumber);
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res + " row!");
@@ -347,16 +348,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati email pacienta podla ID pacienta
-     * @param patient_id
+     * @param patientId
      * @return
      */
-    private String getEmailByPatientId(long patient_id) {
+    private String getEmailByPatientId(long patientId) {
         String result = "";
         try {
             String query = "SELECT * FROM patients WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, patient_id);
+            preparedStatement.setLong(1, patientId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getString("email");
@@ -520,16 +521,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati pouzivatela podla ID pouzivatela
-     * @param user_id
+     * @param userId
      * @return
      */
-    public User getUserById(Long user_id) {
+    public User getUserById(Long userId) {
         User result = new User();
         try {
             String query = "SELECT * FROM users WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, user_id);
+            preparedStatement.setLong(1, userId);
             System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -660,18 +661,18 @@ public class JavaPostgreSql {
 
     /**
      *  Metoda vrati pouzivatela podla mena
-     * @param first_name
-     * @param last_name
+     * @param firstName
+     * @param lastName
      * @return
      */
-    public User getUserByFirstAndLastName(String first_name, String last_name) {
+    public User getUserByFirstAndLastName(String firstName, String lastName) {
         User result = new User();
         try {
             String query = "SELECT * FROM users WHERE first_name=? and last_name=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, first_name);
-            preparedStatement.setString(2, last_name);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = createUserFromResultSet(resultSet);
@@ -684,16 +685,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati email pouzivatela podla ID pouzivatela
-     * @param user_id
+     * @param userId
      * @return
      */
-    private String getEmailByUserId(long user_id) {
+    private String getEmailByUserId(long userId) {
         String result = "";
         try {
             String query = "SELECT * FROM users WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, user_id);
+            preparedStatement.setLong(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getString("email");
@@ -773,24 +774,24 @@ public class JavaPostgreSql {
      *
      * @param title
      * @param description
-     * @param start_time
-     * @param end_time
-     * @param patient_id
-     * @param doctor_id
-     * @param created_by
+     * @param startTime
+     * @param endTime
+     * @param patientId
+     * @param doctorId
+     * @param createdBy
      */
-    public void creteAppointment(String title, String description, String start_time, String end_time, long patient_id, long doctor_id, long created_by) {
+    public void creteAppointment(String title, String description, String startTime, String endTime, long patientId, long doctorId, long createdBy) {
         String query = "INSERT INTO appointments VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false, ?);";
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, description);
-            preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(start_time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
-            preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.parse(end_time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
-            preparedStatement.setLong(5, patient_id);
-            preparedStatement.setLong(6, doctor_id);
-            preparedStatement.setLong(7, created_by);
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
+            preparedStatement.setLong(5, patientId);
+            preparedStatement.setLong(6, doctorId);
+            preparedStatement.setLong(7, createdBy);
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
             GeneralLogger.log(Level.INFO, "APPOINTMENT | CREATE: Appointment " + title + " created");
@@ -806,12 +807,12 @@ public class JavaPostgreSql {
      * @param id
      * @param title
      * @param description
-     * @param start_time
-     * @param end_time
-     * @param patient_id
-     * @param doctor_id
+     * @param startTime
+     * @param endTime
+     * @param patientId
+     * @param doctorId
      */
-    public void updateAppointment(long id, String title, String description, String start_time, String end_time, long patient_id, long doctor_id) {
+    public void updateAppointment(long id, String title, String description, String startTime, String endTime, long patientId, long doctorId) {
         if (!isAppointmentExist(id)) {
             GeneralLogger.log(Level.WARNING, "APPOINTMENT | UPDATE | FAILED: Appointment " + title + " not found");
         } else {
@@ -821,10 +822,10 @@ public class JavaPostgreSql {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, title);
                 preparedStatement.setString(2, description);
-                preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(start_time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
-                preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.parse(end_time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
-                preparedStatement.setLong(5, patient_id);
-                preparedStatement.setLong(6, doctor_id);
+                preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
+                preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
+                preparedStatement.setLong(5, patientId);
+                preparedStatement.setLong(6, doctorId);
                 preparedStatement.setLong(7, id);
                 System.out.println(preparedStatement);
                 preparedStatement.executeUpdate();
@@ -873,16 +874,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati schodzu podla ID schodzy
-     * @param appointment_id
+     * @param appointmentId
      * @return
      */
-    public Appointment getAppointmentById(Long appointment_id) {
+    public Appointment getAppointmentById(Long appointmentId) {
         Appointment result = new Appointment();
         try {
             String query = "SELECT * FROM appointments WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, appointment_id);
+            preparedStatement.setLong(1, appointmentId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = createAppointmentFromResultSet(resultSet);
@@ -895,16 +896,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati nazov schodzy podla ID schodzy
-     * @param appointment_id
+     * @param appointmentId
      * @return
      */
-    private String getTitleByAppointmentId(long appointment_id) {
+    private String getTitleByAppointmentId(long appointmentId) {
         String result = "";
         try {
             String query = "SELECT * FROM appointments WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, appointment_id);
+            preparedStatement.setLong(1, appointmentId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getString("title");
@@ -917,16 +918,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati zoznam nevymazanych schodz podla ID pacienta
-     * @param patient_id
+     * @param patientId
      * @return
      */
-    public ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patient_id) {
+    public ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patientId) {
         String query = "SELECT * from appointments WHERE patient_id=? AND deleted=false;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, patient_id);
+            preparedStatement.setLong(1, patientId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(createAppointmentFromResultSet(resultSet));
@@ -969,12 +970,12 @@ public class JavaPostgreSql {
      * @param title
      * @param description
      * @param drug
-     * @param expiration_date
-     * @param patient_id
-     * @param doctor_id
+     * @param expirationDate
+     * @param patientId
+     * @param doctorId
      * @param notes
      */
-    public void createPrescription(String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes) {
+    public void createPrescription(String title, String description, String drug, String expirationDate, long patientId, long doctorId, String notes) {
         String query = "INSERT INTO prescriptions VALUES(default, ?, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -982,9 +983,9 @@ public class JavaPostgreSql {
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, description);
             preparedStatement.setString(3, drug);
-            preparedStatement.setDate(4, getDate(expiration_date));
-            preparedStatement.setLong(5, patient_id);
-            preparedStatement.setLong(6, doctor_id);
+            preparedStatement.setDate(4, getDate(expirationDate));
+            preparedStatement.setLong(5, patientId);
+            preparedStatement.setLong(6, doctorId);
             preparedStatement.setString(7, notes);
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
@@ -1003,12 +1004,12 @@ public class JavaPostgreSql {
      * @param title
      * @param description
      * @param drug
-     * @param expiration_date
-     * @param patient_id
-     * @param doctor_id
+     * @param expirationDate
+     * @param patientId
+     * @param doctorId
      * @param notes
      */
-    public void updatePrescription(long id, String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes) {
+    public void updatePrescription(long id, String title, String description, String drug, String expirationDate, long patientId, long doctorId, String notes) {
         if (!isPrescriptionExist(id)) {
             GeneralLogger.log(Level.WARNING, "PRESCRIPTION | UPDATE | FAILED: Prescription " + title + " not found");
         }
@@ -1020,10 +1021,10 @@ public class JavaPostgreSql {
                 preparedStatement.setString(1, title);
                 preparedStatement.setString(2, description);
                 preparedStatement.setString(3, drug);
-                preparedStatement.setDate(4, getDate(expiration_date));
+                preparedStatement.setDate(4, getDate(expirationDate));
                 preparedStatement.setString(5, notes);
-                preparedStatement.setLong(6, patient_id);
-                preparedStatement.setLong(7, doctor_id);
+                preparedStatement.setLong(6, patientId);
+                preparedStatement.setLong(7, doctorId);
                 preparedStatement.setLong(8, id);
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
@@ -1076,16 +1077,16 @@ public class JavaPostgreSql {
 
     /**
      *  Metoda vrati recept podla ID receptu
-     * @param prescription_id
+     * @param prescriptionId
      * @return
      */
-    public Prescription getPrescriptionById(Long prescription_id) {
+    public Prescription getPrescriptionById(Long prescriptionId) {
         Prescription result = new Prescription();
         try {
             String query = "SELECT * FROM prescriptions WHERE id=?";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, prescription_id);
+            preparedStatement.setLong(1, prescriptionId);
             ResultSet resultSet = preparedStatement.executeQuery();
             System.out.println(preparedStatement);
             resultSet.next();
@@ -1098,16 +1099,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati nazov receptu podla ID receptu
-     * @param prescription_id
+     * @param prescriptionId
      * @return
      */
-    private String getTitleByPrescriptionId(long prescription_id) {
+    private String getTitleByPrescriptionId(long prescriptionId) {
         String result = "";
         try {
             String query = "SELECT * FROM prescriptions WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, prescription_id);
+            preparedStatement.setLong(1, prescriptionId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getString("title");
@@ -1171,22 +1172,22 @@ public class JavaPostgreSql {
      *
      * @param title
      * @param description
-     * @param execute_date
+     * @param executeDate
      * @param notes
-     * @param patient_id
-     * @param doctor_id
+     * @param patientId
+     * @param doctorId
      */
-    public void createRecord(String title, String description, String execute_date, String notes, long patient_id, long doctor_id) {
+    public void createRecord(String title, String description, String executeDate, String notes, long patientId, long doctorId) {
         String query = "INSERT INTO records VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, description);
-            preparedStatement.setDate(3, getDate(execute_date));
+            preparedStatement.setDate(3, getDate(executeDate));
             preparedStatement.setString(4, notes);
-            preparedStatement.setLong(5, patient_id);
-            preparedStatement.setLong(6, doctor_id);
+            preparedStatement.setLong(5, patientId);
+            preparedStatement.setLong(6, doctorId);
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
             GeneralLogger.log(Level.INFO, "RECORD | CREATE: Record " + title + " created");
@@ -1203,12 +1204,12 @@ public class JavaPostgreSql {
      * @param id
      * @param title
      * @param description
-     * @param execute_date
+     * @param executeDate
      * @param notes
-     * @param patient_id
-     * @param doctor_id
+     * @param patientId
+     * @param doctorId
      */
-    public void updateRecord(long id, String title, String description, String execute_date, String notes, long patient_id, long doctor_id) {
+    public void updateRecord(long id, String title, String description, String executeDate, String notes, long patientId, long doctorId) {
         if (!isRecordExist(id)) {
             GeneralLogger.log(Level.WARNING, "RECORD | UPDATE | FAILED: Record " + title + " not found");
             System.out.println("Record with this id not exists!");
@@ -1220,10 +1221,10 @@ public class JavaPostgreSql {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, title);
                 preparedStatement.setString(2, description);
-                preparedStatement.setDate(3, getDate(execute_date));
+                preparedStatement.setDate(3, getDate(executeDate));
                 preparedStatement.setString(4, notes);
-                preparedStatement.setLong(5, patient_id);
-                preparedStatement.setLong(6, doctor_id);
+                preparedStatement.setLong(5, patientId);
+                preparedStatement.setLong(6, doctorId);
                 preparedStatement.setLong(7, id);
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
@@ -1275,16 +1276,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati zaznam podla ID zaznamu
-     * @param record_id
+     * @param recordId
      * @return
      */
-    public Record getRecordById(Long record_id) {
+    public Record getRecordById(Long recordId) {
         Record result = new Record();
         try {
             String query = "SELECT * FROM records WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, record_id);
+            preparedStatement.setLong(1, recordId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = createRecordFromResultSet(resultSet);
@@ -1297,16 +1298,16 @@ public class JavaPostgreSql {
 
     /**
      * Metoda vrati nazov zaznamu podla ID zaznamu
-     * @param record_id
+     * @param recordId
      * @return
      */
-    private String getTitleByRecordId(long record_id) {
+    private String getTitleByRecordId(long recordId) {
         String result = "";
         try {
             String query = "SELECT * FROM records WHERE id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, record_id);
+            preparedStatement.setLong(1, recordId);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getString("title");
@@ -1319,16 +1320,16 @@ public class JavaPostgreSql {
 
     /**
      *  Metoda vrati zoznam nevymazanych zaznamov podla ID pacienta
-     * @param patient_id
+     * @param patientId
      * @return
      */
-    public ObservableList<Record> getAllNotDeletedRecordsByPatientId(long patient_id) {
+    public ObservableList<Record> getAllNotDeletedRecordsByPatientId(long patientId) {
         String query = "SELECT * from records WHERE patient_id=? AND deleted=false;";
         ObservableList<Record> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, patient_id);
+            preparedStatement.setLong(1, patientId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(createRecordFromResultSet(resultSet));
