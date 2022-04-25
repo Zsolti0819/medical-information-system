@@ -4,10 +4,7 @@ import com.medis.models.User;
 import com.medis.models.JavaPostgreSql;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
@@ -24,6 +21,8 @@ public class Login implements Initializable {
     @FXML private TextField loginEmail;
     @FXML private PasswordField loginPassword;
     @FXML private ComboBox<String> localeComboBox;
+    @FXML private Label passwordLabel;
+    @FXML private Button loginButton;
     // Login button
     @FXML
     private void userLogIn(ActionEvent event) throws IOException {
@@ -33,7 +32,7 @@ public class Login implements Initializable {
     private void checkLogin(ActionEvent event) throws IOException {
 
         Locale locale = new Locale(localeComboBox.getValue());
-        Main.setLocale(localeComboBox.getValue());
+
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {
             if (javaPostgreSql.checkUser(loginEmail.getText(), loginPassword.getText())) {
@@ -63,6 +62,13 @@ public class Login implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         localeComboBox.getItems().addAll("EN", "SK");
         localeComboBox.setValue("EN");
+
+        localeComboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            Main.setLocale(newValue);
+            System.out.println(newValue);
+            loginButton.setText(ResourceBundle.getBundle("medis", Main.getLocale()).getString("login.button"));
+            passwordLabel.setText(ResourceBundle.getBundle("medis", Main.getLocale()).getString("login.password.text"));
+        });
     }
 
     public void initData(User user) {
