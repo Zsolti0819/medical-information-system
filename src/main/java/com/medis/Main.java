@@ -33,6 +33,10 @@ public class Main extends Application {
         }
     }
 
+    public Main() {
+        Main.setLocale("EN");
+    }
+
     public static Locale getLocale() {
         return locale;
     }
