@@ -703,3 +703,6 @@
 [2022-04-25 12:48:46] [WARNING] ACCESS | DENIED | PRESCRIPTIONS: Denied for 3 
 [2022-04-25 12:55:07] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-25 12:56:42] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 13:33:33] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 13:34:03] [INFO   ] PATIENT | CREATE: Patient elonmusk@gmail.com created 
+[2022-04-25 14:02:11] [INFO   ] LOGIN | USER: User doctor logged in 
