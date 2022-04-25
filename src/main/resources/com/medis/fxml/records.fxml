@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -66,7 +65,6 @@
                <TableColumn fx:id="createdAt" prefWidth="200.0" text="%records.created" />
             </columns>
          </TableView>
-         <Pagination layoutX="18.0" layoutY="539.0" maxPageIndicatorCount="4" prefHeight="46.0" prefWidth="144.0" />
             <ImageView accessibleRole="BUTTON" fitHeight="55.0" fitWidth="180.0" layoutX="492.0" layoutY="541.0" onMousePressed="#switchToRecordCreation">
                 <Image url="@../img/plusIcon.png" />
             </ImageView>
