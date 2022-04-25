@@ -83,23 +83,25 @@ public class JavaPostgreSql {
     }
 
     // login checker
-    public boolean checkUser(String email, String password){
+    public boolean checkUser(String identification, String password){
 
-        String query = "SELECT id, first_name, last_name, username, deleted, position FROM users WHERE email=? and password=? and deleted=false;";
+        String query = "SELECT id, first_name, last_name, username, deleted, position FROM users WHERE (email=? and password=?) or (username=? and password=?) and deleted=false;";
 
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1,email);
+            preparedStatement.setString(1,identification);
             preparedStatement.setString(2,hashPass(password));
+            preparedStatement.setString(3,identification);
+            preparedStatement.setString(4,hashPass(password));
 
             System.out.println(preparedStatement);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()){
                 System.out.println("User not found in DB!");
-                GeneralLogger.log(Level.WARNING, "LOGIN | USER | FAILED: Unsuccessful login | " + email + " | " + password );
+                GeneralLogger.log(Level.WARNING, "LOGIN | USER | FAILED: Unsuccessful login | " + identification + " | " + password );
                 return false;
             }
             else {
@@ -107,7 +109,7 @@ public class JavaPostgreSql {
                 while (resultSet.next()) {
                     result.add(createUserFromResultSet(resultSet));
                 }
-                GeneralLogger.log(Level.INFO, "LOGIN | USER: User " + email + " logged in" );
+                GeneralLogger.log(Level.INFO, "LOGIN | USER: User " + identification + " logged in" );
                 return true;
             }
 
@@ -757,15 +759,16 @@ public class JavaPostgreSql {
 
     }
 
-    public User getUserByEmail(String email){
+    public User getUserByEmailOrUsername(String identification){
         User result = new User();
         try {
-            String query = "SELECT * FROM users WHERE email=?;";
+            String query = "SELECT * FROM users WHERE email=? or username=?;";
 
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, identification);
+            preparedStatement.setString(2, identification);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
