@@ -706,13 +706,6 @@
 [2022-04-25 13:33:33] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-25 13:34:03] [INFO   ] PATIENT | CREATE: Patient elonmusk@gmail.com created 
 [2022-04-25 14:02:11] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:38:48] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:39:09] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:39:47] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:41:27] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:42:44] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:43:29] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:44:28] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:47:47] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:48:05] [INFO   ] LOGIN | USER: User doctor logged in 
-[2022-04-25 15:49:36] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 14:50:32] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-25 14:51:52] [INFO   ] PATIENT | CREATE: Patient elonmusk@gmail.com created 
+[2022-04-25 14:54:46] [INFO   ] LOGIN | USER: User doctor logged in 
