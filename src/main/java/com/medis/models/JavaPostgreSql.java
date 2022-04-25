@@ -27,6 +27,12 @@ public class JavaPostgreSql {
     private final String pswd = "Uu39FC4W#Z";
     private final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 
+    /**
+     * Metoda zahashuje heslo cez algoritmus SHA3-256
+     * @param password
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
     private String hashPass(String password) throws NoSuchAlgorithmException {
         final MessageDigest digest = MessageDigest.getInstance("SHA3-256");
         final byte[] hashbytes = digest.digest(
@@ -34,6 +40,11 @@ public class JavaPostgreSql {
         return bytesToHex(hashbytes);
     }
 
+    /**
+     * Metoda prevedie byte na hex pre ulozenie do databazy
+     * @param hashbytes
+     * @return
+     */
     private String bytesToHex(byte[] hashbytes) {
         char[] hexChars = new char[hashbytes.length * 2];
         for (int j = 0; j < hashbytes.length; j++) {
@@ -44,12 +55,23 @@ public class JavaPostgreSql {
         return new String(hexChars);
     }
 
-    // date modification for insert into query
+    /**
+     * Metoda vrati parsovani datum pre ulozenie do databazy
+     * @param birthdate
+     * @return
+     * @throws ParseException
+     */
     private java.sql.Date getDate(String birthdate) throws ParseException {
         Date t = new SimpleDateFormat("yyyy-MM-dd").parse(birthdate);
         return new java.sql.Date(t.getTime());
     }
 
+    /**
+     * Metoda skontroluje ci dany pouzivatel existuje v databaze
+     * @param identification
+     * @param password
+     * @return
+     */
     // login checker
     public boolean checkUser(String identification, String password) {
         String query = "SELECT id, first_name, last_name, username, deleted, position FROM users WHERE (email=? and password=?) or (username=? and password=?) and deleted=false;";
@@ -82,6 +104,18 @@ public class JavaPostgreSql {
         return false;
     }
 
+    /**
+     * Metoda vytvory pouzivatela podla zadanych parametrov
+     * @param firstName
+     * @param lastName
+     * @param username
+     * @param password
+     * @param email
+     * @param phone
+     * @param position
+     * @param birthdate
+     * @return
+     */
     public String createUser(String firstName, String lastName, String username, String password, String email, String phone, String position, String birthdate) {
         String query = "INSERT INTO users (id, first_name,last_name, username, password, email, phone, position,birthdate, created_at, updated_at,deleted) VALUES(default, ?, ?, ?, ?, ?, ?, cast(? as position_enum), ?, now(), now(), false);";
         try {
@@ -110,6 +144,19 @@ public class JavaPostgreSql {
         return query;
     }
 
+    /**
+     * Metoda aktualizuje udaje pouzivatela podla ID pouzivatela
+     * @param id
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param password
+     * @param email
+     * @param phone
+     * @param position
+     * @param birthdate
+     * @return
+     */
     // update application users
     public String updateUser(long id, String username, String firstName, String lastName, String password, String email, String phone, String position, String birthdate) {
         if (!isUserExist(id)) {
@@ -146,6 +193,11 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda zmeny status pouzivatela na vymazany
+     * @param id
+     * @return
+     */
     public String deleteUser(long id) {
         if (!isUserExist(id)) {
             GeneralLogger.log(Level.WARNING, "USER | UPDATE | FAILED: User with id " + id + " not found");
@@ -168,6 +220,20 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda vytvory pacienta podla zadanych parametrov
+     * @param firstName
+     * @param lastName
+     * @param insuranceCo
+     * @param birthdate
+     * @param sex
+     * @param bloodGroup
+     * @param address
+     * @param phone
+     * @param email
+     * @param birthId
+     * @return
+     */
     public String createPatient(String firstName, String lastName, String insuranceCo, String birthdate, String sex, String bloodGroup, String address, String phone, String email, String birthId) {
         String query = "INSERT INTO patients VALUES(default, ?, ?, cast(? as insurance_enum), ?, " +
                 "cast(? as sex_enum), cast(? as blood_enum), ?, ?, now(), now(), false, ?, ?);";
@@ -197,6 +263,21 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda aktualizuje udaje pacienta podla ID pacienta
+     * @param id
+     * @param firstName
+     * @param lastName
+     * @param insuranceCo
+     * @param birthdate
+     * @param sex
+     * @param bloodGroup
+     * @param address
+     * @param phone
+     * @param email
+     * @param identification_number
+     * @return
+     */
     public String updatePatient(long id, String firstName, String lastName, String insuranceCo, String birthdate, String sex, String bloodGroup, String address, String phone, String email, String identification_number) {
         if (!isPatientExist(id)) {
             GeneralLogger.log(Level.WARNING, "PATIENT | UPDATE | FAILED: Patient " + email + " not found");
@@ -232,6 +313,11 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda zmeny status pacienta na vymazany
+     * @param id
+     * @return
+     */
     public String deletePatient(long id) {
         if (!isPatientExist(id)) {
             return "Patient with this id not exists!";
@@ -254,6 +340,17 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda vytvory schodzu podla zadanych parametrov
+     * @param title
+     * @param description
+     * @param start_time
+     * @param end_time
+     * @param patient_id
+     * @param doctor_id
+     * @param created_by
+     * @return
+     */
     public String creteAppointment(String title, String description, String start_time, String end_time, long patient_id, long doctor_id, long created_by) {
         String query = "INSERT INTO appointments VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false, ?);";
         try {
@@ -276,6 +373,17 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda aktualizuje udaje schodzy podla ID schodzy
+     * @param id
+     * @param title
+     * @param description
+     * @param start_time
+     * @param end_time
+     * @param patient_id
+     * @param doctor_id
+     * @return
+     */
     public String updateAppointment(long id, String title, String description, String start_time, String end_time, long patient_id, long doctor_id) {
         if (!isAppointmentExist(id)) {
             GeneralLogger.log(Level.WARNING, "APPOINTMENT | UPDATE | FAILED: Appointment " + title + " not found");
@@ -303,6 +411,11 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     *  Metoda zmeny status schodzy na vymazany
+     * @param id
+     * @return
+     */
     public String deleteAppointment(long id) {
         if (!isAppointmentExist(id)) {
             return "Appointment with this id not exists!";
@@ -325,6 +438,16 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda vytvory zaznam podla zadanych parametrov
+     * @param title
+     * @param description
+     * @param execute_date
+     * @param notes
+     * @param patient_id
+     * @param doctor_id
+     * @return
+     */
     public String createRecord(String title, String description, String execute_date, String notes, long patient_id, long doctor_id) {
         String query = "INSERT INTO records VALUES(default, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
         try {
@@ -349,6 +472,17 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     *Metoda aktualizuje udaje zaznamu podla ID zaznamu
+     * @param id
+     * @param title
+     * @param description
+     * @param execute_date
+     * @param notes
+     * @param patient_id
+     * @param doctor_id
+     * @return
+     */
     public String updateRecord(long id, String title, String description, String execute_date, String notes, long patient_id, long doctor_id) {
         if (!isRecordExist(id)) {
             GeneralLogger.log(Level.WARNING, "RECORD | UPDATE | FAILED: Record " + title + " not found");
@@ -380,6 +514,11 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda zmeny status zaznamu na vymazany
+     * @param id
+     * @return
+     */
     public String deleteRecord(long id) {
         if (!isRecordExist(id)) {
             return "Record with this id not exists!";
@@ -402,6 +541,17 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda vytvory predpis podla zadanych parametrov
+     * @param title
+     * @param description
+     * @param drug
+     * @param expiration_date
+     * @param patient_id
+     * @param doctor_id
+     * @param notes
+     * @return
+     */
     public String createPrescription(String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes) {
         String query = "INSERT INTO prescriptions VALUES(default, ?, ?, ?, ?, ?, ?, ?, now(), now(),  false);";
         try {
@@ -427,6 +577,18 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda aktualizuje udaje predpisu podla ID predpisu
+     * @param id
+     * @param title
+     * @param description
+     * @param drug
+     * @param expiration_date
+     * @param patient_id
+     * @param doctor_id
+     * @param notes
+     * @return
+     */
     public String updatePrescription(long id, String title, String description, String drug, String expiration_date, long patient_id, long doctor_id, String notes) {
         if (!isPrescriptionExist(id)) {
             GeneralLogger.log(Level.WARNING, "PRESCRIPTION | UPDATE | FAILED: Prescription " + title + " not found");
@@ -459,6 +621,11 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda zmeny status predpisu na vymazany
+     * @param id
+     * @return
+     */
     public String deletePrescription(long id) {
         if (!isPrescriptionExist(id)) {
             return "Prescription with this id not exists!";
@@ -481,31 +648,62 @@ public class JavaPostgreSql {
         }
     }
 
+    /**
+     * Metoda skontroluje ci schodza existuje
+     * @param id
+     * @return
+     */
     private Boolean isAppointmentExist(long id) {
         String query = "SELECT * FROM appointments WHERE id=?;";
         return getaBoolean(id, query);
     }
 
+    /**
+     * Metoda skontroluje ci pacient existuje
+     * @param id
+     * @return
+     */
     private Boolean isPatientExist(long id) {
         String query = "SELECT * FROM patients WHERE id=?;";
         return getaBoolean(id, query);
     }
 
+    /**
+     * Metoda skontroluje ci pouzivatel existuje
+     * @param id
+     * @return
+     */
     private Boolean isUserExist(long id) {
         String query = "SELECT * FROM users WHERE id=?;";
         return getaBoolean(id, query);
     }
 
+    /**
+     * Metoda skontroluje ci zaznam existuje
+     * @param id
+     * @return
+     */
     private Boolean isRecordExist(long id) {
         String query = "SELECT * FROM records WHERE id=?;";
         return getaBoolean(id, query);
     }
 
+    /**
+     * Metoda skontroluje ci recept existuje
+     * @param id
+     * @return
+     */
     private Boolean isPrescriptionExist(long id) {
         String query = "SELECT * FROM prescriptions WHERE id=?;";
         return getaBoolean(id, query);
     }
 
+    /**
+     * Metoda skontroluje ci entita ma status vymazany
+     * @param id
+     * @param query
+     * @return
+     */
     private Boolean getaBoolean(long id, String query) {
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
@@ -522,7 +720,12 @@ public class JavaPostgreSql {
         return true;
     }
 
-
+    /**
+     * Metoda vrati zoznam nevymazanych receptov podla zadanej entity ID
+     * @param entity
+     * @param id
+     * @return
+     */
     public ObservableList<Prescription> getAllNotDeletedPrescriptionsByEntityID(String entity, long id) {
         String query = "SELECT * from prescriptions WHERE " + entity + "_id=? AND deleted=false;";
         ObservableList<Prescription> result = FXCollections.observableArrayList();
@@ -541,6 +744,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zoznam nevymazanych schodz podla ID pacienta
+     * @param patient_id
+     * @return
+     */
     public ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patient_id) {
         String query = "SELECT * from appointments WHERE patient_id=? AND deleted=false;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
@@ -558,6 +766,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     *  Metoda vrati zoznam nevymazanych zaznamov podla ID pacienta
+     * @param patient_id
+     * @return
+     */
     public ObservableList<Record> getAllNotDeletedRecordsByPatientId(long patient_id) {
         String query = "SELECT * from records WHERE patient_id=? AND deleted=false;";
         ObservableList<Record> result = FXCollections.observableArrayList();
@@ -575,6 +788,10 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     *  Metoda vrati zoznam pouzivatelov
+     * @return
+     */
     public ObservableList<User> getAllUsers() {
         String query = "SELECT * from users;";
         ObservableList<User> result = FXCollections.observableArrayList();
@@ -591,6 +808,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zoznam nevymazanych pouzivatelov podla pozicie
+     * @param position
+     * @return
+     */
     public ObservableList<String> getUsersByPosition(String position) {
         String query = "SELECT * from users WHERE position=cast(? as position_enum) and deleted=false;";
         ObservableList<String> result = FXCollections.observableArrayList();
@@ -609,6 +831,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati pouzivatela podla emailu alebo pouzivatelskeho mena
+     * @param identification
+     * @return
+     */
     public User getUserByEmailOrUsername(String identification) {
         User result = new User();
         try {
@@ -627,6 +854,12 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     *  Metoda vrati pouzivatela podla mena
+     * @param first_name
+     * @param last_name
+     * @return
+     */
     public User getUserByFirstAndLastName(String first_name, String last_name) {
         User result = new User();
         try {
@@ -645,6 +878,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati email pacienta podla ID pacienta
+     * @param patient_id
+     * @return
+     */
     private String getEmailByPatientId(long patient_id) {
         String result = "";
         try {
@@ -662,6 +900,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati email pouzivatela podla ID pouzivatela
+     * @param user_id
+     * @return
+     */
     private String getEmailByUserId(long user_id) {
         String result = "";
         try {
@@ -679,6 +922,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati nazov schodzy podla ID schodzy
+     * @param appointment_id
+     * @return
+     */
     private String getTitleByAppointmentId(long appointment_id) {
         String result = "";
         try {
@@ -696,6 +944,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati nazov receptu podla ID receptu
+     * @param prescription_id
+     * @return
+     */
     private String getTitleByPrescriptionId(long prescription_id) {
         String result = "";
         try {
@@ -713,6 +966,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati nazov zaznamu podla ID zaznamu
+     * @param record_id
+     * @return
+     */
     private String getTitleByRecordId(long record_id) {
         String result = "";
         try {
@@ -730,6 +988,12 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zoznam pacientov podla zadanych filtrov
+     * @param column
+     * @param filterWord
+     * @return
+     */
     public ObservableList<Patient> getAllNotDeletedPatientsFiltered(String column, String filterWord) {
         try {
             if (!Objects.equals(column, "first_name") && !Objects.equals(column, "last_name") && !Objects.equals(column, "position")) {
@@ -754,6 +1018,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zoznam pacientov podla ID
+     * @param id
+     * @return
+     */
     public ObservableList<Patient> getAllNotDeletedPatientsFiltered(String id) {
         String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id and appointments.deleted=false and appointments.start_time > now() where patients.deleted=false AND patients.identification_number LIKE ?;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
@@ -771,8 +1040,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     *  Metoda vrati zoznam nevymazanych pacientov
+     * @return
+     */
     public ObservableList<Patient> getAllNotDeletedPatients() {
-//        String query = "SELECT * from patients WHERE deleted=false;";
         String query = "select patients.*, appointments.start_time from patients left join appointments on appointments.patient_id = patients.id and appointments.deleted=false and appointments.start_time > now() where patients.deleted=false;";
         ObservableList<Patient> result = FXCollections.observableArrayList();
         try {
@@ -788,6 +1060,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati timestamp nasledujucej schodzy podla ID pacienta
+     * @param patient_id
+     * @return
+     */
     public Timestamp getUpcomingAppointmentDate(Long patient_id) {
         Timestamp result = null;
         try {
@@ -815,6 +1092,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zoznam pacientov podla zadanych filtrov
+     * @param filterWord
+     * @return
+     */
     public ObservableList<Patient> filterPatients(String filterWord) {
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         String query = "";
@@ -850,6 +1132,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zoznam pouzivatelov podla ID pouzivatela
+     * @param id
+     * @return
+     */
     public ObservableList<User> filterUsersById(Long id) {
         ObservableList<User> result = FXCollections.observableArrayList();
         String query = "SELECT * FROM users WHERE id = ?;";
@@ -867,6 +1154,12 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zoznam pouzivatelov podla zadanych filtrov
+     * @param column
+     * @param filterWord
+     * @return
+     */
     public ObservableList<User> filterUsers(String column, String filterWord) {
         try {
             if (!Objects.equals(column, "first_name") && !Objects.equals(column, "last_name") && !Objects.equals(column, "position")) {
@@ -891,36 +1184,59 @@ public class JavaPostgreSql {
         return result;
     }
 
-    private String filterRecords(Long patientId) {
+    /**
+     * Metoda vrati zoznam zaznamov podla ID pacienta
+     * @param patientId
+     * @return
+     */
+    private ObservableList<Record> filterRecords(Long patientId) {
+        ObservableList<Record> result = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM patients WHERE patient_id=?;";
+            String query = "SELECT * FROM records WHERE patient_id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, patientId);
             System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
-            return "Succesfully created appointment!";
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result.add(createRecordFromResultSet(resultSet));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return "SQLException: " + e;
+            System.out.println(e);
         }
+        return result;
     }
 
-    private String filterAppointments(Long patientId) {
+    /**
+     *  Metoda vrati zoznam schodz podla ID  pacienta
+     * @param patientId
+     * @return
+     */
+    private ObservableList<Appointment> filterAppointments(Long patientId) {
+        ObservableList<Appointment> result = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM patients WHERE patient_id=?;";
+            String query = "SELECT * FROM appointments WHERE patient_id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, patientId);
             System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
-            return "Succesfully created appointment!";
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result.add(createAppointmentFromResultSet(resultSet));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return "SQLException: " + e;
+            System.out.println(e);
         }
+        return result;
     }
 
+    /**
+     * Metoda vrati schodzu podla ID schodzy
+     * @param appointment_id
+     * @return
+     */
     public Appointment getAppointmentById(Long appointment_id) {
         Appointment result = new Appointment();
         try {
@@ -938,6 +1254,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati zaznam podla ID zaznamu
+     * @param record_id
+     * @return
+     */
     public Record getRecordById(Long record_id) {
         Record result = new Record();
         try {
@@ -955,6 +1276,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     * Metoda vrati pouzivatela podla ID pouzivatela
+     * @param user_id
+     * @return
+     */
     public User getUserById(Long user_id) {
         User result = new User();
         try {
@@ -972,6 +1298,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     *  Metoda vrati pacienta podla ID pacienta
+     * @param patientId
+     * @return
+     */
     public Patient getPatientById(Long patientId) {
         Patient result = new Patient();
         try {
@@ -989,6 +1320,11 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     *  Metoda vrati recept podla ID receptu
+     * @param prescription_id
+     * @return
+     */
     public Prescription getPrescriptionById(Long prescription_id) {
         Prescription result = new Prescription();
         try {
@@ -1006,6 +1342,12 @@ public class JavaPostgreSql {
         return result;
     }
 
+    /**
+     *  Metoda vrati vytvoreny recept podla odpovedi databazy
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private Prescription createPrescriptionFromResultSet(ResultSet resultSet) throws SQLException {
         Prescription obj = new Prescription();
         obj.setId(resultSet.getLong("id"));
@@ -1023,6 +1365,12 @@ public class JavaPostgreSql {
         return obj;
     }
 
+    /**
+     * Metoda vrati vytvoreneho pacienta podla odpovedi databazy
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private Patient createPatientFromResultSet(ResultSet resultSet) throws SQLException {
         Patient patient = new Patient();
         patient.setId(resultSet.getLong("id"));
@@ -1047,6 +1395,12 @@ public class JavaPostgreSql {
         return patient;
     }
 
+    /**
+     * Metoda vrati vytvoreny zaznam podla odpovedi databazy
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private Record createRecordFromResultSet(ResultSet resultSet) throws SQLException {
         Record record = new Record();
         record.setId(resultSet.getLong("id"));
@@ -1062,6 +1416,12 @@ public class JavaPostgreSql {
         return record;
     }
 
+    /**
+     * Metoda vrati vytvorenu schodzu podla odpovedi databazy
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private Appointment createAppointmentFromResultSet(ResultSet resultSet) throws SQLException {
         Appointment appointment = new Appointment();
         appointment.setId(resultSet.getLong("id"));
@@ -1079,6 +1439,12 @@ public class JavaPostgreSql {
         return appointment;
     }
 
+    /**
+     * Metoda vrati vytvoreneho pouzivatela podla odpovedi databazy
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
     private User createUserFromResultSet(ResultSet resultSet) throws SQLException {
         User obj = new User();
         obj.setId(resultSet.getLong("id"));
