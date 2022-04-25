@@ -2,6 +2,7 @@ package com.medis;
 
 import com.medis.controllers.*;
 import com.medis.models.*;
+import com.medis.models.Record;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
