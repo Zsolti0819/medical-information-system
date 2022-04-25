@@ -27,7 +27,7 @@ public class Patients implements Initializable {
 
     private User loggedInUser;
     private Patient selectedPatient;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
     private ObservableList<Patient> allPatients;
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;

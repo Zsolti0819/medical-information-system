@@ -25,6 +25,11 @@ public class JavaPostgreSql {
     private final String user = "medis";
     private final String pswd = "Uu39FC4W#Z";
     private final char[] hexArray = "0123456789ABCDEF".toCharArray();
+    private static JavaPostgreSql instance = new JavaPostgreSql();
+
+    public static JavaPostgreSql getInstance(){
+        return instance;
+    }
 
     // Buffer methods
 

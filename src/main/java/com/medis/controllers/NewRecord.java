@@ -14,7 +14,7 @@ public class NewRecord {
 
     private Patient selectedPatient;
     private User loggedInUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private Label patientNameNewRecord;
     @FXML private TextField titleData;

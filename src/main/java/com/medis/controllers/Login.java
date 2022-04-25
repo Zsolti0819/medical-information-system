@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 public class Login implements Initializable {
 
     private User loggedInUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private Label loginMsg;
     @FXML private TextField loginEmail;

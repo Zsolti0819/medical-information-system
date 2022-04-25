@@ -25,7 +25,7 @@ public class Users implements Initializable {
 
     private User loggedInUser;
     private User selectedUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private TableView<User> usersTable;
     @FXML private TableColumn<User, String> firstName;

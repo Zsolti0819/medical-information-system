@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Patient {
 
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     private long id;
     private String firstName, lastName;

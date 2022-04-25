@@ -16,7 +16,7 @@ public class EditRecord  {
     private Patient selectedPatient;
     private Record selectedRecord;
     private User loggedInUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private Label patientNameRecordTitle;
     @FXML private TextField titleData;

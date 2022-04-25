@@ -24,7 +24,7 @@ public class Prescriptions implements Initializable {
     private Patient selectedPatient;
     private Prescription selectedPrescription;
     private User loggedInUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private TableView<Prescription> prescriptionsTable;
     @FXML private Label patientNamePrescriptions;

@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class NewUser implements Initializable {
 
     private User loggedInUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private TextField firstNameData;
     @FXML private TextField lastNameData;

@@ -23,7 +23,7 @@ public class EditAppointment implements Initializable {
     private Patient selectedPatient;
     private User loggedInUser;
     private Appointment selectedAppointment;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private Label patientNameAppointmentTitle;
     @FXML private TextField titleData;

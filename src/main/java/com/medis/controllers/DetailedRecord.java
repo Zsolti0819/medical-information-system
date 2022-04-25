@@ -21,7 +21,7 @@ public class DetailedRecord implements Initializable {
     private Patient selectedPatient;
     private Record selectedRecord;
     private User loggedInUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private Label patientNameRecordTitle;
     @FXML private Label titleData;

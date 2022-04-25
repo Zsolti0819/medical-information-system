@@ -21,7 +21,7 @@ public class NewAppointment implements Initializable {
 
     private Patient selectedPatient;
     private User loggedInUser;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private Label patientNameNewAppointment;
     @FXML private TextField titleData;

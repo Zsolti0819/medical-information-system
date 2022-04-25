@@ -25,7 +25,8 @@ public class Appointments implements Initializable {
     private Patient selectedPatient;
     private User loggedInUser;
     private Appointment selectedAppointment;
-    private final JavaPostgreSql javaPostgreSql = new JavaPostgreSql();
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
+
 
     @FXML private TableView<Appointment> appointmentsTable;
     @FXML private Label patientNameAppointments;
