@@ -751,3 +751,6 @@
 [2022-04-26 17:11:32] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-26 17:18:33] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-26 17:19:06] [INFO   ] APPOINTMENT | UPDATE: Appointment LoL updated 
+[2022-04-26 17:54:22] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-26 17:54:39] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-26 17:57:12] [INFO   ] LOGIN | USER: User nurse logged in 

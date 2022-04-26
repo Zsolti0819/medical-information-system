@@ -26,10 +26,9 @@ public class AllAppointments implements Initializable {
 
     @FXML private TableView<Appointment> allAppointmentsTable;
     @FXML private TableColumn<Appointment, String> title;
-    @FXML private TableColumn<Appointment, String> doctor;
+    @FXML private TableColumn<Appointment, String> doctorOrPatientName;
     @FXML private TableColumn<Appointment, LocalDateTime> startTime;
     @FXML private TableColumn<Appointment, LocalDateTime> endTime;
-    @FXML private TextField searchPatientField;
 
     // Log out
     @FXML
@@ -96,7 +95,7 @@ public class AllAppointments implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        doctor.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        doctorOrPatientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("startTimeFormatted"));
         endTime.setCellValueFactory(new PropertyValueFactory<>("endTimeFormatted"));
         addButtonToTable();
@@ -105,8 +104,10 @@ public class AllAppointments implements Initializable {
     public void initData(User user) {
         loggedInUser = user;
         if (!loggedInUser.getPosition().equals("doctor"))
-            doctor.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
+            doctorOrPatientName.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
+
         if (loggedInUser.getPosition().equals("doctor")) {
+            doctorOrPatientName.setText("Patients");
             allAppointmentsTable.setItems(javaPostgreSql.getFutureAppointmentsByDoctorId(loggedInUser.getId()));
         }
         else {

@@ -15,7 +15,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medis.controllers.AllAppointments">
     <left>
         <AnchorPane prefHeight="610.0" prefWidth="205.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
-            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="26.0" prefWidth="157.0" text="%allAppointments.allAppointments" textFill="#151515">
+            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="26.0" prefWidth="157.0" text="%allAppointments.allAppointments" textFill="#0ebfda">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
@@ -51,12 +51,12 @@
             <TableView fx:id="allAppointmentsTable" layoutX="18.0" layoutY="137.0" prefHeight="402.0" prefWidth="654.0" style="-fx-background-color: white;">
                 <columns>
                     <TableColumn fx:id="title" prefWidth="150.0" text="%allAppointments.title" />
-                    <TableColumn fx:id="doctor" prefWidth="150.0" text="%allAppointments.doctor" />
+                    <TableColumn fx:id="doctorOrPatientName" prefWidth="150.0" text="%allAppointments.doctor" />
                     <TableColumn fx:id="startTime" prefWidth="150.0" text="%allAppointments.start" />
                     <TableColumn fx:id="endTime" prefWidth="150.0" text="%allAppointments.end" />
                 </columns>
             </TableView>
-         <Label fx:id="searchLabel" layoutX="384.0" layoutY="29.0" />
+         <Label layoutX="384.0" layoutY="29.0" />
         </AnchorPane>
     </center>
 </BorderPane>
