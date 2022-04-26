@@ -2,12 +2,14 @@ package com.medis.controllers;
 
 import com.medis.Main;
 import com.medis.models.Appointment;
+import com.medis.models.JavaPostgreSql;
 import com.medis.models.Patient;
 import com.medis.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -20,6 +22,7 @@ public class AllAppointments implements Initializable {
     private User loggedInUser;
     private Patient selectedPatient;
     private Appointment selectedAppointment;
+    private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
     @FXML private TableView<Appointment> allAppointmentsTable;
     @FXML private TableColumn<Appointment, String> title;
@@ -41,7 +44,7 @@ public class AllAppointments implements Initializable {
 
     @FXML
     private void switchToAppointmentEdit(ActionEvent event) throws IOException {
-        Main.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, event);
+        Main.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, "AllAppointments", event);
     }
 
 
@@ -57,7 +60,9 @@ public class AllAppointments implements Initializable {
                     {
                         openButton.setOnAction((ActionEvent event) -> {
 
-//                            selectedAppointment = javaPostgreSql.getAppointmentById(appointmentsTable.getItems().get(getIndex()).getId());
+                            selectedAppointment = javaPostgreSql.getAppointmentById(allAppointmentsTable.getItems().get(getIndex()).getId());
+                            selectedPatient = javaPostgreSql.getPatientById(selectedAppointment.getPatientId());
+
                             try {
                                 switchToAppointmentEdit(event);
                             } catch (IOException e) {
@@ -89,10 +94,24 @@ public class AllAppointments implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        if (!loggedInUser.getPosition().equals("doctor"))
+            doctor.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
+        else
+            doctor.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        startTime.setCellValueFactory(new PropertyValueFactory<>("startTimeFormatted"));
+        endTime.setCellValueFactory(new PropertyValueFactory<>("endTimeFormatted"));
+        addButtonToTable();
     }
 
     public void initData(User user) {
         loggedInUser = user;
+        if (loggedInUser.getPosition().equals("doctor")) {
+            allAppointmentsTable.setItems(javaPostgreSql.getFutureAppointmentsByDoctorId(loggedInUser.getId()));
+        }
+        else {
+            allAppointmentsTable.setItems(javaPostgreSql.getFutureAppointments());
+        }
+
     }
 }

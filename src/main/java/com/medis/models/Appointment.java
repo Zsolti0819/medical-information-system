@@ -16,10 +16,19 @@ public class Appointment {
     private LocalDateTime createdAt, updatedAt;
     private int startHour, startMin, startYear, startMonth, startDay, endHour, endMin, endYear, endMonth, endDay;
     private long patientId;
+    private String patientName;
     private long doctorId;
     private String doctorName;
     private boolean deleted;
     private long createdBy;
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
 
     public String getStartTimeFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

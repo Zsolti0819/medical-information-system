@@ -24,6 +24,7 @@ public class EditAppointment implements Initializable {
     private User loggedInUser;
     private Appointment selectedAppointment;
     private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
+    private String previousScene;
 
     @FXML private Label patientNameAppointmentTitle;
     @FXML private TextField titleData;
@@ -100,7 +101,10 @@ public class EditAppointment implements Initializable {
     // Cancel button
     @FXML
     private void switchToAppointments(ActionEvent event) throws IOException {
-        Main.switchToAppointments(loggedInUser, selectedPatient, event);
+        if (previousScene.equals("AllAppointments"))
+            Main.switchToAllAppointments(loggedInUser, event);
+        else
+            Main.switchToAppointments(loggedInUser, selectedPatient, event);
     }
 
     // Delete button
@@ -137,7 +141,8 @@ public class EditAppointment implements Initializable {
         fillAppointmentOptions(doctorData, startHData, startMinData, endHData, endMinData);
     }
 
-    public void initData(Patient patient, Appointment appointment, User user) {
+    public void initData(Patient patient, Appointment appointment, User user, String scene) {
+        previousScene = scene;
         selectedPatient = patient;
         loggedInUser = user;
         selectedAppointment = appointment;

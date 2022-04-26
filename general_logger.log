@@ -746,3 +746,8 @@
 [2022-04-26 16:44:27] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-26 16:44:55] [INFO   ] LOGIN | USER: User doctor logged in 
 [2022-04-26 16:46:19] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-26 17:08:18] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-26 17:11:28] [WARNING] LOGIN | USER | FAILED: Unsuccessful login | doctor | 123245 
+[2022-04-26 17:11:32] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-26 17:18:33] [INFO   ] LOGIN | USER: User doctor logged in 
+[2022-04-26 17:19:06] [INFO   ] APPOINTMENT | UPDATE: Appointment LoL updated 

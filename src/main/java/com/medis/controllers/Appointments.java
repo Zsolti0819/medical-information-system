@@ -70,7 +70,7 @@ public class Appointments implements Initializable {
     // Edit buttons
     @FXML
     private void switchToAppointmentEdit(ActionEvent event) throws IOException {
-        Main.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, event);
+        Main.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, "Appointments", event);
     }
 
     /**

@@ -288,7 +288,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void switchToAppointmentEdit(User loggedInUser, Patient patient, Appointment appointment, ActionEvent event) throws IOException {
+    public static void switchToAppointmentEdit(User loggedInUser, Patient patient, Appointment appointment, String previousScene, ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("fxml/edit_appointment.fxml"));
         loader.setResources(ResourceBundle.getBundle("medis", Main.locale));
@@ -299,7 +299,7 @@ public class Main extends Application {
         stage.setScene(scene);
 
         EditAppointment controller = loader.getController();
-        controller.initData(patient, appointment, loggedInUser);
+        controller.initData(patient, appointment, loggedInUser, previousScene);
 
         stage.show();
     }
