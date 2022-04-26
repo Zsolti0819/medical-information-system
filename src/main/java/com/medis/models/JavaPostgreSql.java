@@ -783,6 +783,12 @@ public class JavaPostgreSql {
         appointment.setEndTime(resultSet.getObject("end_time", LocalDateTime.class));
         appointment.setPatientId(resultSet.getLong("patient_id"));
         appointment.setDoctorId(resultSet.getLong("doctor_id"));
+        try {
+            appointment.setPatientName(resultSet.getString("first_name"), resultSet.getString("last_name"));
+        } catch (Exception e) {
+            appointment.setPatientName("","");
+        }
+
         appointment.setDoctorName(this.getUserById(resultSet.getLong("doctor_id")).getFullName());
         appointment.setCreatedAt(resultSet.getObject("created_at", LocalDateTime.class));
         appointment.setUpdatedAt(resultSet.getObject("updated_at", LocalDateTime.class));
@@ -902,7 +908,7 @@ public class JavaPostgreSql {
     public Appointment getAppointmentById(Long appointmentId) {
         Appointment result = new Appointment();
         try {
-            String query = "SELECT * FROM appointments WHERE id=?;";
+            String query = "SELECT appointments.*, patients.first_name, patients.last_name  FROM appointments LEFT JOIN patients ON appointments.patient_id = patients.id WHERE appointments.id=?;";
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, appointmentId);
@@ -922,12 +928,13 @@ public class JavaPostgreSql {
      * @return
      */
     public ObservableList<Appointment> getFutureAppointmentsByDoctorId(long doctorId){
-        String query = "SELECT * FROM appointments WHERE start_time>=now() AND doctor_id=? AND deleted=false ORDER BY start_time ASC;";
+        String query = "SELECT appointments.*, patients.first_name, patients.last_name  FROM appointments left join patients on appointments.patient_id = patients.id WHERE appointments.start_time>=now() AND doctor_id=? AND appointments.deleted=false AND patients.deleted=false ORDER BY start_time ASC;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, doctorId);
+            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(createAppointmentFromResultSet(resultSet));
@@ -944,11 +951,12 @@ public class JavaPostgreSql {
      * @return
      */
     public ObservableList<Appointment> getFutureAppointments(){
-        String query = "SELECT * FROM appointments WHERE start_time>=now() AND deleted=false ORDER BY start_time ASC;";
+        String query = "SELECT appointments.*, patients.first_name, patients.last_name  FROM appointments LEFT JOIN patients ON appointments.patient_id = patients.id WHERE appointments.start_time>=now() AND appointments.deleted=false AND patients.deleted=false ORDER BY start_time ASC;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 result.add(createAppointmentFromResultSet(resultSet));

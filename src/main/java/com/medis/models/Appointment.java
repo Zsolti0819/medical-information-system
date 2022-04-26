@@ -26,8 +26,8 @@ public class Appointment {
         return patientName;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setPatientName(String firstName, String lastName) {
+        this.patientName = firstName + " " + lastName;
     }
 
     public String getStartTimeFormatted() {

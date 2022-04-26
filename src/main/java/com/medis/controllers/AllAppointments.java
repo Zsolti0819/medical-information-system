@@ -62,7 +62,8 @@ public class AllAppointments implements Initializable {
 
                             selectedAppointment = javaPostgreSql.getAppointmentById(allAppointmentsTable.getItems().get(getIndex()).getId());
                             selectedPatient = javaPostgreSql.getPatientById(selectedAppointment.getPatientId());
-
+                            System.out.println("selected app: " + selectedAppointment.getId());
+                            System.out.println("selected pat: " + selectedPatient.getId());
                             try {
                                 switchToAppointmentEdit(event);
                             } catch (IOException e) {
@@ -95,10 +96,7 @@ public class AllAppointments implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        if (!loggedInUser.getPosition().equals("doctor"))
-            doctor.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
-        else
-            doctor.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        doctor.setCellValueFactory(new PropertyValueFactory<>("patientName"));
         startTime.setCellValueFactory(new PropertyValueFactory<>("startTimeFormatted"));
         endTime.setCellValueFactory(new PropertyValueFactory<>("endTimeFormatted"));
         addButtonToTable();
@@ -106,6 +104,8 @@ public class AllAppointments implements Initializable {
 
     public void initData(User user) {
         loggedInUser = user;
+        if (!loggedInUser.getPosition().equals("doctor"))
+            doctor.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
         if (loggedInUser.getPosition().equals("doctor")) {
             allAppointmentsTable.setItems(javaPostgreSql.getFutureAppointmentsByDoctorId(loggedInUser.getId()));
         }
