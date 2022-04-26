@@ -28,6 +28,7 @@ public class Patients implements Initializable {
     private User loggedInUser;
     private Patient selectedPatient;
     private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
+
     private ObservableList<Patient> allPatients;
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
@@ -39,6 +40,11 @@ public class Patients implements Initializable {
 
     public Patients() {
         allPatients =  javaPostgreSql.getAllNotDeletedPatients();
+    }
+
+    @FXML
+    private void switchToAllAppointments(ActionEvent event) throws IOException {
+        Main.switchToAllAppointments(loggedInUser, event);
     }
 
     // Open buttons

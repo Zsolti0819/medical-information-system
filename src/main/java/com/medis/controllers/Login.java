@@ -41,7 +41,7 @@ public class Login implements Initializable {
                     Main.switchToUsers(loggedInUser, event);
                 }
                 else {
-                    Main.switchToPatients(loggedInUser, event);
+                    Main.switchToAllAppointments(loggedInUser, event);
                 }
             }
 

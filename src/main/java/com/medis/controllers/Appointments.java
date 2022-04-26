@@ -31,7 +31,7 @@ public class Appointments implements Initializable {
     @FXML private TableView<Appointment> appointmentsTable;
     @FXML private Label patientNameAppointments;
     @FXML private TableColumn<Appointment, String> title;
-    @FXML private TableColumn<Appointment, Long> doctor;
+    @FXML private TableColumn<Appointment, String> doctor;
     @FXML private TableColumn<Appointment, LocalDateTime> startTime;
     @FXML private TableColumn<Appointment, LocalDateTime> endTime;
 
@@ -71,7 +71,6 @@ public class Appointments implements Initializable {
     @FXML
     private void switchToAppointmentEdit(ActionEvent event) throws IOException {
         Main.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, event);
-
     }
 
     /**
@@ -124,7 +123,6 @@ public class Appointments implements Initializable {
                 return new TableCell<>() {
 
                     private final Button openButton = new Button("Edit");
-
                     {
                         openButton.setOnAction((ActionEvent event) -> {
 
