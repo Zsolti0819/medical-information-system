@@ -94,6 +94,23 @@ public class JavaPostgreSql {
         return true;
     }
 
+    /**
+     * Metoda vypise vystup z databazy. Tato metoda je len pomocna metoda.
+     * @param resultSet
+     * @throws SQLException
+     */
+    private void printResultSet(ResultSet resultSet) throws SQLException {
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                if (i > 1) System.out.print(",  ");
+                String columnValue = resultSet.getString(i);
+                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+            }
+            System.out.println("");
+        }
+    }
 
 
     // Patient related methods
@@ -900,6 +917,49 @@ public class JavaPostgreSql {
     }
 
     /**
+     * Metoda vrati vsetky nasledujuce schodzy podla ID doktora
+     * @param doctorId
+     * @return
+     */
+    public ObservableList<Appointment> getFutureAppointmentsByDoctorId(long doctorId){
+        String query = "SELECT * FROM appointments WHERE start_time>=now() AND doctor_id=? AND deleted=false ORDER BY start_time ASC;";
+        ObservableList<Appointment> result = FXCollections.observableArrayList();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, doctorId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result.add(createAppointmentFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * Metoda vrati vsetky nasledujuce schodzy podla ID doktora
+     * @param doctorId
+     * @return
+     */
+    public ObservableList<Appointment> getFutureAppointments(){
+        String query = "SELECT * FROM appointments WHERE start_time>=now() AND deleted=false ORDER BY start_time ASC;";
+        ObservableList<Appointment> result = FXCollections.observableArrayList();
+        try {
+            Connection connection = DriverManager.getConnection(url, user, pswd);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                result.add(createAppointmentFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
      * Metoda vrati nazov schodzy podla ID schodzy
      * @param appointmentId
      * @return
@@ -927,7 +987,7 @@ public class JavaPostgreSql {
      * @return
      */
     public ObservableList<Appointment> getAllNotDeletedAppointmentsByPatientId(long patientId) {
-        String query = "SELECT * from appointments WHERE patient_id=? AND deleted=false;";
+        String query = "SELECT * FROM appointments WHERE start_time>=now() AND patient_id=? AND deleted=false ORDER BY start_time ASC;";
         ObservableList<Appointment> result = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(url, user, pswd);
