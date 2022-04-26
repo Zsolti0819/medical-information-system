@@ -223,8 +223,8 @@ public class JavaPostgreSql {
                 preparedStatement.setString(7, phone);
                 preparedStatement.setString(8, address);
                 preparedStatement.setString(9, email);
-                preparedStatement.setLong(10, id);
-                preparedStatement.setString(11, identificationNumber);
+                preparedStatement.setString(10, identificationNumber);
+                preparedStatement.setLong(11, id);
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res + " row!");
@@ -946,8 +946,7 @@ public class JavaPostgreSql {
     }
 
     /**
-     * Metoda vrati vsetky nasledujuce schodzy podla ID doktora
-     * @param doctorId
+     * Metoda vrati vsetky nasledujuce schodzy
      * @return
      */
     public ObservableList<Appointment> getFutureAppointments(){
