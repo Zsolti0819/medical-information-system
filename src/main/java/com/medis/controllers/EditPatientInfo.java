@@ -119,8 +119,8 @@ public class EditPatientInfo implements Initializable{
     }
 
     public void initData(Patient patient, User user) {
-        selectedPatient = patient;
         loggedInUser = user;
+        selectedPatient = javaPostgreSql.getPatientById(patient.getId());
         firstNameAndLastName.setText(selectedPatient.getFirstName() + " " + selectedPatient.getLastName());
         firstNameData.setText(selectedPatient.getFirstName());
         lastNameData.setText(selectedPatient.getLastName());

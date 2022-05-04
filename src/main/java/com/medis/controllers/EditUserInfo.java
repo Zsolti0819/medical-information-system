@@ -96,7 +96,7 @@ public class EditUserInfo implements Initializable {
 
     public void initData(User user, User user2)  {
         loggedInUser = user;
-        selectedUser = user2;
+        selectedUser = javaPostgreSql.getUserById(user2.getId());
         firstNameData.setText(selectedUser.getFirstName());
         lastNameData.setText(selectedUser.getLastName());
         usernameData.setText(selectedUser.getUsername());

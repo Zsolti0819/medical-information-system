@@ -43,12 +43,12 @@
     </left>
     <center>
         <AnchorPane prefHeight="610.0" prefWidth="586.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
-            <Label layoutX="18.0" layoutY="78.0" prefHeight="43.0" prefWidth="237.0" text="%allAppointments.allAppointments">
+            <Label layoutX="18.0" layoutY="16.0" prefHeight="43.0" prefWidth="237.0" text="%allAppointments.allAppointments">
                 <font>
                     <Font size="25.0" />
                 </font>
             </Label>
-            <TableView fx:id="allAppointmentsTable" layoutX="18.0" layoutY="137.0" prefHeight="402.0" prefWidth="654.0" style="-fx-background-color: white;">
+            <TableView fx:id="allAppointmentsTable" layoutX="18.0" layoutY="69.0" prefHeight="522.0" prefWidth="654.0" style="-fx-background-color: white;">
                 <columns>
                     <TableColumn fx:id="title" prefWidth="150.0" text="%allAppointments.title" />
                     <TableColumn fx:id="doctorOrPatientName" prefWidth="150.0" text="%allAppointments.doctor" />

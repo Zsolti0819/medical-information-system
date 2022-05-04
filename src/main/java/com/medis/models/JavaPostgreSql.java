@@ -475,19 +475,20 @@ public class JavaPostgreSql {
             GeneralLogger.log(Level.WARNING, "USER | UPDATE | FAILED: User " + email + " not found");
             System.out.println("User with this id not exists!");
         } else {
-            String query1 = "UPDATE users SET first_name=?, last_name=?, password=?, email=?, phone=?, birthdate=?, position=cast(? AS position_enum), updated_at=now()  WHERE id=? and username=?;";
+            String query1 = "UPDATE users SET first_name=?, last_name=?, username=?, password=?, email=?, phone=?, birthdate=?, position=cast(? AS position_enum), updated_at=now()  WHERE id=?;";
             try {
                 Connection connection = DriverManager.getConnection(url, user, pswd);
                 PreparedStatement preparedStatement = connection.prepareStatement(query1);
                 preparedStatement.setString(1, firstName);
                 preparedStatement.setString(2, lastName);
-                preparedStatement.setString(3, hashPass(password));
-                preparedStatement.setString(4, email);
-                preparedStatement.setString(5, phone);
-                preparedStatement.setDate(6, getDate(birthdate));
-                preparedStatement.setString(7, position);
-                preparedStatement.setLong(8, id);
-                preparedStatement.setString(9, username);
+                preparedStatement.setString(3, username);
+                preparedStatement.setString(4, hashPass(password));
+                preparedStatement.setString(5, email);
+                preparedStatement.setString(6, phone);
+                preparedStatement.setDate(7, getDate(birthdate));
+                preparedStatement.setString(8, position);
+                preparedStatement.setLong(9, id);
+
                 System.out.println(preparedStatement);
                 int res = preparedStatement.executeUpdate();
                 System.out.println("Succesfully updated " + res + " row!");

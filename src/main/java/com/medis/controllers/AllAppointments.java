@@ -107,7 +107,7 @@ public class AllAppointments implements Initializable {
             doctorOrPatientName.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
 
         if (loggedInUser.getPosition().equals("doctor")) {
-            doctorOrPatientName.setText("Patients");
+            doctorOrPatientName.setText("Patient");
             allAppointmentsTable.setItems(javaPostgreSql.getFutureAppointmentsByDoctorId(loggedInUser.getId()));
         }
         else {
