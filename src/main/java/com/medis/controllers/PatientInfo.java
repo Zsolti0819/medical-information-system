@@ -1,13 +1,13 @@
 package com.medis.controllers;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
+import com.medis.GeneralLogger;
 import com.medis.Main;
+import com.medis.models.JavaPostgreSql;
 import com.medis.models.Patient;
 import com.medis.models.PatientData;
 import com.medis.models.User;
-import com.medis.GeneralLogger;
-import com.medis.models.JavaPostgreSql;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -16,8 +16,6 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
-import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -117,7 +115,7 @@ public class PatientInfo {
     }
 
     @FXML
-    private void handleExportPatient(ActionEvent event) throws IOException, XMLStreamException {
+    private void handleExportPatient() throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("medis", Main.getLocale());
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();

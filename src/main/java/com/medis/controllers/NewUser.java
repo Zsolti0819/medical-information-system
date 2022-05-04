@@ -74,22 +74,15 @@ public class NewUser implements Initializable {
         Main.switchToUsers(loggedInUser, event);
     }
 
-    public static boolean validator(String... strings) {
-        for (String s : strings)
-            if (s == null || s.isEmpty())
-                return true;
-        return false;
-    }
-
     public boolean validationEmail(String emailText){
-        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z\\d-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(emailText);
         return matcher.matches();
     }
 
     public boolean validationPhone(String phoneText){
-        String regex = "^[0-9]*$";
+        String regex = "^\\d*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(phoneText);
         return matcher.matches();

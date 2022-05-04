@@ -1,10 +1,8 @@
 package com.medis.controllers;
 
 import com.medis.Main;
-import com.medis.models.User;
 import com.medis.models.JavaPostgreSql;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.medis.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,7 +33,6 @@ public class Users implements Initializable {
     @FXML private TableColumn<User, Long> id;
     @FXML private TextField searchUserfield;
     @FXML private Label searchLabel;
-    // Plus button
 
     public void addUser(MouseEvent event) throws IOException {
         Main.switchToUserCreation(loggedInUser, event);
@@ -65,7 +62,6 @@ public class Users implements Initializable {
                 System.out.println(textMatcher.group(1) + " " + textMatcher.group(2));
                 String col = textMatcher.group(1).toLowerCase().replace(" ", "_");
                 usersTable.setItems(javaPostgreSql.filterUsers(col, textMatcher.group(2).toLowerCase()));
-                addButtonToTable();
                 searchLabel.setTextFill(Color.color(0, 0.6, 0));
                 searchLabel.setText("Searching over column: " + col + "string: " + textMatcher.group(2));
                 return;
@@ -139,23 +135,16 @@ public class Users implements Initializable {
         addButtonToTable();
         usersTable.setItems(javaPostgreSql.getAllUsers());
         //
-        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b):([A-Za-z0-9 ]+)$");
-        Pattern numCols = Pattern.compile("^((?i)\\bid\\b):([1-9][0-9]{0,18})$");
+        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b):([A-Za-z\\d ]+)$");
+        Pattern numCols = Pattern.compile("^((?i)\\bid\\b):([1-9]\\d{0,18})$");
 
-        searchUserfield.textProperty().addListener((observable, oldValue, newValue) -> {
+        searchUserfield.textProperty().addListener((observable, oldValue, newValue) -> matchSearch(newValue, textCols, numCols));
 
-            matchSearch(newValue, textCols, numCols);
-
-        });
-
-        searchUserfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
-                 @Override
-                 public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-                     if (!newPropertyValue && Objects.equals(searchUserfield.getText(), "")) {
-                         usersTable.setItems(javaPostgreSql.getAllUsers());
-                     }
-                 }
-             }
+        searchUserfield.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+            if (!newPropertyValue && Objects.equals(searchUserfield.getText(), "")) {
+                usersTable.setItems(javaPostgreSql.getAllUsers());
+            }
+        }
         );
     }
 

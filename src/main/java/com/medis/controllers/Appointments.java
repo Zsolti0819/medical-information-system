@@ -35,20 +35,12 @@ public class Appointments implements Initializable {
     @FXML private TableColumn<Appointment, LocalDateTime> startTime;
     @FXML private TableColumn<Appointment, LocalDateTime> endTime;
 
-    /**
-     * @param event
-     * @throws IOException
-     */
     // Patient info
     @FXML
     private void switchToPatientInfo(ActionEvent event) throws IOException {
         Main.switchToPatientInfo(loggedInUser, selectedPatient, event);
     }
 
-    /**
-     * @param event
-     * @throws IOException
-     */
     // Records
     @FXML
     private void switchToRecords(ActionEvent event) throws IOException {
@@ -63,30 +55,20 @@ public class Appointments implements Initializable {
         }
     }
 
-    /**
-     * @param event
-     * @throws IOException
-     */
     // Edit buttons
     @FXML
     private void switchToAppointmentEdit(ActionEvent event) throws IOException {
         Main.switchToAppointmentEdit(loggedInUser, selectedPatient, selectedAppointment, "Appointments", event);
     }
 
-    /**
-     * @param event
-     * @throws IOException
-     */
+
     // Plus button
     @FXML
     private void switchToAppointmentCreation(MouseEvent event) throws IOException {
         Main.switchToAppointmentCreation(loggedInUser, selectedPatient, event);
     }
 
-    /**
-     * @param event
-     * @throws IOException
-     */
+
     // Prescriptions
     @FXML
     private void switchToPrescriptions(ActionEvent event) throws IOException {
@@ -101,19 +83,14 @@ public class Appointments implements Initializable {
         }
     }
 
-    /**
-     * @param event
-     * @throws IOException
-     */
+
     // Close window button
     @FXML
     private void switchToPatients(ActionEvent event) throws IOException {
         Main.switchToPatients(loggedInUser, event);
     }
 
-    /**
-     *
-     */
+
     private void addButtonToTable() {
         TableColumn<Appointment, Void> details  = new TableColumn<>();
 
@@ -155,10 +132,6 @@ public class Appointments implements Initializable {
 
     }
 
-    /**
-     * @param url
-     * @param resourceBundle
-     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -168,10 +141,7 @@ public class Appointments implements Initializable {
         addButtonToTable();
     }
 
-    /**
-     * @param patient
-     * @param user
-     */
+
     public void initData(Patient patient, User user) {
         loggedInUser = user;
         selectedPatient = patient;
@@ -179,6 +149,5 @@ public class Appointments implements Initializable {
         appointmentsTable.setItems(javaPostgreSql.getAllNotDeletedAppointmentsByPatientId(selectedPatient.getId()));
 
     }
-
 
 }

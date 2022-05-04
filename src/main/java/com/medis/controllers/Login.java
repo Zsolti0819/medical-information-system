@@ -31,7 +31,7 @@ public class Login implements Initializable {
 
     private void checkLogin(ActionEvent event) throws IOException {
 
-        Locale locale = new Locale(localeComboBox.getValue());
+        // Locale locale = new Locale(localeComboBox.getValue());
 
 
         if (!loginEmail.getText().equals("") && !loginPassword.getText().equals("")) {

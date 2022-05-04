@@ -80,28 +80,25 @@ public class EditPatientInfo implements Initializable{
     }
 
     public boolean validationEmail(String emailText){
-        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z\\d-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(emailText);
         return matcher.matches();
     }
 
     public boolean validationPhone(String phoneText){
-        String regex = "^[0-9]*$";
+        String regex = "^\\d*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(phoneText);
         return matcher.matches();
     }
 
     public boolean validationBirthID(String birthId){
-        String regex = "^[0-9]*$";
+        String regex = "^\\d*$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(birthId);
         if (matcher.matches()){
-            if (Patient.hasValidID(birthId)) {
-                return true;
-            }
-            return false;
+            return Patient.hasValidID(birthId);
         }
         else {
             return false;

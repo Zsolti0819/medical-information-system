@@ -1,11 +1,9 @@
 package com.medis.controllers;
 
 import com.medis.Main;
+import com.medis.models.JavaPostgreSql;
 import com.medis.models.Patient;
 import com.medis.models.User;
-import com.medis.models.JavaPostgreSql;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +27,7 @@ public class Patients implements Initializable {
     private Patient selectedPatient;
     private final JavaPostgreSql javaPostgreSql = JavaPostgreSql.getInstance();
 
-    private ObservableList<Patient> allPatients;
+    private final ObservableList<Patient> allPatients;
     @FXML private TableView<Patient> patientsTable;
     @FXML private TableColumn<Patient, String> name;
     @FXML private TableColumn<Patient, String> lastName;
@@ -77,11 +75,11 @@ public class Patients implements Initializable {
         } else {
             if (textMatcher.find()) {
                 //System.out.println(textMatcher.group(1) + " " + textMatcher.group());
-                if (textMatcher.group(1).toLowerCase().contains("first") || textMatcher.group(1).toLowerCase().equals("meno")) {
+                if (textMatcher.group(1).toLowerCase().contains("first") || textMatcher.group(1).equalsIgnoreCase("meno")) {
                     patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("first_name", textMatcher.group(2).toLowerCase()));
                 }
 
-                if (textMatcher.group(1).toLowerCase().contains("last") || textMatcher.group(1).toLowerCase().equals("priezvisko")) {
+                if (textMatcher.group(1).toLowerCase().contains("last") || textMatcher.group(1).equalsIgnoreCase("priezvisko")) {
                     patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatientsFiltered("last_name", textMatcher.group(2).toLowerCase()));
                 }
 
@@ -91,7 +89,6 @@ public class Patients implements Initializable {
             }
 
             if (numberMatcher.find()) {
-                //System.out.println(numberMatcher.group(1) + " " + numberMatcher.group(2));
                 System.out.println();
 
                 if (numberMatcher.group(1).toLowerCase().contains("id")) {
@@ -160,22 +157,16 @@ public class Patients implements Initializable {
         addButtonToTable();
         patientsTable.setItems(javaPostgreSql.getAllNotDeletedPatients());
 
-        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b|(?i)\\bmeno\\b|(?i)\\bpriezvisko\\b|(?i)\\bfirstname\\b|(?i)\\blastname\\b):([A-Za-z0-9 ]+)$");
-        Pattern numCols = Pattern.compile("^((?i)\\bid\\b|(?i)\\bbirth id\\b|(?i)\\bbirthid\\b):([1-9][0-9]{0,18})$");
+        Pattern textCols = Pattern.compile("^((?i)\\bfirst name\\b|(?i)\\blast name\\b|(?i)\\bmeno\\b|(?i)\\bpriezvisko\\b|(?i)\\bfirstname\\b|(?i)\\blastname\\b):([A-Za-z\\d ]+)$");
+        Pattern numCols = Pattern.compile("^((?i)\\bid\\b|(?i)\\bbirth id\\b|(?i)\\bbirthid\\b):([1-9]\\d{0,18})$");
 
-        searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> {
-            matchSearch(newValue, textCols, numCols);
+        searchPatientField.textProperty().addListener((observable, oldValue, newValue) -> matchSearch(newValue, textCols, numCols));
 
-        });
-
-        searchPatientField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-                  @Override
-                  public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-                      if (!newPropertyValue && Objects.equals(searchPatientField.getText(), "")) {
-                          patientsTable.setItems(allPatients);
-                      }
-                  }
-              }
+        searchPatientField.focusedProperty().addListener((arg0, oldPropertyValue, newPropertyValue) -> {
+            if (!newPropertyValue && Objects.equals(searchPatientField.getText(), "")) {
+                patientsTable.setItems(allPatients);
+            }
+        }
         );
 
     }

@@ -22,13 +22,13 @@
                     <Font name="System Bold" size="24.0" />
                 </font>
             </Text>
-            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="25.0" prefWidth="103.0" text="%user.info" textFill="#0ebfda">
+            <Hyperlink layoutX="25.0" layoutY="104.0" prefHeight="26.0" prefWidth="172.0" text="%user.info" textFill="#0ebfda">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>
             </Hyperlink>
             <Line endX="155.0" layoutX="50.0" layoutY="142.0" startX="-50.0" />
-            <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToUsers" prefHeight="26.0" prefWidth="108.0" text="%user.back" textFill="#151515">
+            <Hyperlink layoutX="25.0" layoutY="157.0" onAction="#switchToUsers" prefHeight="26.0" prefWidth="170.0" text="%user.back" textFill="#151515">
                 <font>
                     <Font name="System Bold" size="14.0" />
                 </font>

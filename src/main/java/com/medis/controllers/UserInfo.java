@@ -26,7 +26,6 @@ public class UserInfo {
     @FXML private Label birthDateData;
     @FXML private Label firstNameData;
 
-
     // Edit user info button
     @FXML
     public void switchToUserInfoEdit(ActionEvent event) throws IOException {
