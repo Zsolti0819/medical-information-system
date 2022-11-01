@@ -1,5 +1,4 @@
-.idea/libraries/
-.idea/libraries/*
+/.idea/
 medis.iml
 target
 general_logger.log
